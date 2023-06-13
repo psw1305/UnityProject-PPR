@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d86af45a38d3d45b857d691b00a681, type: 3}
+  m_Name: StageOneConfig
+  m_EditorClassIdentifier: 
+  nodeBlueprints:
+  - {fileID: 11400000, guid: eb9fcfd393d7b8e49a66e08213a7b965, type: 2}
+  - {fileID: 11400000, guid: 4e831ca9314c5f143ada754103f55960, type: 2}
+  - {fileID: 11400000, guid: 8025f43b4ac5ba64d97ada05e8b36d3d, type: 2}
+  - {fileID: 11400000, guid: b9c29e83fbbacfc478527ee10391133d, type: 2}
+  - {fileID: 11400000, guid: 5d4f7c059220f0b4e8a285c0cf509791, type: 2}
+  - {fileID: 11400000, guid: c9e89376ad7126646aa5ab231638f449, type: 2}
+  - {fileID: 11400000, guid: 2dfa6114a818a90498d303949c5d2c7e, type: 2}
+  - {fileID: 11400000, guid: c362119229aff5741a71fdc8185dc44a, type: 2}
+  numOfPreBossNodes:
+    min: 2
+    max: 3
+  numOfStartingNodes:
+    min: 2
+    max: 3
+  extraPaths: 1
+  layers:
+  - nodeType: 0
+    distanceFromPreviousLayer: 0
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 1
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0.5
+  - nodeType: 1
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0.5
+  - nodeType: 2
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 3
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 1
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0.5
+  - nodeType: 2
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 1
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0.8
+  - nodeType: 5
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 7
+    distanceFromPreviousLayer: 128
+    nodesApartDistance: 0
+    randomizeNodes: 0
+  minors:
+  - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
+  - {fileID: 11400000, guid: 9e17b185cf5be4e4398c481e92b6d553, type: 2}
+  - {fileID: 11400000, guid: 88371db42a265074282003dd854bfb71, type: 2}
+  elites:
+  - {fileID: 11400000, guid: 67985fdf7c9749c4b809a289e814e979, type: 2}
+  - {fileID: 11400000, guid: 8c3183929811e444e93e85b9f737a1d2, type: 2}
+  bosses:
+  - {fileID: 11400000, guid: 4c01928b7bb719344805ecf01e1eb8cf, type: 2}
