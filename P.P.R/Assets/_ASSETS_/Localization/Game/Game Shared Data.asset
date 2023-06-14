@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: lobby_start
     m_Metadata:
       m_Items: []
+  - m_Id: 84895236330799104
+    m_Key: event_exit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization.Components;
 using TMPro;
+using Unity.VisualScripting;
 
 public class MysterySystem : BehaviourSingleton<MysterySystem>
 {
@@ -26,7 +27,7 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     [Header("Selection")]
     [SerializeField] private Transform selectionStartList;
     [SerializeField] private Transform selectionEndList;
-    [SerializeField] private GameObject selectionPrefab;
+    [SerializeField] private GameObject[] selections;
     [SerializeField] private GameObject selectionExitPrefab;
     private MysterySelection[] startSelections;
     private MysterySelection[] endSelections;
@@ -34,7 +35,8 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     private void Start()
     {
         this.eventPicture.sprite = this.eventBlueprint.eventPicture;
-        
+        this.selections = this.eventBlueprint.selections;
+
         var stringTable = this.eventBlueprint.stringTable;
         SetTextContents(this.titleText, stringTable, "Title");
         SetTextContents(this.dialogueText, stringTable, "Before");
@@ -109,15 +111,15 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     /// </summary>
     private void SetSelections()
     {
-        this.startSelections = new MysterySelection[3];
+        this.startSelections = new MysterySelection[this.selections.Length];
 
         for (int i = 0; i < this.startSelections.Length; i++)
         {
-            GameObject clone = Instantiate(this.selectionPrefab, this.selectionStartList);
+            GameObject clone = Instantiate(this.selections[i], this.selectionStartList);
 
             this.startSelections[i] = clone.GetComponent<MysterySelection>();
             this.startSelections[i].SetCanvasGroup();
-            this.selectionStartList.gameObject.SetActive(true);
+            this.startSelections[i].gameObject.SetActive(true);
         }
 
         this.endSelections = new MysterySelection[1];

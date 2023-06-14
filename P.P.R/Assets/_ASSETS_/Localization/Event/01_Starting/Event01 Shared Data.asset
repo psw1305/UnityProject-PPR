@@ -27,6 +27,18 @@ MonoBehaviour:
     m_Key: After
     m_Metadata:
       m_Items: []
+  - m_Id: 10244321963851776
+    m_Key: Selection1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10244981220360192
+    m_Key: Selection2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10245518737195008
+    m_Key: Selection3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

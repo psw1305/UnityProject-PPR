@@ -47,6 +47,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ACT = Player.Instance.ACT.Value;
             this.ATK = Player.Instance.ATK.Value;
             this.DEF = Player.Instance.DEF.Value;
+            CurrentHP = Player.CurrentHP;
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
@@ -55,9 +56,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ACT = 20;
             this.ATK = 2;
             this.DEF = 2;
+            CurrentHP = 999;
         }
 
-        CurrentHP = this.HP;
         this.healthUI.SetText(CurrentHP, this.HP);
         this.statUI.SetText(this.ACT, this.ATK, this.DEF);
     }

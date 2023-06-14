@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 2116910177}
   - component: {fileID: 2116910178}
   m_Layer: 5
-  m_Name: Event Manager
+  m_Name: Mystery System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

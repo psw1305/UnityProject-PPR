@@ -66,8 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uAC15\uD654] <color=\"green\">\uCD5C\uB300 \uCCB4\uB825 +7, <color=\"red\">\uD589\uB3D9\uB825
-    -1"
+  m_text: "[\uC120\uD0DD\uC9C0] \uAE30\uBCF8 \uC120\uD0DD\uC9C0 \uC785\uB2C8\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32a75bffda2dcf24d9dda2760621f324, type: 2}
   m_sharedMaterial: {fileID: -1025667589575277695, guid: 32a75bffda2dcf24d9dda2760621f324,
@@ -333,6 +332,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isExit: 0
-  canvasGroup: {fileID: 4727978278020145535}
   button: {fileID: 4727978279097541908}
   selectionText: {fileID: 4727978277973226931}
+  canvasGroup: {fileID: 4727978278020145535}

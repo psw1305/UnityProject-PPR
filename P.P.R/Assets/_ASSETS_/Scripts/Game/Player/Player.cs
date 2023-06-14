@@ -42,7 +42,7 @@ public class Player : BehaviourSingleton<Player>
 
     public string GetHpText()
     {
-        return this.HP.Value + "/" + this.HP.BaseValue;
+        return CurrentHP + "/" + this.HP.Value;
     }
 
     public void SetStat(int hp, int act, int atk, int def)
