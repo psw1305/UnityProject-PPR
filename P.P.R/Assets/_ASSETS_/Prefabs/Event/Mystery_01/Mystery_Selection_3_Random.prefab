@@ -67,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uB79C\uB364] <color=\"white\">\uB2A5\uB825\uCE58 \uB79C\uB364 \uBD80\uC5EC
-    (<color=\"red\">-2</color> ~ <color=\"green\">2</color>)"
+  m_text: "[\uB79C\uB364] <color=\"yellow\">\uB2A5\uB825\uCE58 \uB79C\uB364 \uBD80\uC5EC
+    (-2 ~ 2)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32a75bffda2dcf24d9dda2760621f324, type: 2}
   m_sharedMaterial: {fileID: -1025667589575277695, guid: 32a75bffda2dcf24d9dda2760621f324,

@@ -16,7 +16,6 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     [SerializeField] private Image eventPicture;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    private string dialogue = string.Empty;
 
     [Header("Canvas")]
     [SerializeField] private CanvasGroup titleTable;
@@ -119,7 +118,6 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
 
             this.startSelections[i] = clone.GetComponent<MysterySelection>();
             this.startSelections[i].SetCanvasGroup();
-            this.startSelections[i].gameObject.SetActive(true);
         }
 
         this.endSelections = new MysterySelection[1];

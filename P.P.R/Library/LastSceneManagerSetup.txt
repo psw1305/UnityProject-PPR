@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_ASSETS_/Scenes/Sub Scenes/Mystery.unity
+- path: Assets/_ASSETS_/Scenes/Stage.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

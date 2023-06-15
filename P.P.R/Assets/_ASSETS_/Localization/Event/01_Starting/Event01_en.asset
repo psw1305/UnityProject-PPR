@@ -35,16 +35,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10244321963851776
-    m_Localized: '[UP] <color="green">Max Health UP (5 ~ 10)'
+    m_Localized: '[Up] <color="green">Max Health UP (5 ~ 10)'
     m_Metadata:
       m_Items: []
   - m_Id: 10244981220360192
-    m_Localized: '[ADD] <color="green">Item Gain (Equip 1, Potion 1)'
+    m_Localized: '[Gain] <color="green">Item Gain (Equip 1, Potion 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 10245518737195008
-    m_Localized: '[Random] <color="white">Stat Random (<color="red">-2</color> ~
-      <color="green">2</color>)'
+    m_Localized: '[Random] <color="yellow">Stat Random (-2 ~ 2)'
     m_Metadata:
       m_Items: []
   references:

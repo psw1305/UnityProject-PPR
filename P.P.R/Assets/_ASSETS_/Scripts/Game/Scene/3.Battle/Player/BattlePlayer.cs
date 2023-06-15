@@ -195,6 +195,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 
         CurrentHP = damagedHP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(CurrentHP, damagedHP);
+
+        if (Player.Instance != null) Player.Instance.SetHp(CurrentHP);
     }
 
     /// <summary>

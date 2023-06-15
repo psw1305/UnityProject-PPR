@@ -14,9 +14,9 @@ public class Player : BehaviourSingleton<Player>
 
     [Header("Inventory")]
     // 장비 리스트 => [0.투구][1.갑옷][2.무기][3.액세서리]
-    public InventoryItem[] equipments;
+    public InventoryItem[] equipments = new InventoryItem[4];
     // 소모품 리스트 => 5개 한정
-    public InventoryItem[] useableItems;
+    public InventoryItem[] useableItems = new InventoryItem[5];
     // 인벤토리 리스트
     public List<ItemBlueprint> inventoryItems = new();
 
@@ -28,11 +28,8 @@ public class Player : BehaviourSingleton<Player>
     {
         base.Awake();
 
-        SetStat(40, 12, 1, 1);
-        SetInfo(0);
-
-        // 플레이어 데이터 세팅 후, UI 세팅
-        PlayerUI.Instance.Set();
+        SetStat();
+        PlayerUI.Instance.SetUI();
     }
 
     private void Start()
@@ -40,26 +37,26 @@ public class Player : BehaviourSingleton<Player>
         SetInventory();
     }
 
-    public string GetHpText()
-    {
-        return CurrentHP + "/" + this.HP.Value;
-    }
-
-    public void SetStat(int hp, int act, int atk, int def)
+    public void SetStat(int hp = 40, int act = 12, int atk = 1, int def = 1, int cash = 0)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
         this.ATK.BaseValue = atk;
         this.DEF.BaseValue = def;
 
-        CurrentHP = this.HP.BaseValue;
+        CurrentHP = hp;
+        Cash = cash;
     }
 
-    public void SetInfo(int cash)
+    public void SetHp(int currentHp)
     {
-        Cash = cash;
-        equipments = new InventoryItem[4];
-        useableItems = new InventoryItem[5];
+        CurrentHP = currentHp;
+        PlayerUI.Instance.SetHealthUI(GetHpText());
+    }
+
+    public string GetHpText()
+    {
+        return CurrentHP + "/" + this.HP.Value;
     }
 
     public void SetInventory()
@@ -142,7 +139,7 @@ public class Player : BehaviourSingleton<Player>
         }
 
         // 스탯 변화 UI 표시
-        PlayerUI.Instance.SetStat();
+        PlayerUI.Instance.SetStatUI();
     }
 
     /// <summary>
@@ -203,7 +200,7 @@ public class Player : BehaviourSingleton<Player>
         }
 
         // 스탯 변화 UI 표시
-        PlayerUI.Instance.SetStat();
+        PlayerUI.Instance.SetStatUI();
     }
 
     private void Unequipping(int num, InventoryItem invenItem)

@@ -57,16 +57,16 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <summary>
     /// Player UI 세팅
     /// </summary>
-    public void Set()
+    public void SetUI()
     {
-        SetCash();
-        SetStat();
+        SetCashUI();
+        SetStatUI();
     }
 
     /// <summary>
     /// Player 재화 UI 표시
     /// </summary>
-    private void SetCash()
+    private void SetCashUI()
     {
         this.cashText.text = Player.Cash.ToString();
     }
@@ -74,14 +74,19 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <summary>
     /// Player 스탯 UI 표시
     /// </summary>
-    public void SetStat()
+    public void SetStatUI()
     {
-        this.health.text = Player.Instance.GetHpText();
-
         this.hpText.text = Player.Instance.HP.Value.ToString();
         this.actText.text = Player.Instance.ACT.Value.ToString();
         this.atkText.text = Player.Instance.ATK.Value.ToString();
         this.defText.text = Player.Instance.DEF.Value.ToString();
+
+        SetHealthUI(Player.Instance.GetHpText());
+    }
+
+    public void SetHealthUI(string healthText)
+    {
+        this.health.text = healthText;
     }
 
     /// <summary>
