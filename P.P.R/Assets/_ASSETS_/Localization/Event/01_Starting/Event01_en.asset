@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10245518737195008
-    m_Localized: '[Random] <color="yellow">Stat Random (-2 ~ 2)'
+    m_Localized: '[Gain] <color="green">Gold Gain (50 ~ 200)'
     m_Metadata:
       m_Items: []
   references:

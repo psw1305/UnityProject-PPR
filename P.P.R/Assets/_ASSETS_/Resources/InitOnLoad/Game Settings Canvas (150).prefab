@@ -3735,6 +3735,8 @@ MonoBehaviour:
   fpsControl: {fileID: 5122760352109187444}
   languageControl: {fileID: 5122760353178550130}
   closeButton: {fileID: 5666569039486334935}
+  lobbyButton: {fileID: 3752472826691465191}
+  exitButton: {fileID: 6422745896373454875}
 --- !u!1 &5122760352960461651
 GameObject:
   m_ObjectHideFlags: 0

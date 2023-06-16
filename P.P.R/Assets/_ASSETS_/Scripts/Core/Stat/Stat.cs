@@ -1,9 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace PSW.Core.Stat
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-
     [Serializable]
     public class Stat
     {
@@ -13,14 +13,14 @@ namespace PSW.Core.Stat
         {
             get
             {
-                if (isDirty || BaseValue != lastBaseValue)
+                if (this.isDirty || this.BaseValue != this.lastBaseValue)
                 {
-                    lastBaseValue = BaseValue;
-                    currentValue = CalculateFinalValue();
-                    isDirty = false;
+                    this.lastBaseValue = this.BaseValue;
+                    this.currentValue = CalculateFinalValue();
+                    this.isDirty = false;
                 }
 
-                return currentValue;
+                return this.currentValue;
             }
         }
 
@@ -33,27 +33,27 @@ namespace PSW.Core.Stat
 
         public Stat()
         {
-            statModifiers = new List<StatModifier>();
-            StatModifiers = statModifiers.AsReadOnly();
+            this.statModifiers = new List<StatModifier>();
+            this.StatModifiers = statModifiers.AsReadOnly();
         }
 
         public Stat(int baseValue) : this()
         {
-            BaseValue = baseValue;
+            this.BaseValue = baseValue;
         }
 
         public virtual void AddModifier(StatModifier mod)
         {
-            isDirty = true;
-            statModifiers.Add(mod);
-            statModifiers.Sort(CompareModifierOrder);
+            this.isDirty = true;
+            this.statModifiers.Add(mod);
+            this.statModifiers.Sort(CompareModifierOrder);
         }
 
         public virtual bool RemoveModifier(StatModifier mod)
         {
-            if (statModifiers.Remove(mod))
+            if (this.statModifiers.Remove(mod))
             {
-                isDirty = true;
+                this.isDirty = true;
                 return true;
             }
             else
@@ -66,13 +66,13 @@ namespace PSW.Core.Stat
         {
             bool didRemove = false;
 
-            for (int i = statModifiers.Count - 1; i >= 0; i--)
+            for (int i = this.statModifiers.Count - 1; i >= 0; i--)
             {
-                if (statModifiers[i].Source == source)
+                if (this.statModifiers[i].Source == source)
                 {
-                    isDirty = true;
+                    this.isDirty = true;
                     didRemove = true;
-                    statModifiers.RemoveAt(i);
+                    this.statModifiers.RemoveAt(i);
                 }
             }
 
@@ -92,30 +92,15 @@ namespace PSW.Core.Stat
         protected virtual int CalculateFinalValue()
         {
             int finalValue = BaseValue;
-            //int sumPercentAdd = 0;
 
-            for (int i = 0; i < statModifiers.Count; i++)
+            for (int i = 0; i < this.statModifiers.Count; i++)
             {
-                StatModifier mod = statModifiers[i];
+                StatModifier mod = this.statModifiers[i];
 
                 if (mod.Type == StatModType.Int)
                 {
                     finalValue += mod.Value;
                 }
-                //else if (mod.Type == StatModType.PercentMult)
-                //{
-                //    sumPercentAdd += mod.Value;
-
-                //    if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
-                //    {
-                //        finalValue *= 1 + sumPercentAdd;
-                //        sumPercentAdd = 0;
-                //    }
-                //}
-                //else if (mod.Type == StatModType.PercentMult)
-                //{
-                //    finalValue *= 1 + mod.Value;
-                //}
             }
 
             return finalValue;

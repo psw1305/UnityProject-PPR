@@ -14,9 +14,9 @@ public class Player : BehaviourSingleton<Player>
 
     [Header("Inventory")]
     // 장비 리스트 => [0.투구][1.갑옷][2.무기][3.액세서리]
-    public InventoryItem[] equipments = new InventoryItem[4];
+    public InventoryItem[] equipments;
     // 소모품 리스트 => 5개 한정
-    public InventoryItem[] useableItems = new InventoryItem[5];
+    public InventoryItem[] useableItems;
     // 인벤토리 리스트
     public List<ItemBlueprint> inventoryItems = new();
 
@@ -34,6 +34,9 @@ public class Player : BehaviourSingleton<Player>
 
     private void Start()
     {
+        this.equipments = new InventoryItem[4];
+        this.useableItems = new InventoryItem[5];
+
         SetInventory();
     }
 
@@ -125,6 +128,7 @@ public class Player : BehaviourSingleton<Player>
             {
                 case StatType.HP:
                     this.HP.AddModifier(new StatModifier(statValue, StatModType.Int, invenItem));
+                    CurrentHP += statValue;
                     break;
                 case StatType.ACT:
                     this.ACT.AddModifier(new StatModifier(statValue, StatModType.Int, invenItem));
@@ -186,6 +190,8 @@ public class Player : BehaviourSingleton<Player>
             {
                 case StatType.HP:
                     this.HP.RemoveAllModifiersFromSource(invenItem);
+                    // 장비 해체 시 현 체력이 최대체력보다 높을 경우 조정
+                    if (CurrentHP >= this.HP.Value) CurrentHP = this.HP.Value;
                     break;
                 case StatType.ACT:
                     this.ACT.RemoveAllModifiersFromSource(invenItem);

@@ -12,7 +12,7 @@ public static class LocaleNames
 /// </summary>
 public static class SceneNames
 {
-    public static readonly string Lobby = "Menu";
+    public static readonly string Lobby = "Lobby";
     public static readonly string Stage = "Stage";
     public static readonly string Battle = "Battle";
     public static readonly string Mystery = "Mystery";

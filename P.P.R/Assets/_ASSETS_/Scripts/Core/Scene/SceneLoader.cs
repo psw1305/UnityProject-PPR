@@ -75,7 +75,7 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);     
 
         yield return new WaitForSeconds(0.5f);
-        
+
         NoticeSystem.Instance.Init();
     }
 
@@ -130,7 +130,7 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
         
         yield return StartCoroutine(this.blinds.FadeInCoroutine(this.fadeDuration));
 
-        // 페이드 인 후 => 코루틴 작동 (씬 전환, 씬 추가, 씬 삭제)
+        SettingsSystem.Instance.Init();
         yield return StartCoroutine(coroutine);
 
         yield return StartCoroutine(this.blinds.FadeOutCoroutine(this.fadeDuration));

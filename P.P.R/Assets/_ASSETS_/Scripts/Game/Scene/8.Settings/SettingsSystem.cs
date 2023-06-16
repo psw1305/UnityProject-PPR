@@ -1,18 +1,21 @@
 using PSW.Core.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class SettingsSystem : BehaviourSingleton<SettingsSystem>
 {
     public bool IsShow { get; private set; }
 
+    [Header("Control")]
     [SerializeField] private BGMControlUI bgmControl;
     [SerializeField] private SFXControlUI sfxControl;
     [SerializeField] private FPSControlUI fpsControl;
     [SerializeField] private LanguageControlUI languageControl;
 
+    [Header("Button")]
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button lobbyButton;
+    [SerializeField] private Button exitButton;
 
     private CanvasGroup canvasGroup;
 
@@ -25,8 +28,10 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
         this.fpsControl.Set(DataFrame.Instance.dFPS);
         this.languageControl.Set(DataFrame.Instance.dLanguage);
 
+        this.closeButton.onClick.AddListener(HideClick);
+        this.lobbyButton.onClick.AddListener(GameLobby);
+        this.exitButton.onClick.AddListener(GameExit);
         this.IsShow = false;
-        this.closeButton.onClick.AddListener(Hide);
     }
 
     public void Show()
@@ -40,14 +45,43 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
         this.canvasGroup.CanvasFadeIn(0.25f);
     }
 
-    private void Hide()
+    private void HideClick()
     {
         if (this.IsShow == false) return;
 
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
+        Hide();
+    }
+
+    private void Hide()
+    {
         this.IsShow = false;
         this.closeButton.interactable = false;
         this.canvasGroup.CanvasFadeOut(0.25f, new Vector3(-300, 0, 0));
+    }
+
+    private void GameLobby()
+    {
+        UISFX.Instance.Play(UISFX.Instance.buttonClick);
+
+        this.lobbyButton.interactable = false;
+        SceneLoader.Instance.LoadScene(SceneNames.Lobby);
+    }
+
+    private void GameExit()
+    {
+        UISFX.Instance.Play(UISFX.Instance.buttonClick);
+        
+        this.exitButton.interactable = false;
+        Application.Quit();
+    }
+
+    public void Init()
+    {
+        if (!this.lobbyButton.interactable) this.lobbyButton.interactable = true;
+        if (!this.exitButton.interactable) this.exitButton.interactable = true;
+
+        if (this.IsShow) Hide();
     }
 }
