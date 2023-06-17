@@ -25,9 +25,9 @@ MonoBehaviour:
     min: 2
     max: 3
   numOfStartingNodes:
-    min: 2
+    min: 1
     max: 3
-  extraPaths: 1
+  extraPaths: 2
   layers:
   - nodeType: 0
     distanceFromPreviousLayer: 0
@@ -36,32 +36,24 @@ MonoBehaviour:
   - nodeType: 1
     distanceFromPreviousLayer: 64
     nodesApartDistance: 64
-    randomizeNodes: 0.5
-  - nodeType: 1
-    distanceFromPreviousLayer: 64
-    nodesApartDistance: 64
-    randomizeNodes: 0.5
-  - nodeType: 2
-    distanceFromPreviousLayer: 64
-    nodesApartDistance: 64
-    randomizeNodes: 0
-  - nodeType: 3
-    distanceFromPreviousLayer: 64
-    nodesApartDistance: 64
     randomizeNodes: 0
   - nodeType: 1
     distanceFromPreviousLayer: 64
     nodesApartDistance: 64
     randomizeNodes: 0.5
-  - nodeType: 2
-    distanceFromPreviousLayer: 64
-    nodesApartDistance: 64
-    randomizeNodes: 0
-  - nodeType: 1
-    distanceFromPreviousLayer: 64
-    nodesApartDistance: 64
-    randomizeNodes: 0.8
   - nodeType: 5
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 2
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0
+  - nodeType: 1
+    distanceFromPreviousLayer: 64
+    nodesApartDistance: 64
+    randomizeNodes: 0.2
+  - nodeType: 3
     distanceFromPreviousLayer: 64
     nodesApartDistance: 64
     randomizeNodes: 0
