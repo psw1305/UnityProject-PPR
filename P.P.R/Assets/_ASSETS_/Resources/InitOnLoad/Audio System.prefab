@@ -95,6 +95,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 174bc848a19212b4e829852aadb5b5b5, type: 3}
   - {fileID: 8300000, guid: f0d721b0fb8cba8458d0d565a89aff43, type: 3}
   - {fileID: 8300000, guid: 72ddecc5d00c7a94c9bb322ee8e6917a, type: 3}
+  itemDrag: {fileID: 8300000, guid: 10845a44d2f159f47affdd3ec75ffadd, type: 3}
+  equipNormalDrop: {fileID: 8300000, guid: 85be7637669f1bc46a5665aa0132a6bb, type: 3}
+  equipHeavyDrop: {fileID: 8300000, guid: e7bbb91d28c6eb24f9392f340375ec88, type: 3}
+  equipMagicDrop: {fileID: 8300000, guid: 7febbfa5a2a1e484d94d6912826d301e, type: 3}
+  useableDrop: {fileID: 8300000, guid: a1f832f1fe54c3444b74b5fe475465c9, type: 3}
+  healthUp: {fileID: 8300000, guid: ca4cef7e64128fe439de00886a296743, type: 3}
+  itemGain: {fileID: 8300000, guid: 67739ec0597743644bc15dd2b8cc6ffc, type: 3}
+  cashGain: {fileID: 8300000, guid: c6566cee37d4fc0418d3130481001f06, type: 3}
   mapClicks:
   - {fileID: 8300000, guid: 21412d0096c61e34caea7118f124e253, type: 3}
   - {fileID: 8300000, guid: db7b4cbab33a601449a0cc5a0af37331, type: 3}

@@ -377,3 +377,14 @@ MonoBehaviour:
   button: {fileID: 4727978279097541908}
   selectionText: {fileID: 4727978277973226931}
   canvasGroup: {fileID: 4727978278020145535}
+  mysteryType: 1
+  selectionEquipments:
+  - {fileID: 11400000, guid: 19cf17d6f154cd94999a531133399499, type: 2}
+  - {fileID: 11400000, guid: 97be9f3bbf221df488f274928c66a4db, type: 2}
+  - {fileID: 11400000, guid: 952ebbd6e64ce9c46a89909cb89a81ed, type: 2}
+  - {fileID: 11400000, guid: 2a5befd7c24dac34392e819860764cf5, type: 2}
+  selectionUseables:
+  - {fileID: 11400000, guid: 958cfbed9c3039d47b913a17b9af8429, type: 2}
+  - {fileID: 11400000, guid: c9f3aaa8b0d074f43aef79173a5ae969, type: 2}
+  - {fileID: 11400000, guid: bdc65c25db1eea64ab504f7825b36784, type: 2}
+  - {fileID: 11400000, guid: df7059183b305a94b8b519b798a3531e, type: 2}

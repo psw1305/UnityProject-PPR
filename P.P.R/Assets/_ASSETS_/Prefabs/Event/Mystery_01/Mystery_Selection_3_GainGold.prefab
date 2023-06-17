@@ -376,3 +376,6 @@ MonoBehaviour:
   button: {fileID: 4727978279097541908}
   selectionText: {fileID: 4727978277973226931}
   canvasGroup: {fileID: 4727978278020145535}
+  mysteryType: 2
+  selectionEquipments: []
+  selectionUseables: []

@@ -15,10 +15,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum StatType
     {
-        HP, 
-        ACT, 
-        ATK, 
-        DEF
+        HP, ACT, ATK, DEF
     }
 
     /// <summary>
@@ -26,10 +23,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemType
     {
-        Equipment, 
-        Useable, 
-        Cash, 
-        Stuff
+        Equipment, Useable, Cash, Stuff
     }
 
     /// <summary>
@@ -45,10 +39,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum EquipmentType
     {
-        Helmet, 
-        Armor, 
-        Weapon, 
-        Trinket
+        Helmet, Armor, Weapon, Trinket
     }
 
     /// <summary>
@@ -90,9 +81,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum EnemyType
     {
-        Minor, 
-        Elite, 
-        Boss
+        Minor, Elite, Boss
     }
 
     /// <summary>
@@ -104,8 +93,15 @@ namespace PSW.Core.Enums
         Defense, 
         Reinforce, 
         Recovery, 
-        Buff, 
+        Buff,
         Debuff
+    }
+
+    public enum MysteryType
+    {
+        HealthUp,
+        ItemGain,
+        GoldGain,
     }
 }
 

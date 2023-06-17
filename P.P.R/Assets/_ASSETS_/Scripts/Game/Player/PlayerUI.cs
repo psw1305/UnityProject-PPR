@@ -59,16 +59,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     public void SetUI()
     {
-        SetCashUI();
         SetStatUI();
-    }
-
-    /// <summary>
-    /// Player 재화 UI 표시
-    /// </summary>
-    private void SetCashUI()
-    {
-        this.cashText.text = Player.Cash.ToString();
+        SetCashUI();
     }
 
     /// <summary>
@@ -87,6 +79,14 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     public void SetHealthUI(string healthText)
     {
         this.health.text = healthText;
+    }
+
+    /// <summary>
+    /// Player 재화 UI 표시
+    /// </summary>
+    public void SetCashUI()
+    {
+        this.cashText.text = Player.Cash.ToString();
     }
 
     /// <summary>

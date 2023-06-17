@@ -62,6 +62,12 @@ public class Player : BehaviourSingleton<Player>
         return CurrentHP + "/" + this.HP.Value;
     }
 
+    public void SetCash(int cash)
+    {
+        Cash += cash;
+        PlayerUI.Instance.SetCashUI();
+    }
+
     public void SetInventory()
     {
         foreach(ItemBlueprint item in this.inventoryItems)
