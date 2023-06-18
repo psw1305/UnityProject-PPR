@@ -105,6 +105,9 @@ ScriptsOnlyBuild:
     - UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema
     - UnityEditor.AddressableAssets.Settings.GroupSchemas.ContentUpdateGroupSchema
     - UnityEditor.AddressableAssets.Settings.GroupSchemas.PlayerDataGroupSchema
+    Unity.Localization.Editor.dll:
+    - UnityEditor.Localization.StringTableCollection
+    - UnityEditor.Localization.UI.LocalizationTablesWindow
     Unity.Localization.dll:
     - UnityEngine.Localization.Components.LocalizeStringEvent
     - UnityEngine.Localization.Locale
@@ -123,11 +126,13 @@ ScriptsOnlyBuild:
     Unity.Timeline.Editor.dll:
     - TimelinePreferences
     - UnityEditor.Timeline.SequenceHierarchy
+    - UnityEditor.Timeline.TimelineWindow
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -602,11 +607,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22134}
     - Class: 114
+      Script: {instanceID: 22228}
+    - Class: 114
       Script: {instanceID: 22880}
     - Class: 114
       Script: {instanceID: 23022}
     - Class: 114
       Script: {instanceID: 23224}
+    - Class: 114
+      Script: {instanceID: 23596}
     - Class: 114
       Script: {instanceID: 24156}
     - Class: 114
@@ -867,7 +876,7 @@ ScriptsOnlyBuild:
     className: EnemyShieldUI
   - hash:
       serializedVersion: 2
-      Hash: 642c4ca0400aca1beebe1e355288ff4e
+      Hash: 26b015c5354354a8a2008e8cefe16a25
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UISFX
@@ -2253,7 +2262,7 @@ ScriptsOnlyBuild:
     className: PlayerUI
   - hash:
       serializedVersion: 2
-      Hash: 06de188cdbb2ce89a6aa067db7410843
+      Hash: f0abc0cd10008c2f75d2da047329fb67
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MysterySelection
