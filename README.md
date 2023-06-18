@@ -1,6 +1,6 @@
 # 유니티 포트폴리오 - PIXEL PUZZLE RPG
 
-<img src="https://github.com/psw1305/UnityProject-P.P.R/assets/6329345/159128a0-bb4f-4085-a798-742a86f285b7"/>
+<img src="https://user-images.githubusercontent.com/6329345/246642080-2bff6899-4a13-4fe0-abdf-dc36d50e9386.png"/>
 
 ## 개요
 취업 준비를 위한 유니티 프로젝트 포트폴리오 입니다.  
