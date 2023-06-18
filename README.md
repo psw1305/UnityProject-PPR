@@ -11,7 +11,6 @@
 
 ## 시연 영상
 [영상링크](https://www.youtube.com/watch?v=SW4AwwsP-a8)
-<a href="https://www.youtube.com/watch?v=SW4AwwsP-a8" target="_blank">2영상링크</a>
 
 ## 간단 소개
 상단에 Game 폴더 내에서는 모바일로 빌드된 apk가 첨부되어 있고
