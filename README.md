@@ -13,5 +13,4 @@
 [영상링크](https://www.youtube.com/watch?v=SW4AwwsP-a8)
 
 ## 간단 소개
-
-P.P.R 폴더는 유니티 프로젝트가 첨부되어 있습니다. <b>Version : 2021.3.25f1</b>
+<b>Unity Version : 2021.3.25f1</b>
