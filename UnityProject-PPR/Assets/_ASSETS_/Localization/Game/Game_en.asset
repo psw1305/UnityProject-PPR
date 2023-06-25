@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 64070605457776640
-    m_Localized: PP.RPG
+    m_Localized: P.P.R
     m_Metadata:
       m_Items: []
   - m_Id: 64070674718318592
@@ -28,6 +28,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 84895236330799104
     m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88787500714876928
+    m_Localized: Equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88787733532303360
+    m_Localized: Useable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88787894216089600
+    m_Localized: Sort
     m_Metadata:
       m_Items: []
   references:

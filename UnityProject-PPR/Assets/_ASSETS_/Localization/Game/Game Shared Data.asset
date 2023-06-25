@@ -27,6 +27,18 @@ MonoBehaviour:
     m_Key: event_exit
     m_Metadata:
       m_Items: []
+  - m_Id: 88787500714876928
+    m_Key: inventory_equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88787733532303360
+    m_Key: inventory_useable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88787894216089600
+    m_Key: inventory_sort
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

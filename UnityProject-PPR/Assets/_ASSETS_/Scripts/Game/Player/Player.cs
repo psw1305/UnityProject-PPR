@@ -28,24 +28,25 @@ public class Player : BehaviourSingleton<Player>
     {
         base.Awake();
 
-        SetStat();
-        PlayerUI.Instance.SetUI();
+        Set();
     }
 
     private void Start()
     {
-        this.equipments = new InventoryItem[4];
-        this.useableItems = new InventoryItem[5];
-
         SetInventory();
+
+        PlayerUI.Instance.SetUI();
     }
 
-    public void SetStat(int hp = 40, int act = 12, int atk = 1, int def = 1, int cash = 0)
+    public void Set(int hp = 40, int act = 12, int atk = 1, int def = 1, int cash = 0)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
         this.ATK.BaseValue = atk;
         this.DEF.BaseValue = def;
+
+        this.equipments = new InventoryItem[4];
+        this.useableItems = new InventoryItem[5];
 
         CurrentHP = hp;
         Cash = cash;
