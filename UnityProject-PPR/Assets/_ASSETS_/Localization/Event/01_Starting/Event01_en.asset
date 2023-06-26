@@ -35,15 +35,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10244321963851776
-    m_Localized: '[Up] <color="green">Max Health UP (5 ~ 10)'
+    m_Localized: '[Up] <color="green">Health Up'
     m_Metadata:
       m_Items: []
   - m_Id: 10244981220360192
-    m_Localized: '[Gain] <color="green">Item Gain (Equip 1, Potion 1)'
+    m_Localized: '[Gain] <color="green">Item Gain'
     m_Metadata:
       m_Items: []
   - m_Id: 10245518737195008
-    m_Localized: '[Gain] <color="green">Gold Gain (50 ~ 200)'
+    m_Localized: '[Gain] <color="green">Gold Gain'
     m_Metadata:
       m_Items: []
   references:

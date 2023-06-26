@@ -35,18 +35,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10244321963851776
-    m_Localized: "[\uAC15\uD654] <color=\"green\">\uCD5C\uB300 \uCCB4\uB825 \uC0C1\uC2B9
-      (5 ~ 10)"
+    m_Localized: "[\uAC15\uD654] <color=\"green\">\uCCB4\uB825 \uC0C1\uC2B9"
     m_Metadata:
       m_Items: []
   - m_Id: 10244981220360192
-    m_Localized: "[\uD68D\uB4DD] <color=\"green\">\uC544\uC774\uD15C \uD68D\uB4DD
-      (\uC7A5\uBE44 1, \uD3EC\uC158 1)"
+    m_Localized: "[\uD68D\uB4DD] <color=\"green\">\uC544\uC774\uD15C \uD68D\uB4DD"
     m_Metadata:
       m_Items: []
   - m_Id: 10245518737195008
-    m_Localized: "[\uD68D\uB4DD] <color=\"green\">\uACE8\uB4DC \uD68D\uB4DD (50 ~
-      200)"
+    m_Localized: "[\uD68D\uB4DD] <color=\"green\">\uACE8\uB4DC \uD68D\uB4DD"
     m_Metadata:
       m_Items: []
   references:

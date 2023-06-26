@@ -578,10 +578,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Event Title
+  m_text: "\uC774\uBCA4\uD2B8 \uD0C0\uC774\uD2C0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32a75bffda2dcf24d9dda2760621f324, type: 2}
-  m_sharedMaterial: {fileID: -1025667589575277695, guid: 32a75bffda2dcf24d9dda2760621f324,
+  m_fontAsset: {fileID: 11400000, guid: ea350ab5d5e8249439bba6bd2da5317b, type: 2}
+  m_sharedMaterial: {fileID: 4029777637623508966, guid: ea350ab5d5e8249439bba6bd2da5317b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -606,8 +606,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -833,8 +833,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Event Dialogue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32a75bffda2dcf24d9dda2760621f324, type: 2}
-  m_sharedMaterial: {fileID: -1025667589575277695, guid: 32a75bffda2dcf24d9dda2760621f324,
+  m_fontAsset: {fileID: 11400000, guid: ea350ab5d5e8249439bba6bd2da5317b, type: 2}
+  m_sharedMaterial: {fileID: 4029777637623508966, guid: ea350ab5d5e8249439bba6bd2da5317b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -859,8 +859,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1540,7 +1540,6 @@ MonoBehaviour:
   pictureTable: {fileID: 1672423765}
   selectionStartList: {fileID: 1443182213}
   selectionEndList: {fileID: 447693419}
-  selectionPrefab: {fileID: 4727978279097541897, guid: f199b1a91937e1a49933a18006d09ff8,
-    type: 3}
+  selections: []
   selectionExitPrefab: {fileID: 4727978279097541897, guid: be4edd0ebb88de84aa6292f9454b714c,
     type: 3}

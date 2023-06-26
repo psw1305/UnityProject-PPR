@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1800cfeb953e2e742a8267b0ae3216fa, type: 3}
   m_Name: EL_x2
   m_EditorClassIdentifier: 
-  elementImage: {fileID: 413241093, guid: 58eb9e7c96611ba478f1df6a90efc8c6, type: 3}
+  elementImage: {fileID: 1017260234, guid: 2d3c90e830e3c9f488c0f7d62e428194, type: 3}
   elementCase: {fileID: 1289761069, guid: 0e3d84d16e48a124fbaeb045d5375552, type: 3}
   elementType: 4
   randomWeighted: 10

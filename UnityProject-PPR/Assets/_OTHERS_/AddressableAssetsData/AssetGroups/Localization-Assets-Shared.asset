@@ -21,17 +21,14 @@ MonoBehaviour:
     m_Address: Assets/_ASSETS_/Localization/Options Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aecad3483ef0b7f4b8e111cc789cdc97
     m_Address: Assets/_ASSETS_/Localization/InGame/InGame Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1c74f140a064631439c76c4144d257c0
     m_Address: Assets/_ASSETS_/Localization/Event Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 458c4c4e127ac394294b7d802dc97305, type: 2}
   m_SchemaSet:

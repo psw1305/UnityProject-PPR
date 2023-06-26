@@ -22,19 +22,16 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db2d85c50ff48684d9299f125c9c56e0
     m_Address: Game_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4064011ad083dd741a0a184484275a1f
     m_Address: Event01_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 458c4c4e127ac394294b7d802dc97305, type: 2}
   m_SchemaSet:

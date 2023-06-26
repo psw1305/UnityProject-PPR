@@ -80,7 +80,7 @@ public class ShopItem : MonoBehaviour
         if (this.IsSale == true)
         {
             this.productPrice = Mathf.FloorToInt(itemOriginPrice * ItemPrice.PRICE_SALE_BIG);
-            this.productPriceText.text = "<#9d9d9d><size=80%><s>" + itemOriginPrice + "</s></size></color>\n" + this.productPrice;
+            this.productPriceText.text = this.productPrice.ToString();
         }
         // 할인 품목이 아닐 경우
         else

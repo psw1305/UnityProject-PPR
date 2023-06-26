@@ -12,7 +12,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemDesc;
-    [SerializeField] private Button okButton;
+    [SerializeField] private Button tooltipClose;
 
     [Header("Equipment")]
     [SerializeField] private GameObject equipmentTable;
@@ -35,7 +35,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         this.canvasGroup = GetComponent<CanvasGroup>();
 
         this.IsShow = false;
-        this.okButton.onClick.AddListener(Hide);
+        this.tooltipClose.onClick.AddListener(Hide);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
         this.IsShow = true;
-        this.okButton.interactable = true;
+        this.tooltipClose.interactable = true;
 
         UIDataInput(invenItem);
 
@@ -66,7 +66,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
         this.IsShow = false;
-        this.okButton.interactable = false;
+        this.tooltipClose.interactable = false;
 
         UIDataInit();
 

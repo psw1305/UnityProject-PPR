@@ -125,177 +125,21 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: UI Settings Buttons_17
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 167
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 9, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46e7263208083f247b5b191a43f6c6b6
-      internalID: 1675756835
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_18
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 167
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 7, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4708213cff89b5a43ad17a23fc994d1e
-      internalID: -2121049981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_19
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 167
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 9, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dba2f7e7d8207ed45832e0705f80b80d
-      internalID: 1385925240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_20
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 167
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 7, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b87437969c0791c4687453b7fbf41660
-      internalID: -2018863401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_21
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 135
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 9, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7da4388ef9231944d8182d94fb303bdc
-      internalID: -1344220950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_22
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 135
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 7, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2147e790e55ba6442ae211f92c22b824
-      internalID: -1684670452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_23
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 135
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 9, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 298e7f3293d6b064c9bc100d5d6fd640
-      internalID: -1418517382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI Settings Buttons_24
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 135
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 7, z: 7, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdf2d736b43a45e42b1326ca8d2ef1c0
-      internalID: 1069903962
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     - serializedVersion: 2
       name: UI Settings Buttons_25
       rect:
@@ -349,58 +193,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI Settings Buttons_44: -1714344112
-      UI Settings Buttons_24: 1069903962
-      UI Settings Buttons_6: -1253827869
-      UI Settings Buttons_42: -1704023151
-      UI Settings Buttons_27: -2019256410
-      UI Settings Buttons_21: -1344220950
-      UI Settings Buttons_41: -1463985827
-      UI Settings Buttons_38: -513077236
-      UI Settings Buttons_23: -1418517382
-      UI Settings Buttons_43: -1671717455
-      UI Settings Buttons_3: -175524213
-      UI Settings Buttons_36: -732289661
-      UI Settings Buttons_11: -2010029019
-      UI_slide_cell: 1661107793
-      UI Settings Buttons_9: -110520916
-      UI Settings Buttons_20: -2018863401
-      UI Settings Buttons_16: -1121476846
-      UI Settings Buttons_46: 491362670
-      UI Settings Buttons_5: -1722081406
-      UI Settings Buttons_12: 663998723
-      UI Settings Buttons_15: -731687178
-      UI Settings Buttons_34: -1461767391
-      UI_slide_cell_off: -1373472509
-      UI Settings Buttons_17: 1675756835
-      UI Settings Buttons_26: 1560990316
-      UI Settings Buttons_13: -391698489
-      UI Settings Buttons_29: -265229871
-      UI Settings Buttons_1: -1168753931
-      UI Settings Buttons_50: 863459046
-      UI Settings Buttons_25: 962049245
-      UI Settings Buttons_48: 876261138
-      UI Settings Buttons_10: -708474383
-      UI Settings Buttons_2: 1683794300
-      UI Settings Buttons_19: 1385925240
-      UI Settings Buttons_35: 841778223
-      UI Settings Buttons_37: -1612252751
-      UI Settings Buttons_8: -313651164
-      UI Settings Buttons_18: -2121049981
-      UI Settings Buttons_22: -1684670452
-      UI_slide_cell_on: 1914305586
       UI Settings Buttons_0: 1016078949
-      UI Settings Buttons_40: 254933116
-      UI Settings Buttons_51: 86998031
-      UI Settings Buttons_47: -869925314
-      UI Settings Buttons_4: -2050410693
-      UI Settings Buttons_7: -2050380438
-      UI Settings Buttons_28: 1108215528
-      UI Settings Buttons_33: -1555643702
-      UI Settings Buttons_45: 1354970386
+      UI Settings Buttons_1: -1168753931
+      UI Settings Buttons_10: -708474383
+      UI Settings Buttons_11: -2010029019
+      UI Settings Buttons_12: 663998723
+      UI Settings Buttons_13: -391698489
       UI Settings Buttons_14: -1798376142
+      UI Settings Buttons_15: -731687178
+      UI Settings Buttons_16: -1121476846
+      UI Settings Buttons_17: 1675756835
+      UI Settings Buttons_18: -2121049981
+      UI Settings Buttons_19: 1385925240
+      UI Settings Buttons_2: 1683794300
+      UI Settings Buttons_20: -2018863401
+      UI Settings Buttons_21: -1344220950
+      UI Settings Buttons_22: -1684670452
+      UI Settings Buttons_23: -1418517382
+      UI Settings Buttons_24: 1069903962
+      UI Settings Buttons_25: 962049245
+      UI Settings Buttons_26: 1560990316
+      UI Settings Buttons_27: -2019256410
+      UI Settings Buttons_28: 1108215528
+      UI Settings Buttons_29: -265229871
+      UI Settings Buttons_3: -175524213
+      UI Settings Buttons_33: -1555643702
+      UI Settings Buttons_34: -1461767391
+      UI Settings Buttons_35: 841778223
+      UI Settings Buttons_36: -732289661
+      UI Settings Buttons_37: -1612252751
+      UI Settings Buttons_38: -513077236
       UI Settings Buttons_39: -121835853
+      UI Settings Buttons_4: -2050410693
+      UI Settings Buttons_40: 254933116
+      UI Settings Buttons_41: -1463985827
+      UI Settings Buttons_42: -1704023151
+      UI Settings Buttons_43: -1671717455
+      UI Settings Buttons_44: -1714344112
+      UI Settings Buttons_45: 1354970386
+      UI Settings Buttons_46: 491362670
+      UI Settings Buttons_47: -869925314
+      UI Settings Buttons_48: 876261138
       UI Settings Buttons_49: -338355932
+      UI Settings Buttons_5: -1722081406
+      UI Settings Buttons_50: 863459046
+      UI Settings Buttons_51: 86998031
+      UI Settings Buttons_6: -1253827869
+      UI Settings Buttons_7: -2050380438
+      UI Settings Buttons_8: -313651164
+      UI Settings Buttons_9: -110520916
+      UI_slide_cell: 1661107793
+      UI_slide_cell_off: -1373472509
+      UI_slide_cell_on: 1914305586
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
