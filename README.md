@@ -9,10 +9,10 @@
 
 계속해서 업데이트 중이니 많은 관심 부탁드리겠습니다.
 
-## 시연 영상 및 APK 파일
-[영상링크](https://www.youtube.com/watch?v=SW4AwwsP-a8)
+## 시연 영상 & APK 파일
+[영상 링크](https://www.youtube.com/watch?v=SW4AwwsP-a8)
 
-[APK파일링크](https://drive.google.com/drive/folders/199aqAqvT2XcT2XICYeFV3IEV2PCJSOMV?usp=drive_link)
+[APK파일 링크](https://drive.google.com/drive/folders/199aqAqvT2XcT2XICYeFV3IEV2PCJSOMV?usp=drive_link)
 
 ## 간단 소개
 <b>Unity Version : 2021.3.25f1</b>
