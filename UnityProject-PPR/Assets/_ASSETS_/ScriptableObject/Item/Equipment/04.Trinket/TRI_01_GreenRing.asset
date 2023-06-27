@@ -20,4 +20,4 @@ MonoBehaviour:
   equipmentType: 3
   stats:
   - type: 1
-    value: 5
+    value: 1

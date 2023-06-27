@@ -92,7 +92,7 @@ public class BattleEnemy : MonoBehaviour
         {
             // Àû UI »ç¸Á Ç¥½Ã
             this.healthUI.DeadUI();
-            BattleSystem.Instance.GamePlay = GamePlayType.EnemyDead;
+            BattleSystem.Instance.BattlePlay = BattleType.EnemyDead;
             return;
         }
 

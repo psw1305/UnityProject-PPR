@@ -6,11 +6,8 @@ using TMPro;
 
 public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
-    public bool IsOpen { private set; get; }
-
-    [SerializeField] private CanvasGroup playerCanvas;
-
     [Header("UI")]
+    [SerializeField] private CanvasGroup playerCanvas;
     [SerializeField] private Button inventory;
     [SerializeField] private Button settings;
     [SerializeField] private TextMeshProUGUI health;
@@ -28,30 +25,62 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     [SerializeField] private InventorySlotEquipment[] equipmentLists;
     [SerializeField] private InventorySlotUseable[] useableItemLists;
 
+    [Header("Game End")]
+    [SerializeField] private CanvasGroup endCanvas;
+    [SerializeField] private Button endButton;
+
     protected override void Awake()
     {
         base.Awake();
 
-        this.inventory.onClick.AddListener(InventoryOpen);
-        this.inventoryClose.onClick.AddListener(InventoryClose);
-        this.settings.onClick.AddListener(SettingsOpen);
+        this.playerCanvas.CanvasInit();
+        this.endCanvas.CanvasInit();
+
+        this.inventory.onClick.AddListener(InventoryShow);
+        this.inventoryClose.onClick.AddListener(InventoryHide);
+        this.settings.onClick.AddListener(SettingsShow);
+        this.endButton.onClick.AddListener(GameEnd);
     }
 
-    private void InventoryOpen()
+    /// <summary>
+    /// 인벤토리 창 열기
+    /// </summary>
+    private void InventoryShow()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
         this.playerCanvas.CanvasFadeIn(0.25f);
     }
 
-    private void InventoryClose()
+    /// <summary>
+    /// 인벤토리 창 닫기
+    /// </summary>
+    private void InventoryHide()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryClose);
-        this.playerCanvas.CanvasFadeOut(0.25f, new Vector3(300, 0, 0));
+        this.playerCanvas.CanvasFadeOut(0.25f);
     }
 
-    private void SettingsOpen()
+    private void SettingsShow()
     {
         SettingsSystem.Instance.Show();
+    }
+
+    /// <summary>
+    /// 게임 오버시 => 결과 창 열기
+    /// </summary>
+    public void EndCanvasShow()
+    {
+        this.endCanvas.CanvasFadeIn(0.25f);
+    }
+
+    /// <summary>
+    /// 결과 창 내에 게임 종료 버튼 클릭시 이벤트
+    /// </summary>
+    public void GameEnd()
+    {
+        this.endButton.interactable = false;
+
+        SceneLoader.Instance.LoadScene(SceneNames.Lobby);
     }
 
     /// <summary>

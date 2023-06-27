@@ -190,7 +190,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         {
             damagedHP = 0;
             // TODO => 플레이어 사망 후 게임 오버 씬 필요
-            BattleSystem.Instance.GamePlay = GamePlayType.PlayerDead;
+            BattleSystem.Instance.BattlePlay = BattleType.PlayerDead;
         }
 
         CurrentHP = damagedHP;

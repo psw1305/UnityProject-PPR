@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
-    public GamePlayType GamePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
+    public BattleType BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
     public ElementType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
 
     [SerializeField] private GameBoard board;
@@ -19,7 +19,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     {
         base.Awake();
 
-        this.GamePlay = GamePlayType.Ready;
         this.PlayedElementType = ElementType.None;
 
         BattleEnemyCreate();
@@ -74,13 +73,13 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
         yield return new WaitForSeconds(1.0f);
 
-        while (this.GamePlay != GamePlayType.End)
+        while (true)
         {
             // 플레이어 행동 턴 
             yield return StartCoroutine(PlayerTurn());
 
-            // 적 사망시 => 전투 끝, 루프 탈출
-            if (this.GamePlay == GamePlayType.EnemyDead) break;
+            // 적 사망 시 => 전투 끝, 루프 탈출
+            if (this.BattlePlay == BattleType.EnemyDead) break;
 
             // 적 턴 시작
             yield return StartCoroutine(EnemyTurn());
@@ -88,37 +87,18 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             // 적 턴 끝
             yield return StartCoroutine(EnemyTurnEnd());
 
-            // 플레이어 사망시 => 게임 오버, 루프 탈출
-            if (this.GamePlay == GamePlayType.PlayerDead) break;
+            // 플레이어 사망 시 => 게임 오버, 루프 탈출
+            if (this.BattlePlay == BattleType.PlayerDead) break;
         }
 
-        // 전투 끝
-        if (this.GamePlay == GamePlayType.EnemyDead)
+        // 전투 끝, 플레이어 먼저 체크
+        if (this.BattlePlay == BattleType.PlayerDead)
         {
-            // 적 사망시 => 보상 받기
-            yield return StartCoroutine(StageReward());
-        }
-        else if (this.GamePlay == GamePlayType.PlayerDead)
-        {
-            // 플레이어 사망시 => 게임 오버
             yield return StartCoroutine(GameOver());
         }
-    }
-
-    /// <summary>
-    /// 백 버튼 누를시 => 씬 뒤로가기
-    /// </summary>
-    protected void OnBackButtonClick()
-    {
-        //SceneLoader.Instance.PlayerCheckSceneLoad(SceneNames.Battle);
-    }
-
-    private void Update()
-    {
-        // escape 버튼 체크
-        if (Input.GetKey(KeyCode.Escape))
+        else if (this.BattlePlay == BattleType.EnemyDead)
         {
-            OnBackButtonClick();
+            yield return StartCoroutine(GameClear());
         }
     }
 
@@ -147,8 +127,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
         // 플레이어 행동 반복
         while (BattlePlayer.CurrentACT > 0 
-            && this.GamePlay != GamePlayType.EnemyDead 
-            && this.GamePlay != GamePlayType.PlayerDead)
+            && this.BattlePlay != BattleType.EnemyDead 
+            && this.BattlePlay != BattleType.PlayerDead)
         {
             // 플레이어 element 선택
             yield return this.board.WaitForSelection();
@@ -189,10 +169,29 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     }
 
     /// <summary>
+    /// 전투 중 플레이어 사망
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (Player.Instance != null)
+        {
+            // 플레이어 결과 창 생성
+            Player.Instance.PlayerDead();
+        }
+        else
+        {
+            SceneLoader.Instance.LoadScene(SceneNames.Lobby);
+        }
+    }
+
+    /// <summary>
     /// 전투 끝 => 보상 창 확인
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StageReward()
+    public IEnumerator GameClear()
     {
         yield return new WaitForSeconds(0.5f);
 
@@ -217,19 +216,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             yield return new WaitForSeconds(0.5f);
             SceneLoader.Instance.LoadScene(SceneNames.Battle);
         }
-    }
-
-    /// <summary>
-    /// 플레이어 사망
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator GameOver()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        // TODO => 특정 부분 저장하기
-        // 로비 씬으로 되돌리기
-        SceneLoader.Instance.LoadScene(SceneNames.Lobby);
     }
 
     /// <summary>

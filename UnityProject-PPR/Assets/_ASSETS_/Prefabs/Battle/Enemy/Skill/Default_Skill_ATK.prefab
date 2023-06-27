@@ -289,6 +289,6 @@ MonoBehaviour:
   skillIcon: {fileID: 7372926458232057266}
   skillValueText: {fileID: 3372947818325416944}
   canvasGroup: {fileID: 5806269155076515204}
-  skillValue: 6
+  skillValue: 60
   skillSFX:
   - {fileID: 8300000, guid: 21de3afa729a41d4eb878a7c54c44372, type: 3}

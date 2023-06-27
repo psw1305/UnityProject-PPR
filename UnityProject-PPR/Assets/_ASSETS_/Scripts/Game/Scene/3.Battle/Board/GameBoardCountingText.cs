@@ -47,7 +47,7 @@ public class GameBoardCountingText : MonoBehaviour
     {
         Vector2 boardPosition = element.transform.position;
         Vector2 textPosition = boardPosition * 100.0f;
-        this.transform.localPosition = new Vector3(textPosition.x, textPosition.y + 80);
+        this.transform.localPosition = new Vector3(textPosition.x, textPosition.y + 100);
     }
 
     public void Clear()

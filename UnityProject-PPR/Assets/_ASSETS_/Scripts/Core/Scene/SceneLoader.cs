@@ -75,8 +75,6 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);     
 
         yield return new WaitForSeconds(0.5f);
-
-        NoticeSystem.Instance.Init();
     }
 
     /// <summary>
@@ -95,7 +93,6 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
         
         yield return new WaitForSeconds(0.5f);
 
-        NoticeSystem.Instance.Init();
         StageSystem.Instance.StageActive(false);
     }
 
@@ -115,7 +112,6 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
         
         yield return new WaitForSeconds(0.5f);
 
-        NoticeSystem.Instance.Init();
         StageSystem.Instance.StageActive(true);        
     }
 

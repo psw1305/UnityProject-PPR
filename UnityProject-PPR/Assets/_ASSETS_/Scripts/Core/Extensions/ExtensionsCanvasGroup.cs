@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -6,20 +5,25 @@ namespace PSW.Core.Extensions
 {
     public static class ExtensionsCanvasGroup
     {
+        public static void CanvasInit(this CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 0;
+            canvasGroup.transform.localPosition = new Vector3(0, 660, 0);
+        }
+
         /// <summary>
-        /// 페이드 인 => 딜레이 추가
+        /// 페이드인 => 딜레이
         /// </summary>
         /// <param name="canvasGroup"></param>
         /// <param name="duration"></param>
         /// <param name="delay"></param>
-        public static void CanvasFadeIn(this CanvasGroup canvasGroup, float duration, float delay)
+        public static void CanvasFadeInDelay(this CanvasGroup canvasGroup, float duration, float delay)
         {
-            if (canvasGroup.alpha != 0) canvasGroup.alpha = 0;
-
             canvasGroup
                 .DOFade(1, duration)
                 .OnStart(() =>
                 {
+                    canvasGroup.alpha = 0;
                     canvasGroup.interactable = false;
                     canvasGroup.blocksRaycasts = false;
                 })
@@ -39,8 +43,6 @@ namespace PSW.Core.Extensions
         /// <param name="duration"></param>
         public static void CanvasFadeIn(this CanvasGroup canvasGroup, float duration)
         {
-            if (canvasGroup.alpha != 0) canvasGroup.alpha = 0;
-
             canvasGroup
                 .DOFade(1, duration)
                 .OnStart(() =>
@@ -63,7 +65,7 @@ namespace PSW.Core.Extensions
         /// <param name="canvasGroup"></param>
         /// <param name="duration"></param>
         /// <param name="position"></param>
-        public static void CanvasFadeOut(this CanvasGroup canvasGroup, float duration, Vector3 position)
+        public static void CanvasFadeOut(this CanvasGroup canvasGroup, float duration)
         {
             canvasGroup
                  .DOFade(0, duration)
@@ -76,7 +78,7 @@ namespace PSW.Core.Extensions
                  {
                      canvasGroup.interactable = true;
                      canvasGroup.blocksRaycasts = true;
-                     canvasGroup.transform.localPosition = position;
+                     canvasGroup.transform.localPosition = new Vector3(0, 660, 0);
                  })
                  .SetEase(Ease.OutSine);
         }

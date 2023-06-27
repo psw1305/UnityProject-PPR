@@ -25,14 +25,15 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
     [SerializeField] private GameObject useableTable;
     [SerializeField] private TextMeshProUGUI useableAbility;
 
-    private CanvasGroup canvasGroup;
+    private CanvasGroup tooltipCanvas;
     private InventoryItem invenItem;
 
     protected override void Awake()
     {
         base.Awake();
 
-        this.canvasGroup = GetComponent<CanvasGroup>();
+        this.tooltipCanvas = GetComponent<CanvasGroup>();
+        this.tooltipCanvas.CanvasInit();
 
         this.IsShow = false;
         this.tooltipClose.onClick.AddListener(Hide);
@@ -53,7 +54,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
 
         UIDataInput(invenItem);
 
-        this.canvasGroup.CanvasFadeIn(0.25f);
+        this.tooltipCanvas.CanvasFadeIn(0.25f);
     }
 
     /// <summary>
@@ -68,9 +69,9 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         this.IsShow = false;
         this.tooltipClose.interactable = false;
 
-        UIDataInit();
+        //UIDataInit();
 
-        this.canvasGroup.CanvasFadeOut(0.25f, new Vector3(600, 0, 0));
+        this.tooltipCanvas.CanvasFadeOut(0.25f);
     }
 
     /// <summary>

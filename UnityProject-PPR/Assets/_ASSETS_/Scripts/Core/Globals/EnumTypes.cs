@@ -1,11 +1,19 @@
 namespace PSW.Core.Enums
 {
     /// <summary>
-    /// 게임 진행시 구분되는 Play Types
+    /// 게임 진행 상황
     /// </summary>
-    public enum GamePlayType
+    public enum GameState
     {
-        Ready, Play, Pause, End,
+        Stage, Battle, Pause, End,
+    }
+
+
+    /// <summary>
+    /// 전투 진행시 구분되는 Battle Types
+    /// </summary>
+    public enum BattleType
+    {
         PlayerTurn, PlayerTurnEnd, PlayerDead,
         EnemyTurn, EnemyTurnEnd, EnemyDead
     }

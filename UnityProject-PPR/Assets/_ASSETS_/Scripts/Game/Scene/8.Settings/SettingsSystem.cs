@@ -17,21 +17,28 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
     [SerializeField] private Button lobbyButton;
     [SerializeField] private Button exitButton;
 
-    private CanvasGroup canvasGroup;
+    private CanvasGroup settingCanvas;
 
-    private void Start()
+    protected override void Awake()
     {
-        this.canvasGroup = GetComponent<CanvasGroup>();
+        base.Awake();
 
-        this.bgmControl.Set(DataFrame.Instance.dBGM);
-        this.sfxControl.Set(DataFrame.Instance.dSFX);
-        this.fpsControl.Set(DataFrame.Instance.dFPS);
-        this.languageControl.Set(DataFrame.Instance.dLanguage);
+        this.IsShow = false;
+
+        this.settingCanvas = GetComponent<CanvasGroup>();
+        this.settingCanvas.CanvasInit();
 
         this.closeButton.onClick.AddListener(HideClick);
         this.lobbyButton.onClick.AddListener(GameLobby);
         this.exitButton.onClick.AddListener(GameExit);
-        this.IsShow = false;
+    }
+
+    private void Start()
+    {
+        this.bgmControl.Set(DataFrame.Instance.dBGM);
+        this.sfxControl.Set(DataFrame.Instance.dSFX);
+        this.fpsControl.Set(DataFrame.Instance.dFPS);
+        this.languageControl.Set(DataFrame.Instance.dLanguage);
     }
 
     public void Show()
@@ -42,7 +49,7 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
 
         this.IsShow = true;
         this.closeButton.interactable = true;
-        this.canvasGroup.CanvasFadeIn(0.25f);
+        this.settingCanvas.CanvasFadeIn(0.25f);
     }
 
     private void HideClick()
@@ -58,7 +65,7 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
     {
         this.IsShow = false;
         this.closeButton.interactable = false;
-        this.canvasGroup.CanvasFadeOut(0.25f, new Vector3(-300, 0, 0));
+        this.settingCanvas.CanvasFadeOut(0.25f);
     }
 
     private void GameLobby()

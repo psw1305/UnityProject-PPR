@@ -18,9 +18,9 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     [Header("Canvas")]
-    [SerializeField] private CanvasGroup titleTable;
-    [SerializeField] private CanvasGroup contentsTable;
-    [SerializeField] private CanvasGroup pictureTable;
+    [SerializeField] private CanvasGroup titleCanvas;
+    [SerializeField] private CanvasGroup contentsCanvas;
+    [SerializeField] private CanvasGroup pictureCanvas;
     private bool isFadeIn;
 
     [Header("Selection")]
@@ -45,9 +45,9 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         SetSelections();
 
         this.isFadeIn = false;
-        this.titleTable.alpha = 0;
-        this.contentsTable.alpha = 0;
-        this.pictureTable.alpha = 0;
+        this.titleCanvas.alpha = 0;
+        this.contentsCanvas.alpha = 0;
+        this.pictureCanvas.alpha = 0;
     }
 
     private void Update()
@@ -68,9 +68,9 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         {
             this.isFadeIn = true;
 
-            this.titleTable.CanvasFadeIn(0.6f, 0.0f);
-            this.contentsTable.CanvasFadeIn(0.6f, 0.4f);
-            this.pictureTable.CanvasFadeIn(0.6f, 0.8f);
+            this.titleCanvas.CanvasFadeInDelay(0.6f, 0.0f);
+            this.contentsCanvas.CanvasFadeInDelay(0.6f, 0.4f);
+            this.pictureCanvas.CanvasFadeInDelay(0.6f, 0.8f);
 
             yield return new WaitForSeconds(1.2f);
 
