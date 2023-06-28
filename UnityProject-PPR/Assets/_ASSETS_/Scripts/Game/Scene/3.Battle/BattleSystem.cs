@@ -179,7 +179,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         if (Player.Instance != null)
         {
             // 플레이어 결과 창 생성
-            Player.Instance.PlayerDead();
+            Player.Instance.GameOver();
         }
         else
         {

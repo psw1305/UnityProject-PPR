@@ -62,7 +62,10 @@ namespace PSW.Core.Map
 
                 case StageState.Attainable:
                     this.image.color = MapView.Instance.lockedColor;
-                    this.image.DOColor(MapView.Instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    this.image
+                        .DOColor(MapView.Instance.visitedColor, 0.5f)
+                        .SetLoops(-1, LoopType.Yoyo)
+                        .SetAutoKill(false);
                     break;
             }
         }
@@ -76,21 +79,27 @@ namespace PSW.Core.Map
         {
             if (this.image == null) return;
 
-            this.image.transform.DOScale(1.0f * HoverScaleFactor, TweenAnimateDuration);
+            this.image.transform
+                .DOScale(1.0f * HoverScaleFactor, TweenAnimateDuration)
+                .SetAutoKill(false);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (this.image == null) return;
 
-            this.image.transform.DOScale(1.0f, TweenAnimateDuration);
+            this.image.transform
+                .DOScale(1.0f, TweenAnimateDuration)
+                .SetAutoKill(false);
         }
 
         public void ShowSwirlAnimation()
         {
             if (this.visitedCheckImage == null) return;
 
-            this.visitedCheckImage.DOFillAmount(1f, TweenAnimateDuration);
+            this.visitedCheckImage
+                .DOFillAmount(1f, TweenAnimateDuration)
+                .SetAutoKill(false);
         }
     }
 }

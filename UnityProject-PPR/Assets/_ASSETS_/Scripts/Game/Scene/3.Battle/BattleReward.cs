@@ -1,3 +1,4 @@
+using PSW.Core.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using DG.Tweening;
 public class BattleReward : BehaviourSingleton<BattleReward>
 {
     private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
+    private CanvasGroup rewardCanvas;
 
     [SerializeField] private Transform rewardList;
     [SerializeField] private Button exitButton;
@@ -17,8 +18,8 @@ public class BattleReward : BehaviourSingleton<BattleReward>
         base.Awake();
 
         this.rectTransform = GetComponent<RectTransform>();
-        this.canvasGroup = GetComponent<CanvasGroup>();
-        this.canvasGroup.alpha = 0;
+        this.rewardCanvas = GetComponent<CanvasGroup>();
+        this.rewardCanvas.CanvasInit();
 
         this.exitButton.onClick.AddListener(BattleExit);
     }
@@ -39,8 +40,7 @@ public class BattleReward : BehaviourSingleton<BattleReward>
     {
         BattleSFX.Instance.Play(BattleSFX.Instance.victory);
 
-        this.rectTransform.position = new Vector3(0, 0, 0);
-        this.canvasGroup.DOFade(1, 0.25f);
+        this.rewardCanvas.CanvasFadeIn(0.25f);
     }
 
     /// <summary>

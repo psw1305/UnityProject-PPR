@@ -42,6 +42,38 @@ MonoBehaviour:
     m_Localized: Sort
     m_Metadata:
       m_Items: []
+  - m_Id: 89865901676617728
+    m_Localized: Dungeon Clear!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89871611609145344
+    m_Localized: Player Dead..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89871699840524288
+    m_Localized: Boss Slain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872058415767552
+    m_Localized: Elite Killed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872185582870528
+    m_Localized: Minor Killed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872294743826432
+    m_Localized: Clear Stages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872436607770624
+    m_Localized: Item Collected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872574642315264
+    m_Localized: Proceed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

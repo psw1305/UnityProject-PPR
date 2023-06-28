@@ -7,10 +7,18 @@ public class AudioBGM : AudioSystem<AudioBGM>
 {
     public AudioClip lobby;
     public AudioClip stage;
-    public AudioClip elite;
-    public AudioClip boss;
+
+    [Header("Event")]
     public AudioClip shop;
     public AudioClip restsite;
+
+    [Header("Battle")]
+    public AudioClip elite;
+    public AudioClip boss;
+
+    [Header("Game End")]
+    public AudioClip victory;
+    public AudioClip defeat;
 
     private AudioSource AudioSource { get; set; }
 
@@ -34,7 +42,7 @@ public class AudioBGM : AudioSystem<AudioBGM>
         base.Awake();
         this.AudioSource = GetComponent<AudioSource>();
 
-        SetBGM();
+        //SetBGM();
     }
 
     protected override void SetVolume(float volumeScale)
@@ -72,6 +80,7 @@ public class AudioBGM : AudioSystem<AudioBGM>
     public void BGMChange(AudioClip clip)
     {
         if (this.AudioSource.clip == clip) return;
+        if (!this.AudioSource.loop) this.AudioSource.loop = true;
 
         this.AudioSource
             .DOFade(0, 1.2f)
@@ -80,5 +89,18 @@ public class AudioBGM : AudioSystem<AudioBGM>
         this.AudioSource
             .DOFade(1, 1.2f)
             .SetDelay(1.5f);
+    }
+
+    public void BGMEnd(AudioClip clip)
+    {
+        this.AudioSource.loop = false;
+
+        this.AudioSource
+            .DOFade(0, 0.25f)
+            .OnComplete(() => BGMPlay(clip));
+
+        this.AudioSource
+            .DOFade(1, 0.25f)
+            .SetDelay(0.3f);
     }
 }

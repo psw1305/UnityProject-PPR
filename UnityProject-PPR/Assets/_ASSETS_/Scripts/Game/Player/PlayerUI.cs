@@ -27,6 +27,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
 
     [Header("Game End")]
     [SerializeField] private CanvasGroup endCanvas;
+    [SerializeField] private GameObject endGameClearTitle;
+    [SerializeField] private GameObject endGameOverTitle;
     [SerializeField] private Button endButton;
 
     protected override void Awake()
@@ -70,6 +72,19 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     public void EndCanvasShow()
     {
+        if (Player.Instance.GameState == GameState.Victory)
+        {
+            AudioBGM.Instance.BGMEnd(AudioBGM.Instance.victory);
+
+            this.endGameClearTitle.SetActive(true);
+        }
+        else if (Player.Instance.GameState == GameState.Defeat)
+        {
+            AudioBGM.Instance.BGMEnd(AudioBGM.Instance.defeat);
+
+            this.endGameOverTitle.SetActive(true);
+        }
+
         this.endCanvas.CanvasFadeIn(0.25f);
     }
 
@@ -78,6 +93,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     public void GameEnd()
     {
+        UISFX.Instance.Play(UISFX.Instance.buttonClick);
         this.endButton.interactable = false;
 
         SceneLoader.Instance.LoadScene(SceneNames.Lobby);

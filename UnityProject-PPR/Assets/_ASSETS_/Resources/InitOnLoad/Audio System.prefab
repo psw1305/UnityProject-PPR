@@ -398,10 +398,12 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 0a10687503d65434686d5f53ad4ebca8, type: 2}
   lobby: {fileID: 8300000, guid: ffc03a684c042e6428169909fac7443f, type: 3}
   stage: {fileID: 8300000, guid: 7e494bc1c10e3344baf3e1c8ee088da8, type: 3}
-  elite: {fileID: 8300000, guid: f3ee567d3d614e0489b02d99fd3b4557, type: 3}
-  boss: {fileID: 8300000, guid: 2977802555805e841b6d3517306ba5f6, type: 3}
   shop: {fileID: 8300000, guid: 65ecb9a58a6034a4fa5442c31c5e3eda, type: 3}
   restsite: {fileID: 8300000, guid: 7045f2f69394ee54687ab90b5fecb9d6, type: 3}
+  elite: {fileID: 8300000, guid: f3ee567d3d614e0489b02d99fd3b4557, type: 3}
+  boss: {fileID: 8300000, guid: 2977802555805e841b6d3517306ba5f6, type: 3}
+  victory: {fileID: 8300000, guid: 776c42415b7fa6c4f908df4b858b7578, type: 3}
+  defeat: {fileID: 8300000, guid: 4a77a2d0f8f6db447a3e2f2c052aec90, type: 3}
 --- !u!82 &9067649865348457731
 AudioSource:
   m_ObjectHideFlags: 0

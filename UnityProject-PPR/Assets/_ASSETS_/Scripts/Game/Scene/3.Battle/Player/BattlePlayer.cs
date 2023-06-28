@@ -188,9 +188,11 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 플레이어 사망
         if (damagedHP <= 0)
         {
-            damagedHP = 0;
-            // TODO => 플레이어 사망 후 게임 오버 씬 필요
+            this.healthUI.DeadUI();
             BattleSystem.Instance.BattlePlay = BattleType.PlayerDead;
+
+            // 전투 종료
+            return;
         }
 
         CurrentHP = damagedHP;

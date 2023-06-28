@@ -39,6 +39,38 @@ MonoBehaviour:
     m_Key: inventory_sort
     m_Metadata:
       m_Items: []
+  - m_Id: 89865901676617728
+    m_Key: end_title_clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89871611609145344
+    m_Key: end_title_over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89871699840524288
+    m_Key: end_board_bossSlain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872058415767552
+    m_Key: end_board_eliteKilled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872185582870528
+    m_Key: end_board_minorKilled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872294743826432
+    m_Key: end_board_clearStage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872436607770624
+    m_Key: end_board_itemCollect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89872574642315264
+    m_Key: end_button
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

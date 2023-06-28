@@ -30,7 +30,7 @@ public partial class Player : BehaviourSingleton<Player>
         Set();
     }
 
-    public void Set(int hp = 40, int act = 12, int atk = 1, int def = 1, int cash = 0)
+    public void Set(int hp = 40, int act = 10, int atk = 1, int def = 1, int cash = 0)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
@@ -59,11 +59,21 @@ public partial class Player : BehaviourSingleton<Player>
     }
 
     /// <summary>
-    /// 플레이어 사망 시 이벤트
+    /// 플레이어 게임 클리어 이벤트
     /// </summary>
-    public void PlayerDead()
+    public void GameClear()
     {
-        this.GameState = GameState.End;
+        this.GameState = GameState.Victory;
+
+        this.playerUI.EndCanvasShow();
+    }
+
+    /// <summary>
+    /// 플레이어 게임 오버 이벤트
+    /// </summary>
+    public void GameOver()
+    {
+        this.GameState = GameState.Defeat;
 
         this.playerUI.EndCanvasShow();
     }

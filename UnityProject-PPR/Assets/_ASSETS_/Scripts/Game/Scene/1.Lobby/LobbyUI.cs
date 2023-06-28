@@ -10,6 +10,8 @@ public class LobbyUI : UI
     {
         this.buttonStart.onClick.AddListener(LoadStageScene);
         this.buttonSettings.onClick.AddListener(LoadSettingsCanvas);
+
+        AudioBGM.Instance.BGMChange(AudioBGM.Instance.lobby);
     }
 
     /// <summary>

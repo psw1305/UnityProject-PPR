@@ -5,9 +5,8 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum GameState
     {
-        Stage, Battle, Pause, End,
+        Stage, Battle, Pause, Victory, Defeat
     }
-
 
     /// <summary>
     /// 전투 진행시 구분되는 Battle Types

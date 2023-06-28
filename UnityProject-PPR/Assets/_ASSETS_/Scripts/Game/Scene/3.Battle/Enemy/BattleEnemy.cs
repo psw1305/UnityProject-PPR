@@ -87,12 +87,13 @@ public class BattleEnemy : MonoBehaviour
         if (damage <= 0) return;
         var damagedHp = this.CurrentHP - damage;
         
-        // 적 사망 => 전투 종료
+        // 적 사망
         if (damagedHp <= 0)
         {
-            // 적 UI 사망 표시
             this.healthUI.DeadUI();
             BattleSystem.Instance.BattlePlay = BattleType.EnemyDead;
+
+            // 전투 종료
             return;
         }
 

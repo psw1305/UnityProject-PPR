@@ -33,4 +33,13 @@ public class BattlePlayerHealthUI : MonoBehaviour
         // health bar 이미지 fillAmount 체력 비례 조정
         this.healthBar.fillAmount = BattlePlayer.Instance.GetPercentHP();
     }
+
+    /// <summary>
+    /// 사망시 UI 표시
+    /// </summary>
+    public void DeadUI()
+    {
+        this.healthText.text = "죽음";
+        this.healthBar.fillAmount = 0;
+    }
 }

@@ -10,7 +10,9 @@ namespace PSW.Core.Extensions
         {
             for (int i = 0; i < imagesGroup.Length; i++)
             {
-                imagesGroup[i].DOScale(1.05f, 0.2f).SetEase(Ease.OutSine);
+                imagesGroup[i]
+                    .DOScale(1.05f, 0.2f)
+                    .SetEase(Ease.OutSine);
 
                 yield return new WaitForSeconds(fadeDuration / imagesGroup.Length);
             }
@@ -22,7 +24,9 @@ namespace PSW.Core.Extensions
         {
             for (int i = 0; i < imagesGroup.Length; i++)
             {
-                imagesGroup[i].DOScale(0.0f, 0.2f).SetEase(Ease.OutSine);
+                imagesGroup[i]
+                    .DOScale(0.0f, 0.2f)
+                    .SetEase(Ease.OutSine);
 
                 yield return new WaitForSeconds(fadeDuration / imagesGroup.Length);
             }
