@@ -28,10 +28,10 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public int ATK { get; set; }
     public int DEF { get; set; }
 
-    public static int CurrentHP { get; private set; } // 현 체력
-    public static int CurrentSP { get; private set; } // 현 방어력
-    public static int CurrentACT { get; private set; } // 현 행동력
-    public static int EarnCash { get; private set; }
+    public int CurrentHP { get; private set; } // 현 체력
+    public int CurrentSP { get; private set; } // 현 방어력
+    public int CurrentACT { get; private set; } // 현 행동력
+    public int EarnCash { get; private set; }
 
     public float GetPercentHP() => CurrentHP / (float)this.HP;
 
@@ -47,7 +47,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ACT = Player.Instance.ACT.Value;
             this.ATK = Player.Instance.ATK.Value;
             this.DEF = Player.Instance.DEF.Value;
-            CurrentHP = Player.CurrentHP;
+            this.CurrentHP = Player.CurrentHP;
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
@@ -56,10 +56,10 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ACT = 20;
             this.ATK = 2;
             this.DEF = 2;
-            CurrentHP = 999;
+            this.CurrentHP = 999;
         }
 
-        this.healthUI.SetText(CurrentHP, this.HP);
+        this.healthUI.SetText(this.CurrentHP, this.HP);
         this.statUI.SetText(this.ACT, this.ATK, this.DEF);
     }
 
@@ -83,9 +83,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         {
             if (itemLists[i] != null)
             {
-                var useableItemClone = Instantiate(this.useableItemPrefab, useableSlots[i]).GetComponent<BattlePlayerUseableItem>();
+                var useableItemClone = Instantiate(this.useableItemPrefab, this.useableSlots[i]).GetComponent<BattlePlayerUseableItem>();
                 useableItemClone.Set(itemLists[i].GetUseableData());
-                useableItems[i] = useableItemClone;
+                this.useableItems[i] = useableItemClone;
             }
         }
     }
@@ -115,9 +115,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     {
         BattleSFX.Instance.Play(BattleSFX.Instance.defense);
 
-        var oldPoint = CurrentSP;
-        CurrentSP += this.GetElementPoint(elements, this.DEF);
-        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, CurrentSP);
+        var oldPoint = this.CurrentSP;
+        this.CurrentSP += this.GetElementPoint(elements, this.DEF);
+        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
     }
 
     /// <summary>
@@ -126,10 +126,10 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// <param name="elements"></param>
     public void PlayerRecovery(List<GameBoardElement> elements)
     {
-        var oldPoint = CurrentHP;
-        CurrentHP += this.GetElementPoint(elements);
-        if (CurrentHP > HP) CurrentHP = HP;
-        GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, CurrentHP);
+        var oldPoint = this.CurrentHP;
+        this.CurrentHP += this.GetElementPoint(elements);
+        if (this.CurrentHP > HP) this.CurrentHP = HP;
+        GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, this.CurrentHP);
     }
 
     /// <summary>
@@ -154,7 +154,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 0 이하 표시 금지
         if (CurrentACT <= 0) CurrentACT = 0;
 
-        this.statUI.SetACTText(CurrentACT);
+        this.statUI.SetActText(CurrentACT);
     }
 
     /// <summary>
@@ -163,17 +163,24 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// <param name="damage"></param>
     public void Damage(int damage)
     {
-        if (damage < 50)
-            DamageEffect(this.statTable, 2, 8, this.weakWreckParticle);
-        else
-            DamageEffect(this.playerTable, 5, 15, this.wreckParticle);
+        DamagedEffect(damage);
 
         // 현 방어력이 0 초과 인가?
-        if (CurrentSP > 0) 
-            ShieldDamaged(damage);
+        if (CurrentSP > 0) ShieldDamaged(damage);
         // 현 방어력이 0 이하 이면 HealthDamaged
-        else 
-            HealthDamaged(damage);
+        else HealthDamaged(damage);
+    }
+
+    /// <summary>
+    /// 데미지 받을 시 => RectTransform 흔들림 효과
+    /// </summary>
+    /// <param name="damage"></param>
+    private void DamagedEffect(int damage)
+    {
+        if (damage < 50)
+            StartCoroutine(this.statTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
+        else
+            StartCoroutine(this.playerTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
 
     /// <summary>
@@ -207,7 +214,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// <param name="damage"></param>
     private void ShieldDamaged(int damage)
     {
-        var damagedSP = CurrentSP;
+        var damagedSP = this.CurrentSP;
         damagedSP -= damage;
         
         if (damagedSP <= 0)
@@ -217,18 +224,18 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             damagedSP = 0;
         }
 
-        CurrentSP = damagedSP;
-        GameBoardEvents.OnPlayerShieldChanged.Invoke(CurrentSP, damagedSP);
+        this.CurrentSP = damagedSP;
+        GameBoardEvents.OnPlayerShieldChanged.Invoke(this.CurrentSP, damagedSP);
     }
 
     /// <summary>
     /// 플레이어 초기화
     /// </summary>
-    public void Init()
+    private void Init()
     {
         // 스탯 초기화
         InitActionCount();
-        InitDefense();
+        InitShieldPoint();
 
         // 소모품 아이템 초기화
         for (int i = 0; i < this.useableItems.Length; i++)
@@ -245,26 +252,17 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// </summary>
     private void InitActionCount()
     {
-        this.statUI.UpdateAnimateUI(CurrentACT, this.ACT);
-        CurrentACT = this.ACT;
+        this.statUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
+        this.CurrentACT = this.ACT;
     }
 
     /// <summary>
     /// 플레이어 방어력 초기화
     /// </summary>
-    private void InitDefense()
+    private void InitShieldPoint()
     {
-        var oldPoint = CurrentSP;
-        CurrentSP = 0;
-        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, CurrentSP);
-    }
-
-    /// <summary>
-    /// 데미지를 받을 경우, Transform 흔들림 효과
-    /// </summary>
-    public void DamageEffect(RectTransform table, float force, float amount, ParticleSystem wreck)
-    {
-        StartCoroutine(table.ShakeCoroutine(force, amount));
-        wreck.Play();
+        var oldPoint = this.CurrentSP;
+        this.CurrentSP = 0;
+        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
     }
 }

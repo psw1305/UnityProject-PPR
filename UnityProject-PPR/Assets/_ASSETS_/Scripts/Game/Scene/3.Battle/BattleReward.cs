@@ -57,6 +57,6 @@ public class BattleReward : BehaviourSingleton<BattleReward>
     public void GetReward()
     {
         // 전투 중에 얻은 재화 합산
-        Player.Cash += BattlePlayer.EarnCash;
+        Player.Cash += BattlePlayer.Instance.EarnCash;
     }
 }

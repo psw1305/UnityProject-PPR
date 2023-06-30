@@ -8,7 +8,7 @@ public class BattlePlayerCashUI : MonoBehaviour
 
     private void Start()
     {
-        this.cashText.text = BattlePlayer.EarnCash.ToString();
+        this.cashText.text = BattlePlayer.Instance.EarnCash.ToString();
     }
 
     private void OnEnable()

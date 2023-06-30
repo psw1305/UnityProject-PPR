@@ -237,7 +237,7 @@ public class GameBoardInput
     /// <param name="element"></param>
     private void AddElementToSelection(GameBoardElement element)
     {
-        if (BattlePlayer.CurrentACT <= 0) return;
+        if (BattlePlayer.Instance.CurrentACT <= 0) return;
 
         if (this.SelectedElements.Count > 0)
         {

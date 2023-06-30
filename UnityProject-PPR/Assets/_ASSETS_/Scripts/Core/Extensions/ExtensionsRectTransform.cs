@@ -5,8 +5,10 @@ namespace PSW.Core.Extensions
 {
     public static class ExtensionsRectTransform
     {
-        public static IEnumerator ShakeCoroutine(this RectTransform rectTransform, float force, float amounts)
+        public static IEnumerator ShakeCoroutine(this RectTransform rectTransform, float force, float amounts, ParticleSystem particle)
         {
+            particle.Play();
+
             float shakeTime = 0.3f;
             Vector3 originPos = rectTransform.localPosition;
             

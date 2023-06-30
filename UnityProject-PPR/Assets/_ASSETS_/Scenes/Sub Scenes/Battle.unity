@@ -8106,7 +8106,7 @@ RectTransform:
   m_Children:
   - {fileID: 203641969}
   - {fileID: 703475669}
-  - {fileID: 1344956575}
+  - {fileID: 1238777389}
   m_Father: {fileID: 1695057750}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8185,6 +8185,52 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210760555}
+  m_CullTransparentMesh: 1
+--- !u!1 &1238777388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1238777389}
+  - component: {fileID: 1238777390}
+  m_Layer: 5
+  m_Name: Player Field
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1238777389
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238777388}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1344956575}
+  m_Father: {fileID: 1198680224}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 270, y: 380}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1238777390
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238777388}
   m_CullTransparentMesh: 1
 --- !u!1 &1283267169
 GameObject:
@@ -8382,7 +8428,7 @@ GameObject:
   - component: {fileID: 1344956576}
   - component: {fileID: 1344956577}
   m_Layer: 5
-  m_Name: Player Field
+  m_Name: Battle Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8404,12 +8450,12 @@ RectTransform:
   - {fileID: 787736236}
   - {fileID: 30812548}
   - {fileID: 1631485699}
-  m_Father: {fileID: 1198680224}
-  m_RootOrder: 2
+  m_Father: {fileID: 1238777389}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1344956576
@@ -14584,6 +14630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   board: {fileID: 1734629818}
+  battlePlayer: {fileID: 1344956577}
   enemyBlueprint: {fileID: 11400000, guid: f9eccec496d97ea4e9323348acd1faef, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,
     type: 3}

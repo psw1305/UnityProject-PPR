@@ -1,9 +1,9 @@
+using PSW.Core.Enums;
 using PSW.Core.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
-using PSW.Core.Enums;
 
 public class BattleEnemy : MonoBehaviour
 {
@@ -50,6 +50,16 @@ public class BattleEnemy : MonoBehaviour
         this.healthUI.SetText(this.CurrentHP, this.MaxHP);
     }
 
+    private void OnEnable()
+    {
+        GameBoardEvents.OnEnemyTurnInit.AddListener(Init);
+    }
+
+    private void OnDisable()
+    {
+        GameBoardEvents.OnEnemyTurnInit.RemoveListener(Init);
+    }
+
     /// <summary>
     /// 적 방어력
     /// </summary>
@@ -65,17 +75,24 @@ public class BattleEnemy : MonoBehaviour
     /// <param name="damage"></param>
     public void Damage(int damage)
     {
-        if (damage < 50)
-            DamageEffect(2, 8, this.weakWreckParticle);
-        else 
-            DamageEffect(5, 15, this.wreckParticle);
+        DamagedEffect(damage);
 
         // 현 방어력이 0 초과 인가?
-        if (this.CurrentSP > 0) 
-            ShieldDamaged(damage);
+        if (this.CurrentSP > 0) ShieldDamaged(damage);
         // 현 방어력이 0 이하 이면 health damaged
-        else 
-            HealthDamaged(damage);
+        else HealthDamaged(damage);
+    }
+
+    /// <summary>
+    /// 데미지 받을 시 => RectTransform 흔들림 효과
+    /// </summary>
+    /// <param name="damage"></param>
+    private void DamagedEffect(int damage)
+    {
+        if (damage < 50)
+            StartCoroutine(this.enemyTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
+        else
+            StartCoroutine(this.enemyTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
 
     /// <summary>
@@ -149,7 +166,7 @@ public class BattleEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 적 스킬 UI 생성
+    /// 적 스킬 
     /// </summary>
     public IEnumerator EnemySkillDestroy()
     {
@@ -160,11 +177,21 @@ public class BattleEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 데미지를 받을 경우, Transform 흔들림 효과
+    /// 플레이어 초기화
     /// </summary>
-    public void DamageEffect(float force, float amount, ParticleSystem wreck)
+    private void Init()
     {
-        StartCoroutine(this.enemyTable.ShakeCoroutine(force, amount));
-        wreck.Play();
+        // 쉴드 초기화
+        InitShieldPoint();
+    }
+
+    /// <summary>
+    /// 플레이어 방어력 초기화
+    /// </summary>
+    private void InitShieldPoint()
+    {
+        var oldPoint = this.CurrentSP;
+        this.CurrentSP = 0;
+        GameBoardEvents.OnEnemyShieldChanged.Invoke(oldPoint, this.CurrentSP);
     }
 }

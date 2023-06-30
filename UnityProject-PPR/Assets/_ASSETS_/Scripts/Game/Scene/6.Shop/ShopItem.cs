@@ -10,7 +10,6 @@ public class ShopItem : MonoBehaviour
 
     [Header("Product")]
     [SerializeField] private Image productImage;
-    [SerializeField] private TextMeshProUGUI productName;
     [SerializeField] private TextMeshProUGUI productPriceText;
     [SerializeField] private Button buyButton;
     [SerializeField] private GameObject saleRibbon;
@@ -34,7 +33,6 @@ public class ShopItem : MonoBehaviour
 
         this.itemData = data;
         this.productImage.sprite = data.ItemImage;
-        this.productName.text = data.ItemName;
         SetPrice();
 
         // 프리팹 네임 => 데이터 네임으로 변경

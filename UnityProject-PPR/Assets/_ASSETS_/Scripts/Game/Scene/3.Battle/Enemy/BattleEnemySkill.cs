@@ -26,11 +26,11 @@ public class BattleEnemySkill : MonoBehaviour
         switch (this.skillType)
         {
             case EnemySkill.Attack:
-                int attackValue = skillValue + battleEnemy.CurrentAP;
+                int attackValue = this.skillValue + battleEnemy.CurrentAP;
                 this.skillValueText.text = attackValue.ToString();
                 break;
             case EnemySkill.Defense:
-                this.skillValueText.text = "";
+                this.skillValueText.text = this.skillValue.ToString();
                 break;
             case EnemySkill.Reinforce:
                 this.skillValueText.text = "";
@@ -47,19 +47,21 @@ public class BattleEnemySkill : MonoBehaviour
         switch (this.skillType) 
         {
             case EnemySkill.Attack:
-                BattlePlayer.Instance.Damage(skillValue + battleEnemy.CurrentAP);
+                BattlePlayer.Instance.Damage(this.skillValue + battleEnemy.CurrentAP);
                 break;
             case EnemySkill.Defense:
-                battleEnemy.ShieldPoint(skillValue);
+                battleEnemy.ShieldPoint(this.skillValue);
                 break;
             case EnemySkill.Reinforce:
-                battleEnemy.CurrentAP += skillValue;
+                battleEnemy.CurrentAP += this.skillValue;
                 break;
         }
     }
 
     public void Disable()
     {
-        this.canvasGroup.DOFade(0, 0.3f).OnComplete(() => { Destroy(this); });
+        this.canvasGroup
+            .DOFade(0, 0.3f)
+            .OnComplete(() => { Destroy(this); });
     }
 }

@@ -8,6 +8,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     public ElementType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
 
     [SerializeField] private GameBoard board;
+    [SerializeField] private BattlePlayer battlePlayer;
 
     [Header("Battle Enemy")]
     [SerializeField] private EnemyBlueprint enemyBlueprint;
@@ -31,6 +32,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
         if (Player.Instance != null)
         {
+            // 적 정보 가져오기
             this.enemyBlueprint = Player.BattleEnemy;
         }
 
@@ -68,30 +70,23 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// <returns></returns>
     private IEnumerator Start()
     {
-        // 게임 초기화
-        InitGameBattle();
+        // 전투 세팅
+        yield return StartCoroutine(BattleSetting());
 
-        yield return new WaitForSeconds(1.0f);
-
+        // 게임 플레이
         while (true)
         {
             // 플레이어 행동 턴 
             yield return StartCoroutine(PlayerTurn());
-
             // 적 사망 시 => 전투 끝, 루프 탈출
             if (this.BattlePlay == BattleType.EnemyDead) break;
-
-            // 적 턴 시작
+            // 적 행동 턴
             yield return StartCoroutine(EnemyTurn());
-
-            // 적 턴 끝
-            yield return StartCoroutine(EnemyTurnEnd());
-
             // 플레이어 사망 시 => 게임 오버, 루프 탈출
             if (this.BattlePlay == BattleType.PlayerDead) break;
         }
 
-        // 전투 끝, 플레이어 먼저 체크
+        // 전투 끝
         if (this.BattlePlay == BattleType.PlayerDead)
         {
             yield return StartCoroutine(GameOver());
@@ -103,21 +98,23 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     }
 
     /// <summary>
-    /// 게임 전투 초기화
+    /// 전투 세팅
     /// </summary>
-    public void InitGameBattle()
+    private IEnumerator BattleSetting()
     {
         // board 셋업
         this.board.SetBoard();
+
+        yield return new WaitForSeconds(1.0f);
     }
 
     /// <summary>
     /// 플레이어 행동
     /// </summary>
     /// <returns></returns>
-    public IEnumerator PlayerTurn()
+    private IEnumerator PlayerTurn()
     {
-        // 플레이어 초기화 event
+        // 플레이어 초기화
         GameBoardEvents.OnPlayerTurnInit.Invoke();
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
@@ -126,45 +123,34 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         this.battleEnemy.EnemySkillInstance();
 
         // 플레이어 행동 반복
-        while (BattlePlayer.CurrentACT > 0 
+        while (this.battlePlayer.CurrentACT > 0 
             && this.BattlePlay != BattleType.EnemyDead 
             && this.BattlePlay != BattleType.PlayerDead)
         {
             // 플레이어 element 선택
             yield return this.board.WaitForSelection();
-
             // 최종 선택된 elements 소멸 
             yield return this.board.DespawnSelection();
-
             // 빈 곳으로 elements 이동 
             yield return this.board.WaitForMovement();
-
             // 소멸 된 elements 수 만큼 재생성
             yield return this.board.RespawnElements();
         }
     }
 
     /// <summary>
-    /// 적 행동 시작
+    /// 적 행동 턴
     /// </summary>
     /// <returns></returns>
     public IEnumerator EnemyTurn()
     {
-        yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Enemy Turn"));
+        // 적 초기화
+        GameBoardEvents.OnEnemyTurnInit.Invoke();
 
+        yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Enemy Turn"));
         // 적 스킬 사용
         yield return StartCoroutine(this.battleEnemy.EnemyUseSkill());
-    }
-
-    /// <summary>
-    /// 적 행동 끝
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator EnemyTurnEnd()
-    {
-        yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Enemy End"));
-
-        // 적 스킬 파괴
+        // 스킬 사용후 파괴
         yield return StartCoroutine(this.battleEnemy.EnemySkillDestroy());
     }
 
@@ -183,7 +169,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         }
         else
         {
-            SceneLoader.Instance.LoadScene(SceneNames.Lobby);
+            // [Debug] Battle Scene 반복
+            SceneLoader.Instance.LoadScene(SceneNames.Battle);
         }
     }
 
@@ -199,26 +186,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     }
 
     /// <summary>
-    /// 전투 끝 => 다시 Stage Scene
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator StageEnd()
-    {
-        // Stage Scene 으로 복귀 
-        if (StageSystem.Instance != null)
-        {
-            yield return new WaitForSeconds(0.5f);
-            SceneLoader.Instance.UnLoadAdditiveScene(SceneNames.Battle);
-        }
-        // 테스트용 Battle Scene 반복
-        else
-        {
-            yield return new WaitForSeconds(0.5f);
-            SceneLoader.Instance.LoadScene(SceneNames.Battle);
-        }
-    }
-
-    /// <summary>
     /// 플레이가 선택한 elements 움직임이 끝날 때 불러옴
     /// 그리고 선택된 elements는 despawned
     /// </summary>
@@ -230,29 +197,17 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         switch (PlayedElementType)
         {
             case ElementType.Attack:
-                BattlePlayer.Instance.PlayerAttack(selectElements, this.battleEnemy);
+                this.battlePlayer.PlayerAttack(selectElements, this.battleEnemy);
                 break;
-
             case ElementType.Defense:
-                BattlePlayer.Instance.PlayerDefense(selectElements);
+                this.battlePlayer.PlayerDefense(selectElements);
                 break;
-
             case ElementType.Potion:
-                BattlePlayer.Instance.PlayerRecovery(selectElements);
+                this.battlePlayer.PlayerRecovery(selectElements);
                 break;
-
             case ElementType.Coin:
-                BattlePlayer.Instance.PlayerEarn(selectElements);
+                this.battlePlayer.PlayerEarn(selectElements);
                 break;
         }
-    }
-
-    /// <summary>
-    /// 플레이어 행동이 끝난 다음 적 행동 시작
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator EnemyAction()
-    {
-        yield return StartCoroutine(this.battleEnemy.EnemyUseSkill());
     }
 }

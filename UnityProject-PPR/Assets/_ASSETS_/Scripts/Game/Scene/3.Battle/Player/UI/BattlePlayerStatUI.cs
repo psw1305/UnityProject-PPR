@@ -15,7 +15,7 @@ public class BattlePlayerStatUI : MonoBehaviour
         this.defText.text = def.ToString();
     }
 
-    public void SetACTText(int act)
+    public void SetActText(int act)
     {
         this.actText.text = act.ToString();
     }
