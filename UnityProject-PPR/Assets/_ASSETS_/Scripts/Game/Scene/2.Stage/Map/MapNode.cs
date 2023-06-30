@@ -13,7 +13,7 @@ namespace PSW.Core.Map
         [SerializeField] private Image visitedCheckImage;
 
         private Button button;
-        private const float HoverScaleFactor = 1.2f;
+        private const float HoverScaleFactor = 1.25f;
         private const float TweenAnimateDuration = 0.3f;
 
         public Node Node { get; private set; }
@@ -44,6 +44,10 @@ namespace PSW.Core.Map
             }
         }
 
+        /// <summary>
+        /// 맵 노트 상태에 따른 시각 효과
+        /// </summary>
+        /// <param name="state"></param>
         public void SetState(StageState state)
         {
             if (this.image == null) return;
@@ -64,13 +68,15 @@ namespace PSW.Core.Map
                     this.image.color = MapView.Instance.lockedColor;
                     this.image
                         .DOColor(MapView.Instance.visitedColor, 0.5f)
-                        .SetLoops(-1, LoopType.Yoyo)
-                        .SetAutoKill(false);
+                        .SetLoops(-1, LoopType.Yoyo);
                     break;
             }
         }
 
-        public void MapNodeClick()
+        /// <summary>
+        /// 스테이지 맵 클릭시 이벤트 => 전투, 미스터리, 상점, 휴식, 보물
+        /// </summary>
+        private void MapNodeClick()
         {
             MapPlayerTracker.Instance.SelectNode(this);
         }
@@ -80,8 +86,7 @@ namespace PSW.Core.Map
             if (this.image == null) return;
 
             this.image.transform
-                .DOScale(1.0f * HoverScaleFactor, TweenAnimateDuration)
-                .SetAutoKill(false);
+                .DOScale(1.0f * HoverScaleFactor, TweenAnimateDuration);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -89,17 +94,26 @@ namespace PSW.Core.Map
             if (this.image == null) return;
 
             this.image.transform
-                .DOScale(1.0f, TweenAnimateDuration)
-                .SetAutoKill(false);
+                .DOScale(1.0f, TweenAnimateDuration);
         }
 
+        /// <summary>
+        /// 클릭시 회오리 애니메이션 작동
+        /// </summary>
         public void ShowSwirlAnimation()
         {
             if (this.visitedCheckImage == null) return;
 
             this.visitedCheckImage
-                .DOFillAmount(1f, TweenAnimateDuration)
-                .SetAutoKill(false);
+                .DOFillAmount(1f, TweenAnimateDuration);
+        }
+
+        /// <summary>
+        /// 로비 씬으로 갈 경우, Tween Null 방지
+        /// </summary>
+        private void OnDisable()
+        {
+            this.image.DOKill();
         }
     }
 }
