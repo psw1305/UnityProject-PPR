@@ -7,8 +7,6 @@ using TMPro;
 public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
     [Header("UI")]
-    [SerializeField] private CanvasGroup playerCanvas;
-    [SerializeField] private Button inventory;
     [SerializeField] private Button settings;
     [SerializeField] private TextMeshProUGUI health;
 
@@ -20,6 +18,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     [SerializeField] private TextMeshProUGUI cashText;
 
     [Header("Inventory")]
+    [SerializeField] private CanvasGroup inventoryCanvas;
+    [SerializeField] private Button inventoryOpen;
     [SerializeField] private Button inventoryClose;
     [SerializeField] private Transform invenList;
     [SerializeField] private InventorySlotEquipment[] equipmentLists;
@@ -35,10 +35,10 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     {
         base.Awake();
 
-        this.playerCanvas.CanvasInit();
+        this.inventoryCanvas.CanvasInit();
         this.endCanvas.CanvasInit();
 
-        this.inventory.onClick.AddListener(InventoryShow);
+        this.inventoryOpen.onClick.AddListener(InventoryShow);
         this.inventoryClose.onClick.AddListener(InventoryHide);
         this.settings.onClick.AddListener(SettingsShow);
         this.endButton.onClick.AddListener(GameEnd);
@@ -50,7 +50,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     private void InventoryShow()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
-        this.playerCanvas.CanvasFadeIn(0.25f);
+        this.inventoryCanvas.CanvasFadeIn(0.25f);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     private void InventoryHide()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryClose);
-        this.playerCanvas.CanvasFadeOut(0.25f);
+        this.inventoryCanvas.CanvasFadeOut(0.25f);
     }
 
     private void SettingsShow()

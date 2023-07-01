@@ -559,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 328816205141552487, guid: aa813c46b8456ed4fa514dd1890fb163,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 328816205141552487, guid: aa813c46b8456ed4fa514dd1890fb163,
         type: 3}
@@ -654,7 +654,7 @@ Transform:
   m_Children:
   - {fileID: 201785567}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1650054838
 GameObject:
@@ -769,7 +769,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714029395
 MonoBehaviour:

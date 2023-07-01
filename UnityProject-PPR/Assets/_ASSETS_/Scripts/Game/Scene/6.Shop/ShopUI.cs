@@ -27,7 +27,7 @@ public class ShopUI : UI
         if (this.isOpen)
         {
             this.npcBoard.DOLocalMoveY(0, 0.4f).SetEase(Ease.OutSine);
-            this.shopBoard.DOLocalMoveY(480, 0.4f).SetEase(Ease.OutSine);
+            this.shopBoard.DOLocalMoveY(500, 0.4f).SetEase(Ease.OutSine);
         }
         else
         {
