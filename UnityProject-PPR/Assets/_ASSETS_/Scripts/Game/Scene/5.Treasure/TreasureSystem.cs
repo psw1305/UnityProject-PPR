@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class TreasureSystem : BehaviourSingleton<TreasureSystem>
 {
+    [SerializeField] private Camera treasureCamera;
+    [SerializeField] private Canvas treasureCanvas;
+
     [SerializeField] private Button exitButton;
 
     protected override void Awake()
@@ -12,6 +15,8 @@ public class TreasureSystem : BehaviourSingleton<TreasureSystem>
         this.exitButton.onClick.AddListener(Exit);
 
         AudioBGM.Instance.BGMChange(AudioBGM.Instance.stage);
+
+        GameManager.Instance.CameraChange(this.treasureCamera, this.treasureCanvas);
     }
 
     public void Exit()

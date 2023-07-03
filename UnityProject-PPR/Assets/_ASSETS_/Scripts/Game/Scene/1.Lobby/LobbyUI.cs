@@ -3,11 +3,16 @@ using UnityEngine.UI;
 
 public class LobbyUI : UI
 {
+    [SerializeField] private Canvas lobbyCanvas;
+    [SerializeField] private Camera lobbyCamera;
+
     [SerializeField] private Button buttonStart;
     [SerializeField] private Button buttonSettings;
 
     private void Start()
     {
+        GameManager.Instance.CameraChange(this.lobbyCamera, this.lobbyCanvas);
+
         this.buttonStart.onClick.AddListener(LoadStageScene);
         this.buttonSettings.onClick.AddListener(LoadSettingsCanvas);
 

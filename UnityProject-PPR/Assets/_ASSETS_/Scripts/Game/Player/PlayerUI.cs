@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
-    [Header("UI")]
+    [Header("Front UI")]
     [SerializeField] private Button settings;
     [SerializeField] private TextMeshProUGUI health;
 

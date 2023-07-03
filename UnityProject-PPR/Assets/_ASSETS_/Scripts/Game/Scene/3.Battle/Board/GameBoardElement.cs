@@ -30,6 +30,7 @@ public class GameBoardElement : MonoBehaviour
     {
         this.caseSprite.sprite = data.ElementCaseImage;
         this.elementSprite.sprite = data.ElementImage;
+        this.elementSprite.color = data.ElementColor;
         this.ElementType = data.ElementType;
         this.randomWeighted = data.RandomWeighted;
     }

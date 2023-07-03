@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization.Components;
 using TMPro;
-using Unity.VisualScripting;
 
 public class MysterySystem : BehaviourSingleton<MysterySystem>
 {
+    [SerializeField] private Canvas mysteryCanvas;
+    [SerializeField] private Camera mysteryCamera;
+
     [Header("Params")]
     [SerializeField] private MysteryConfig eventBlueprint;
     [SerializeField] private float typingSpeed = 0.04f;
@@ -48,6 +50,8 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         this.titleCanvas.alpha = 0;
         this.contentsCanvas.alpha = 0;
         this.pictureCanvas.alpha = 0;
+
+        GameManager.Instance.CameraChange(this.mysteryCamera, this.mysteryCanvas);
     }
 
     private void Update()

@@ -4,6 +4,9 @@ using DG.Tweening;
 
 public class RestSiteSystem : BehaviourSingleton<RestSiteSystem>
 {
+    [SerializeField] private Camera restsiteCamera;
+    [SerializeField] private Canvas restsiteCanvas;
+
     [Header("UI")]
     [SerializeField] private Button restButton;
     [SerializeField] private Button smithButton;
@@ -28,6 +31,8 @@ public class RestSiteSystem : BehaviourSingleton<RestSiteSystem>
         this.exitCanvasGroup.transform.localPosition = new Vector3(-20, 0);
 
         AudioBGM.Instance.BGMChange(AudioBGM.Instance.restsite);
+
+        GameManager.Instance.CameraChange(this.restsiteCamera, this.restsiteCanvas);
     }
 
     private Sequence ExitButtonSequence()

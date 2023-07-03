@@ -140,7 +140,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         UISFX.Instance.Play(UISFX.Instance.itemDrag);
 
         this.parentAfterDrag = this.transform.parent;
-        this.transform.SetParent(PlayerUI.Instance.transform);
+        this.transform.SetParent(InventorySystem.Instance.transform);
         this.transform.SetAsLastSibling();
         this.plate.raycastTarget = false;
 

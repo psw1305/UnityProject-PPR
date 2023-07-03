@@ -7,6 +7,10 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     public BattleType BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
     public ElementType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
 
+    [Header("Settings")]
+    [SerializeField] private Camera battleCamera;
+    [SerializeField] private Canvas battleCanvas;
+    [SerializeField] private Canvas rewardCanvas;
     [SerializeField] private GameBoard board;
     [SerializeField] private BattlePlayer battlePlayer;
 
@@ -23,6 +27,9 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         this.PlayedElementType = ElementType.None;
 
         BattleEnemyCreate();
+
+        GameManager.Instance.CameraChange(this.battleCamera, this.battleCanvas);
+        GameManager.Instance.CameraChange(this.rewardCanvas);
     }
 
     private void BattleEnemyCreate()

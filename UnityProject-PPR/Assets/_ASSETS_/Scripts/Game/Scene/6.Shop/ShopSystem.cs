@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ShopSystem : BehaviourSingleton<ShopSystem>
 {
+    [SerializeField] private Camera shopCamera;
+    [SerializeField] private Canvas shopCanvas;
+
     [Header("Item Blueprint List")]
     [SerializeField] private ItemBlueprint[] armors;
     [SerializeField] private ItemBlueprint[] helmets;
@@ -49,6 +52,8 @@ public class ShopSystem : BehaviourSingleton<ShopSystem>
         }
 
         AudioBGM.Instance.BGMChange(AudioBGM.Instance.shop);
+
+        GameManager.Instance.CameraChange(this.shopCamera, this.shopCanvas);
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using PSW.Core.Extensions;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Scene 로딩하면서 화면에 특정 애니메이션 작동
@@ -10,6 +11,9 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
 {
     // 로딩 하는 동안 다른 동작 방지용
     public static bool IsLoaded { get; set; }
+
+    [SerializeField] private RectTransform sceneSize;
+    [SerializeField] private GridLayoutGroup gridLayout;
 
     [Header("Blind")]
     [SerializeField] private Transform[] blinds;
@@ -21,17 +25,15 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
 
         IsLoaded = true;
 
-        SetBlindTransforms();
+        SetBlindSize();
     }
 
-    private void SetBlindTransforms()
+    private void SetBlindSize()
     {
-        this.blinds = new Transform[this.transform.childCount];
+        var sizeX = this.sceneSize.sizeDelta.x / 3.0f;
+        var sizeY = this.sceneSize.sizeDelta.y / 7.0f;
 
-        for (int i = 0; i < this.transform.childCount; i++)
-        {
-            this.blinds[i] = this.transform.GetChild(i);
-        }
+        this.gridLayout.cellSize = new Vector2(sizeX, sizeY);
     }
 
     /// <summary>

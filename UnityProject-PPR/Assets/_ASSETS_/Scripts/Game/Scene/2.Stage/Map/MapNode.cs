@@ -111,7 +111,7 @@ namespace PSW.Core.Map
         /// <summary>
         /// 로비 씬으로 갈 경우, Tween Null 방지
         /// </summary>
-        private void OnDisable()
+        private void OnDestroy()
         {
             this.image.DOKill();
         }

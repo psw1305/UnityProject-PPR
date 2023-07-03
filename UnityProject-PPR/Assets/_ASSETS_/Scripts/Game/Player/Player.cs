@@ -9,6 +9,9 @@ public partial class Player : BehaviourSingleton<Player>
 {
     public GameState GameState { get; set; }
 
+    [Header("Canvas")]
+    [SerializeField] private Canvas[] canvases;
+
     [Header("Script")]
     [SerializeField] private PlayerUI playerUI;
 
@@ -26,6 +29,11 @@ public partial class Player : BehaviourSingleton<Player>
     protected override void Awake()
     {
         base.Awake();
+
+        foreach (Canvas canvas in this.canvases)
+        {
+            GameManager.Instance.CameraChange(canvas);
+        }
 
         Set();
     }
