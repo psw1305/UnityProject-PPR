@@ -50,7 +50,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     private void InventoryShow()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
-        this.inventoryCanvas.CanvasFadeIn(0.25f);
+        this.inventoryCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     private void InventoryHide()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryClose);
-        this.inventoryCanvas.CanvasFadeOut(0.25f);
+        this.inventoryCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
     }
 
     private void SettingsShow()
@@ -85,7 +85,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
             this.endGameOverTitle.SetActive(true);
         }
 
-        this.endCanvas.CanvasFadeIn(0.25f);
+        this.endCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>

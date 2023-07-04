@@ -72,9 +72,9 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         {
             this.isFadeIn = true;
 
-            this.titleCanvas.CanvasFadeInDelay(0.6f, 0.0f);
-            this.contentsCanvas.CanvasFadeInDelay(0.6f, 0.4f);
-            this.pictureCanvas.CanvasFadeInDelay(0.6f, 0.8f);
+            this.titleCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.0f);
+            this.contentsCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.4f);
+            this.pictureCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.8f);
 
             yield return new WaitForSeconds(1.2f);
 

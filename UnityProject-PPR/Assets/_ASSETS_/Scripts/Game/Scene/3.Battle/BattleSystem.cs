@@ -209,12 +209,12 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             case ElementType.Defense:
                 this.battlePlayer.PlayerDefense(selectElements);
                 break;
-            case ElementType.Potion:
-                this.battlePlayer.PlayerRecovery(selectElements);
-                break;
-            case ElementType.Coin:
-                this.battlePlayer.PlayerEarn(selectElements);
-                break;
+            //case ElementType.Potion:
+            //    this.battlePlayer.PlayerRecovery(selectElements);
+            //    break;
+            //case ElementType.Coin:
+            //    this.battlePlayer.PlayerEarn(selectElements);
+            //    break;
         }
     }
 }

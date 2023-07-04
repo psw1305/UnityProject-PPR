@@ -47,6 +47,13 @@ public static class StageImageNames
     public static readonly string Clear_Shop = "All-Icons_105";
 }
 
+public static class Fade
+{
+    public static readonly float CANVAS_FADE_TIME = 0.2f;
+    public static readonly float SELECTION_FADE_TIME = 0.6f;
+}
+
+
 /// <summary>
 /// 아이템 가격 관련
 /// </summary>

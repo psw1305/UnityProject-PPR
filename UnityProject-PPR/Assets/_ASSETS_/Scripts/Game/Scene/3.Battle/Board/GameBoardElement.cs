@@ -53,11 +53,7 @@ public class GameBoardElement : MonoBehaviour
     public void Move(Vector3 targetPos, float time)
     {
         this.IsMoving = true;
-
-        StartCoroutine(this.transform.MoveCoroutine(targetPos, time, () =>
-        {
-            this.IsMoving = false;
-        }));
+        this.transform.MoveCoroutine(targetPos, time, () => { this.IsMoving = false; });
     }
 
     /// <summary>
@@ -75,7 +71,7 @@ public class GameBoardElement : MonoBehaviour
         Vector2 startScale = Vector2.one * 0.1f;
         Vector2 endScale = Vector2.one * 1.0f;
 
-        StartCoroutine(this.transform.ScaleCoroutine(startScale, endScale, 0.2f));
+        this.transform.ScaleCoroutine(startScale, endScale, 0.2f);
     }
 
     /// <summary>
@@ -86,9 +82,6 @@ public class GameBoardElement : MonoBehaviour
         Vector2 startScale = Vector2.one * 1.0f;
         Vector2 endScale = Vector2.one * 0.1f;
 
-        StartCoroutine(this.transform.ScaleCoroutine(startScale, endScale, 0.2f, () =>
-        {
-            this.gameObject.SetActive(false);
-        }));
+        this.transform.ScaleCoroutine(startScale, endScale, 0.2f, () => { this.gameObject.SetActive(false); });
     }
 }

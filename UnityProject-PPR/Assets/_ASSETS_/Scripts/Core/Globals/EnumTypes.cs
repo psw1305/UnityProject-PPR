@@ -64,13 +64,8 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ElementType
     {
-        Attack, 
-        Defense, 
-        Potion, 
-        Coin, 
-        Synergy, 
-        Obstacle, 
-        None
+        Attack, Defense, Synergy,
+        Obstacle, None
     }
 
     /// <summary>

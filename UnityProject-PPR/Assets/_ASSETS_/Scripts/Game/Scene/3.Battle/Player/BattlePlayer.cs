@@ -54,8 +54,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         {
             this.HP = 999;
             this.ACT = 20;
-            this.ATK = 2;
-            this.DEF = 2;
+            this.ATK = 1;
+            this.DEF = 1;
             this.CurrentHP = 999;
         }
 

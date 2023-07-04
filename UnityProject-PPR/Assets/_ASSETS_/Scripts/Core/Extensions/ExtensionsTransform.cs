@@ -1,61 +1,34 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+using DG.Tweening;
+
 namespace PSW.Core.Extensions
 {
-    using System.Collections;
-    using UnityEngine;
-    using UnityEngine.Events;
-
     public static class ExtensionsTransform
     {
-        public static IEnumerator ScaleCoroutine(this Transform transform, Vector2 from, Vector2 to, float time, UnityAction onComplete = null)
+        public static void ScaleCoroutine(this Transform transform, Vector2 from, Vector2 to, float duration, UnityAction onComplete = null)
         {
-            float currentTime = Time.timeSinceLevelLoad;
-            float elapsedTime = 0.0f;
-            float lastTime = currentTime;
-
-            while (time > 0 && elapsedTime < time)
-            {
-                // Update Time
-                currentTime = Time.timeSinceLevelLoad;
-                elapsedTime += currentTime - lastTime;
-                lastTime = currentTime;
-
-                transform.localScale = Vector3.Lerp(from, to, elapsedTime / time);
-
-                yield return null;
-            }
-
-            transform.localScale = to;
-
-            onComplete?.Invoke();
-
-            yield break;
+            transform
+                .DOScale(to, duration)
+                .OnStart(() => 
+                {
+                    transform.localScale = from;
+                })
+                .OnComplete(() => 
+                { 
+                    onComplete?.Invoke(); 
+                });
         }
 
-        public static IEnumerator MoveCoroutine(this Transform transform, Vector2 targetPos, float time, UnityAction onComplete = null)
+        public static void MoveCoroutine(this Transform transform, Vector2 targetPos, float duration, UnityAction onComplete = null)
         {
-            Vector2 startPos = transform.position;
-
-            float currentTime = Time.timeSinceLevelLoad;
-            float elapsedTime = 0.0f;
-            float lastTime = currentTime;
-
-            while (time > 0 && elapsedTime < time)
-            {
-                // Update Time
-                currentTime = Time.timeSinceLevelLoad;
-                elapsedTime += currentTime - lastTime;
-                lastTime = currentTime;
-
-                transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / time);
-
-                yield return null;
-            }
-
-            transform.position = targetPos;
-
-            onComplete?.Invoke();
-
-            yield break;
+            transform
+                .DOMove(targetPos, duration)
+                .OnComplete(() => 
+                { 
+                    onComplete?.Invoke(); 
+                });
         }
     }
 }

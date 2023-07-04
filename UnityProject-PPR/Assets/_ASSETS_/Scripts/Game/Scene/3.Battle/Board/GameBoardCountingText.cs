@@ -25,12 +25,12 @@ public class GameBoardCountingText : MonoBehaviour
             case ElementType.Defense:
                 result = BattlePlayer.Instance.GetElementPoint(selectedElements, BattlePlayer.Instance.DEF);
                 break;
-            case ElementType.Potion:
-                result = BattlePlayer.Instance.GetElementPoint(selectedElements);
-                break;
-            case ElementType.Coin:
-                result = BattlePlayer.Instance.GetElementPoint(selectedElements);
-                break;
+            //case ElementType.Potion:
+            //    result = BattlePlayer.Instance.GetElementPoint(selectedElements);
+            //    break;
+            //case ElementType.Coin:
+            //    result = BattlePlayer.Instance.GetElementPoint(selectedElements);
+            //    break;
             case ElementType.None:
                 result = 0;
                 break;
