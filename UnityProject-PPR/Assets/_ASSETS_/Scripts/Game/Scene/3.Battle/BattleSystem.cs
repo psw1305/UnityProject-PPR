@@ -130,7 +130,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         this.battleEnemy.EnemySkillInstance();
 
         // 플레이어 행동 반복
-        while (this.battlePlayer.CurrentACT > 0 
+        // 최소한 2의 행동을 소모해야 작동 => 행동력이 1 이하일 경우 턴 종료
+        while (this.battlePlayer.CurrentACT > 1 
             && this.BattlePlay != BattleType.EnemyDead 
             && this.BattlePlay != BattleType.PlayerDead)
         {

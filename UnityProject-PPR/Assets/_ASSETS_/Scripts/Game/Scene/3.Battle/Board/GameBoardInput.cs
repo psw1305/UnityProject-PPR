@@ -72,6 +72,7 @@ public class GameBoardInput
                 else
                 {    
                     this.SelectedElements[0].Deselected();
+                    BattlePlayer.Instance.ActionCounter(1);
                     Clear();
                 }
             }
@@ -243,10 +244,10 @@ public class GameBoardInput
         {
             var pitch = 1.0f + this.SelectedElements.Count * 0.1f;
             BattleSFX.Instance.Play(BattleSFX.Instance.elementClick, pitch);
-            
-            // 행동 횟수 차감
-            BattlePlayer.Instance.ActionCounter(-1);
         }
+
+        // 행동 횟수 차감
+        BattlePlayer.Instance.ActionCounter(-1);
 
         element.Selected();
         this.SelectedElements.Add(element);

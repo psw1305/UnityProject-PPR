@@ -10,8 +10,6 @@ public class GameBoardElement : MonoBehaviour
     [SerializeField] private SpriteRenderer elementSprite;
     [SerializeField] private Transform particleCase;
     [SerializeField] private ElementType elementType;
-    [SerializeField] private ElementAttack elementAttack;
-    [SerializeField] private float randomWeighted = 0;
 
     public ElementType ElementType
     {
@@ -32,7 +30,6 @@ public class GameBoardElement : MonoBehaviour
         this.elementSprite.sprite = data.ElementImage;
         this.elementSprite.color = data.ElementColor;
         this.ElementType = data.ElementType;
-        this.randomWeighted = data.RandomWeighted;
     }
 
     public void Selected()

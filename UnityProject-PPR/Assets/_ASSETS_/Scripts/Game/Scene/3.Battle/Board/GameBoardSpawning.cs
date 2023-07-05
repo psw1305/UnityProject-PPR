@@ -5,9 +5,13 @@ using UnityEngine;
 public class GameBoardSpawning
 {
     private GameBoard board;
-    public GameBoardSpawning(GameBoard board)
+    private int skillStack;
+    private int currentStack = 0;
+
+    public GameBoardSpawning(GameBoard board, int skillStack)
     {
         this.board = board;
+        this.skillStack = skillStack;
     }
 
     public IEnumerator RespawnElements()
@@ -18,7 +22,18 @@ public class GameBoardSpawning
         {
             if (element.IsSpawned == false)
             {
-                element.SetBaseData(this.board.ElementTypeList.Get());
+                this.currentStack++;
+
+                if (this.currentStack < this.skillStack)
+                {
+                    element.SetBaseData(this.board.ElementList.Get());
+                }
+                else
+                {
+                    element.SetBaseData(this.board.ElementSkillList.Get());
+                    this.currentStack = 0;
+                }
+
                 element.Spawn();
             }
         }

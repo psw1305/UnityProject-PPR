@@ -64,8 +64,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ElementType
     {
-        Attack, Defense, Synergy,
-        Obstacle, None
+        Attack, Defense, Synergy, Obstacle, None
     }
 
     /// <summary>
@@ -73,9 +72,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ElementAttack
     {
-        Normal, 
-        Reinforce, 
-        Burn
+        Hit, Reinforce, Burn
     }
 
     /// <summary>
