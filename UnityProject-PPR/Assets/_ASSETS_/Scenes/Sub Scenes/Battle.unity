@@ -14235,6 +14235,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3984a01a81d7b44796e0016a7547d8e, type: 3}
   - {fileID: 8300000, guid: 16f57b9a7fa4bd54898de321c1877eb4, type: 3}
   elementClick: {fileID: 8300000, guid: 90d27337bbee45e40b4ffd7fcb3a7037, type: 3}
+  skillAppear: {fileID: 8300000, guid: aff6a215cf1b5614380cf4c6abc2ef0d, type: 3}
   playerAttackNormal: {fileID: 8300000, guid: bfe68b1401124eb4d8aa3dc9c4d2dd9f, type: 3}
   playerAttackHeavy: {fileID: 8300000, guid: 2fd9653a4dc329d46b4b4198736f01a8, type: 3}
 --- !u!82 &1565156782
@@ -15158,9 +15159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rowCount: 6
   columnCount: 6
-  skillStack: 10
+  skillStack: 5
   rescaling: 0.4
-  elementBaseDatas:
+  elementDatas:
   - {fileID: 11400000, guid: dff0fe72ac50e7046b2bc43c26faedae, type: 2}
   - {fileID: 11400000, guid: a5fc25f5cc709054782dadd828a1c3f1, type: 2}
   elementSkillDatas:
@@ -15169,6 +15170,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8646881b7d0296e4a9650b86c443d6aa, type: 2}
   - {fileID: 11400000, guid: 59bbc7dc5476f0c45abc48524b6f2ed9, type: 2}
   - {fileID: 11400000, guid: ff09d5f90b3cc7d48bbeffebe8580fea, type: 2}
+  elementSkillUsedDatas: []
   countingText: {fileID: 1032101111}
   selectionLine: {fileID: 235036864}
   boardElementPrefab: {fileID: 7121532763530009987, guid: f927d430e9838e84bafea2d694778fe1,

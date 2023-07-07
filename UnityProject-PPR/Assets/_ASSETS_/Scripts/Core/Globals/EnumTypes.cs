@@ -60,7 +60,7 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 플레이어 Element 타입
+    /// Element 타입
     /// </summary>
     public enum ElementType
     {

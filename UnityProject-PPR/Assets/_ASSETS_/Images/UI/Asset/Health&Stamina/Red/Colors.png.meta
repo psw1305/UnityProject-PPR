@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,6 +119,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -223,71 +235,71 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Colors_29: -1913393331
-      Colors_12: 159186218
-      Colors_15: -304110598
-      Colors_52: -361456510
-      Health_4: -2087785653
+      Colors_10: 684102584
       Colors_11: -900317028
-      Colors_50: 651812716
-      Colors_48: 682555717
-      Colors_56: -1675187504
-      Colors_6: -939323877
-      Colors_37: -833690750
+      Colors_12: 159186218
       Colors_13: 830667401
       Colors_14: 624076280
-      Colors_25: 1368761533
-      Colors_58: -1990878794
-      Health_1: 1686558305
-      Colors_4: -2032538191
-      Colors_61: -483960646
-      Colors_28: -34540415
-      Colors_19: 9116428
-      Colors_42: -1655728886
-      Colors_51: 1045411581
-      Colors_43: -354216971
+      Colors_15: -304110598
       Colors_18: -725091905
-      Health_3: 785770258
-      Colors_34: -1098325303
-      Colors_49: 948832757
+      Colors_19: 9116428
       Colors_2: -826423110
-      Colors_64: -298725488
-      Colors_41: 1710067614
-      Colors_54: -1124199342
-      Colors_10: 684102584
-      Colors_36: 790854386
-      Colors_59: -1651630687
-      Colors_35: 509124310
-      Colors_57: -717510023
-      Colors_63: 1065282591
-      Colors_53: -1952521559
-      Colors_31: -1151885077
-      Colors_27: 1445573495
-      Colors_40: 251879808
-      Colors_30: -208407691
-      Colors_55: 1740218533
-      Colors_38: 1109309946
-      Colors_33: -1978850173
-      Colors_47: 1558555368
-      Colors_3: 625617158
-      Colors_7: -1716442111
-      Colors_9: 1955010831
-      Health_2: 2008318846
-      Colors_26: -650554610
-      Colors_39: -2015850458
-      Colors_8: 1253179540
-      Colors_46: -1585830099
-      Colors_22: -817835512
-      Colors_5: 222594755
-      Colors_32: -1336803967
-      Colors_23: 572340486
-      Colors_45: 1688861423
-      Colors_44: 662041814
       Colors_20: -422616327
       Colors_21: 908454926
+      Colors_22: -817835512
+      Colors_23: 572340486
       Colors_24: -195335504
+      Colors_25: 1368761533
+      Colors_26: -650554610
+      Colors_27: 1445573495
+      Colors_28: -34540415
+      Colors_29: -1913393331
+      Colors_3: 625617158
+      Colors_30: -208407691
+      Colors_31: -1151885077
+      Colors_32: -1336803967
+      Colors_33: -1978850173
+      Colors_34: -1098325303
+      Colors_35: 509124310
+      Colors_36: 790854386
+      Colors_37: -833690750
+      Colors_38: 1109309946
+      Colors_39: -2015850458
+      Colors_4: -2032538191
+      Colors_40: 251879808
+      Colors_41: 1710067614
+      Colors_42: -1655728886
+      Colors_43: -354216971
+      Colors_44: 662041814
+      Colors_45: 1688861423
+      Colors_46: -1585830099
+      Colors_47: 1558555368
+      Colors_48: 682555717
+      Colors_49: 948832757
+      Colors_5: 222594755
+      Colors_50: 651812716
+      Colors_51: 1045411581
+      Colors_52: -361456510
+      Colors_53: -1952521559
+      Colors_54: -1124199342
+      Colors_55: 1740218533
+      Colors_56: -1675187504
+      Colors_57: -717510023
+      Colors_58: -1990878794
+      Colors_59: -1651630687
+      Colors_6: -939323877
       Colors_60: -890785019
+      Colors_61: -483960646
       Colors_62: 1220209912
+      Colors_63: 1065282591
+      Colors_64: -298725488
+      Colors_7: -1716442111
+      Colors_8: 1253179540
+      Colors_9: 1955010831
+      Health_1: 1686558305
+      Health_2: 2008318846
+      Health_3: 785770258
+      Health_4: -2087785653
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

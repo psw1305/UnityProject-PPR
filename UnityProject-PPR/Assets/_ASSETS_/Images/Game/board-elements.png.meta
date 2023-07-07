@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,6 +119,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -393,16 +405,16 @@ TextureImporter:
     nameFileIdTable:
       elements-attack: -375167151
       elements-gold: -378638768
-      elements_7: 877209657
-      elements-obstacle: -1574738630
       elements-gold2: -544003291
-      elements_5: -115944527
+      elements-obstacle: -1574738630
       elements-shield: -310794542
-      elements_8: 197996485
       elements-support: 1289761069
       elements-support2: 440871872
-      elements_9: 2056920195
       elements_4: -1046615577
+      elements_5: -115944527
+      elements_7: 877209657
+      elements_8: 197996485
+      elements_9: 2056920195
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

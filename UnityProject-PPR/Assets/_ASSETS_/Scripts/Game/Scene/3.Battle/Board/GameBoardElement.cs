@@ -11,25 +11,37 @@ public class GameBoardElement : MonoBehaviour
     [SerializeField] private Transform particleCase;
     [SerializeField] private ElementType elementType;
 
+    private GameBoard board;
+    private ElementBlueprint data;
+
     public ElementType ElementType
     {
         get { return this.elementType; }
         set { this.elementType = value; }
     }
 
+    public bool IsChanged { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsSpawned => this.gameObject.activeSelf;
+
+    public void Set(GameBoard board, ElementBlueprint data)
+    {
+        this.board = board;
+        SetData(data);
+    }
 
     /// <summary>
     /// ElementBaseData(Scriptable Object) 데이터 가져오기
     /// </summary>
     /// <param name="data"></param>
-    public void SetBaseData(ElementBlueprint data)
+    public void SetData(ElementBlueprint data)
     {
+        this.data = data;
         this.caseSprite.sprite = data.ElementCaseImage;
         this.elementSprite.sprite = data.ElementImage;
         this.elementSprite.color = data.ElementColor;
         this.ElementType = data.ElementType;
+        this.IsChanged = data.IsChanged;
     }
 
     public void Selected()
@@ -79,6 +91,16 @@ public class GameBoardElement : MonoBehaviour
         Vector2 startScale = Vector2.one * 1.0f;
         Vector2 endScale = Vector2.one * 0.1f;
 
-        this.transform.ScaleCoroutine(startScale, endScale, 0.2f, () => { this.gameObject.SetActive(false); });
+        this.transform.ScaleCoroutine(startScale, endScale, 0.2f, () => { Init(); });
+    }
+
+    private void Init()
+    {
+        if (this.IsChanged == false)
+        {
+            this.board.SkillElementReset(this.data);
+        }
+
+        this.gameObject.SetActive(false);
     }
 }

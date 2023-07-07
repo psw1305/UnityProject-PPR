@@ -3,21 +3,21 @@ namespace PSW.Core.Probability
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class GameBoardElementList<ElementBaseData>
+    public class GameBoardElementList<T>
     {
-        List<ElementList> elementList = new List<ElementList>();
+        private List<ElementList> elementList = new();
 
-        public bool isEmpty { get { return elementList.Count <= 0; } }
+        public bool IsEmpty { get { return elementList.Count <= 0; } }
 
         /// <summary>
         /// 랜덤 가중치 요소 class
         /// </summary>
         public class ElementList
         {
-            public ElementBaseData target;
+            public T target;
             public float probability;
 
-            public ElementList(ElementBaseData target, float probability)
+            public ElementList(T target, float probability)
             {
                 this.target = target;
                 this.probability = probability;
@@ -29,12 +29,12 @@ namespace PSW.Core.Probability
         /// </summary>
         /// <param name="target"></param>
         /// <param name="probability"></param>
-        public void Add(ElementBaseData target, float probability)
+        public void Add(T target, float probability)
         {
             this.elementList.Add(new ElementList(target, probability));
         }
 
-        public ElementBaseData Get()
+        public T Get()
         {
             float totalProbability = 0;
 
@@ -62,7 +62,7 @@ namespace PSW.Core.Probability
             }
 
             // null
-            return default(ElementBaseData);
+            return default;
         }
     }
 }

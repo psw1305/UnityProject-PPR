@@ -6,7 +6,7 @@ public class GameBoardSpawning
 {
     private GameBoard board;
     private int skillStack;
-    private int currentStack = 0;
+    private int currentStack = 1;
 
     public GameBoardSpawning(GameBoard board, int skillStack)
     {
@@ -14,7 +14,7 @@ public class GameBoardSpawning
         this.skillStack = skillStack;
     }
 
-    public IEnumerator RespawnElements()
+    public IEnumerator Respawn()
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
@@ -22,19 +22,21 @@ public class GameBoardSpawning
         {
             if (element.IsSpawned == false)
             {
-                this.currentStack++;
+                element.SetData(this.board.ElementList.Get());
+                element.Spawn();
 
-                if (this.currentStack < this.skillStack)
+                if (this.currentStack >= this.skillStack)
                 {
-                    element.SetBaseData(this.board.ElementList.Get());
+                    if (this.board.IsSkillElementsEmpty() == false)
+                    {
+                        this.currentStack = 1;
+                        yield return Change(this.board.RandomElement());
+                    }
                 }
                 else
                 {
-                    element.SetBaseData(this.board.ElementSkillList.Get());
-                    this.currentStack = 0;
+                    this.currentStack++;
                 }
-
-                element.Spawn();
             }
         }
 
@@ -54,5 +56,17 @@ public class GameBoardSpawning
 
         // 행동이 끝나고 elements가 사라질 때 event 발동
         GameBoardEvents.OnElementsDespawned.Invoke();
+    }
+
+    public IEnumerator Change(GameBoardElement element)
+    {
+        element.Despawn();
+
+        yield return new WaitForSeconds(0.2f);
+
+        BattleSFX.Instance.Play(BattleSFX.Instance.skillAppear);
+
+        element.SetData(this.board.RandomSkillElement());
+        element.Spawn();
     }
 }

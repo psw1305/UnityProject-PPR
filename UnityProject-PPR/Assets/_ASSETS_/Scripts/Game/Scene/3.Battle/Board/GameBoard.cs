@@ -10,11 +10,11 @@ public partial class GameBoard : MonoBehaviour
     [SerializeField] private int skillStack = 5;
     [SerializeField] private float rescaling = 0.25f;
 
-    [Header("Elements Settings")]
-    [SerializeField] private List<ElementBlueprint> elementBaseDatas = new();
+    [Header("Element Settings")]
+    [SerializeField] private List<ElementBlueprint> elementDatas = new();
     [SerializeField] private List<ElementBlueprint> elementSkillDatas = new();
+    [SerializeField] private List<ElementBlueprint> elementSkillUsedDatas = new();
     [SerializeField] private GameBoardElementList<ElementBlueprint> elementList = new();
-    [SerializeField] private GameBoardElementList<ElementBlueprint> elementSkillList = new();
 
     [Header("Additional")]
     [SerializeField] private GameBoardCountingText countingText;
@@ -27,7 +27,6 @@ public partial class GameBoard : MonoBehaviour
 
     public List<GameBoardElement> Elements { get; } = new List<GameBoardElement>();
     public GameBoardElementList<ElementBlueprint> ElementList => this.elementList;
-    public GameBoardElementList<ElementBlueprint> ElementSkillList => this.elementSkillList;
     public Vector2 StartCellPosition => this.BoardCenter - this.Rescaling * new Vector2(this.ColumnCount - 1, this.RowCount - 1) / 2.0f;
     public int RowCount => this.rowCount;
     public int ColumnCount => this.columnCount;
@@ -59,14 +58,9 @@ public partial class GameBoard : MonoBehaviour
     /// </summary>
     private void ProbabilityList()
     {
-        foreach (ElementBlueprint element in this.elementBaseDatas)
+        foreach (ElementBlueprint element in this.elementDatas)
         {
             this.elementList.Add(element, element.RandomWeighted);
-        }
-
-        foreach (ElementBlueprint element in this.elementSkillDatas)
-        {
-            this.elementSkillList.Add(element, element.RandomWeighted);
         }
     }
 
@@ -76,15 +70,15 @@ public partial class GameBoard : MonoBehaviour
     private void TestProbability()
     {
         float count = 10000;
-        int[] list = new int[this.elementBaseDatas.Count];
+        int[] list = new int[this.elementDatas.Count];
 
         for (int i = 0; i < count; i++)
         {
             ElementBlueprint testElement = this.ElementList.Get();
 
-            for (int k = 0; k < this.elementBaseDatas.Count; k++)
+            for (int k = 0; k < this.elementDatas.Count; k++)
             {
-                if (testElement == this.elementBaseDatas[k])
+                if (testElement == this.elementDatas[k])
                 {
                     list[k]++;
                 }
@@ -93,7 +87,7 @@ public partial class GameBoard : MonoBehaviour
 
         for (int i = 0; i < list.Length; i++)
         {
-            Debug.Log(string.Format("{0} : {1}%\n", this.elementBaseDatas[i].name, list[i] / count * 100));
+            Debug.Log(string.Format("{0} : {1}%\n", this.elementDatas[i].name, list[i] / count * 100));
         }
     }
 
@@ -110,7 +104,8 @@ public partial class GameBoard : MonoBehaviour
                 element.transform.localScale = Vector2.one;
                 element.transform.position = this.BoardToWorldPosition(x, y);
                 element.transform.SetParent(this.BoardContainer, true);
-                element.SetBaseData(this.ElementList.Get());
+                element.Set(this, this.ElementList.Get());
+
                 this.Elements.Add(element);
             }
         }
@@ -120,6 +115,49 @@ public partial class GameBoard : MonoBehaviour
 
         // 가중치 테스트 용
         //TestProbability();
+    }
+
+    /// <summary>
+    /// 변환되는 elements 중에 랜덤 픽업
+    /// </summary>
+    /// <returns></returns>
+    public GameBoardElement RandomElement()
+    {
+        while (true)
+        {
+            var random = Random.Range(0, this.Elements.Count);
+            var randomElement = this.Elements[random];
+            if (randomElement.IsChanged) return randomElement;
+        }
+    }
+
+    public bool IsSkillElementsEmpty()
+    {
+        if (this.elementSkillDatas.Count == 0) return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// 변환되는 elements 중에 랜덤 픽업
+    /// </summary>
+    /// <returns></returns>
+    public ElementBlueprint RandomSkillElement()
+    {
+        var random = Random.Range(0, this.elementSkillDatas.Count);
+        var randomSkillElement = this.elementSkillDatas[random];
+        
+        // 스킬 카드 사용 후 List 변환
+        this.elementSkillDatas.Remove(randomSkillElement);
+        this.elementSkillUsedDatas.Add(randomSkillElement);
+
+        return randomSkillElement;
+    }
+
+    public void SkillElementReset(ElementBlueprint data)
+    {
+        this.elementSkillUsedDatas.Remove(data);
+        this.elementSkillDatas.Add(data);
     }
 
     /// <summary>
@@ -146,7 +184,7 @@ public partial class GameBoard : MonoBehaviour
     /// <returns></returns>
     public Coroutine RespawnElements()
     {
-        return StartCoroutine(this.boardSpawning.RespawnElements());
+        return StartCoroutine(this.boardSpawning.Respawn());
     }
 
     /// <summary>

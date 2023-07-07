@@ -73,7 +73,7 @@ public class BattlePlayerUseableItem : MonoBehaviour
 
         foreach (GameBoardElement element in this.board.Elements)
         {
-            element.SetBaseData(this.element);
+            element.SetData(this.element);
             element.Spawn();
         }
 

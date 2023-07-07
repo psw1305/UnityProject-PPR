@@ -11,6 +11,7 @@ public class BattleSFX : BehaviourSingleton<BattleSFX>
 
     [Header("Element")]
     public AudioClip elementClick;
+    public AudioClip skillAppear;
 
     [Header("Player")]
     public AudioClip playerAttackNormal;

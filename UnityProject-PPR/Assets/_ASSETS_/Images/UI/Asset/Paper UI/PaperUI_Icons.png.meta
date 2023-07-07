@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,6 +119,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -958,45 +970,45 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprites_37: 980445936
-      Sprites_9: -208504874
-      Sprites_10: -406951750
-      Sprites_2: -846709624
-      Sprites_7: -517804436
-      Sprites_25: 1726179990
-      Sprites_3: -1708499706
-      Sprites_6: -1644576150
-      Sprites_23: 1762769890
-      Sprites_15: -1036811829
-      Sprites_5: -456643142
-      Sprites_12: 1993357228
-      Sprites_22: -1393334099
-      Sprites_13: 799596157
       Sprites_0: -1653779475
+      Sprites_1: -79053887
+      Sprites_10: -406951750
       Sprites_11: 1988845560
-      Sprites_29: 600131303
-      Sprites_36: 822241090
-      Sprites_38: -740301817
-      Sprites_28: 1201539027
-      Sprites_35: -1460940961
-      Sprites_18: 1497549437
+      Sprites_12: 1993357228
+      Sprites_13: 799596157
+      Sprites_14: -1289152824
+      Sprites_15: -1036811829
       Sprites_16: -501710093
+      Sprites_17: -221776491
+      Sprites_18: 1497549437
+      Sprites_19: 1752796009
+      Sprites_2: -846709624
       Sprites_20: 526861699
-      Sprites_31: 1397474166
-      Sprites_32: 766122780
-      Sprites_30: 776957812
-      Sprites_4: 268237492
+      Sprites_21: -1945243057
+      Sprites_22: -1393334099
+      Sprites_23: 1762769890
       Sprites_24: -389547535
+      Sprites_25: 1726179990
       Sprites_26: 611560175
       Sprites_27: 867773720
-      Sprites_14: -1289152824
-      Sprites_19: 1752796009
-      Sprites_34: 2104640637
-      Sprites_8: -1049331492
-      Sprites_21: -1945243057
+      Sprites_28: 1201539027
+      Sprites_29: 600131303
+      Sprites_3: -1708499706
+      Sprites_30: 776957812
+      Sprites_31: 1397474166
+      Sprites_32: 766122780
       Sprites_33: -1872699338
-      Sprites_17: -221776491
-      Sprites_1: -79053887
+      Sprites_34: 2104640637
+      Sprites_35: -1460940961
+      Sprites_36: 822241090
+      Sprites_37: 980445936
+      Sprites_38: -740301817
+      Sprites_4: 268237492
+      Sprites_5: -456643142
+      Sprites_6: -1644576150
+      Sprites_7: -517804436
+      Sprites_8: -1049331492
+      Sprites_9: -208504874
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

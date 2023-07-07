@@ -24,7 +24,7 @@ public class GameItemSkill
 
         foreach (GameBoardElement element in board.Elements)
         {
-            element.SetBaseData(board.ElementList.Get());
+            element.SetData(board.ElementList.Get());
             element.Spawn();
         }
 

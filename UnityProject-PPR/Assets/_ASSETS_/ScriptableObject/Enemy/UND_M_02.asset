@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyType: 0
   image: {fileID: 21300000, guid: 74ee93ef735444ff19f6c259e9841675, type: 3}
   enemyName: "\uC784\uD504"
-  hp: 15
+  hp: 30
   skills:
   - {fileID: 8819207446245105067, guid: 44130f05a8d749047899ebb716a7db93, type: 3}
   - {fileID: 8819207446245105067, guid: 2f25fdca24b4556459d13b2e460e9605, type: 3}

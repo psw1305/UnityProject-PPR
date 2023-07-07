@@ -16,4 +16,5 @@ MonoBehaviour:
   elementColor: {r: 0.1764706, g: 0.49803925, b: 0.77647066, a: 1}
   elementCase: {fileID: 21300000, guid: f1c1eab8fcf322e4ca703724220758ca, type: 3}
   elementType: 1
-  randomWeighted: 200
+  isChanged: 1
+  randomWeighted: 500

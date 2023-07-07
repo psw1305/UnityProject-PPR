@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,6 +119,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1399,66 +1411,66 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CryoMiniGUI_19: -1449143716
-      CryoMiniGUI_40: 100194871
-      CryoMiniGUI_5: 1230188398
-      CryoMiniGUI_6: -1847750775
-      cryo-mini-gui_13: 881433042
-      CryoMiniGUI_12: 943546358
-      CryoMiniGUI_21: 1286186690
-      CryoMiniGUI_9: -1550299006
-      CryoMiniGUI_45: 1104677415
-      cryo-mini-gui_8: 289691733
-      cryo-mini-gui_11: 174600994
-      CryoMiniGUI_29: 1017838075
-      CryoMiniGUI_34: -2067692679
-      cryo-mini-gui_7: 2124785663
-      CryoMiniGUI_27: -487496104
-      CryoMiniGUI_17: 1307733051
-      CryoMiniGUI_23: -1118818
-      CryoMiniGUI_41: -1565057131
-      cryo-mini-gui_4: -1802514591
-      CryoMiniGUI_16: -701713899
-      CryoMiniGUI_31: 1276041024
-      cryo-mini-gui_9: -1150007306
-      CryoMiniGUI_11: 1681486723
-      CryoMiniGUI_32: 1919431772
-      CryoMiniGUI_7: 994582701
-      cryo-mini-gui_6: -360990928
-      cryo-mini-gui_10: 2041935182
-      CryoMiniGUI_38: -1719588090
-      CryoMiniGUI_24: -395085774
-      CryoMiniGUI_28: -2130694708
-      CryoMiniGUI_42: 46129028
-      CryoMiniGUI_44: 1735457360
-      CryoMiniGUI_22: -1492375612
-      CryoMiniGUI_2: -1777436289
-      CryoMiniGUI_33: -409156414
-      CryoMiniGUI_20: 322564676
-      cryo-mini-gui_3: 43256658
-      CryoMiniGUI_37: -1023429642
-      CryoMiniGUI_13: 119282657
       CryoMiniGUI_0: 1133506688
       CryoMiniGUI_1: -1174368083
-      CryoMiniGUI_25: 2145277635
-      cryo-mini-gui_2: 981367380
-      CryoMiniGUI_8: 641219359
-      CryoMiniGUI_15: -757775443
-      CryoMiniGUI_18: -376133374
-      cryo-mini-gui_5: 1518913245
-      CryoMiniGUI_36: -1450333801
-      CryoMiniGUI_39: 1368719409
-      CryoMiniGUI_43: 1743974453
       CryoMiniGUI_10: 1049847650
-      CryoMiniGUI_30: -1485649392
-      CryoMiniGUI_35: 1931849136
-      cryo-mini-gui_0: -1594408644
-      CryoMiniGUI_3: -1131927281
-      CryoMiniGUI_26: -2132614130
-      CryoMiniGUI_4: 1388751136
+      CryoMiniGUI_11: 1681486723
+      CryoMiniGUI_12: 943546358
+      CryoMiniGUI_13: 119282657
       CryoMiniGUI_14: -616317762
+      CryoMiniGUI_15: -757775443
+      CryoMiniGUI_16: -701713899
+      CryoMiniGUI_17: 1307733051
+      CryoMiniGUI_18: -376133374
+      CryoMiniGUI_19: -1449143716
+      CryoMiniGUI_2: -1777436289
+      CryoMiniGUI_20: 322564676
+      CryoMiniGUI_21: 1286186690
+      CryoMiniGUI_22: -1492375612
+      CryoMiniGUI_23: -1118818
+      CryoMiniGUI_24: -395085774
+      CryoMiniGUI_25: 2145277635
+      CryoMiniGUI_26: -2132614130
+      CryoMiniGUI_27: -487496104
+      CryoMiniGUI_28: -2130694708
+      CryoMiniGUI_29: 1017838075
+      CryoMiniGUI_3: -1131927281
+      CryoMiniGUI_30: -1485649392
+      CryoMiniGUI_31: 1276041024
+      CryoMiniGUI_32: 1919431772
+      CryoMiniGUI_33: -409156414
+      CryoMiniGUI_34: -2067692679
+      CryoMiniGUI_35: 1931849136
+      CryoMiniGUI_36: -1450333801
+      CryoMiniGUI_37: -1023429642
+      CryoMiniGUI_38: -1719588090
+      CryoMiniGUI_39: 1368719409
+      CryoMiniGUI_4: 1388751136
+      CryoMiniGUI_40: 100194871
+      CryoMiniGUI_41: -1565057131
+      CryoMiniGUI_42: 46129028
+      CryoMiniGUI_43: 1743974453
+      CryoMiniGUI_44: 1735457360
+      CryoMiniGUI_45: 1104677415
+      CryoMiniGUI_5: 1230188398
+      CryoMiniGUI_6: -1847750775
+      CryoMiniGUI_7: 994582701
+      CryoMiniGUI_8: 641219359
+      CryoMiniGUI_9: -1550299006
+      cryo-mini-gui_0: -1594408644
       cryo-mini-gui_1: -656570234
+      cryo-mini-gui_10: 2041935182
+      cryo-mini-gui_11: 174600994
       cryo-mini-gui_12: -387432323
+      cryo-mini-gui_13: 881433042
+      cryo-mini-gui_2: 981367380
+      cryo-mini-gui_3: 43256658
+      cryo-mini-gui_4: -1802514591
+      cryo-mini-gui_5: 1518913245
+      cryo-mini-gui_6: -360990928
+      cryo-mini-gui_7: 2124785663
+      cryo-mini-gui_8: 289691733
+      cryo-mini-gui_9: -1150007306
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
