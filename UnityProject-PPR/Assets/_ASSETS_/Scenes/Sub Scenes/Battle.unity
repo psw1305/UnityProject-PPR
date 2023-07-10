@@ -15166,9 +15166,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5fc25f5cc709054782dadd828a1c3f1, type: 2}
   elementSkillDatas:
   - {fileID: 11400000, guid: 421a89f0164b7de4499ed6777f46e0b8, type: 2}
-  - {fileID: 11400000, guid: 421a89f0164b7de4499ed6777f46e0b8, type: 2}
   - {fileID: 11400000, guid: 86704ce10b2b88d49b5bce842b898773, type: 2}
-  - {fileID: 11400000, guid: 86704ce10b2b88d49b5bce842b898773, type: 2}
+  - {fileID: 11400000, guid: 908949609d579df44b4f631d0e79f8ab, type: 2}
+  - {fileID: 11400000, guid: d2238cba71d57af409eb2b61ed318cac, type: 2}
   elementSkillUsedDatas: []
   countingText: {fileID: 1032101111}
   selectionLine: {fileID: 235036864}

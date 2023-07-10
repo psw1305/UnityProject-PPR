@@ -11,7 +11,14 @@ public static class BattlePlayerElement
         {
             if (element.ElementDetailType == ElementDetailType.Skill)
             {
-                resultPoint = Skill(element.GetSkillName(), resultPoint);
+                if (element.ElementType == ElementType.Attack)
+                {
+                    resultPoint = AttackSkill(element.GetSkillName(), resultPoint);
+                }
+                else if (element.ElementType == ElementType.Defense)
+                {
+                    resultPoint = DefenseSkill(element.GetSkillName(), resultPoint);
+                }
             }
             else
             {
@@ -22,7 +29,13 @@ public static class BattlePlayerElement
         return resultPoint;
     }
 
-    public static int Skill(string skillName, int value)
+    /// <summary>
+    /// 공격 Element Skill
+    /// </summary>
+    /// <param name="skillName"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static int AttackSkill(string skillName, int value)
     {
         return skillName switch
         {
@@ -39,6 +52,32 @@ public static class BattlePlayerElement
 
     public static int Anger(int value)
     {
-        return value * 2;
+        return value *= 2;
+    }
+
+    /// <summary>
+    /// 방어 Element Skill
+    /// </summary>
+    /// <param name="skillName"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static int DefenseSkill(string skillName, int value)
+    {
+        return skillName switch
+        {
+            "Defend" => Defend(value),
+            "Entrench" => Entrench(value),
+            _ => value,
+        };
+    }
+
+    public static int Defend(int value)
+    {
+        return value += 4;
+    }
+
+    public static int Entrench(int value)
+    {
+        return value *= 2;
     }
 }
