@@ -5129,7 +5129,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 13
-  m_Sprite: {fileID: 21300000, guid: c0c912a1b84c2ea479be8aff7b9fe0bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1c1eab8fcf322e4ca703724220758ca, type: 3}
   m_Color: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -5219,4 +5219,3 @@ MonoBehaviour:
   coverSprite: {fileID: 1515171869298435149}
   elementSprite: {fileID: 4055685251731332811}
   particleCase: {fileID: 2628565382872258904}
-  elementType: 4

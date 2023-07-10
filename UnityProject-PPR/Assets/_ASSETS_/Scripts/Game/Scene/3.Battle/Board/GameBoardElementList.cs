@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace PSW.Core.Probability
 {
-    using System.Collections.Generic;
-    using UnityEngine;
-
     public class GameBoardElementList<T>
     {
         private List<ElementList> elementList = new();

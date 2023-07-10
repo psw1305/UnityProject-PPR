@@ -27,6 +27,11 @@ public static class GameBoardEvents
     public static IntCountEvent OnSelectionChanged { get; } = new IntCountEvent();
 
     /// <summary>
+    /// 공격력 수치가 바뀔 때
+    /// </summary>
+    public static IntCountEvent OnPlayerAttackPoint { get; } = new IntCountEvent();
+
+    /// <summary>
     /// 플레이어 체력이 바뀔 때
     /// </summary>
     public static StatPointChanged OnPlayerHealthChanged { get; } = new StatPointChanged();

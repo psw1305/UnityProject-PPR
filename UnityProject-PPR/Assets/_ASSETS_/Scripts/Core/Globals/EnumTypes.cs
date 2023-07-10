@@ -68,11 +68,11 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 플레이어 Element 공격 타입
+    /// Element Detail 구분
     /// </summary>
-    public enum ElementAttack
+    public enum ElementDetailType
     {
-        Hit, Reinforce, Burn
+        Normal, Skill,
     }
 
     /// <summary>

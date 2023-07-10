@@ -9,20 +9,22 @@ public class GameBoardElement : MonoBehaviour
     [SerializeField] private SpriteRenderer coverSprite;
     [SerializeField] private SpriteRenderer elementSprite;
     [SerializeField] private Transform particleCase;
-    [SerializeField] private ElementType elementType;
-
+    
+    private ElementType elementType;
+    private ElementDetailType elementDetailType;
     private GameBoard board;
     private ElementBlueprint data;
 
-    public ElementType ElementType
-    {
-        get { return this.elementType; }
-        set { this.elementType = value; }
-    }
-
-    public bool IsChanged { get; private set; }
+    public ElementType ElementType => this.elementType;
+    public ElementDetailType ElementDetailType => this.elementDetailType;
     public bool IsMoving { get; private set; }
     public bool IsSpawned => this.gameObject.activeSelf;
+
+    public string GetSkillName()
+    {
+        ElementSkillBlueprint skillData = (ElementSkillBlueprint)this.data;
+        return skillData.SkillName;
+    }
 
     public void Set(GameBoard board, ElementBlueprint data)
     {
@@ -40,8 +42,8 @@ public class GameBoardElement : MonoBehaviour
         this.caseSprite.sprite = data.ElementCaseImage;
         this.elementSprite.sprite = data.ElementImage;
         this.elementSprite.color = data.ElementColor;
-        this.ElementType = data.ElementType;
-        this.IsChanged = data.IsChanged;
+        this.elementType = data.ElementType;
+        this.elementDetailType = data.ElementDetailType;
     }
 
     public void Selected()
@@ -96,7 +98,7 @@ public class GameBoardElement : MonoBehaviour
 
     private void Init()
     {
-        if (this.IsChanged == false)
+        if (this.elementDetailType == ElementDetailType.Skill)
         {
             this.board.SkillElementReset(this.data);
         }

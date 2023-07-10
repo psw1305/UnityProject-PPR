@@ -201,7 +201,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     {
         var selectElements = this.board.GetSelectElements();
 
-        // Update Point
         switch (PlayedElementType)
         {
             case ElementType.Attack:
@@ -210,12 +209,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             case ElementType.Defense:
                 this.battlePlayer.PlayerDefense(selectElements);
                 break;
-            //case ElementType.Potion:
-            //    this.battlePlayer.PlayerRecovery(selectElements);
-            //    break;
-            //case ElementType.Coin:
-            //    this.battlePlayer.PlayerEarn(selectElements);
-            //    break;
         }
     }
 }

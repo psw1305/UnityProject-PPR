@@ -18,7 +18,6 @@ public class BattlePlayerAttackUI : MonoBehaviour
 
     private void OnAttackPointChanged(int oldPoint, int newPoint)
     {
-        //StopAllCoroutines();
         StartCoroutine(this.attackText.UpdateTextCoroutine(oldPoint, newPoint, 1.0f));
     }
 }

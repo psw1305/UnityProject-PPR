@@ -1,3 +1,4 @@
+using PSW.Core.Enums;
 using PSW.Core.Probability;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,7 +128,7 @@ public partial class GameBoard : MonoBehaviour
         {
             var random = Random.Range(0, this.Elements.Count);
             var randomElement = this.Elements[random];
-            if (randomElement.IsChanged) return randomElement;
+            if (randomElement.ElementDetailType == ElementDetailType.Normal) return randomElement;
         }
     }
 
