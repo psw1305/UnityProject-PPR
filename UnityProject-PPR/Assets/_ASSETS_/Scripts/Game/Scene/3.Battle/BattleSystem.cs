@@ -15,10 +15,14 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     [SerializeField] private BattlePlayer battlePlayer;
 
     [Header("Battle Enemy")]
+    [SerializeField] private Transform enemyField;
+    [SerializeField] private int enemyCount;
     [SerializeField] private EnemyBlueprint enemyBlueprint;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform enemyField;
-    private BattleEnemy battleEnemy;
+
+    private BattleEnemy[] battleEnemys;
+    
+    public BattleEnemy SelectedEnemy { get; set; }
 
     protected override void Awake()
     {
@@ -34,16 +38,21 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
     private void BattleEnemyCreate()
     {
-        var enemyClone = Instantiate(this.enemyPrefab, enemyField);
-        this.battleEnemy = enemyClone.GetComponent<BattleEnemy>();
+        this.battleEnemys = new BattleEnemy[this.enemyCount];
 
-        if (Player.Instance != null)
+        for (int i = 0; i < battleEnemys.Length; i++)
         {
-            // 적 정보 가져오기
-            this.enemyBlueprint = Player.BattleEnemy;
-        }
+            var enemyClone = Instantiate(this.enemyPrefab, this.enemyField);
+            this.battleEnemys[i] = enemyClone.GetComponent<BattleEnemy>();
 
-        this.battleEnemy.Set(this.enemyBlueprint);
+            if (Player.Instance != null)
+            {
+                // 적 정보 가져오기
+                this.enemyBlueprint = Player.BattleEnemy;
+            }
+
+            this.battleEnemys[i].Set(this, this.enemyBlueprint);
+        }
 
         if (this.enemyBlueprint.EnemyType == EnemyType.Elite)
         {
@@ -53,6 +62,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         {
             AudioBGM.Instance.BGMChange(AudioBGM.Instance.boss);
         }
+
+        this.battleEnemys[0].Selected();
     }
 
     /// <summary>
@@ -109,10 +120,18 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// </summary>
     private IEnumerator BattleSetting()
     {
-        // board 셋업
+        // game board 세팅
         this.board.SetBoard();
 
         yield return new WaitForSeconds(1.0f);
+    }
+
+    /// <summary>
+    /// 전투 체크
+    /// </summary>
+    public void BattleCheck()
+    {
+
     }
 
     /// <summary>
@@ -127,7 +146,10 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
         // 적 스킬 생성
-        this.battleEnemy.EnemySkillInstance();
+        foreach (var battleEnemy in this.battleEnemys)
+        {
+            battleEnemy.EnemySkillInstance();
+        }
 
         // 플레이어 행동 반복
         // 최소한 2의 행동을 소모해야 작동 => 행동력이 1 이하일 경우 턴 종료
@@ -153,13 +175,18 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     public IEnumerator EnemyTurn()
     {
         // 적 초기화
-        GameBoardEvents.OnEnemyTurnInit.Invoke();
+        foreach (var battleEnemy in this.battleEnemys)
+        {
+            battleEnemy.Init();
+        }
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Enemy Turn"));
+
         // 적 스킬 사용
-        yield return StartCoroutine(this.battleEnemy.EnemyUseSkill());
-        // 스킬 사용후 파괴
-        yield return StartCoroutine(this.battleEnemy.EnemySkillDestroy());
+        foreach (var battleEnemy in this.battleEnemys)
+        {
+            yield return StartCoroutine(battleEnemy.EnemyUseSkill());
+        }
     }
 
     /// <summary>
@@ -204,7 +231,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         switch (PlayedElementType)
         {
             case ElementType.Attack:
-                this.battlePlayer.PlayerAttack(selectElements, this.battleEnemy);
+                this.battlePlayer.PlayerAttack(selectElements, this.SelectedEnemy);
                 break;
             case ElementType.Defense:
                 this.battlePlayer.PlayerDefense(selectElements);

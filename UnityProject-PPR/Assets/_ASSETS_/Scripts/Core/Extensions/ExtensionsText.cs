@@ -1,9 +1,10 @@
+using System.Collections;
+using UnityEngine;
+using TMPro;
+using DG.Tweening;
+
 namespace PSW.Core.Extensions
 {
-    using System.Collections;
-    using UnityEngine;
-    using TMPro;
-
     public static class ExtensionsText
     {
         /// <summary>
@@ -14,19 +15,19 @@ namespace PSW.Core.Extensions
         /// <param name="to"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static IEnumerator UpdateTextCoroutine(this TextMeshProUGUI tmproText, int from, int to, float time, string addText = "")
+        public static IEnumerator UpdateTextCoroutine(this TextMeshProUGUI tmproText, int from, int to, float duration, string addText = "")
         {
             float currentTime = Time.timeSinceLevelLoad;
             float elapsedTime = 0.0f;
             float lastTime = currentTime;
 
-            while (time > 0 && elapsedTime < time)
+            while (duration > 0 && elapsedTime < duration)
             {
                 currentTime = Time.timeSinceLevelLoad;
                 elapsedTime += currentTime - lastTime;
                 lastTime = currentTime;
 
-                float value = Mathf.Lerp(from, to, elapsedTime / time);
+                float value = Mathf.Lerp(from, to, elapsedTime / duration);
                 tmproText.text = ((int)value).ToString();
                 tmproText.text += addText;
 
@@ -35,6 +36,12 @@ namespace PSW.Core.Extensions
 
             tmproText.text = to.ToString();
             tmproText.text += addText;
+        }
+
+        public static void TypingText(this TextMeshProUGUI tmproText, float duration)
+        {
+            tmproText.maxVisibleCharacters = 0; 
+            DOTween.To(x => tmproText.maxVisibleCharacters = (int)x, 0f, tmproText.text.Length, duration);
         }
     }
 }

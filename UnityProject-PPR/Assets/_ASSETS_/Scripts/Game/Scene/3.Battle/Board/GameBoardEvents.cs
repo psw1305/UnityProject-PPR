@@ -12,11 +12,6 @@ public static class GameBoardEvents
     public static InitializeEvent OnPlayerTurnInit { get; } = new InitializeEvent();
 
     /// <summary>
-    /// 적 Turn 일 경우
-    /// </summary>
-    public static InitializeEvent OnEnemyTurnInit { get; } = new InitializeEvent();
-
-    /// <summary>
     /// elements가 despawned 일 때
     /// </summary>
     public static InitializeEvent OnElementsDespawned { get; } = new InitializeEvent();
@@ -50,14 +45,4 @@ public static class GameBoardEvents
     /// 플레이어 방어력 바뀔 때
     /// </summary>
     public static StatPointChanged OnPlayerShieldChanged { get; } = new StatPointChanged();
-
-    /// <summary>
-    /// 적 체력이 바뀔 때
-    /// </summary>
-    public static StatPointChanged OnEnemyHealthChanged { get; } = new StatPointChanged();
-
-    /// <summary> 
-    /// 적 방어력 바뀔 때
-    /// </summary>
-    public static StatPointChanged OnEnemyShieldChanged { get; } = new StatPointChanged();
 }

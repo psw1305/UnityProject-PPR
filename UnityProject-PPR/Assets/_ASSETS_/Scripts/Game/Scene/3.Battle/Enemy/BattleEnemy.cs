@@ -1,13 +1,14 @@
 using PSW.Core.Enums;
 using PSW.Core.Extensions;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using TMPro;
 
 public class BattleEnemy : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private Button selected;
     [SerializeField] private Image enemyImage;
     [SerializeField] private TextMeshProUGUI enemyName;
     [SerializeField] private RectTransform enemyTable;
@@ -15,15 +16,16 @@ public class BattleEnemy : MonoBehaviour
     [Header("Skill")]
     [SerializeField] private GameObject[] skills;
     [SerializeField] private Transform skillslot;
-    private BattleEnemySkill currentEnemySkill;
 
     [Header("Particle")]
     [SerializeField] private ParticleSystem weakWreckParticle;
     [SerializeField] private ParticleSystem wreckParticle;
 
     [Header("Scripts")]
-    [SerializeField] private EnemyHealthUI healthUI;
-    [SerializeField] private EnemyShieldUI shieldUI;
+    [SerializeField] private BattleEnemyUI enemyUI;
+
+    private BattleSystem battleSystem;
+    private BattleEnemySkill currentEnemySkill;
 
     public int MaxHP { get; set; }
     public int CurrentHP { get; set; }
@@ -33,11 +35,13 @@ public class BattleEnemy : MonoBehaviour
     public float GetPercentHP() => this.CurrentHP / (float)this.MaxHP;
 
     /// <summary>
-    /// 적 설계도에 기반하여 세팅
+    /// 생성자 => EnemyBlueprint에 기반으로 세팅
     /// </summary>
     /// <param name="enemyBlueprint"></param>
-    public void Set(EnemyBlueprint enemyBlueprint)
+    public void Set(BattleSystem battleSystem, EnemyBlueprint enemyBlueprint)
     {
+        this.battleSystem = battleSystem;
+
         this.enemyImage.sprite = enemyBlueprint.EnemyImage;
         this.enemyName.text = enemyBlueprint.EnemyName;
         this.MaxHP = enemyBlueprint.HP;
@@ -47,26 +51,31 @@ public class BattleEnemy : MonoBehaviour
         this.CurrentAP = 0;
         this.CurrentSP = 0;
 
-        this.healthUI.SetText(this.CurrentHP, this.MaxHP);
+        this.enemyUI.SetHPText();
     }
 
     private void OnEnable()
     {
-        GameBoardEvents.OnEnemyTurnInit.AddListener(Init);
-    }
-
-    private void OnDisable()
-    {
-        GameBoardEvents.OnEnemyTurnInit.RemoveListener(Init);
+        this.selected.onClick.AddListener(Selected);
     }
 
     /// <summary>
-    /// 적 방어력
+    /// 선택시 적 타겟 설정
+    /// </summary>
+    public void Selected()
+    {
+        this.battleSystem.SelectedEnemy = this;
+    }
+
+    /// <summary>
+    /// 적 방어력 생성
     /// </summary>
     public void ShieldPoint(int shield)
     {
+        Debug.Log(shield);
+
         this.CurrentSP = shield;
-        GameBoardEvents.OnEnemyShieldChanged.Invoke(0, this.CurrentSP);
+        this.enemyUI.ShieldOn();
     }
 
     /// <summary>
@@ -102,20 +111,24 @@ public class BattleEnemy : MonoBehaviour
     private void HealthDamaged(int damage)
     {
         if (damage <= 0) return;
-        var damagedHp = this.CurrentHP - damage;
+
+        var damagedHp = this.CurrentHP;
+        damagedHp -= damage;
         
         // 적 사망
         if (damagedHp <= 0)
         {
-            this.healthUI.DeadUI();
-            BattleSystem.Instance.BattlePlay = BattleType.EnemyDead;
+            this.CurrentHP = 0;
+            this.enemyUI.DeadText();
+
+            this.battleSystem.BattlePlay = BattleType.EnemyDead;
 
             // 전투 종료
             return;
         }
 
         this.CurrentHP = damagedHp;
-        GameBoardEvents.OnEnemyHealthChanged.Invoke(this.CurrentHP, damagedHp);
+        this.enemyUI.SetHPText();
     }
 
     /// <summary>
@@ -131,13 +144,17 @@ public class BattleEnemy : MonoBehaviour
         
         if (damagedShield <= 0)
         {
-            int remainDamage = damagedShield * -1;
+            this.CurrentSP = 0;
+            this.enemyUI.ShieldOff();
+            
+            var remainDamage = damagedShield * -1;
             HealthDamaged(remainDamage);
-            damagedShield = 0;
+
+            return;
         }
 
         this.CurrentSP = damagedShield;
-        GameBoardEvents.OnEnemyShieldChanged.Invoke(this.CurrentSP, damagedShield);
+        this.enemyUI.SetSPText();
     }
 
     /// <summary>
@@ -161,37 +178,21 @@ public class BattleEnemy : MonoBehaviour
     {
         if (this.currentEnemySkill == null) yield return null;
 
+        // 스킬 사용
         this.currentEnemySkill.Use(this);
-        yield return new WaitForSeconds(0.5f);
-    }
-
-    /// <summary>
-    /// 적 스킬 
-    /// </summary>
-    public IEnumerator EnemySkillDestroy()
-    {
-        if (this.currentEnemySkill == null) yield return null;
-
+        yield return new WaitForSeconds(0.3f);
+        // 스킬 사용 후 파괴
         this.currentEnemySkill.Disable();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
     }
 
     /// <summary>
     /// 플레이어 초기화
     /// </summary>
-    private void Init()
+    public void Init()
     {
         // 쉴드 초기화
-        InitShieldPoint();
-    }
-
-    /// <summary>
-    /// 플레이어 방어력 초기화
-    /// </summary>
-    private void InitShieldPoint()
-    {
-        var oldPoint = this.CurrentSP;
         this.CurrentSP = 0;
-        GameBoardEvents.OnEnemyShieldChanged.Invoke(oldPoint, this.CurrentSP);
+        this.enemyUI.ShieldOff();
     }
 }
