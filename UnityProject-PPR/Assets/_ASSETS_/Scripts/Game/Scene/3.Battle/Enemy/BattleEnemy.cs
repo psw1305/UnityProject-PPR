@@ -8,7 +8,7 @@ using TMPro;
 public class BattleEnemy : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private Button selected;
+    [SerializeField] private Toggle toggle;
     [SerializeField] private Image enemyImage;
     [SerializeField] private TextMeshProUGUI enemyName;
     [SerializeField] private RectTransform enemyTable;
@@ -38,9 +38,10 @@ public class BattleEnemy : MonoBehaviour
     /// 생성자 => EnemyBlueprint에 기반으로 세팅
     /// </summary>
     /// <param name="enemyBlueprint"></param>
-    public void Set(BattleSystem battleSystem, EnemyBlueprint enemyBlueprint)
+    public void Set(BattleSystem battleSystem, ToggleGroup toggleGroup, EnemyBlueprint enemyBlueprint)
     {
         this.battleSystem = battleSystem;
+        this.toggle.group = toggleGroup;
 
         this.enemyImage.sprite = enemyBlueprint.EnemyImage;
         this.enemyName.text = enemyBlueprint.EnemyName;
@@ -56,15 +57,22 @@ public class BattleEnemy : MonoBehaviour
 
     private void OnEnable()
     {
-        this.selected.onClick.AddListener(Selected);
+        this.toggle.onValueChanged.AddListener(Targeting);
     }
 
     /// <summary>
     /// 선택시 적 타겟 설정
     /// </summary>
-    public void Selected()
+    private void Targeting(bool isOn)
     {
-        this.battleSystem.SelectedEnemy = this;
+        if (isOn)
+        {
+            this.battleSystem.SelectedEnemy = this;
+        }
+        else
+        {
+            this.battleSystem.SelectedEnemy = null;
+        }
     }
 
     /// <summary>
@@ -72,8 +80,6 @@ public class BattleEnemy : MonoBehaviour
     /// </summary>
     public void ShieldPoint(int shield)
     {
-        Debug.Log(shield);
-
         this.CurrentSP = shield;
         this.enemyUI.ShieldOn();
     }
@@ -118,12 +124,8 @@ public class BattleEnemy : MonoBehaviour
         // 적 사망
         if (damagedHp <= 0)
         {
-            this.CurrentHP = 0;
-            this.enemyUI.DeadText();
-
-            this.battleSystem.BattlePlay = BattleType.EnemyDead;
-
-            // 전투 종료
+            this.CurrentHP = 0;         
+            StartCoroutine(this.enemyUI.Dead());
             return;
         }
 
@@ -180,10 +182,18 @@ public class BattleEnemy : MonoBehaviour
 
         // 스킬 사용
         this.currentEnemySkill.Use(this);
-        yield return new WaitForSeconds(0.3f);
+        yield return YieldCache.WaitForSeconds(0.3f);
         // 스킬 사용 후 파괴
         this.currentEnemySkill.Disable();
-        yield return new WaitForSeconds(0.3f);
+        yield return YieldCache.WaitForSeconds(0.3f);
+    }
+
+    public void EnemyDead()
+    {
+        this.battleSystem.BattleEnemys.Remove(this);
+        this.battleSystem.BattleCheck();
+
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>

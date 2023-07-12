@@ -76,7 +76,7 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);     
 
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldCache.WaitForSeconds(0.5f);
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldCache.WaitForSeconds(0.5f);
 
         StageSystem.Instance.StageActive(false);
     }
@@ -112,7 +112,7 @@ public class SceneLoader : BehaviourSingleton<SceneLoader>
     {
         SceneManager.UnloadSceneAsync(sceneName);
         
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldCache.WaitForSeconds(0.5f);
 
         StageSystem.Instance.StageActive(true);        
     }

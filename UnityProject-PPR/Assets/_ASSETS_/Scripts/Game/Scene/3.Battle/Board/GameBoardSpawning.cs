@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameBoardSpawning
 {
     private GameBoard board;
-    private int skillStack;
+    private readonly int skillStack;
     private int currentStack = 1;
 
     public GameBoardSpawning(GameBoard board, int skillStack)
@@ -40,7 +40,7 @@ public class GameBoardSpawning
             }
         }
 
-        yield return new WaitForSeconds(0.4f);
+        yield return YieldCache.WaitForSeconds(0.4f);
     }
 
     public IEnumerator Despawn(List<GameBoardElement> elements)
@@ -52,7 +52,7 @@ public class GameBoardSpawning
             boardElement.Despawn();
         }
 
-        yield return new WaitForSeconds(0.4f);    
+        yield return YieldCache.WaitForSeconds(0.4f);    
 
         // 행동이 끝나고 elements가 사라질 때 event 발동
         GameBoardEvents.OnElementsDespawned.Invoke();
@@ -62,7 +62,7 @@ public class GameBoardSpawning
     {
         element.Despawn();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return YieldCache.WaitForSeconds(0.2f);
 
         BattleSFX.Instance.Play(BattleSFX.Instance.skillAppear);
 

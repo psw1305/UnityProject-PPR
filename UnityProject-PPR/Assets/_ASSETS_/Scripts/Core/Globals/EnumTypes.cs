@@ -14,7 +14,7 @@ namespace PSW.Core.Enums
     public enum BattleType
     {
         PlayerTurn, PlayerTurnEnd, PlayerDead,
-        EnemyTurn, EnemyTurnEnd, EnemyDead
+        EnemyTurn, EnemyTurnEnd, EnemyAllDead
     }
 
     /// <summary>

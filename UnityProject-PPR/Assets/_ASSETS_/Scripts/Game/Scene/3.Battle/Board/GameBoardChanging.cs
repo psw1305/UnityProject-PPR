@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine;
 
 /// <summary>
 /// Game Board 아이템 스킬
@@ -20,7 +19,7 @@ public class GameItemSkill
             element.Despawn();
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return YieldCache.WaitForSeconds(0.25f);
 
         foreach (GameBoardElement element in board.Elements)
         {
@@ -28,6 +27,6 @@ public class GameItemSkill
             element.Spawn();
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return YieldCache.WaitForSeconds(0.25f);
     }
 }

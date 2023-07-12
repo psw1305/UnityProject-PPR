@@ -69,7 +69,7 @@ public class BattlePlayerUseableItem : MonoBehaviour
             element.Despawn();
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return YieldCache.WaitForSeconds(0.25f);
 
         foreach (GameBoardElement element in this.board.Elements)
         {
@@ -77,7 +77,7 @@ public class BattlePlayerUseableItem : MonoBehaviour
             element.Spawn();
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return YieldCache.WaitForSeconds(0.25f);
     }
 
     /// <summary>

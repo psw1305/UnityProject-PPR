@@ -76,7 +76,7 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
             this.contentsCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.4f);
             this.pictureCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.8f);
 
-            yield return new WaitForSeconds(1.2f);
+            yield return YieldCache.WaitForSeconds(1.2f);
 
             StartCoroutine(Display(this.dialogueText.text, this.startSelections));
         }
@@ -150,12 +150,12 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         foreach (var letter in line.ToCharArray())
         {
             this.dialogueText.text += letter;
-            yield return new WaitForSeconds(this.typingSpeed);
+            yield return YieldCache.WaitForSeconds(this.typingSpeed);
         }
 
         for (int i = 0; i < selections.Length; i++)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return YieldCache.WaitForSeconds(0.2f);
             selections[i].SetEventSelect();
         }
     }

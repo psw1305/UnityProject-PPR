@@ -16,7 +16,7 @@ public class GameBoardMovement
 
         while (IsMovementDone() == false)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return YieldCache.WaitForSeconds(0.05f);
         }
 
         yield break;

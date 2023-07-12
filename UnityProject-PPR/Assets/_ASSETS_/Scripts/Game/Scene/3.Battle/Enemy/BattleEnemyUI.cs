@@ -1,11 +1,14 @@
-using PSW.Core.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Collections;
 
 public class BattleEnemyUI : MonoBehaviour
 {
+    [Header("Canvas")]
+    [SerializeField] private CanvasGroup enemyCanvas;
+
     [Header("Health")]
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -33,15 +36,6 @@ public class BattleEnemyUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 사망시 UI 표시
-    /// </summary>
-    public void DeadText()
-    {
-        this.healthText.text = "죽음";
-        this.healthBar.fillAmount = 0;
-    }
-
-    /// <summary>
     /// 쉴드 생성 시 UI 애니메이션 및 shield text 세팅
     /// </summary>
     public void ShieldOn()
@@ -59,5 +53,23 @@ public class BattleEnemyUI : MonoBehaviour
         this.shieldCanvas
             .DOFade(0, 0.25f)
             .OnStart(() => SetSPText());
+    }
+
+    /// <summary>
+    /// 사망시 UI 표시
+    /// </summary>
+    public IEnumerator Dead()
+    {
+        this.healthText.text = "죽음";
+        this.healthBar.fillAmount = 0;
+
+        yield return YieldCache.WaitForSeconds(0.25f);
+
+        this.enemyCanvas
+            .DOFade(0, 1.0f)
+            .OnComplete(() =>
+            {
+                this.battleEnemy.EnemyDead();
+            });
     }
 }

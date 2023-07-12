@@ -1,6 +1,8 @@
 using PSW.Core.Enums;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
@@ -16,12 +18,13 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
     [Header("Battle Enemy")]
     [SerializeField] private Transform enemyField;
+    [SerializeField] private ToggleGroup enemyToggleGroup;
     [SerializeField] private int enemyCount;
+    [SerializeField] private List<BattleEnemy> battleEnemys = new();
     [SerializeField] private EnemyBlueprint enemyBlueprint;
     [SerializeField] private GameObject enemyPrefab;
 
-    private BattleEnemy[] battleEnemys;
-    
+    public List<BattleEnemy> BattleEnemys => this.battleEnemys;  
     public BattleEnemy SelectedEnemy { get; set; }
 
     protected override void Awake()
@@ -38,12 +41,10 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
     private void BattleEnemyCreate()
     {
-        this.battleEnemys = new BattleEnemy[this.enemyCount];
-
-        for (int i = 0; i < battleEnemys.Length; i++)
+        for (int i = 0; i < this.enemyCount; i++)
         {
-            var enemyClone = Instantiate(this.enemyPrefab, this.enemyField);
-            this.battleEnemys[i] = enemyClone.GetComponent<BattleEnemy>();
+            var battleEnemy = Instantiate(this.enemyPrefab, this.enemyField).GetComponent<BattleEnemy>();
+            this.battleEnemys.Add(battleEnemy);
 
             if (Player.Instance != null)
             {
@@ -51,7 +52,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
                 this.enemyBlueprint = Player.BattleEnemy;
             }
 
-            this.battleEnemys[i].Set(this, this.enemyBlueprint);
+            battleEnemy.Set(this, this.enemyToggleGroup, this.enemyBlueprint);
         }
 
         if (this.enemyBlueprint.EnemyType == EnemyType.Elite)
@@ -63,7 +64,6 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             AudioBGM.Instance.BGMChange(AudioBGM.Instance.boss);
         }
 
-        this.battleEnemys[0].Selected();
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             // 플레이어 행동 턴 
             yield return StartCoroutine(PlayerTurn());
             // 적 사망 시 => 전투 끝, 루프 탈출
-            if (this.BattlePlay == BattleType.EnemyDead) break;
+            if (this.BattlePlay == BattleType.EnemyAllDead) break;
             // 적 행동 턴
             yield return StartCoroutine(EnemyTurn());
             // 플레이어 사망 시 => 게임 오버, 루프 탈출
@@ -109,7 +109,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         {
             yield return StartCoroutine(GameOver());
         }
-        else if (this.BattlePlay == BattleType.EnemyDead)
+        else if (this.BattlePlay == BattleType.EnemyAllDead)
         {
             yield return StartCoroutine(GameClear());
         }
@@ -123,7 +123,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         // game board 세팅
         this.board.SetBoard();
 
-        yield return new WaitForSeconds(1.0f);
+        yield return YieldCache.WaitForSeconds(1.0f);
     }
 
     /// <summary>
@@ -131,7 +131,10 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// </summary>
     public void BattleCheck()
     {
-
+        if (this.BattleEnemys.Count == 0)
+        {
+            this.BattlePlay = BattleType.EnemyAllDead;
+        }
     }
 
     /// <summary>
@@ -154,7 +157,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         // 플레이어 행동 반복
         // 최소한 2의 행동을 소모해야 작동 => 행동력이 1 이하일 경우 턴 종료
         while (this.battlePlayer.CurrentACT > 1 
-            && this.BattlePlay != BattleType.EnemyDead 
+            && this.BattlePlay != BattleType.EnemyAllDead 
             && this.BattlePlay != BattleType.PlayerDead)
         {
             // 플레이어 element 선택
@@ -195,7 +198,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// <returns></returns>
     public IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldCache.WaitForSeconds(0.5f);
 
         if (Player.Instance != null)
         {
@@ -215,7 +218,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// <returns></returns>
     public IEnumerator GameClear()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return YieldCache.WaitForSeconds(0.5f);
 
         BattleReward.Instance.Show();
     }

@@ -667,6 +667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703475669}
   - component: {fileID: 703475670}
+  - component: {fileID: 703475672}
   - component: {fileID: 703475671}
   m_Layer: 5
   m_Name: Enemy Field
@@ -729,6 +730,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &703475672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703475668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &1001875593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1636,7 @@ MonoBehaviour:
   board: {fileID: 1734629818}
   battlePlayer: {fileID: 1344956577}
   enemyField: {fileID: 703475669}
+  enemyToggleGroup: {fileID: 703475672}
   enemyCount: 3
   enemyBlueprint: {fileID: 11400000, guid: f9eccec496d97ea4e9323348acd1faef, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,
