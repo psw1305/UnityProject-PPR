@@ -11,10 +11,10 @@ namespace PSW.Core.Enums
     /// <summary>
     /// 전투 진행시 구분되는 Battle Types
     /// </summary>
-    public enum BattleType
+    public enum BattlePlay
     {
-        PlayerTurn, PlayerTurnEnd, PlayerDead,
-        EnemyTurn, EnemyTurnEnd, EnemyAllDead
+        PlayerTurn, PlayerDead,
+        EnemyTurn, EnemyAllDead
     }
 
     /// <summary>

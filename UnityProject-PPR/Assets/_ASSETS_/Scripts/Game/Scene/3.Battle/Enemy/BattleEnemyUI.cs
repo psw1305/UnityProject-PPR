@@ -58,18 +58,24 @@ public class BattleEnemyUI : MonoBehaviour
     /// <summary>
     /// »ç¸Á½Ã UI Ç¥½Ã
     /// </summary>
-    public IEnumerator Dead()
+    public void Dead()
     {
         this.healthText.text = "Á×À½";
         this.healthBar.fillAmount = 0;
+        this.battleEnemy.EnemyDead();
 
+        StartCoroutine(DeadCoroutine());
+    }
+
+    private IEnumerator DeadCoroutine()
+    {
         yield return YieldCache.WaitForSeconds(0.25f);
 
         this.enemyCanvas
             .DOFade(0, 1.0f)
             .OnComplete(() =>
             {
-                this.battleEnemy.EnemyDead();
+                Destroy(this.gameObject);
             });
     }
 }

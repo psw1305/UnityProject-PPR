@@ -17,6 +17,6 @@ MonoBehaviour:
   enemyName: "\uD798\uC3C0 \uC774\uB07C"
   hp: 200
   skills:
-  - {fileID: 8819207446245105067, guid: 4a4e7f0490775de49a6c6707dbded67b, type: 3}
-  - {fileID: 8819207446245105067, guid: f7b67defa06ed1c4d9d12df2e80635c4, type: 3}
-  - {fileID: 8819207446245105067, guid: 0f7ca8ffb89304b4d8989c7e0728a8ec, type: 3}
+  - {fileID: 8819207446245105067, guid: 44130f05a8d749047899ebb716a7db93, type: 3}
+  - {fileID: 8819207446245105067, guid: 2f25fdca24b4556459d13b2e460e9605, type: 3}
+  - {fileID: 8819207446245105067, guid: ca0805c6405fcc34399fcb135b4ba175, type: 3}

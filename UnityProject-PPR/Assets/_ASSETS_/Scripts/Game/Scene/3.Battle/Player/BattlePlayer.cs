@@ -14,14 +14,13 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     [SerializeField] private Transform[] useableSlots;
     private BattlePlayerUseableItem[] useableItems;
 
-    [Header("Scripts")]
-    [SerializeField] private BattlePlayerHealthUI healthUI;
-    [SerializeField] private BattlePlayerShieldUI shieldUI;
-    [SerializeField] private BattlePlayerStatUI statUI;
-
     [Header("Particle")]
     [SerializeField] private ParticleSystem weakWreckParticle;
     [SerializeField] private ParticleSystem wreckParticle;
+
+    [Header("Scripts")]
+    [SerializeField] private BattleSystem battleSystem;
+    [SerializeField] private BattlePlayerUI playerUI;
 
     public int HP { get; set; }
     public int ACT { get; set; }
@@ -59,8 +58,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.CurrentHP = 999;
         }
 
-        this.healthUI.SetText(this.CurrentHP, this.HP);
-        this.statUI.SetText(this.ACT, this.ATK, this.DEF);
+        this.playerUI.SetHpText(this.CurrentHP, this.HP);
+        this.playerUI.SetStatText(this.ACT, this.ATK, this.DEF);
     }
 
     private void OnEnable()
@@ -154,7 +153,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 0 이하 표시 금지
         if (CurrentACT <= 0) CurrentACT = 0;
 
-        this.statUI.SetActText(CurrentACT);
+        this.playerUI.SetActText(CurrentACT);
     }
 
     /// <summary>
@@ -195,8 +194,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 플레이어 사망
         if (damagedHP <= 0)
         {
-            this.healthUI.DeadUI();
-            BattleSystem.Instance.BattlePlay = BattleType.PlayerDead;
+            this.playerUI.Dead();
+            this.battleSystem.BattleCheck(BattlePlay.PlayerDead);
 
             // 전투 종료
             return;
@@ -252,7 +251,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// </summary>
     private void InitActionCount()
     {
-        this.statUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
+        this.playerUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
         this.CurrentACT = this.ACT;
     }
 

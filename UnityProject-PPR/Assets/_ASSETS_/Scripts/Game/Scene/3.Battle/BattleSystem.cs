@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
-    public BattleType BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
+    public BattlePlay BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
     public ElementType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
 
     [Header("Settings")]
@@ -33,13 +33,13 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
         this.PlayedElementType = ElementType.None;
 
-        BattleEnemyCreate();
-
         GameManager.Instance.CameraChange(this.battleCamera, this.battleCanvas);
         GameManager.Instance.CameraChange(this.rewardCanvas);
+
+        BattleEnemySetting();
     }
 
-    private void BattleEnemyCreate()
+    private void BattleEnemySetting()
     {
         for (int i = 0; i < this.enemyCount; i++)
         {
@@ -83,57 +83,53 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     }
 
     /// <summary>
-    /// Start 주기에서 게임 진행
+    /// 코루틴 Start로 턴 제어
     /// </summary>
     /// <returns></returns>
     private IEnumerator Start()
     {
         // 전투 세팅
-        yield return StartCoroutine(BattleSetting());
+        this.board.SetBoard();
 
-        // 게임 플레이
+        yield return YieldCache.WaitForSeconds(1.0f);
+
+        // 전투 시작 (반복)
         while (true)
         {
             // 플레이어 행동 턴 
             yield return StartCoroutine(PlayerTurn());
-            // 적 사망 시 => 전투 끝, 루프 탈출
-            if (this.BattlePlay == BattleType.EnemyAllDead) break;
             // 적 행동 턴
             yield return StartCoroutine(EnemyTurn());
-            // 플레이어 사망 시 => 게임 오버, 루프 탈출
-            if (this.BattlePlay == BattleType.PlayerDead) break;
         }
-
-        // 전투 끝
-        if (this.BattlePlay == BattleType.PlayerDead)
-        {
-            yield return StartCoroutine(GameOver());
-        }
-        else if (this.BattlePlay == BattleType.EnemyAllDead)
-        {
-            yield return StartCoroutine(GameClear());
-        }
-    }
-
-    /// <summary>
-    /// 전투 세팅
-    /// </summary>
-    private IEnumerator BattleSetting()
-    {
-        // game board 세팅
-        this.board.SetBoard();
-
-        yield return YieldCache.WaitForSeconds(1.0f);
     }
 
     /// <summary>
     /// 전투 체크
     /// </summary>
-    public void BattleCheck()
+    public void BattleCheck(BattlePlay battleType)
     {
-        if (this.BattleEnemys.Count == 0)
+        this.BattlePlay = battleType;
+
+        StopAllCoroutines();
+        StartCoroutine(BattleEnd());
+    }
+
+    /// <summary>
+    /// 전투 끝 => 보상 및 결과 출력
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator BattleEnd()
+    {
+        yield return YieldCache.WaitForSeconds(1.5f);
+
+        // 전투 끝
+        if (this.BattlePlay == BattlePlay.PlayerDead)
         {
-            this.BattlePlay = BattleType.EnemyAllDead;
+            GameOver();
+        }
+        else if (this.BattlePlay == BattlePlay.EnemyAllDead)
+        {
+            GameClear();
         }
     }
 
@@ -156,9 +152,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 
         // 플레이어 행동 반복
         // 최소한 2의 행동을 소모해야 작동 => 행동력이 1 이하일 경우 턴 종료
-        while (this.battlePlayer.CurrentACT > 1 
-            && this.BattlePlay != BattleType.EnemyAllDead 
-            && this.BattlePlay != BattleType.PlayerDead)
+        while (this.battlePlayer.CurrentACT > 1)
         {
             // 플레이어 element 선택
             yield return this.board.WaitForSelection();
@@ -196,10 +190,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// 전투 중 플레이어 사망
     /// </summary>
     /// <returns></returns>
-    public IEnumerator GameOver()
+    public void GameOver()
     {
-        yield return YieldCache.WaitForSeconds(0.5f);
-
         if (Player.Instance != null)
         {
             // 플레이어 결과 창 생성
@@ -216,10 +208,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// 전투 끝 => 보상 창 확인
     /// </summary>
     /// <returns></returns>
-    public IEnumerator GameClear()
+    public void GameClear()
     {
-        yield return YieldCache.WaitForSeconds(0.5f);
-
         BattleReward.Instance.Show();
     }
 

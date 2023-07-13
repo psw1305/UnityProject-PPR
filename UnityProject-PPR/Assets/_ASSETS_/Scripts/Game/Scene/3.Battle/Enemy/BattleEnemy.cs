@@ -124,8 +124,7 @@ public class BattleEnemy : MonoBehaviour
         // 적 사망
         if (damagedHp <= 0)
         {
-            this.CurrentHP = 0;         
-            StartCoroutine(this.enemyUI.Dead());
+            this.enemyUI.Dead();
             return;
         }
 
@@ -183,6 +182,7 @@ public class BattleEnemy : MonoBehaviour
         // 스킬 사용
         this.currentEnemySkill.Use(this);
         yield return YieldCache.WaitForSeconds(0.3f);
+
         // 스킬 사용 후 파괴
         this.currentEnemySkill.Disable();
         yield return YieldCache.WaitForSeconds(0.3f);
@@ -191,9 +191,9 @@ public class BattleEnemy : MonoBehaviour
     public void EnemyDead()
     {
         this.battleSystem.BattleEnemys.Remove(this);
-        this.battleSystem.BattleCheck();
 
-        this.gameObject.SetActive(false);
+        if (this.battleSystem.BattleEnemys.Count == 0)
+            this.battleSystem.BattleCheck(BattlePlay.EnemyAllDead);
     }
 
     /// <summary>

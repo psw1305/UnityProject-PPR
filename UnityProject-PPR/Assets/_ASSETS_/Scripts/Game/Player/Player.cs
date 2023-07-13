@@ -38,7 +38,7 @@ public partial class Player : BehaviourSingleton<Player>
         Set();
     }
 
-    public void Set(int hp = 40, int act = 10, int atk = 1, int def = 1, int cash = 0)
+    public void Set(int hp = 40, int act = 20, int atk = 1, int def = 1, int cash = 0)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
