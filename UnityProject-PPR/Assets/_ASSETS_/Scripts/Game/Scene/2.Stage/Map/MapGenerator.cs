@@ -10,8 +10,8 @@ namespace PSW.Core.Map
         private static MapConfig config;
         private static List<float> layerDistances;
         private static List<List<Point>> paths;
-        private static readonly List<MapNodeType> RandomNodes = new() { MapNodeType.Mystery, MapNodeType.Shop, MapNodeType.Treasure, MapNodeType.MinorEnemy, MapNodeType.RestSite };
-        private static readonly List<List<Node>> nodes = new List<List<Node>>();
+        private static readonly List<List<Node>> nodes = new();
+        private static readonly List<MapNodeType> RandomNodes = new() { MapNodeType.MinorEnemy, MapNodeType.Mystery };
 
         public static Map GetMap(MapConfig conf)
         {

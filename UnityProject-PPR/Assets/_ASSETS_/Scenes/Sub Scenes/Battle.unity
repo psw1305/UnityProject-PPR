@@ -668,7 +668,6 @@ GameObject:
   - component: {fileID: 703475669}
   - component: {fileID: 703475670}
   - component: {fileID: 703475672}
-  - component: {fileID: 703475671}
   m_Layer: 5
   m_Name: Enemy Field
   m_TagString: Untagged
@@ -704,32 +703,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703475668}
   m_CullTransparentMesh: 1
---- !u!114 &703475671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703475668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: -12
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &703475672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1637,7 +1610,7 @@ MonoBehaviour:
   battlePlayer: {fileID: 1344956577}
   enemyField: {fileID: 703475669}
   enemyToggleGroup: {fileID: 703475672}
-  enemyCount: 3
+  enemyCount: 1
   battleEnemys: []
   enemyBlueprint: {fileID: 11400000, guid: f9eccec496d97ea4e9323348acd1faef, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,
