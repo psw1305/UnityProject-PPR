@@ -1610,7 +1610,7 @@ MonoBehaviour:
   battlePlayer: {fileID: 1344956577}
   enemyField: {fileID: 703475669}
   enemyToggleGroup: {fileID: 703475672}
-  enemyCount: 1
+  enemyCount: 3
   battleEnemys: []
   enemyBlueprint: {fileID: 11400000, guid: f9eccec496d97ea4e9323348acd1faef, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,

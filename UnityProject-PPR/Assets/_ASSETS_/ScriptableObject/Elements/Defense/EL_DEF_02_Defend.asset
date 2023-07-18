@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045860ac1185fdd4f9ca1795e2605e54, type: 3}
   m_Name: EL_DEF_02_Defend
   m_EditorClassIdentifier: 
-  elementImage: {fileID: 583589235, guid: e3d52742f26798441a38e787bd12c1c2, type: 3}
-  elementColor: {r: 0.6627451, g: 0.8000001, b: 0.9215687, a: 1}
+  elementImage: {fileID: 1612381299, guid: c20f0cc97d6930b42a5053e6e1f8e4ae, type: 3}
+  elementColor: {r: 1, g: 1, b: 1, a: 1}
   elementCase: {fileID: 21300000, guid: 833e4c81ca3372a409e733a51d0610c2, type: 3}
   elementType: 1
   randomWeighted: 10

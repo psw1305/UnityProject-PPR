@@ -52,6 +52,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
                 this.enemyBlueprint = Player.BattleEnemy;
             }
 
+            battleEnemy.SetPosition(this.enemyCount, i);
             battleEnemy.Set(this, this.enemyToggleGroup, this.enemyBlueprint);
         }
 
