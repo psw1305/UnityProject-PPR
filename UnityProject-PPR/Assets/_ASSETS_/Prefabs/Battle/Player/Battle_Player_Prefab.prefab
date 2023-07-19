@@ -5556,7 +5556,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7244614141528920074}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6483,6 +6483,7 @@ MonoBehaviour:
   elementDatas:
   - {fileID: 11400000, guid: dff0fe72ac50e7046b2bc43c26faedae, type: 2}
   - {fileID: 11400000, guid: a5fc25f5cc709054782dadd828a1c3f1, type: 2}
+  - {fileID: 11400000, guid: 4b1e519a0db04564a825991af97ec447, type: 2}
   elementSkillDatas:
   - {fileID: 11400000, guid: 421a89f0164b7de4499ed6777f46e0b8, type: 2}
   - {fileID: 11400000, guid: 86704ce10b2b88d49b5bce842b898773, type: 2}
