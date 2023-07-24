@@ -18,3 +18,4 @@ MonoBehaviour:
   elementType: 0
   randomWeighted: 10
   skillName: Anger
+  skillType: 2

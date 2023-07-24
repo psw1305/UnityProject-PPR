@@ -18,3 +18,4 @@ MonoBehaviour:
   elementType: 1
   randomWeighted: 10
   skillName: Entrench
+  skillType: 2

@@ -1,35 +1,29 @@
 using PSW.Core.Extensions;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-public class BattleReward : BehaviourSingleton<BattleReward>
+public class RewardsSystem : MonoBehaviour
 {
-    private RectTransform rectTransform;
     private CanvasGroup rewardCanvas;
 
     [SerializeField] private Transform rewardList;
     [SerializeField] private Button exitButton;
-    [SerializeField] private List<BattleRewardItem> rewardItems = new ();
+    [SerializeField] private RewardsItem[] rewards;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
-        this.rectTransform = GetComponent<RectTransform>();
         this.rewardCanvas = GetComponent<CanvasGroup>();
         this.rewardCanvas.CanvasInit();
-
         this.exitButton.onClick.AddListener(BattleExit);
+
+        RewardItemCreate();
     }
 
     private void RewardItemCreate()
     {
-        foreach (BattleRewardItem item in this.rewardItems)
+        foreach (RewardsItem reward in this.rewards)
         {
-            var itemClone = Instantiate(item, rewardList);
-            itemClone.SetReward(100);
+            reward.Set();
         }
     }
 
@@ -46,17 +40,11 @@ public class BattleReward : BehaviourSingleton<BattleReward>
     /// <summary>
     /// 떠나기 버튼 클릭 시 => Stage Scene 으로 복귀
     /// </summary>
-    public void BattleExit()
+    private void BattleExit()
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
         this.exitButton.interactable = false;
         SceneLoader.Instance.PlayerCheckSceneLoad(SceneNames.Battle);
-    }
-
-    public void GetReward()
-    {
-        // 전투 중에 얻은 재화 합산
-        Player.Cash += BattlePlayer.Instance.EarnCash;
     }
 }

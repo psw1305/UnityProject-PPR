@@ -53,7 +53,7 @@ public class LobbyUI : UI
     {
         if (!SceneLoader.IsLoaded) return;
 
-        NoticeSystem.Instance.Notice(() => ExitApplication());
+        PlayerNotice.Instance.Notice(() => ExitApplication());
     }
 
     private void ExitApplication()

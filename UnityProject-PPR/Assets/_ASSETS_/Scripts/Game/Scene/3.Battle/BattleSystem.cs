@@ -15,6 +15,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     [SerializeField] private Canvas rewardCanvas;
     [SerializeField] private GameBoard board;
     [SerializeField] private BattlePlayer battlePlayer;
+    [SerializeField] private RewardsSystem battleRewards;
 
     [Header("Battle Enemy")]
     [SerializeField] private Transform enemyField;
@@ -211,7 +212,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// <returns></returns>
     public void GameClear()
     {
-        BattleReward.Instance.Show();
+        this.battleRewards.Show();
     }
 
     /// <summary>

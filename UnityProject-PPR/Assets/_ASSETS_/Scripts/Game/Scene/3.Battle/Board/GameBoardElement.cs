@@ -26,6 +26,12 @@ public class GameBoardElement : MonoBehaviour
         return skillData.SkillName;
     }
 
+    public ElementSkillType GetSkillType()
+    {
+        ElementSkillBlueprint skillData = (ElementSkillBlueprint)this.data;
+        return skillData.SkillType;
+    }
+
     public void Set(GameBoard board, ElementBlueprint data)
     {
         this.board = board;

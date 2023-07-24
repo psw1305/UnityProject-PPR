@@ -6,7 +6,9 @@ public class ElementSkillBlueprint : ElementBlueprint
 {
     [Header("Skill")]
     [SerializeField] private string skillName;
+    [SerializeField] ElementSkillType skillType;
 
     public string SkillName => this.skillName;
+    public ElementSkillType SkillType => this.skillType;
     public override ElementDetailType ElementDetailType => ElementDetailType.Skill;
 }

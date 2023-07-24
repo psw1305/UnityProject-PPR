@@ -30,7 +30,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemType
     {
-        Equipment, Useable, Cash, Stuff
+        Equipment, Useable, Cash, Card
     }
 
     /// <summary>
@@ -73,6 +73,15 @@ namespace PSW.Core.Enums
     public enum ElementDetailType
     {
         Normal, Skill,
+    }
+
+    /// <summary>
+    /// Element Skill ±¸ºÐ
+    /// </summary>
+    public enum ElementSkillType
+    {
+        Normal, 
+        Start, Finish, Instant,
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-public class NoticeSystem : BehaviourSingleton<NoticeSystem>
+public class PlayerNotice : BehaviourSingleton<PlayerNotice>
 {
     public static bool IsShow { private set; get; }
 

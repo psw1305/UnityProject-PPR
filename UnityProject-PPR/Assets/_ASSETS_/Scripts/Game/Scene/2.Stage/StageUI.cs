@@ -9,6 +9,6 @@ public class StageUI : UI
     /// </summary>
     protected override void OnBackButtonClick()
     {
-        NoticeSystem.Instance.Notice(() => SceneLoader.Instance.LoadScene(SceneNames.Lobby));
+        PlayerNotice.Instance.Notice(() => SceneLoader.Instance.LoadScene(SceneNames.Lobby));
     }
 }
