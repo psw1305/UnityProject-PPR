@@ -38,6 +38,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         GameManager.Instance.CameraChange(this.rewardCanvas);
 
         BattleEnemySetting();
+
+        this.battleRewards.SetBattleRewards(this.enemyBlueprint.EnemyType);
     }
 
     private void BattleEnemySetting()

@@ -6483,7 +6483,6 @@ MonoBehaviour:
   elementDatas:
   - {fileID: 11400000, guid: dff0fe72ac50e7046b2bc43c26faedae, type: 2}
   - {fileID: 11400000, guid: a5fc25f5cc709054782dadd828a1c3f1, type: 2}
-  - {fileID: 11400000, guid: 4b1e519a0db04564a825991af97ec447, type: 2}
   elementSkillDatas:
   - {fileID: 11400000, guid: 421a89f0164b7de4499ed6777f46e0b8, type: 2}
   - {fileID: 11400000, guid: 86704ce10b2b88d49b5bce842b898773, type: 2}
@@ -12173,7 +12172,7 @@ GameObject:
   - component: {fileID: 7244614142347579666}
   - component: {fileID: 7244614142347579665}
   m_Layer: 5
-  m_Name: Useable Item Field
+  m_Name: Potions Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

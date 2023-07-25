@@ -5,6 +5,7 @@ using TMPro;
 
 public class RewardsItem : MonoBehaviour
 {
+    [SerializeField] private ItemType itemType;
     [SerializeField] private Button button;
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI rewardText;
@@ -15,16 +16,26 @@ public class RewardsItem : MonoBehaviour
     /// <param name="amount">보상 수</param>
     public void Set()
     {
-        this.button.onClick.AddListener(Rewards);
+        this.button.onClick.AddListener(GetReward);
     }
 
     /// <summary>
     /// 보상 선택시 적용
     /// </summary>
-    private void Rewards()
+    private void GetReward()
     {
-        if (Player.Instance == null) return;
+        UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
+        if (Player.Instance != null)
+        {
+            RewardItemType();
+        }
+        
+        Destroy(this.gameObject);
+    }
+
+    private void RewardItemType()
+    {
 
     }
 }

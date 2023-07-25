@@ -30,7 +30,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemType
     {
-        Equipment, Useable, Cash, Card
+        Cash, Card, Potion, Artifact
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemRare
     {
-        Common, Uncommon, Rare
+        Common, Uncommon, Rare, Boss
     }
 
     /// <summary>

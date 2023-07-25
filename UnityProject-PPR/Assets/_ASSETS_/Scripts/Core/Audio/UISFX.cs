@@ -57,7 +57,7 @@ public class UISFX : BehaviourSingleton<UISFX>
     /// <param name="item"></param>
     public void ItemDropSFX(InventoryItem item)
     {
-        if (item.GetItemType() == ItemType.Equipment)
+        if (item.GetItemType() == ItemType.Artifact)
         {
             switch (item.GetEquipmentType())
             {

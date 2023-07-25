@@ -172,11 +172,11 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <param name="invenItem">드래그 아이템</param>
     public void ItemOnBeginDrag(InventoryItem invenItem)
     {
-        if (invenItem.GetItemType() == ItemType.Equipment)
+        if (invenItem.GetItemType() == ItemType.Artifact)
         {
             AnimateBeginEquipmentSlot(invenItem.GetEquipmentType());
         }
-        else if (invenItem.GetItemType() == ItemType.Useable)
+        else if (invenItem.GetItemType() == ItemType.Potion)
         {
             AnimateBeginUseableSlot();
         }
@@ -215,11 +215,11 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <param name="invenItem">드래그 아이템</param>
     public void ItemOnEndDrag(InventoryItem invenItem)
     {
-        if (invenItem.GetItemType() == ItemType.Equipment)
+        if (invenItem.GetItemType() == ItemType.Artifact)
         {
             AnimateEndEquipmentSlot(invenItem.GetEquipmentType());
         }
-        else if (invenItem.GetItemType() == ItemType.Useable)
+        else if (invenItem.GetItemType() == ItemType.Potion)
         {
             AnimateEndUseableSlot();
         }

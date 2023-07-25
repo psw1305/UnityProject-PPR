@@ -21,7 +21,7 @@ public class InventorySlotEquipment : MonoBehaviour, IDropHandler
         var tmpItem = dropped.GetComponent<InventoryItem>();
 
         // 드래그한 아이템이 장비가 아닐 경우 => return
-        if (tmpItem.GetItemType() != ItemType.Equipment) return;
+        if (tmpItem.GetItemType() != ItemType.Artifact) return;
 
         // 드래그한 아이템하고 슬롯자리 타입이 다를 경우 => return
         if (tmpItem.GetEquipmentType() != this.equipmentType) return;

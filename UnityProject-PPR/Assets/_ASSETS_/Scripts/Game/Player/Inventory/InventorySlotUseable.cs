@@ -26,7 +26,7 @@ public class InventorySlotUseable : MonoBehaviour, IDropHandler
         var tmpItem = dropped.GetComponent<InventoryItem>();
 
         // 드래그한 아이템이 소모품이 아닐 경우 => return
-        if (tmpItem.GetItemType() != ItemType.Useable) return;
+        if (tmpItem.GetItemType() != ItemType.Potion) return;
 
         // 장착된 소모품 아닐 경우 => 성공적으로 슬롯 장착, return
         if (!tmpItem.IsEquip)

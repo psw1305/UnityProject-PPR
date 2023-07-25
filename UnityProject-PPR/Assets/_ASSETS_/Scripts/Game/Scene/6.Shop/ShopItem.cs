@@ -49,11 +49,11 @@ public class ShopItem : MonoBehaviour
 
         // 아이템 타입에 따른 가격 조정
         ItemType itemType = this.itemData.ItemType;
-        if (itemType == ItemType.Equipment)
+        if (itemType == ItemType.Artifact)
         {
             itemOriginPrice = SetPriceToEquipment();
         }
-        else if (itemType == ItemType.Useable)
+        else if (itemType == ItemType.Potion)
         {
             itemOriginPrice = SetPriceToUseable();
         }
@@ -91,7 +91,7 @@ public class ShopItem : MonoBehaviour
     private int SetPriceToEquipment()
     {
         int priceMin = 0, priceMax = 1;
-        var eqipmentData = (ItemEquipmentBlueprint)this.itemData;
+        var eqipmentData = (ItemBlueprintArtifact)this.itemData;
 
         switch (eqipmentData.EquipmentType)
         {

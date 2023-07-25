@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
+  m_Name: Artifact_C_
+  m_EditorClassIdentifier: 
+  image: {fileID: -1069610178, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  itemType: 3
+  itemRareType: 0
+  itemName: "\uADF8\uB9B0\uD5EC\uBA67"
+  itemDesc: "\uCD08\uB85D\uC0C9 \uD22C\uAD6C"
+  equipmentType: 0
+  stats:
+  - type: 1
+    value: 2

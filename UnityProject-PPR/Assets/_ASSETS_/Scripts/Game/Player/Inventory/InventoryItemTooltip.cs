@@ -21,7 +21,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
     [SerializeField] private TextMeshProUGUI statSTR;
     [SerializeField] private TextMeshProUGUI statDEF;
 
-    [Header("Useable")]
+    [Header("Potion")]
     [SerializeField] private GameObject useableTable;
     [SerializeField] private TextMeshProUGUI useableAbility;
 
@@ -89,13 +89,13 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         this.itemDesc.text = itemData.ItemContents;
 
         // 아이템 타입에 따른 정보 구분
-        if (itemData.ItemType == ItemType.Equipment)
+        if (itemData.ItemType == ItemType.Artifact)
         {
-            DataInputEquipment((ItemEquipmentBlueprint)itemData);
+            DataInputEquipment((ItemBlueprintArtifact)itemData);
         }
-        else if (itemData.ItemType == ItemType.Useable)
+        else if (itemData.ItemType == ItemType.Potion)
         {
-            DataInputUseable((ItemUseableBlueprint)itemData);
+            DataInputPotion(itemData);
         }
     }
 
@@ -103,7 +103,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
     /// 장비 데이터 등록
     /// </summary>
     /// <param name="equipmentData"></param>
-    private void DataInputEquipment(ItemEquipmentBlueprint equipmentData)
+    private void DataInputEquipment(ItemBlueprintArtifact equipmentData)
     {
         if (this.useableTable.activeSelf)
         {
@@ -139,7 +139,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
     /// 소모품 데이터 등록
     /// </summary>
     /// <param name="useableData"></param>
-    private void DataInputUseable(ItemUseableBlueprint useableData)
+    private void DataInputPotion(ItemBlueprint useableData)
     {
         if (this.equipmentTable.activeSelf)
         {
@@ -147,7 +147,7 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
             this.equipmentTable.SetActive(false);
         }
 
-        this.useableAbility.text = useableData.AbilityDesc;
+        this.useableAbility.text = useableData.ItemContents;
     }
 
     /// <summary>

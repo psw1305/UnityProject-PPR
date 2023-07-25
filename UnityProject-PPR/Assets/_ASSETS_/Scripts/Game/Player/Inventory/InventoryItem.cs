@@ -43,14 +43,14 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return this.itemData.ItemType;
     }
 
-    public ItemEquipmentBlueprint GetEquipmentData()
+    public ItemBlueprintArtifact GetEquipmentData()
     {
-        return (ItemEquipmentBlueprint)this.itemData;
+        return (ItemBlueprintArtifact)this.itemData;
     }
 
     public EquipmentType GetEquipmentType()
     {
-        var equipData = (ItemEquipmentBlueprint)this.itemData;
+        var equipData = (ItemBlueprintArtifact)this.itemData;
         return equipData.EquipmentType;
     }
 
@@ -85,11 +85,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.IsEquip == true) return;
 
-        if (GetItemType() == ItemType.Equipment)
+        if (GetItemType() == ItemType.Artifact)
         {
             Player.Instance.EquipmentLoad(this);
         }
-        else if (GetItemType() == ItemType.Useable)
+        else if (GetItemType() == ItemType.Potion)
         {
             this.slotNumber = slotNumber;
             Player.Instance.UseableItemLoad(this, this.slotNumber);
@@ -103,11 +103,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.IsEquip == false) return;
 
-        if (GetItemType() == ItemType.Equipment)
+        if (GetItemType() == ItemType.Artifact)
         {
             Player.Instance.EquipmentUnload(this);
         }
-        else if (GetItemType() == ItemType.Useable)
+        else if (GetItemType() == ItemType.Potion)
         {
             Player.Instance.UseableItemUnload(this, this.slotNumber);
         }
