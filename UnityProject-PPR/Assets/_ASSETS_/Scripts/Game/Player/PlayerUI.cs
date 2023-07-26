@@ -8,22 +8,22 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
     [Header("Front UI")]
     [SerializeField] private Button settings;
+    [SerializeField] private Button inventory;
+    [SerializeField] private Button cardDeck;
     [SerializeField] private TextMeshProUGUI health;
-
-    [Header("Stat Text")]
-    [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private TextMeshProUGUI actText;
-    [SerializeField] private TextMeshProUGUI atkText;
-    [SerializeField] private TextMeshProUGUI defText;
     [SerializeField] private TextMeshProUGUI cashText;
 
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventoryCanvas;
-    [SerializeField] private Button inventoryOpen;
     [SerializeField] private Button inventoryClose;
-    [SerializeField] private Transform invenList;
-    [SerializeField] private InventorySlotEquipment[] equipmentLists;
-    [SerializeField] private InventorySlotUseable[] useableItemLists;
+    [SerializeField] private Transform relicAltar;
+    [SerializeField] private InventorySlotPotion[] potionBelt;
+
+    [Header("Card Deck")]
+    [SerializeField] private CanvasGroup cardDeckCanvas;
+    [SerializeField] private Button cardDeckClose;
+    [SerializeField] private Transform cardDeckList;
+    [SerializeField] private InventorySlotCard[] deckCards;
 
     [Header("Game End")]
     [SerializeField] private CanvasGroup endCanvas;
@@ -38,9 +38,14 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         this.inventoryCanvas.CanvasInit();
         this.endCanvas.CanvasInit();
 
-        this.inventoryOpen.onClick.AddListener(InventoryShow);
+        this.inventory.onClick.AddListener(InventoryShow);
         this.inventoryClose.onClick.AddListener(InventoryHide);
-        this.settings.onClick.AddListener(SettingsShow);
+
+        this.cardDeck.onClick.AddListener(CardDeckShow);
+        this.cardDeckClose.onClick.AddListener(CardDeckHide);
+
+        this.settings.onClick.AddListener(SettingShow);
+
         this.endButton.onClick.AddListener(GameEnd);
     }
 
@@ -62,7 +67,22 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         this.inventoryCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
     }
 
-    private void SettingsShow()
+    private void CardDeckShow()
+    {
+        UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
+        this.inventoryCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+    }
+
+    /// <summary>
+    /// 인벤토리 창 닫기
+    /// </summary>
+    private void CardDeckHide()
+    {
+        UISFX.Instance.Play(UISFX.Instance.inventoryClose);
+        this.inventoryCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+    }
+
+    private void SettingShow()
     {
         SettingsSystem.Instance.Show();
     }
@@ -104,26 +124,13 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     public void SetUI()
     {
-        SetStatUI();
+        SetHealthUI();
         SetCashUI();
     }
 
-    /// <summary>
-    /// Player 스탯 UI 표시
-    /// </summary>
-    public void SetStatUI()
+    public void SetHealthUI()
     {
-        this.hpText.text = Player.Instance.HP.Value.ToString();
-        this.actText.text = Player.Instance.ACT.Value.ToString();
-        this.atkText.text = Player.Instance.ATK.Value.ToString();
-        this.defText.text = Player.Instance.DEF.Value.ToString();
-
-        SetHealthUI(Player.Instance.GetHpText());
-    }
-
-    public void SetHealthUI(string healthText)
-    {
-        this.health.text = healthText;
+        this.health.text = Player.Instance.GetHpText();
     }
 
     /// <summary>
@@ -139,9 +146,9 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     /// <param name="num">슬롯 번호</param>
     /// <param name="invenItem">장착할 아이템</param>
-    public void SetUIEquipmentLoad(int num, InventoryItem invenItem)
+    public void LoadCardDeck(int num, InventoryItem invenItem)
     {
-        invenItem.transform.SetParent(this.equipmentLists[num].transform);
+        invenItem.transform.SetParent(this.deckCards[num].transform);
     }
 
     /// <summary>
@@ -149,21 +156,21 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     /// <param name="num">슬롯 번호</param>
     /// <param name="invenItem">장착할 아이템</param>
-    public void SetUIUseableItemLoad(int num, InventoryItem invenItem)
+    public void LoadPotionBelt(int num, InventoryItem invenItem)
     {
         invenItem.SetSlotNumber(num);
-        invenItem.SetParentAfterDrag(this.useableItemLists[num].GetDropSlot());
-        invenItem.transform.SetParent(this.useableItemLists[num].GetDropSlot());
+        invenItem.SetParentAfterDrag(this.potionBelt[num].GetDropSlot());
+        invenItem.transform.SetParent(this.potionBelt[num].GetDropSlot());
     }
 
     /// <summary>
     /// 장착 아이템 해제 => 다시 인벤토리 창으로
     /// </summary>
     /// <param name="invenItem">해제할 아이템</param>
-    public void SetUIItemUnload(InventoryItem invenItem)
+    public void CardUnload(InventoryItem invenItem)
     {
         invenItem.SetSlotNumber(0);
-        invenItem.transform.SetParent(this.invenList);
+        invenItem.transform.SetParent(this.cardDeckList);
     }
 
     /// <summary>
@@ -172,40 +179,12 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <param name="invenItem">드래그 아이템</param>
     public void ItemOnBeginDrag(InventoryItem invenItem)
     {
-        if (invenItem.GetItemType() == ItemType.Artifact)
+        if (invenItem.GetItemType() == ItemType.Card)
         {
-            AnimateBeginEquipmentSlot(invenItem.GetEquipmentType());
-        }
-        else if (invenItem.GetItemType() == ItemType.Potion)
-        {
-            AnimateBeginUseableSlot();
-        }
-    }
-
-    private void AnimateBeginEquipmentSlot(EquipmentType equipmentType)
-    {
-        switch (equipmentType)
-        {
-            case EquipmentType.Helmet:
-                this.equipmentLists[0].AnimatePlateImage(1.1f);
-                break;
-            case EquipmentType.Armor:
-                this.equipmentLists[1].AnimatePlateImage(1.1f);
-                break;
-            case EquipmentType.Weapon:
-                this.equipmentLists[2].AnimatePlateImage(1.1f);
-                break;
-            case EquipmentType.Trinket:
-                this.equipmentLists[3].AnimatePlateImage(1.1f);
-                break;
-        }
-    }
-
-    private void AnimateBeginUseableSlot()
-    {
-        foreach (InventorySlotUseable useableSlot in useableItemLists)
-        {
-            useableSlot.AnimatePlateImage(1.1f);
+            foreach (InventorySlotCard invenSlot in deckCards)
+            {
+                invenSlot.AnimatePlateImage(1.1f);
+            }
         }
     }
 
@@ -215,40 +194,12 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <param name="invenItem">드래그 아이템</param>
     public void ItemOnEndDrag(InventoryItem invenItem)
     {
-        if (invenItem.GetItemType() == ItemType.Artifact)
+        if (invenItem.GetItemType() == ItemType.Card)
         {
-            AnimateEndEquipmentSlot(invenItem.GetEquipmentType());
-        }
-        else if (invenItem.GetItemType() == ItemType.Potion)
-        {
-            AnimateEndUseableSlot();
-        }
-    }
-
-    private void AnimateEndEquipmentSlot(EquipmentType equipmentType)
-    {
-        switch (equipmentType)
-        {
-            case EquipmentType.Helmet:
-                this.equipmentLists[0].AnimatePlateImage(1f);
-                break;
-            case EquipmentType.Armor:
-                this.equipmentLists[1].AnimatePlateImage(1f);
-                break;
-            case EquipmentType.Weapon:
-                this.equipmentLists[2].AnimatePlateImage(1f);
-                break;
-            case EquipmentType.Trinket:
-                this.equipmentLists[3].AnimatePlateImage(1f);
-                break;
-        }
-    }
-
-    private void AnimateEndUseableSlot()
-    {
-        foreach (InventorySlotUseable useableSlot in useableItemLists)
-        {
-            useableSlot.AnimatePlateImage(1f);
+            foreach (InventorySlotCard invenSlot in deckCards)
+            {
+                invenSlot.AnimatePlateImage(1f);
+            }
         }
     }
 }

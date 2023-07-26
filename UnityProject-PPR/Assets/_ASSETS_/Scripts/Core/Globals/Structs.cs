@@ -22,7 +22,6 @@ namespace PSW.Core.Structs
     [Serializable]
     public struct AbilityData
     {
-        public UseableAbility type;
         public ElementBlueprint element;
     }
 }

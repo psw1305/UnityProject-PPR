@@ -42,21 +42,11 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 아이템 Equipment 타입
+    /// 카드 아이템 타입
     /// </summary>
-    public enum EquipmentType
+    public enum CardType
     {
-        Helmet, Armor, Weapon, Trinket
-    }
-
-    /// <summary>
-    /// 소모품 능력 타입
-    /// </summary>
-    public enum UseableAbility
-    {
-        Change, 
-        Remove, 
-        StatModify,
+        Attack, Defense, Special, Joker
     }
 
     /// <summary>

@@ -57,26 +57,6 @@ public class UISFX : BehaviourSingleton<UISFX>
     /// <param name="item"></param>
     public void ItemDropSFX(InventoryItem item)
     {
-        if (item.GetItemType() == ItemType.Artifact)
-        {
-            switch (item.GetEquipmentType())
-            {
-                case EquipmentType.Armor:
-                    Play(this.equipHeavyDrop);
-                    break;
-
-                case EquipmentType.Trinket:
-                    Play(this.equipMagicDrop);
-                    break;
-
-                default:
-                    Play(this.equipNormalDrop);
-                    break;
-            }
-        }
-        else
-        {
-            Play(this.useableDrop);
-        }
+        Play(this.equipNormalDrop);
     }
 }

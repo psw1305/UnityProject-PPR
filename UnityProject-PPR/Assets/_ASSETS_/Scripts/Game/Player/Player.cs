@@ -26,6 +26,23 @@ public partial class Player : BehaviourSingleton<Player>
     public static int CurrentHP { get; set; }
     public static EnemyBlueprint BattleEnemy { get; set; }
 
+    public void SetHp(int currentHp)
+    {
+        CurrentHP = currentHp;
+        this.playerUI.SetHealthUI();
+    }
+
+    public string GetHpText()
+    {
+        return CurrentHP + "/" + this.HP.Value;
+    }
+
+    public void SetCash(int cash)
+    {
+        Cash += cash;
+        this.playerUI.SetCashUI();
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -38,7 +55,7 @@ public partial class Player : BehaviourSingleton<Player>
         Set();
     }
 
-    public void Set(int hp = 40, int act = 20, int atk = 1, int def = 1, int cash = 0)
+    private void Set(int hp = 40, int act = 20, int atk = 1, int def = 1, int cash = 0)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
@@ -49,21 +66,12 @@ public partial class Player : BehaviourSingleton<Player>
         Cash = cash;
     }
 
-    public void SetHp(int currentHp)
+    private void Start()
     {
-        CurrentHP = currentHp;
-        this.playerUI.SetHealthUI(GetHpText());
-    }
+        SetInventory();
+        SetDeck();
 
-    public string GetHpText()
-    {
-        return CurrentHP + "/" + this.HP.Value;
-    }
-
-    public void SetCash(int cash)
-    {
-        Cash += cash;
-        this.playerUI.SetCashUI();
+        this.playerUI.SetUI();
     }
 
     /// <summary>

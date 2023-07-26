@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class InventorySlotUseable : MonoBehaviour, IDropHandler
+public class InventorySlotPotion : MonoBehaviour, IDropHandler
 {
     [SerializeField] private int slotNumber;
     [SerializeField] private Transform dropSlot;

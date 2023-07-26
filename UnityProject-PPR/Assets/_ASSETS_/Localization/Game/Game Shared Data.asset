@@ -28,11 +28,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 88787500714876928
-    m_Key: inventory_equipment
+    m_Key: inventory_relic
     m_Metadata:
       m_Items: []
   - m_Id: 88787733532303360
-    m_Key: inventory_useable
+    m_Key: inventory_potion
     m_Metadata:
       m_Items: []
   - m_Id: 88787894216089600

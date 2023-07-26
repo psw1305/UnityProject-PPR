@@ -9,7 +9,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     [SerializeField] private RectTransform playerTable;
     [SerializeField] private RectTransform statTable;
 
-    [Header("Useables")]
+    [Header("Potion")]
     [SerializeField] private GameObject useableItemPrefab;
     [SerializeField] private Transform[] useableSlots;
     private BattlePlayerUseableItem[] useableItems;
@@ -76,7 +76,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     {
         if (Player.Instance == null) return;
 
-        var itemLists = Player.Instance.useableItems;
+        var itemLists = Player.Instance.potionBelt;
 
         for (int i = 0; i < itemLists.Length; i++)
         {

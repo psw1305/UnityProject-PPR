@@ -7,7 +7,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public bool IsEquip { get; set; }
 
-    [SerializeField] private string itemID;
     [SerializeField] private Image plate;
     [SerializeField] private Image image;
 
@@ -48,7 +47,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return (ItemBlueprintArtifact)this.itemData;
     }
 
-    public EquipmentType GetEquipmentType()
+    public CardType GetEquipmentType()
     {
         var equipData = (ItemBlueprintArtifact)this.itemData;
         return equipData.EquipmentType;
@@ -92,7 +91,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         else if (GetItemType() == ItemType.Potion)
         {
             this.slotNumber = slotNumber;
-            Player.Instance.UseableItemLoad(this, this.slotNumber);
+            Player.Instance.PotionItemLoad(this, this.slotNumber);
         }
     }
 
@@ -109,7 +108,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         else if (GetItemType() == ItemType.Potion)
         {
-            Player.Instance.UseableItemUnload(this, this.slotNumber);
+            Player.Instance.PotionItemUnload(this, this.slotNumber);
         }
     }
 
@@ -119,7 +118,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="changSlotNumber">¹Ù²Ü ½½·Ô ÀÚ¸® ¼ýÀÚ</param>
     public void ItemMove(int changSlotNumber)
     {
-        Player.Instance.UseableItemMove(this, this.slotNumber, changSlotNumber);
+        Player.Instance.PotionItemMove(this, this.slotNumber, changSlotNumber);
     }
 
     /// <summary>
@@ -128,7 +127,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="changSlotNumber">¹Ù²Ü ½½·Ô ÀÚ¸® ¼ýÀÚ</param>
     public void ItemChange(int changSlotNumber)
     {
-        Player.Instance.UseableItemChange(this.slotNumber, changSlotNumber);
+        Player.Instance.PotionItemChange(this.slotNumber, changSlotNumber);
     }
 
     /// <summary>

@@ -31,11 +31,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 88787500714876928
-    m_Localized: Equipment
+    m_Localized: Relic
     m_Metadata:
       m_Items: []
   - m_Id: 88787733532303360
-    m_Localized: Useable
+    m_Localized: Potion
     m_Metadata:
       m_Items: []
   - m_Id: 88787894216089600

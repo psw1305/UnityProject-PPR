@@ -51,7 +51,7 @@ public class ShopItem : MonoBehaviour
         ItemType itemType = this.itemData.ItemType;
         if (itemType == ItemType.Artifact)
         {
-            itemOriginPrice = SetPriceToEquipment();
+            itemOriginPrice = SetPriceToArtifact();
         }
         else if (itemType == ItemType.Potion)
         {
@@ -88,26 +88,26 @@ public class ShopItem : MonoBehaviour
         }
     }
 
-    private int SetPriceToEquipment()
+    private int SetPriceToArtifact()
     {
         int priceMin = 0, priceMax = 1;
         var eqipmentData = (ItemBlueprintArtifact)this.itemData;
 
         switch (eqipmentData.EquipmentType)
         {
-            case EquipmentType.Helmet:
+            case CardType.Attack:
                 priceMin = ItemPrice.PRICE_MIN_HELMET;
                 priceMax = ItemPrice.PRICE_MAX_HELMET;
                 break;
-            case EquipmentType.Armor:
+            case CardType.Defense:
                 priceMin = ItemPrice.PRICE_MIN_ARMOR;
                 priceMax = ItemPrice.PRICE_MAX_ARMOR;
                 break;
-            case EquipmentType.Weapon:
+            case CardType.Special:
                 priceMin = ItemPrice.PRICE_MIN_WEAPON;
                 priceMax = ItemPrice.PRICE_MAX_WEAPON;
                 break;
-            case EquipmentType.Trinket:
+            case CardType.Joker:
                 priceMin = ItemPrice.PRICE_MIN_TRINKET;
                 priceMax = ItemPrice.PRICE_MAX_TRINKET;
                 break;
