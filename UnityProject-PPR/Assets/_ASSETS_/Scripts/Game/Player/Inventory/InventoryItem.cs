@@ -42,20 +42,20 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return this.itemData.ItemType;
     }
 
-    public ItemBlueprintArtifact GetEquipmentData()
+    public ItemBlueprintCard GetCardData()
     {
-        return (ItemBlueprintArtifact)this.itemData;
+        return (ItemBlueprintCard)this.itemData;
     }
 
-    public CardType GetEquipmentType()
+    public CardType GetCardType()
     {
-        var equipData = (ItemBlueprintArtifact)this.itemData;
-        return equipData.EquipmentType;
+        var equipData = (ItemBlueprintCard)this.itemData;
+        return equipData.CardType;
     }
 
-    public ItemUseableBlueprint GetUseableData()
+    public ItemBlueprintPotion GetUseableData()
     {
-        return (ItemUseableBlueprint)this.itemData;
+        return (ItemBlueprintPotion)this.itemData;
     }
 
     public void SetSlotNumber(int slotNumber)
@@ -84,7 +84,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.IsEquip == true) return;
 
-        if (GetItemType() == ItemType.Artifact)
+        if (GetItemType() == ItemType.Relic)
         {
             Player.Instance.EquipmentLoad(this);
         }
@@ -102,7 +102,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.IsEquip == false) return;
 
-        if (GetItemType() == ItemType.Artifact)
+        if (GetItemType() == ItemType.Relic)
         {
             Player.Instance.EquipmentUnload(this);
         }

@@ -21,10 +21,10 @@ public partial class Player : BehaviourSingleton<Player>
     /// <param name="skillCard"></param>
     public void EquipmentLoad(InventoryItem skillCard)
     {
-        var equipmentData = skillCard.GetEquipmentData();
+        var equipmentData = skillCard.GetCardData();
 
         // 장비 세팅 => 유형별로 구분
-        var equipmentType = equipmentData.EquipmentType;
+        var equipmentType = equipmentData.CardType;
 
         switch (equipmentType)
         {
@@ -61,7 +61,7 @@ public partial class Player : BehaviourSingleton<Player>
 
     private void PlayerAddStatModify(InventoryItem invenItem)
     {
-        var equipmentData = invenItem.GetEquipmentData();
+        var equipmentData = invenItem.GetCardData();
 
         // 장비 세팅 => 부여된 statCount만큼 스탯 조정
         for (int i = 0; i < equipmentData.StatCount; i++)
@@ -91,10 +91,10 @@ public partial class Player : BehaviourSingleton<Player>
     /// <param name="invenItem">인벤토리 아이템</param>
     public void EquipmentUnload(InventoryItem invenItem)
     {
-        var equipmentData = invenItem.GetEquipmentData();
+        var equipmentData = invenItem.GetCardData();
 
         // 장비 세팅 => 유형별로 구분
-        var equipmentType = equipmentData.EquipmentType;
+        var equipmentType = equipmentData.CardType;
 
         switch (equipmentType)
         {
@@ -118,7 +118,7 @@ public partial class Player : BehaviourSingleton<Player>
 
     private void PlayerRemoveStatModify(InventoryItem invenItem)
     {
-        var equipmentData = invenItem.GetEquipmentData();
+        var equipmentData = invenItem.GetCardData();
 
         // 장비 세팅 => 부여된 statCount만큼 스탯 조정
         for (int i = 0; i < equipmentData.StatCount; i++)

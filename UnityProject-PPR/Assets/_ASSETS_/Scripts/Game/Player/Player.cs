@@ -34,7 +34,7 @@ public partial class Player : BehaviourSingleton<Player>
 
     public string GetHpText()
     {
-        return CurrentHP + "/" + this.HP.Value;
+        return CurrentHP.ToString();
     }
 
     public void SetCash(int cash)

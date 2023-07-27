@@ -49,7 +49,7 @@ public class ShopItem : MonoBehaviour
 
         // 아이템 타입에 따른 가격 조정
         ItemType itemType = this.itemData.ItemType;
-        if (itemType == ItemType.Artifact)
+        if (itemType == ItemType.Relic)
         {
             itemOriginPrice = SetPriceToArtifact();
         }
@@ -91,27 +91,27 @@ public class ShopItem : MonoBehaviour
     private int SetPriceToArtifact()
     {
         int priceMin = 0, priceMax = 1;
-        var eqipmentData = (ItemBlueprintArtifact)this.itemData;
+        var eqipmentData = (ItemBlueprintRelic)this.itemData;
 
-        switch (eqipmentData.EquipmentType)
-        {
-            case CardType.Attack:
-                priceMin = ItemPrice.PRICE_MIN_HELMET;
-                priceMax = ItemPrice.PRICE_MAX_HELMET;
-                break;
-            case CardType.Defense:
-                priceMin = ItemPrice.PRICE_MIN_ARMOR;
-                priceMax = ItemPrice.PRICE_MAX_ARMOR;
-                break;
-            case CardType.Special:
-                priceMin = ItemPrice.PRICE_MIN_WEAPON;
-                priceMax = ItemPrice.PRICE_MAX_WEAPON;
-                break;
-            case CardType.Joker:
-                priceMin = ItemPrice.PRICE_MIN_TRINKET;
-                priceMax = ItemPrice.PRICE_MAX_TRINKET;
-                break;
-        }
+        //switch (eqipmentData.EquipmentType)
+        //{
+        //    case CardType.Attack:
+        //        priceMin = ItemPrice.PRICE_MIN_HELMET;
+        //        priceMax = ItemPrice.PRICE_MAX_HELMET;
+        //        break;
+        //    case CardType.Defense:
+        //        priceMin = ItemPrice.PRICE_MIN_ARMOR;
+        //        priceMax = ItemPrice.PRICE_MAX_ARMOR;
+        //        break;
+        //    case CardType.Special:
+        //        priceMin = ItemPrice.PRICE_MIN_WEAPON;
+        //        priceMax = ItemPrice.PRICE_MAX_WEAPON;
+        //        break;
+        //    case CardType.Joker:
+        //        priceMin = ItemPrice.PRICE_MIN_TRINKET;
+        //        priceMax = ItemPrice.PRICE_MAX_TRINKET;
+        //        break;
+        //}
 
         return Random.Range(priceMin, priceMax);
     }

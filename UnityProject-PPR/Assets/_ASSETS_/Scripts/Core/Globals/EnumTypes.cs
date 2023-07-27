@@ -30,7 +30,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemType
     {
-        Cash, Card, Potion, Artifact
+        Cash, Card, Potion, Relic
     }
 
     /// <summary>

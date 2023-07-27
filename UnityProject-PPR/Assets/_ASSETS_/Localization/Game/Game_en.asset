@@ -74,6 +74,10 @@ MonoBehaviour:
     m_Localized: Proceed
     m_Metadata:
       m_Items: []
+  - m_Id: 100323545382051840
+    m_Localized: Card Deck
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

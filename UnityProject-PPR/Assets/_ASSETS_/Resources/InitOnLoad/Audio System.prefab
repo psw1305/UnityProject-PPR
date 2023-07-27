@@ -91,14 +91,14 @@ MonoBehaviour:
   buttonAppear: {fileID: 8300000, guid: 673ac55385301bc4d9f4379aced1218e, type: 3}
   inventoryOpen: {fileID: 8300000, guid: ed38831661daa3e48a233cd6920c4312, type: 3}
   inventoryClose: {fileID: 8300000, guid: 9db5c312aca012d4b88a399e6c9e59ca, type: 3}
+  cardDeckOpen: {fileID: 8300000, guid: 7d09fbd765ddcb14a876711927c4933f, type: 3}
+  cardDeckClose: {fileID: 8300000, guid: 6325f8d6174ad7746805548838e50f90, type: 3}
   itemOpens:
   - {fileID: 8300000, guid: 174bc848a19212b4e829852aadb5b5b5, type: 3}
   - {fileID: 8300000, guid: f0d721b0fb8cba8458d0d565a89aff43, type: 3}
   - {fileID: 8300000, guid: 72ddecc5d00c7a94c9bb322ee8e6917a, type: 3}
   itemDrag: {fileID: 8300000, guid: 10845a44d2f159f47affdd3ec75ffadd, type: 3}
   equipNormalDrop: {fileID: 8300000, guid: 85be7637669f1bc46a5665aa0132a6bb, type: 3}
-  equipHeavyDrop: {fileID: 8300000, guid: e7bbb91d28c6eb24f9392f340375ec88, type: 3}
-  equipMagicDrop: {fileID: 8300000, guid: 7febbfa5a2a1e484d94d6912826d301e, type: 3}
   useableDrop: {fileID: 8300000, guid: a1f832f1fe54c3444b74b5fe475465c9, type: 3}
   healthUp: {fileID: 8300000, guid: ca4cef7e64128fe439de00886a296743, type: 3}
   itemGain: {fileID: 8300000, guid: 67739ec0597743644bc15dd2b8cc6ffc, type: 3}

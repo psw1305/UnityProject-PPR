@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700687d5fe615944aade3a7c00e7e870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 
   plate: {fileID: 2590970708445856742}
   image: {fileID: 2590970708823376258}
 --- !u!1 &2590970708445856736

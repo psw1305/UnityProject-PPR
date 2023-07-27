@@ -1,4 +1,3 @@
-using PSW.Core.Enums;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -11,13 +10,13 @@ public class UISFX : BehaviourSingleton<UISFX>
     [Header("Player Inventory")]
     public AudioClip inventoryOpen;
     public AudioClip inventoryClose;
+    public AudioClip cardDeckOpen;
+    public AudioClip cardDeckClose;
     public AudioClip[] itemOpens;
 
     [Header("Item")]
     public AudioClip itemDrag;
     public AudioClip equipNormalDrop;
-    public AudioClip equipHeavyDrop;
-    public AudioClip equipMagicDrop;
     public AudioClip useableDrop;
 
     [Header("Mystery")]

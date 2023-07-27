@@ -8,35 +8,38 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
 {
     public bool IsShow { get; private set; }
 
-    [Header("UI")]
-    [SerializeField] private Image itemIcon;
-    [SerializeField] private TextMeshProUGUI itemName;
-    [SerializeField] private TextMeshProUGUI itemDesc;
-    [SerializeField] private Button tooltipClose;
-
-    [Header("Equipment")]
-    [SerializeField] private GameObject equipmentTable;
-    [SerializeField] private TextMeshProUGUI statHP;
-    [SerializeField] private TextMeshProUGUI statMP;
-    [SerializeField] private TextMeshProUGUI statSTR;
-    [SerializeField] private TextMeshProUGUI statDEF;
+    [Header("Relic")]
+    [SerializeField] private CanvasGroup relicTooltipCanvas;
+    [SerializeField] private Button relicTooltipClose;
+    [SerializeField] private Image relicIcon;
+    [SerializeField] private TextMeshProUGUI relicName;
+    [SerializeField] private TextMeshProUGUI relicRare;
+    [SerializeField] private TextMeshProUGUI relicAbility;
+    [SerializeField] private TextMeshProUGUI relicDesc;
 
     [Header("Potion")]
-    [SerializeField] private GameObject useableTable;
-    [SerializeField] private TextMeshProUGUI useableAbility;
+    [SerializeField] private CanvasGroup potionTooltipCanvas;
+    [SerializeField] private Button potionTooltipClose;
+    [SerializeField] private Image potionIcon;
+    [SerializeField] private TextMeshProUGUI potionName;
+    [SerializeField] private TextMeshProUGUI potionDesc;
 
-    private CanvasGroup tooltipCanvas;
+    [Header("Card")]
+    [SerializeField] private CanvasGroup cardTooltipCanvas;
+    [SerializeField] private Button cardTooltipClose;
+    [SerializeField] private Image cardIcon;
+    [SerializeField] private TextMeshProUGUI cardName;
+    [SerializeField] private TextMeshProUGUI cardDesc;
+
     private InventoryItem invenItem;
 
     protected override void Awake()
     {
         base.Awake();
 
-        this.tooltipCanvas = GetComponent<CanvasGroup>();
-        this.tooltipCanvas.CanvasInit();
-
         this.IsShow = false;
-        this.tooltipClose.onClick.AddListener(Hide);
+
+        this.relicTooltipCanvas.CanvasInit();
     }
 
     /// <summary>
@@ -50,118 +53,50 @@ public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
         this.IsShow = true;
-        this.tooltipClose.interactable = true;
+        //this.tooltipClose.interactable = true;
 
-        UIDataInput(invenItem);
+        SetTooltip(invenItem);
 
-        this.tooltipCanvas.CanvasFadeIn(0.25f);
+        //this.tooltipCanvas.CanvasFadeIn(0.25f);
     }
 
     /// <summary>
     /// 장비 툴팁 숨김
     /// </summary>
-    public void Hide()
+    public void RelicTooltipHide()
     {
         if (this.IsShow == false) return;
 
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
         this.IsShow = false;
-        this.tooltipClose.interactable = false;
-
-        //UIDataInit();
-
-        this.tooltipCanvas.CanvasFadeOut(0.25f);
     }
 
     /// <summary>
     /// 해당 아이템 데이터에 맞게 UI 부여
     /// </summary>
-    /// <param name="invenItem">인벤토리 아이템</param>
-    private void UIDataInput(InventoryItem invenItem)
+    /// <param name="relicItem">유물 아이템</param>
+    private void SetTooltip(InventoryItem relicItem)
     {
-        this.invenItem = invenItem;
+        this.invenItem = relicItem;
         ItemBlueprint itemData = this.invenItem.GetItemData();
 
         // 아이콘, 이름, 설명 부여
-        this.itemIcon.sprite = itemData.ItemImage;
-        this.itemName.text = itemData.ItemName;
-        this.itemDesc.text = itemData.ItemContents;
+        this.relicIcon.sprite = itemData.ItemImage;
+        this.relicName.text = itemData.ItemName;
 
         // 아이템 타입에 따른 정보 구분
-        if (itemData.ItemType == ItemType.Artifact)
+        if (itemData.ItemType == ItemType.Relic)
         {
-            DataInputEquipment((ItemBlueprintArtifact)itemData);
+            //DataInputEquipment((ItemBlueprintArtifact)itemData);
         }
         else if (itemData.ItemType == ItemType.Potion)
         {
-            DataInputPotion(itemData);
+            //DataInputPotion(itemData);
         }
-    }
-
-    /// <summary>
-    /// 장비 데이터 등록
-    /// </summary>
-    /// <param name="equipmentData"></param>
-    private void DataInputEquipment(ItemBlueprintArtifact equipmentData)
-    {
-        if (this.useableTable.activeSelf)
+        else if (itemData.ItemType == ItemType.Potion)
         {
-            this.equipmentTable.SetActive(true);
-            this.useableTable.SetActive(false);
+            //DataInputPotion(itemData);
         }
-
-        // 스탯 부여
-        for (int i = 0; i < equipmentData.StatCount; i++)
-        {
-            StatType statType = equipmentData.ItemStatType(i);
-            int statValue = equipmentData.ItemStatValue(i);
-
-            switch (statType)
-            {
-                case StatType.HP:
-                    this.statHP.text = statValue.ToString();
-                    break;
-                case StatType.ACT:
-                    this.statMP.text = statValue.ToString();
-                    break;
-                case StatType.ATK:
-                    this.statSTR.text = statValue.ToString();
-                    break;
-                case StatType.DEF:
-                    this.statDEF.text = statValue.ToString();
-                    break;
-            }
-        }
-    }
-
-    /// <summary>
-    /// 소모품 데이터 등록
-    /// </summary>
-    /// <param name="useableData"></param>
-    private void DataInputPotion(ItemBlueprint useableData)
-    {
-        if (this.equipmentTable.activeSelf)
-        {
-            this.useableTable.SetActive(true);
-            this.equipmentTable.SetActive(false);
-        }
-
-        this.useableAbility.text = useableData.ItemContents;
-    }
-
-    /// <summary>
-    /// UI 데이터 초기화
-    /// </summary>
-    private void UIDataInit()
-    {
-        this.invenItem = null;
-
-        this.statHP.text = "0";
-        this.statMP.text = "0";
-        this.statSTR.text = "0";
-        this.statDEF.text = "0";
-
-        this.useableAbility.text = "";
     }
 }

@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 88787894216089600
-    m_Key: inventory_sort
+    m_Key: deck_sort
     m_Metadata:
       m_Items: []
   - m_Id: 89865901676617728
@@ -69,6 +69,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 89872574642315264
     m_Key: end_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100323545382051840
+    m_Key: deck
     m_Metadata:
       m_Items: []
   m_Metadata:

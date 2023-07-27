@@ -22,8 +22,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     [Header("Card Deck")]
     [SerializeField] private CanvasGroup cardDeckCanvas;
     [SerializeField] private Button cardDeckClose;
-    [SerializeField] private Transform cardDeckList;
-    [SerializeField] private InventorySlotCard[] deckCards;
+    [SerializeField] private Transform cardInvenList;
+    [SerializeField] private InventorySlotCard[] cards;
 
     [Header("Game End")]
     [SerializeField] private CanvasGroup endCanvas;
@@ -36,6 +36,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         base.Awake();
 
         this.inventoryCanvas.CanvasInit();
+        this.cardDeckCanvas.CanvasInit();
         this.endCanvas.CanvasInit();
 
         this.inventory.onClick.AddListener(InventoryShow);
@@ -69,8 +70,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
 
     private void CardDeckShow()
     {
-        UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
-        this.inventoryCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        UISFX.Instance.Play(UISFX.Instance.cardDeckOpen);
+        this.cardDeckCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -78,8 +79,8 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// </summary>
     private void CardDeckHide()
     {
-        UISFX.Instance.Play(UISFX.Instance.inventoryClose);
-        this.inventoryCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        UISFX.Instance.Play(UISFX.Instance.cardDeckClose);
+        this.cardDeckCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
     }
 
     private void SettingShow()
@@ -148,7 +149,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <param name="invenItem">장착할 아이템</param>
     public void LoadCardDeck(int num, InventoryItem invenItem)
     {
-        invenItem.transform.SetParent(this.deckCards[num].transform);
+        invenItem.transform.SetParent(this.cards[num].transform);
     }
 
     /// <summary>
@@ -170,7 +171,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     public void CardUnload(InventoryItem invenItem)
     {
         invenItem.SetSlotNumber(0);
-        invenItem.transform.SetParent(this.cardDeckList);
+        invenItem.transform.SetParent(this.cardInvenList);
     }
 
     /// <summary>
@@ -181,7 +182,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     {
         if (invenItem.GetItemType() == ItemType.Card)
         {
-            foreach (InventorySlotCard invenSlot in deckCards)
+            foreach (InventorySlotCard invenSlot in cards)
             {
                 invenSlot.AnimatePlateImage(1.1f);
             }
@@ -196,7 +197,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     {
         if (invenItem.GetItemType() == ItemType.Card)
         {
-            foreach (InventorySlotCard invenSlot in deckCards)
+            foreach (InventorySlotCard invenSlot in cards)
             {
                 invenSlot.AnimatePlateImage(1f);
             }

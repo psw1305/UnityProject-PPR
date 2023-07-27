@@ -12,12 +12,12 @@ public class BattlePlayerUseableItem : MonoBehaviour
 
     private GameBoard board;
     private Button button;
-    private ItemUseableBlueprint useableData;
+    private ItemBlueprintPotion useableData;
     private AbilityData ability;
 
     private ElementBlueprint element;
 
-    public void Set(ItemUseableBlueprint data)
+    public void Set(ItemBlueprintPotion data)
     {
         this.IsUsed = false;
         this.useableData = data;
