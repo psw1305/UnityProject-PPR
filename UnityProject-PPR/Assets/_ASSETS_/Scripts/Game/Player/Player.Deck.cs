@@ -1,32 +1,28 @@
 using PSW.Core.Enums;
 using PSW.Core.Stat;
-using UnityEngine;
 
 /// <summary>
 /// Player Card Deck Partial Class
 /// </summary>
 public partial class Player : BehaviourSingleton<Player>
 {
-    [Header("Cards Deck")]
-    public InventoryItem[] cardDeck;
+    public InventoryItemCard[] cardDeck;
 
     public void SetDeck()
     {
-        this.cardDeck = new InventoryItem[16];
+        this.cardDeck = new InventoryItemCard[16];
     }
 
     /// <summary>
     /// 스킬 카드 장착
     /// </summary>
     /// <param name="skillCard"></param>
-    public void EquipmentLoad(InventoryItem skillCard)
+    public void EquipmentLoad(InventoryItemCard skillCard)
     {
-        var equipmentData = skillCard.GetCardData();
+        var cardData = skillCard.GetCardData();
+        var cardType = cardData.CardType;
 
-        // 장비 세팅 => 유형별로 구분
-        var equipmentType = equipmentData.CardType;
-
-        switch (equipmentType)
+        switch (cardType)
         {
             case CardType.Attack:
                 Equipping(0, skillCard);
@@ -46,28 +42,28 @@ public partial class Player : BehaviourSingleton<Player>
         PlayerAddStatModify(skillCard);
     }
 
-    private void Equipping(int num, InventoryItem invenItem)
+    private void Equipping(int num, InventoryItemCard invenItem)
     {
         // 장비칸 아이템 존재시 => 교체
-        if (this.equipments[num] != null) EquipmentUnload(this.equipments[num]);
+        if (this.cardDeck[num] != null) EquipmentUnload(this.cardDeck[num]);
 
         // 해당 장비창 채움
-        this.equipments[num] = invenItem;
+        this.cardDeck[num] = invenItem;
         // 장착 true 체크
         invenItem.IsEquip = true;
         // 아이템 이동: 인벤토리 => 장비창
         this.playerUI.LoadCardDeck(num, invenItem);
     }
 
-    private void PlayerAddStatModify(InventoryItem invenItem)
+    private void PlayerAddStatModify(InventoryItemCard invenItem)
     {
-        var equipmentData = invenItem.GetCardData();
+        var cardData = invenItem.GetCardData();
 
         // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        for (int i = 0; i < equipmentData.StatCount; i++)
+        for (int i = 0; i < cardData.StatCount; i++)
         {
-            StatType statType = equipmentData.ItemStatType(i);
-            int statValue = equipmentData.ItemStatValue(i);
+            StatType statType = cardData.ItemStatType(i);
+            int statValue = cardData.ItemStatValue(i);
 
             switch (statType)
             {
@@ -82,21 +78,19 @@ public partial class Player : BehaviourSingleton<Player>
         }
 
         // 스탯 변화 UI 표시
-        this.playerUI.SetHealthUI();
+        this.playerUI.SetHPText();
     }
 
     /// <summary>
     /// 장비(Equipment) 해체
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void EquipmentUnload(InventoryItem invenItem)
+    public void EquipmentUnload(InventoryItemCard invenItem)
     {
-        var equipmentData = invenItem.GetCardData();
+        var cardData = invenItem.GetCardData();
+        var cardType = cardData.CardType;
 
-        // 장비 세팅 => 유형별로 구분
-        var equipmentType = equipmentData.CardType;
-
-        switch (equipmentType)
+        switch (cardType)
         {
             case CardType.Attack:
                 Unequipping(0, invenItem);
@@ -116,14 +110,14 @@ public partial class Player : BehaviourSingleton<Player>
         PlayerRemoveStatModify(invenItem);
     }
 
-    private void PlayerRemoveStatModify(InventoryItem invenItem)
+    private void PlayerRemoveStatModify(InventoryItemCard invenItem)
     {
-        var equipmentData = invenItem.GetCardData();
+        var cardData = invenItem.GetCardData();
 
         // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        for (int i = 0; i < equipmentData.StatCount; i++)
+        for (int i = 0; i < cardData.StatCount; i++)
         {
-            var statType = equipmentData.ItemStatType(i);
+            var statType = cardData.ItemStatType(i);
 
             switch (statType)
             {
@@ -139,16 +133,16 @@ public partial class Player : BehaviourSingleton<Player>
         }
 
         // 스탯 변화 UI 표시
-        this.playerUI.SetHealthUI();
+        this.playerUI.SetHPText();
     }
 
-    private void Unequipping(int num, InventoryItem invenItem)
+    private void Unequipping(int num, InventoryItemCard invenItem)
     {
         // 해당 장비창 비움
-        this.equipments[num] = null;
+        this.cardDeck[num] = null;
         // 장착 false 체크
         invenItem.IsEquip = false;
         // 아이템 이동: 장비창 => 인벤토리
-        this.playerUI.CardUnload(invenItem);
+        //this.playerUI.CardUnload(invenItem);
     }
 }

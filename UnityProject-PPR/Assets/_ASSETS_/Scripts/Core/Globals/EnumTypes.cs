@@ -34,9 +34,9 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 아이템 레어도 타입
+    /// 아이템 등급
     /// </summary>
-    public enum ItemRare
+    public enum ItemGrade
     {
         Common, Uncommon, Rare, Boss
     }

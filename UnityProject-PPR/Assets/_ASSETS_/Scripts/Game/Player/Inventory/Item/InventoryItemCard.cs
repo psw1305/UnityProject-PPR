@@ -3,43 +3,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public bool IsEquip { get; set; }
-
     [SerializeField] private Image plate;
-    [SerializeField] private Image image;
-
-    private Button button;
-    private ItemBlueprint itemData;
     private int slotNumber = 0;
     private Transform parentAfterDrag;
 
-    /// <summary>
-    /// 아이템을 추가하여 장착하고 UI로 표시
-    /// </summary>
-    /// <param name="data">아이템 데이터</param>
-    public void Set(ItemBlueprint data)
+    public override void Set(ItemBlueprint data)
     {
-        this.IsEquip = false;
-        this.itemData = data;
-        this.image.sprite = data.ItemImage;
 
-        this.button = GetComponent<Button>();
-        this.button.onClick.AddListener(ItemClick);
-
-        // 프리팹 네임 => 데이터 네임으로 변경
-        this.name = data.name;
     }
 
-    public ItemBlueprint GetItemData()
+    public void SetSlotNumber(int slotNumber)
     {
-        return this.itemData;
+        this.slotNumber = slotNumber;
     }
 
-    public ItemType GetItemType()
+    public void SetParentAfterDrag(Transform dropTransform)
     {
-        return this.itemData.ItemType;
+        this.parentAfterDrag = dropTransform;
     }
 
     public ItemBlueprintCard GetCardData()
@@ -53,34 +35,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return equipData.CardType;
     }
 
-    public ItemBlueprintPotion GetUseableData()
-    {
-        return (ItemBlueprintPotion)this.itemData;
-    }
-
-    public void SetSlotNumber(int slotNumber)
-    {
-        this.slotNumber = slotNumber;
-    }
-
-    public void SetParentAfterDrag(Transform dropTransform)
-    {
-        this.parentAfterDrag = dropTransform;
-    }
-
-    /// <summary>
-    /// 인벤토리에서 아이템 클릭시 툴팁 표시
-    /// </summary>
-    private void ItemClick()
-    {
-        InventoryItemTooltip.Instance.Show(this);
-    }
-
     /// <summary>
     /// 플레이어 장비창에 아이템 등록 [기본값 = 0]
     /// </summary>
     /// /// <param name="slotNumber">장비창 슬롯 자리 숫자</param>
-    public void ItemLoad(int slotNumber = 0)
+    public void CardLoad(int slotNumber = 0)
     {
         if (this.IsEquip == true) return;
 
@@ -91,7 +50,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         else if (GetItemType() == ItemType.Potion)
         {
             this.slotNumber = slotNumber;
-            Player.Instance.PotionItemLoad(this, this.slotNumber);
+            //Player.Instance.PotionItemLoad(this, this.slotNumber);
         }
     }
 
@@ -108,7 +67,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         else if (GetItemType() == ItemType.Potion)
         {
-            Player.Instance.PotionItemUnload(this, this.slotNumber);
+            //Player.Instance.PotionItemUnload(this, this.slotNumber);
         }
     }
 
@@ -118,7 +77,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="changSlotNumber">바꿀 슬롯 자리 숫자</param>
     public void ItemMove(int changSlotNumber)
     {
-        Player.Instance.PotionItemMove(this, this.slotNumber, changSlotNumber);
+        //Player.Instance.PotionItemMove(this, this.slotNumber, changSlotNumber);
     }
 
     /// <summary>
@@ -127,7 +86,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// <param name="changSlotNumber">바꿀 슬롯 자리 숫자</param>
     public void ItemChange(int changSlotNumber)
     {
-        Player.Instance.PotionItemChange(this.slotNumber, changSlotNumber);
+        //Player.Instance.PotionItemChange(this.slotNumber, changSlotNumber);
     }
 
     /// <summary>
@@ -143,7 +102,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         this.transform.SetAsLastSibling();
         this.plate.raycastTarget = false;
 
-        PlayerUI.Instance.ItemOnBeginDrag(this);
+        //PlayerUI.Instance.ItemOnBeginDrag(this);
     }
 
     /// <summary>
@@ -167,6 +126,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         this.transform.SetParent(this.parentAfterDrag);
         this.plate.raycastTarget = true;
 
-        PlayerUI.Instance.ItemOnEndDrag(this);
+        //PlayerUI.Instance.ItemOnEndDrag(this);
     }
 }

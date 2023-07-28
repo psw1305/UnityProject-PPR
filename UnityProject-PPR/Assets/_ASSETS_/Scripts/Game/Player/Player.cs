@@ -12,35 +12,38 @@ public partial class Player : BehaviourSingleton<Player>
     [Header("Canvas")]
     [SerializeField] private Canvas[] canvases;
 
-    [Header("Script")]
+    [Header("Player UI")]
     [SerializeField] private PlayerUI playerUI;
+    [SerializeField] private PlayerItemTooltip tooltip;
 
     [Header("Stat")]
-    // Player Value => 장비에 영향 O
     public Stat HP;
     public Stat ACT;
-    public Stat ATK;
-    public Stat DEF;
 
-    public static int Cash { get; set; }
-    public static int CurrentHP { get; set; }
-    public static EnemyBlueprint BattleEnemy { get; set; }
+    public int Cash { get; set; }
+    public int CurrentHP { get; set; }
+    public EnemyBlueprint BattleEnemy { get; set; }
 
-    public void SetHp(int currentHp)
+    public void SetHP(int currentHp)
     {
         CurrentHP = currentHp;
-        this.playerUI.SetHealthUI();
-    }
-
-    public string GetHpText()
-    {
-        return CurrentHP.ToString();
+        this.playerUI.SetHPText();
     }
 
     public void SetCash(int cash)
     {
         Cash += cash;
-        this.playerUI.SetCashUI();
+        this.playerUI.SetCashText();
+    }
+
+    public string GetHPText()
+    {
+        return CurrentHP.ToString();
+    }
+
+    public string GetACTText()
+    {
+        return ACT.Value.ToString();
     }
 
     protected override void Awake()
@@ -52,15 +55,13 @@ public partial class Player : BehaviourSingleton<Player>
             GameManager.Instance.CameraChange(canvas);
         }
 
-        Set();
+        Set(40, 20, 0);
     }
 
-    private void Set(int hp = 40, int act = 20, int atk = 1, int def = 1, int cash = 0)
+    private void Set(int hp, int act, int cash)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
-        this.ATK.BaseValue = atk;
-        this.DEF.BaseValue = def;
 
         CurrentHP = hp;
         Cash = cash;

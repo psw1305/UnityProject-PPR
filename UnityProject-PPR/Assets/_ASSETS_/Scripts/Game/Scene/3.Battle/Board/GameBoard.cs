@@ -112,7 +112,7 @@ public partial class GameBoard : MonoBehaviour
         }
 
         // 플레이어가 장착한 소모품 생성
-        BattlePlayer.Instance.SetUseableItems();
+        //BattlePlayer.Instance.SetPotions();
 
         // 가중치 테스트 용
         //TestProbability();

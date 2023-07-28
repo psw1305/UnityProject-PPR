@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerUI : BehaviourSingleton<PlayerUI>
+public class PlayerUI : MonoBehaviour
 {
-    [Header("Front UI")]
+    [Header("Front UI - Stat")]
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI actText;
+    [SerializeField] private TextMeshProUGUI cashText;
+
+    [Header("Front UI - Button")]
     [SerializeField] private Button settings;
     [SerializeField] private Button inventory;
     [SerializeField] private Button cardDeck;
-    [SerializeField] private TextMeshProUGUI health;
-    [SerializeField] private TextMeshProUGUI cashText;
 
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventoryCanvas;
@@ -25,29 +28,26 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     [SerializeField] private Transform cardInvenList;
     [SerializeField] private InventorySlotCard[] cards;
 
-    [Header("Game End")]
-    [SerializeField] private CanvasGroup endCanvas;
-    [SerializeField] private GameObject endGameClearTitle;
-    [SerializeField] private GameObject endGameOverTitle;
-    [SerializeField] private Button endButton;
+    [Header("Game Result")]
+    [SerializeField] private CanvasGroup resultCanvas;
+    [SerializeField] private GameObject gameClearTitle;
+    [SerializeField] private GameObject gameOverTitle;
+    [SerializeField] private Button gameEndButton;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         this.inventoryCanvas.CanvasInit();
-        this.cardDeckCanvas.CanvasInit();
-        this.endCanvas.CanvasInit();
-
         this.inventory.onClick.AddListener(InventoryShow);
         this.inventoryClose.onClick.AddListener(InventoryHide);
 
+        this.cardDeckCanvas.CanvasInit();
         this.cardDeck.onClick.AddListener(CardDeckShow);
         this.cardDeckClose.onClick.AddListener(CardDeckHide);
 
         this.settings.onClick.AddListener(SettingShow);
 
-        this.endButton.onClick.AddListener(GameEnd);
+        this.resultCanvas.CanvasInit();
+        this.gameEndButton.onClick.AddListener(GameEnd);
     }
 
     /// <summary>
@@ -97,16 +97,16 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         {
             AudioBGM.Instance.BGMEnd(AudioBGM.Instance.victory);
 
-            this.endGameClearTitle.SetActive(true);
+            this.gameClearTitle.SetActive(true);
         }
         else if (Player.Instance.GameState == GameState.Defeat)
         {
             AudioBGM.Instance.BGMEnd(AudioBGM.Instance.defeat);
 
-            this.endGameOverTitle.SetActive(true);
+            this.gameOverTitle.SetActive(true);
         }
 
-        this.endCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.resultCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -115,31 +115,34 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     public void GameEnd()
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
-        this.endButton.interactable = false;
+        this.gameEndButton.interactable = false;
 
         SceneLoader.Instance.LoadScene(SceneNames.Lobby);
     }
 
     /// <summary>
-    /// Player UI 세팅
+    /// Front UI Stat 세팅
     /// </summary>
     public void SetUI()
     {
-        SetHealthUI();
-        SetCashUI();
+        SetHPText();
+        SetACTText();
+        SetCashText();
     }
 
-    public void SetHealthUI()
+    public void SetHPText()
     {
-        this.health.text = Player.Instance.GetHpText();
+        this.hpText.text = Player.Instance.GetHPText();
     }
 
-    /// <summary>
-    /// Player 재화 UI 표시
-    /// </summary>
-    public void SetCashUI()
+    public void SetACTText()
     {
-        this.cashText.text = Player.Cash.ToString();
+        this.actText.text = Player.Instance.GetACTText();
+    }
+
+    public void SetCashText()
+    {
+        this.cashText.text = Player.Instance.Cash.ToString();
     }
 
     /// <summary>
@@ -152,27 +155,27 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         invenItem.transform.SetParent(this.cards[num].transform);
     }
 
-    /// <summary>
-    /// 소모품 장착
-    /// </summary>
-    /// <param name="num">슬롯 번호</param>
-    /// <param name="invenItem">장착할 아이템</param>
-    public void LoadPotionBelt(int num, InventoryItem invenItem)
-    {
-        invenItem.SetSlotNumber(num);
-        invenItem.SetParentAfterDrag(this.potionBelt[num].GetDropSlot());
-        invenItem.transform.SetParent(this.potionBelt[num].GetDropSlot());
-    }
+    ///// <summary>
+    ///// 소모품 장착
+    ///// </summary>
+    ///// <param name="num">슬롯 번호</param>
+    ///// <param name="invenItem">장착할 아이템</param>
+    //public void LoadPotionBelt(int num, InventoryItem invenItem)
+    //{
+    //    invenItem.SetSlotNumber(num);
+    //    invenItem.SetParentAfterDrag(this.potionBelt[num].GetDropSlot());
+    //    invenItem.transform.SetParent(this.potionBelt[num].GetDropSlot());
+    //}
 
-    /// <summary>
-    /// 장착 아이템 해제 => 다시 인벤토리 창으로
-    /// </summary>
-    /// <param name="invenItem">해제할 아이템</param>
-    public void CardUnload(InventoryItem invenItem)
-    {
-        invenItem.SetSlotNumber(0);
-        invenItem.transform.SetParent(this.cardInvenList);
-    }
+    ///// <summary>
+    ///// 장착 아이템 해제 => 다시 인벤토리 창으로
+    ///// </summary>
+    ///// <param name="invenItem">해제할 아이템</param>
+    //public void CardUnload(InventoryItem invenItem)
+    //{
+    //    invenItem.SetSlotNumber(0);
+    //    invenItem.transform.SetParent(this.cardInvenList);
+    //}
 
     /// <summary>
     /// 인벤토리 아이템 드래그 시작시 => 해당 슬롯 애니메이션

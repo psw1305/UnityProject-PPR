@@ -10,9 +10,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     [SerializeField] private RectTransform statTable;
 
     [Header("Potion")]
-    [SerializeField] private GameObject useableItemPrefab;
-    [SerializeField] private Transform[] useableSlots;
-    private BattlePlayerUseableItem[] useableItems;
+    [SerializeField] private GameObject potionPrefab;
+    [SerializeField] private Transform[] potionSlots;
 
     [Header("Particle")]
     [SerializeField] private ParticleSystem weakWreckParticle;
@@ -20,7 +19,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 
     [Header("Scripts")]
     [SerializeField] private BattleSystem battleSystem;
-    [SerializeField] private BattlePlayerUI playerUI;
+    [SerializeField] private BattlePlayerUI battlePlayerUI;
 
     public int HP { get; set; }
     public int ACT { get; set; }
@@ -34,32 +33,33 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 
     public float GetPercentHP() => CurrentHP / (float)this.HP;
 
+    private Player player;
+
     protected override void Awake()
     {
         base.Awake();
 
-        this.useableItems = new BattlePlayerUseableItem[5];
+        this.player = Player.Instance;
 
-        if (Player.Instance != null)
+        if (this.player != null)
         {
-            this.HP = Player.Instance.HP.Value;
-            this.ACT = Player.Instance.ACT.Value;
-            this.ATK = Player.Instance.ATK.Value;
-            this.DEF = Player.Instance.DEF.Value;
-            this.CurrentHP = Player.CurrentHP;
+            this.HP = this.player.HP.Value;
+            this.ACT = this.player.ACT.Value;
+            this.CurrentHP = this.player.CurrentHP;
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
         {
             this.HP = 999;
             this.ACT = 20;
-            this.ATK = 1;
-            this.DEF = 1;
             this.CurrentHP = 999;
         }
 
-        this.playerUI.SetHpText(this.CurrentHP, this.HP);
-        this.playerUI.SetStatText(this.ACT, this.ATK, this.DEF);
+        this.ATK = 1;
+        this.DEF = 1;
+
+        this.battlePlayerUI.SetHpText(this.CurrentHP, this.HP);
+        this.battlePlayerUI.SetStatText(this.ACT, this.ATK, this.DEF);
     }
 
     private void OnEnable()
@@ -70,23 +70,6 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     private void OnDisable()
     {
         GameBoardEvents.OnPlayerTurnInit.RemoveListener(Init);
-    }
-
-    public void SetUseableItems()
-    {
-        if (Player.Instance == null) return;
-
-        var itemLists = Player.Instance.potionBelt;
-
-        for (int i = 0; i < itemLists.Length; i++)
-        {
-            if (itemLists[i] != null)
-            {
-                var useableItemClone = Instantiate(this.useableItemPrefab, this.useableSlots[i]).GetComponent<BattlePlayerUseableItem>();
-                useableItemClone.Set(itemLists[i].GetUseableData());
-                this.useableItems[i] = useableItemClone;
-            }
-        }
     }
 
     /// <summary>
@@ -153,7 +136,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 0 이하 표시 금지
         if (CurrentACT <= 0) CurrentACT = 0;
 
-        this.playerUI.SetActText(CurrentACT);
+        this.battlePlayerUI.SetActText(CurrentACT);
     }
 
     /// <summary>
@@ -194,7 +177,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         // 플레이어 사망
         if (damagedHP <= 0)
         {
-            this.playerUI.Dead();
+            this.battlePlayerUI.Dead();
             this.battleSystem.BattleCheck(BattlePlay.PlayerDead);
 
             // 전투 종료
@@ -204,7 +187,10 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         CurrentHP = damagedHP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(CurrentHP, damagedHP);
 
-        if (Player.Instance != null) Player.Instance.SetHp(CurrentHP);
+        if (this.player != null)
+        {
+            this.player.SetHP(CurrentHP);
+        }
     }
 
     /// <summary>
@@ -233,32 +219,23 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     private void Init()
     {
         // 스탯 초기화
-        InitActionCount();
-        InitShieldPoint();
-
-        // 소모품 아이템 초기화
-        for (int i = 0; i < this.useableItems.Length; i++)
-        {
-            if (this.useableItems[i] != null)
-            {
-                this.useableItems[i].Init();
-            }
-        }
+        InitAct();
+        InitShield();
     }
 
     /// <summary>
     /// 플레이어 공격력 초기화
     /// </summary>
-    private void InitActionCount()
+    private void InitAct()
     {
-        this.playerUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
+        this.battlePlayerUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
         this.CurrentACT = this.ACT;
     }
 
     /// <summary>
     /// 플레이어 방어력 초기화
     /// </summary>
-    private void InitShieldPoint()
+    private void InitShield()
     {
         var oldPoint = this.CurrentSP;
         this.CurrentSP = 0;

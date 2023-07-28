@@ -52,7 +52,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             if (Player.Instance != null)
             {
                 // 적 정보 가져오기
-                this.enemyBlueprint = Player.BattleEnemy;
+                this.enemyBlueprint = Player.Instance.BattleEnemy;
             }
 
             battleEnemy.SetPosition(this.enemyCount, i);

@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace PSW.Core.Map
 {
@@ -65,11 +63,11 @@ namespace PSW.Core.Map
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
                 case MapNodeType.MinorEnemy:
-                    Player.BattleEnemy = MapManager.Instance.GetMinorEnemy();
+                    Player.Instance.BattleEnemy = MapManager.Instance.GetMinorEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
                 case MapNodeType.EliteEnemy:
-                    Player.BattleEnemy = MapManager.Instance.GetEliteEnemy();
+                    Player.Instance.BattleEnemy = MapManager.Instance.GetEliteEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
                 case MapNodeType.RestSite:
@@ -85,7 +83,7 @@ namespace PSW.Core.Map
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
                 case MapNodeType.Boss:
-                    Player.BattleEnemy = MapManager.Instance.GetBossEnemy();
+                    Player.Instance.BattleEnemy = MapManager.Instance.GetBossEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
             }

@@ -59,14 +59,14 @@ public class ShopItem : MonoBehaviour
         }
 
         // 레어도에 따른 가격 조정
-        ItemRare rareType = this.itemData.ItemRareType; 
+        ItemGrade rareType = this.itemData.ItemRareType; 
 
         switch (rareType)
         {
-            case ItemRare.Uncommon:
+            case ItemGrade.Uncommon:
                 itemOriginPrice *= ItemPrice.PRICE_WEIGHT_UNCOMMON;
                 break;
-            case ItemRare.Rare:
+            case ItemGrade.Rare:
                 itemOriginPrice *= ItemPrice.PRICE_WEIGHT_RARE;
                 break;
         }

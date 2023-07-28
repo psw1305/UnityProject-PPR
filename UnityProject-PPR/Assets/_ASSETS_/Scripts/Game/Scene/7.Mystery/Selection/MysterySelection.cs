@@ -101,7 +101,7 @@ public class MysterySelection : MonoBehaviour
 
         var randomHp = Random.Range(5, 11);
         Player.Instance.HP.AddModifier(new StatModifier(randomHp, StatModType.Int, this));
-        Player.Instance.SetHp(Player.CurrentHP + randomHp);
+        Player.Instance.SetHP(Player.Instance.CurrentHP + randomHp);
     }
 
     private void ItemGain()

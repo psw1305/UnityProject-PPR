@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryItemTooltip : BehaviourSingleton<InventoryItemTooltip>
+public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
 {
     public bool IsShow { get; private set; }
 

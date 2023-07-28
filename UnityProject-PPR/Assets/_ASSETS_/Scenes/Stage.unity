@@ -7041,107 +7041,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891945554}
   m_CullTransparentMesh: 1
---- !u!1 &919738886
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 919738887}
-  - component: {fileID: 919738890}
-  - component: {fileID: 919738889}
-  - component: {fileID: 919738888}
-  m_Layer: 5
-  m_Name: UI Result (70)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &919738887
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919738886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2059149179}
-  m_Father: {fileID: 6064037377421304661}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &919738888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919738886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 823
---- !u!114 &919738889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919738886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 270, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &919738890
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919738886}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 10
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 70
-  m_TargetDisplay: 0
 --- !u!1 &922576049
 GameObject:
   m_ObjectHideFlags: 0
@@ -8961,7 +8860,7 @@ GameObject:
   - component: {fileID: 1151040031}
   - component: {fileID: 1151040032}
   m_Layer: 5
-  m_Name: Item Tooltip
+  m_Name: Player Item Tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -16127,7 +16026,7 @@ GameObject:
   - component: {fileID: 2059149181}
   - component: {fileID: 2059149180}
   m_Layer: 5
-  m_Name: '[Canvas] Game Clear'
+  m_Name: '[Canvas] Game Result'
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -16147,12 +16046,12 @@ RectTransform:
   m_Children:
   - {fileID: 1881326582}
   - {fileID: 1463548029}
-  m_Father: {fileID: 919738887}
-  m_RootOrder: 0
+  m_Father: {fileID: 6064037377141784788}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -660}
+  m_AnchoredPosition: {x: 660, y: 660}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &2059149180
@@ -17580,11 +17479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe445ab4c56b51478fd36dbbd10b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpText: {fileID: 808316832}
+  actText: {fileID: 494709542}
+  cashText: {fileID: 6064037377728142556}
   settings: {fileID: 98431357}
   inventory: {fileID: 6064037377554195178}
   cardDeck: {fileID: 1976486041}
-  health: {fileID: 808316832}
-  cashText: {fileID: 6064037377728142556}
   inventoryCanvas: {fileID: 1471420349}
   inventoryClose: {fileID: 1853734874}
   relicAltar: {fileID: 43993619}
@@ -17593,10 +17493,10 @@ MonoBehaviour:
   cardDeckClose: {fileID: 1698040911}
   cardInvenList: {fileID: 1775702160}
   cards: []
-  endCanvas: {fileID: 2059149180}
-  endGameClearTitle: {fileID: 1205952327344986466}
-  endGameOverTitle: {fileID: 960551081}
-  endButton: {fileID: 1352129374}
+  resultCanvas: {fileID: 2059149180}
+  gameClearTitle: {fileID: 1205952327344986466}
+  gameOverTitle: {fileID: 960551081}
+  gameEndButton: {fileID: 1352129374}
 --- !u!224 &6064037377141784788
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17612,6 +17512,7 @@ RectTransform:
   - {fileID: 6064037378346367765}
   - {fileID: 1471420347}
   - {fileID: 1883164353}
+  - {fileID: 2059149179}
   m_Father: {fileID: 6064037378538263773}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17726,7 +17627,6 @@ Transform:
   m_Children:
   - {fileID: 6064037378538263773}
   - {fileID: 705084669}
-  - {fileID: 919738887}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17745,19 +17645,25 @@ MonoBehaviour:
   canvases:
   - {fileID: 6064037378538263768}
   - {fileID: 705084672}
-  - {fileID: 919738890}
   playerUI: {fileID: 6064037377141784786}
+  tooltip: {fileID: 1151040032}
   HP:
     BaseValue: 0
   ACT:
     BaseValue: 0
-  ATK:
-    BaseValue: 0
-  DEF:
-    BaseValue: 0
-  cardDeck: []
-  equipments: []
-  potionBelt: []
+  cardDeck:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  relicAltar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  potionBelt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!222 &6064037377554194965
 CanvasRenderer:
   m_ObjectHideFlags: 0

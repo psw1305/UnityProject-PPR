@@ -62,7 +62,7 @@ public class InventorySystem : BehaviourSingleton<InventorySystem>, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         GameObject dropped = eventData.pointerDrag;
-        InventoryItem invenItem = dropped.GetComponent<InventoryItem>();
+        InventoryItemCard invenItem = dropped.GetComponent<InventoryItemCard>();
         invenItem.SetParentAfterDrag(this.inventoryTransform);
         invenItem.ItemUnload();
     }
