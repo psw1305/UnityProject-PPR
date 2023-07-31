@@ -1,9 +1,10 @@
 
 public class InventoryItemRelic : InventoryItem
 {
-    
-    public override void Set(ItemBlueprint data)
+    protected override void ItemTooltipShow()
     {
+        base.ItemTooltipShow();
 
+        PlayerItemTooltip.Instance.RelicTooltipShow(this);
     }
 }

@@ -24,6 +24,37 @@ public partial class Player : BehaviourSingleton<Player>
     public int CurrentHP { get; set; }
     public EnemyBlueprint BattleEnemy { get; set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        foreach (Canvas canvas in this.canvases)
+        {
+            GameManager.Instance.CameraChange(canvas);
+        }
+
+        Setting(40, 20, 0);
+    }
+
+    private void Start()
+    {
+        SetInventory();
+        SetDeck();
+
+        this.playerUI.SetUI();
+    }
+
+
+    private void Setting(int hp, int act, int cash)
+    {
+        this.HP.BaseValue = hp;
+        this.ACT.BaseValue = act;
+
+        CurrentHP = hp;
+        Cash = cash;
+    }
+
+    #region Set, Get
     public void SetHP(int currentHp)
     {
         CurrentHP = currentHp;
@@ -45,36 +76,9 @@ public partial class Player : BehaviourSingleton<Player>
     {
         return ACT.Value.ToString();
     }
+    #endregion
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        foreach (Canvas canvas in this.canvases)
-        {
-            GameManager.Instance.CameraChange(canvas);
-        }
-
-        Set(40, 20, 0);
-    }
-
-    private void Set(int hp, int act, int cash)
-    {
-        this.HP.BaseValue = hp;
-        this.ACT.BaseValue = act;
-
-        CurrentHP = hp;
-        Cash = cash;
-    }
-
-    private void Start()
-    {
-        SetInventory();
-        SetDeck();
-
-        this.playerUI.SetUI();
-    }
-
+    #region 게임 결과 관련
     /// <summary>
     /// 플레이어 게임 클리어 이벤트
     /// </summary>
@@ -94,4 +98,5 @@ public partial class Player : BehaviourSingleton<Player>
 
         this.playerUI.EndCanvasShow();
     }
+    #endregion
 }

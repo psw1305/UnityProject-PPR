@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac89c8992b75d784d835b96ee73e3b7c, type: 3}
   m_Name: Potion_C_FirePotion
   m_EditorClassIdentifier: 
-  image: {fileID: -1911758436, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  image: {fileID: 21300000, guid: 29acf80643185044c9c68adebd09c0ba, type: 3}
   itemType: 2
   itemRareType: 0
   itemName: "\uD654\uC5FC \uD3EC\uC158"
-  itemDesc: "\uB300\uC0C1 \uD558\uB098\uC5D0 \uD53C\uD574\uB97C 20 \uC900\uB2E4"
   ability:
-    type: 1
     element: {fileID: 0}

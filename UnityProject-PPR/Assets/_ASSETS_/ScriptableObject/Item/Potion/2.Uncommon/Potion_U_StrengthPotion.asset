@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac89c8992b75d784d835b96ee73e3b7c, type: 3}
   m_Name: Potion_U_StrengthPotion
   m_EditorClassIdentifier: 
-  image: {fileID: 2138440809, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  image: {fileID: 21300000, guid: c3293988df7423c46a7ede5905ef308e, type: 3}
   itemType: 2
   itemRareType: 1
   itemName: "\uD798 \uD3EC\uC158"
-  itemDesc: "\uD798\uC744 2 \uC5BB\uB294\uB2E4"
   ability:
-    type: 0
     element: {fileID: 0}

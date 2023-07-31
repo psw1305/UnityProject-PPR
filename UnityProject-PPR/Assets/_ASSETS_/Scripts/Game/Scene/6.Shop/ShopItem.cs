@@ -91,7 +91,7 @@ public class ShopItem : MonoBehaviour
     private int SetPriceToArtifact()
     {
         int priceMin = 0, priceMax = 1;
-        var eqipmentData = (ItemBlueprintRelic)this.itemData;
+        var relicData = (ItemBlueprintRelic)this.itemData;
 
         //switch (eqipmentData.EquipmentType)
         //{

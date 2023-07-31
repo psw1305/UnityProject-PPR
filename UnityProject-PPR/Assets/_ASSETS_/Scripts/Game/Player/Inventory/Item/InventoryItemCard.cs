@@ -9,11 +9,6 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     private int slotNumber = 0;
     private Transform parentAfterDrag;
 
-    public override void Set(ItemBlueprint data)
-    {
-
-    }
-
     public void SetSlotNumber(int slotNumber)
     {
         this.slotNumber = slotNumber;
@@ -26,12 +21,12 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
 
     public ItemBlueprintCard GetCardData()
     {
-        return (ItemBlueprintCard)this.itemData;
+        return (ItemBlueprintCard)this.blueprint;
     }
 
     public CardType GetCardType()
     {
-        var equipData = (ItemBlueprintCard)this.itemData;
+        var equipData = (ItemBlueprintCard)this.blueprint;
         return equipData.CardType;
     }
 

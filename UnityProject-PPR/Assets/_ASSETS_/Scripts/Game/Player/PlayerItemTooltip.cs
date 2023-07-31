@@ -31,8 +31,6 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDesc;
 
-    private InventoryItem invenItem;
-
     protected override void Awake()
     {
         base.Awake();
@@ -40,63 +38,92 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
         this.IsShow = false;
 
         this.relicTooltipCanvas.CanvasInit();
+        this.potionTooltipCanvas.CanvasInit();
+
+        this.relicTooltipClose.onClick.AddListener(RelicTooltipHide);
+        this.potionTooltipClose.onClick.AddListener(PotionTooltipHide);
     }
 
     /// <summary>
-    /// 장비 툴팁 표시
+    /// 해당 아이템 데이터에 맞게 UI 부여
+    /// </summary>
+    /// <param name="invenItem">유물 아이템</param>
+    private void SetTooltip(InventoryItem invenItem)
+    {
+        var itemData = invenItem.GetItemData();
+
+        // 아이템 타입에 따른 정보 구분
+        if (itemData.ItemType == ItemType.Relic)
+        {
+            this.relicIcon.sprite = itemData.ItemImage;
+            this.relicName.text = itemData.ItemName;
+        }
+        else if (itemData.ItemType == ItemType.Potion)
+        {
+            this.potionIcon.sprite = itemData.ItemImage;
+            this.potionName.text = itemData.ItemName;
+        }
+    }
+
+    /// <summary>
+    /// 유물 아이템 툴팁 표시
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void Show(InventoryItem invenItem)
+    public void RelicTooltipShow(InventoryItem invenItem)
     {
         if (this.IsShow == true) return;
 
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
-        this.IsShow = true;
-        //this.tooltipClose.interactable = true;
-
         SetTooltip(invenItem);
 
-        //this.tooltipCanvas.CanvasFadeIn(0.25f);
+        this.IsShow = true;
+        this.relicTooltipClose.interactable = true;
+        this.relicTooltipCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>
-    /// 장비 툴팁 숨김
+    /// 유물 아이템 툴팁 숨김
     /// </summary>
-    public void RelicTooltipHide()
+    private void RelicTooltipHide()
     {
         if (this.IsShow == false) return;
 
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
         this.IsShow = false;
+        this.relicTooltipClose.interactable = false;
+        this.relicTooltipCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
     }
 
     /// <summary>
-    /// 해당 아이템 데이터에 맞게 UI 부여
+    /// 포션 아이템 툴팁 표시
     /// </summary>
-    /// <param name="relicItem">유물 아이템</param>
-    private void SetTooltip(InventoryItem relicItem)
+    /// <param name="invenItem">인벤토리 아이템</param>
+    public void PotionTooltipShow(InventoryItem invenItem)
     {
-        this.invenItem = relicItem;
-        ItemBlueprint itemData = this.invenItem.GetItemData();
+        if (this.IsShow == true) return;
 
-        // 아이콘, 이름, 설명 부여
-        this.relicIcon.sprite = itemData.ItemImage;
-        this.relicName.text = itemData.ItemName;
+        UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
-        // 아이템 타입에 따른 정보 구분
-        if (itemData.ItemType == ItemType.Relic)
-        {
-            //DataInputEquipment((ItemBlueprintArtifact)itemData);
-        }
-        else if (itemData.ItemType == ItemType.Potion)
-        {
-            //DataInputPotion(itemData);
-        }
-        else if (itemData.ItemType == ItemType.Potion)
-        {
-            //DataInputPotion(itemData);
-        }
+        SetTooltip(invenItem);
+
+        this.IsShow = true;
+        this.potionTooltipClose.interactable = true;
+        this.potionTooltipCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+    }
+
+    /// <summary>
+    /// 포션 아이템 툴팁 숨김
+    /// </summary>
+    public void PotionTooltipHide()
+    {
+        if (this.IsShow == false) return;
+
+        UISFX.Instance.Play(UISFX.Instance.buttonClick);
+
+        this.IsShow = false;
+        this.potionTooltipClose.interactable = false;
+        this.potionTooltipCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
     }
 }

@@ -19,8 +19,8 @@ public class PlayerUI : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventoryCanvas;
     [SerializeField] private Button inventoryClose;
-    [SerializeField] private Transform relicAltar;
-    [SerializeField] private InventorySlotPotion[] potionBelt;
+    [SerializeField] private Transform gridRelic;
+    [SerializeField] private Transform gridPotion;
 
     [Header("Card Deck")]
     [SerializeField] private CanvasGroup cardDeckCanvas;
@@ -50,6 +50,17 @@ public class PlayerUI : MonoBehaviour
         this.gameEndButton.onClick.AddListener(GameEnd);
     }
 
+    public Transform GetGridRelic()
+    {
+        return this.gridRelic;
+    }
+
+    public Transform GetGridPotion()
+    {
+        return this.gridPotion;
+    }
+
+    #region Canvas Show, Hide
     /// <summary>
     /// 인벤토리 창 열기
     /// </summary>
@@ -87,6 +98,7 @@ public class PlayerUI : MonoBehaviour
     {
         SettingsSystem.Instance.Show();
     }
+    #endregion
 
     /// <summary>
     /// 게임 오버시 => 결과 창 열기

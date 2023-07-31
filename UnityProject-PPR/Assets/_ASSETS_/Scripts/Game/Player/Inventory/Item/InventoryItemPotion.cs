@@ -1,15 +1,15 @@
 
 public class InventoryItemPotion : InventoryItem
 {
-    
-    public override void Set(ItemBlueprint data)
-    {
-
-    }
-
-
     public ItemBlueprintPotion GetPotionData()
     {
-        return (ItemBlueprintPotion)this.itemData;
+        return (ItemBlueprintPotion)this.blueprint;
+    }
+
+    protected override void ItemTooltipShow()
+    {
+        base.ItemTooltipShow();
+
+        PlayerItemTooltip.Instance.PotionTooltipShow(this);
     }
 }

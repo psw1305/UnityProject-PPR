@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac89c8992b75d784d835b96ee73e3b7c, type: 3}
   m_Name: Potion_R_FruitJuice
   m_EditorClassIdentifier: 
-  image: {fileID: -1410032411, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  image: {fileID: 21300000, guid: 31f11ddb167accf47ab3551b50a733f1, type: 3}
   itemType: 2
   itemRareType: 2
   itemName: "\uACFC\uC77C \uC8FC\uC2A4"
-  itemDesc: "\uCD5C\uB300 \uCCB4\uB825\uC744 5 \uC5BB\uB294\uB2E4"
   ability:
-    type: 1
     element: {fileID: 0}

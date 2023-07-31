@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// Player Inventory Partial Class
 /// </summary>
@@ -10,8 +8,15 @@ public partial class Player : BehaviourSingleton<Player>
 
     public void SetInventory()
     {
-        this.relicAltar = new InventoryItemRelic[12];
-        this.potionBelt = new InventoryItemPotion[5];
+        for (int i = 0; i < 5; i++)
+        {
+            this.relicAltar[i] = GameManager.Instance.ItemLootRelic(this.playerUI.GetGridRelic());
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            this.potionBelt[i] = GameManager.Instance.ItemLootPotion(this.playerUI.GetGridPotion());
+        }
     }
 
     public void PotionItemLoad(InventoryItemPotion invenItem, int num)

@@ -438,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3065613823626335223}
   m_Layer: 0
-  m_Name: Random Item
+  m_Name: Item Loot Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,6 +457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3132394648702473163}
+  - {fileID: 1044455323340561974}
   m_Father: {fileID: 3971533429750222688}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1129,7 +1130,7 @@ GameObject:
   - component: {fileID: 3132394648702473163}
   - component: {fileID: 3814591337692405334}
   m_Layer: 0
-  m_Name: Random Relic
+  m_Name: Relic Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,17 +1163,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf34e3112b51864a85e28dc9d16e9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonList:
-  - {fileID: 11400000, guid: ce970b7533e4ff84bac037dc94279843, type: 2}
-  - {fileID: 11400000, guid: b9ba1a76a1eb6de4aaf0085c6cba6a85, type: 2}
-  - {fileID: 11400000, guid: 63b77b4a07ca9c84a8e6731aaff9fa9b, type: 2}
-  - {fileID: 11400000, guid: 19cf17d6f154cd94999a531133399499, type: 2}
-  - {fileID: 11400000, guid: 2d13bf36b6aed2c4eb075d8cf4ca12a3, type: 2}
-  uncommonList:
-  - {fileID: 11400000, guid: 97be9f3bbf221df488f274928c66a4db, type: 2}
-  - {fileID: 11400000, guid: 25b29f8c68942ff48a09bdfaa1851871, type: 2}
-  rareList:
-  - {fileID: 11400000, guid: 952ebbd6e64ce9c46a89909cb89a81ed, type: 2}
+  itemLists:
+  - listName: Relic Common
+    itemList:
+    - {fileID: 11400000, guid: ce970b7533e4ff84bac037dc94279843, type: 2}
+    - {fileID: 11400000, guid: b9ba1a76a1eb6de4aaf0085c6cba6a85, type: 2}
+    - {fileID: 11400000, guid: 63b77b4a07ca9c84a8e6731aaff9fa9b, type: 2}
+    - {fileID: 11400000, guid: 19cf17d6f154cd94999a531133399499, type: 2}
+    - {fileID: 11400000, guid: 2d13bf36b6aed2c4eb075d8cf4ca12a3, type: 2}
+    weight: 65
+  - listName: Relic Uncommon
+    itemList:
+    - {fileID: 11400000, guid: adf2f604abff67f4dbadc9ad81cba4aa, type: 2}
+    - {fileID: 11400000, guid: 97be9f3bbf221df488f274928c66a4db, type: 2}
+    - {fileID: 11400000, guid: 25b29f8c68942ff48a09bdfaa1851871, type: 2}
+    - {fileID: 11400000, guid: eb5a8248d1fcfc14aa2d1ca562712557, type: 2}
+    - {fileID: 11400000, guid: 8986f60026571544db6c41b403b6351e, type: 2}
+    weight: 25
+  - listName: Relic Rare
+    itemList:
+    - {fileID: 11400000, guid: 952ebbd6e64ce9c46a89909cb89a81ed, type: 2}
+    - {fileID: 11400000, guid: 7c93dd063bd53cc47aeb9c17702b16f0, type: 2}
+    - {fileID: 11400000, guid: 97bb38391821c874aad5a224514f528d, type: 2}
+    - {fileID: 11400000, guid: 687a638249582164fb6d6968480c3d92, type: 2}
+    - {fileID: 11400000, guid: 3b37d5af70181654d80910d1ab6be459, type: 2}
+    weight: 10
 --- !u!1 &2759126623571927682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,6 +2376,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 6140414155709630025}
+  relicPrefab: {fileID: 918591208868060341, guid: b41ec52032bab59408233f674f2f1b21,
+    type: 3}
+  potionPrefab: {fileID: 1500066845021130568, guid: bfdbf251d9467aa42a5e4d9b4658df48,
+    type: 3}
+  relicLootTable: {fileID: 3814591337692405334}
+  potionLootTable: {fileID: 1221357448481987541}
 --- !u!1 &4095437680970354375
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,6 +4494,69 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6912911805321674548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1044455323340561974}
+  - component: {fileID: 1221357448481987541}
+  m_Layer: 0
+  m_Name: Potion Table
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1044455323340561974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912911805321674548}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3065613823626335223}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1221357448481987541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912911805321674548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf34e3112b51864a85e28dc9d16e9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemLists:
+  - listName: Potion Common
+    itemList:
+    - {fileID: 11400000, guid: c9f3aaa8b0d074f43aef79173a5ae969, type: 2}
+    - {fileID: 11400000, guid: bdc65c25db1eea64ab504f7825b36784, type: 2}
+    - {fileID: 11400000, guid: 958cfbed9c3039d47b913a17b9af8429, type: 2}
+    weight: 65
+  - listName: Potion  Uncommon
+    itemList:
+    - {fileID: 11400000, guid: 0477548acf7f46e42b474f1a35ea614c, type: 2}
+    - {fileID: 11400000, guid: 060e94ef0bf53754fbe4457e90e7ec81, type: 2}
+    - {fileID: 11400000, guid: e14e5ff9820afdc43ac1afed8c591561, type: 2}
+    weight: 25
+  - listName: Potion  Rare
+    itemList:
+    - {fileID: 11400000, guid: 654d8c524059edb4eb06a1256129ffe2, type: 2}
+    - {fileID: 11400000, guid: 70270b24ff7f86547aecf190565fe42c, type: 2}
+    - {fileID: 11400000, guid: aa00367b0c716794b936146b1306c17f, type: 2}
+    weight: 10
 --- !u!1 &6919230011153486409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6145,7 +6229,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 150
   m_TargetDisplay: 0
@@ -8966,7 +9050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC30\uACBD\uC74C\n"
+  m_text: "\uBC30\uACBD\uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea350ab5d5e8249439bba6bd2da5317b, type: 2}
   m_sharedMaterial: {fileID: 4029777637623508966, guid: ea350ab5d5e8249439bba6bd2da5317b,

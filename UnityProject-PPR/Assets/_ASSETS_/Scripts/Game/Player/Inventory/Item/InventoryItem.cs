@@ -1,6 +1,5 @@
 using PSW.Core.Enums;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
@@ -10,31 +9,30 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] private ItemType itemType;
     [SerializeField] private Button button;
     [SerializeField] private Image image;
-    protected ItemBlueprint itemData;
+    protected ItemBlueprint blueprint;
 
     /// <summary>
     /// 아이템을 추가하여 장착하고 UI로 표시
     /// </summary>
-    /// <param name="data">아이템 데이터</param>
-    public virtual void Set(ItemBlueprint data)
+    /// <param name="blueprint">아이템 데이터</param>
+    public virtual void Set(ItemBlueprint blueprint)
     {
         this.IsEquip = false;
-        this.itemData = data;
-        this.image.sprite = data.ItemImage;
-        this.button.onClick.AddListener(ItemTooltipShow);
+        this.blueprint = blueprint;
+        this.name = blueprint.name;
+        this.image.sprite = blueprint.ItemImage;
 
-        // 프리팹 네임 => 데이터 네임으로 변경
-        this.name = data.name;
+        this.button.onClick.AddListener(ItemTooltipShow);
     }
 
     public ItemBlueprint GetItemData()
     {
-        return this.itemData;
+        return this.blueprint;
     }
 
     public ItemType GetItemType()
     {
-        return this.itemData.ItemType;
+        return this.blueprint.ItemType;
     }
 
     /// <summary>

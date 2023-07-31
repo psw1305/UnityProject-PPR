@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac89c8992b75d784d835b96ee73e3b7c, type: 3}
   m_Name: Potion_U_Elixir
   m_EditorClassIdentifier: 
-  image: {fileID: -1483878533, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  image: {fileID: 21300000, guid: b5498e8657e95ad4db253964a5248aa3, type: 3}
   itemType: 2
   itemRareType: 1
   itemName: "\uC5D8\uB9AD\uC11C"
-  itemDesc: "\uBAA8\uB4E0 \uC0C1\uD0DC\uC774\uC0C1\uACFC \uC800\uC8FC\uB97C \uC18C\uBA78\uD55C\uB2E4"
   ability:
-    type: 0
     element: {fileID: 0}
