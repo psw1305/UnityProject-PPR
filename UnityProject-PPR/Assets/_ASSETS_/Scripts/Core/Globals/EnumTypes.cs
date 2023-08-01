@@ -38,7 +38,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum ItemGrade
     {
-        Common, Uncommon, Rare, Boss
+        Common, Uncommon, Rare, Shop, Boss, Event
     }
 
     /// <summary>

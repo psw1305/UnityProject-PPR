@@ -4,7 +4,11 @@ using UnityEngine;
 public class MysteryConfig : ScriptableObject
 {
     [Header("Event Settings")]
-    public GameObject[] selections;
-    public Sprite eventPicture;
-    public string stringTable;
+    [SerializeField] private GameObject[] selections;
+    [SerializeField] private Sprite eventPicture;
+    [SerializeField] private string stringTable;
+
+    public GameObject[] Selections => this.selections;
+    public Sprite EventPicture => this.eventPicture;
+    public string StringTable => this.stringTable;
 }

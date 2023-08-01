@@ -67,7 +67,7 @@ public class PlayerUI : MonoBehaviour
     private void InventoryShow()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryOpen);
-        this.inventoryCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.inventoryCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -76,13 +76,13 @@ public class PlayerUI : MonoBehaviour
     private void InventoryHide()
     {
         UISFX.Instance.Play(UISFX.Instance.inventoryClose);
-        this.inventoryCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        this.inventoryCanvas.CanvasFadeOut(DUR.CANVAS_FADE_TIME);
     }
 
     private void CardDeckShow()
     {
         UISFX.Instance.Play(UISFX.Instance.cardDeckOpen);
-        this.cardDeckCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.cardDeckCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class PlayerUI : MonoBehaviour
     private void CardDeckHide()
     {
         UISFX.Instance.Play(UISFX.Instance.cardDeckClose);
-        this.cardDeckCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        this.cardDeckCanvas.CanvasFadeOut(DUR.CANVAS_FADE_TIME);
     }
 
     private void SettingShow()
@@ -118,7 +118,7 @@ public class PlayerUI : MonoBehaviour
             this.gameOverTitle.SetActive(true);
         }
 
-        this.resultCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.resultCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>

@@ -34,9 +34,9 @@ public class GameManager : BehaviourSingleton<GameManager>
     #endregion
 
     #region Item Loot
-    public InventoryItemRelic ItemLootRelic(Transform parent)
+    public InventoryItemRelic ItemLootRelic(int id, Transform parent)
     {
-        var blueprint = this.relicLootTable.GetRandomItemBlueprint();
+        var blueprint = this.relicLootTable.GetRandomItemBlueprint(id);
         var relic = Instantiate(this.relicPrefab, parent);
         relic.Set(blueprint);
 
@@ -45,7 +45,7 @@ public class GameManager : BehaviourSingleton<GameManager>
 
     public InventoryItemPotion ItemLootPotion(Transform parent)
     {
-        var blueprint = this.potionLootTable.GetRandomItemBlueprint();
+        var blueprint = this.potionLootTable.GetRandomItemBlueprint(0);
         var potion = Instantiate(this.potionPrefab, parent);
         potion.Set(blueprint);
 

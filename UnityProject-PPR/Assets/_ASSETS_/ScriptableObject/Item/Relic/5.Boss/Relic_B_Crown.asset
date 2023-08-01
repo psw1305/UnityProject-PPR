@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 263930729, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
   itemType: 3
-  itemRareType: 3
+  itemGrade: 4
   itemName: "\uADF8\uB9B0\uB9C1"
-  itemDesc: "\uCD08\uB85D \uBCF4\uC11D\uC774 \uBC15\uD78C \uBC18\uC9C0"
-  equipmentType: 3
-  stats:
-  - type: 1
-    value: 1
+  relicAbility: 
+  relicDesc: 

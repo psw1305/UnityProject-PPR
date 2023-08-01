@@ -6,8 +6,6 @@ using TMPro;
 
 public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
 {
-    public bool IsShow { get; private set; }
-
     [Header("Relic")]
     [SerializeField] private CanvasGroup relicTooltipCanvas;
     [SerializeField] private Button relicTooltipClose;
@@ -22,6 +20,8 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     [SerializeField] private Button potionTooltipClose;
     [SerializeField] private Image potionIcon;
     [SerializeField] private TextMeshProUGUI potionName;
+    [SerializeField] private TextMeshProUGUI potionRare;
+    [SerializeField] private TextMeshProUGUI potionAbility;
     [SerializeField] private TextMeshProUGUI potionDesc;
 
     [Header("Card")]
@@ -34,8 +34,6 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     protected override void Awake()
     {
         base.Awake();
-
-        this.IsShow = false;
 
         this.relicTooltipCanvas.CanvasInit();
         this.potionTooltipCanvas.CanvasInit();
@@ -56,11 +54,13 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
         if (itemData.ItemType == ItemType.Relic)
         {
             this.relicIcon.sprite = itemData.ItemImage;
+            this.relicRare.ItemGradeColor(itemData.ItemGrade);
             this.relicName.text = itemData.ItemName;
         }
         else if (itemData.ItemType == ItemType.Potion)
         {
             this.potionIcon.sprite = itemData.ItemImage;
+            this.potionRare.ItemGradeColor(itemData.ItemGrade);
             this.potionName.text = itemData.ItemName;
         }
     }
@@ -71,15 +71,12 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// <param name="invenItem">인벤토리 아이템</param>
     public void RelicTooltipShow(InventoryItem invenItem)
     {
-        if (this.IsShow == true) return;
-
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
         SetTooltip(invenItem);
 
-        this.IsShow = true;
         this.relicTooltipClose.interactable = true;
-        this.relicTooltipCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.relicTooltipCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -87,13 +84,10 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// </summary>
     private void RelicTooltipHide()
     {
-        if (this.IsShow == false) return;
-
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
-        this.IsShow = false;
         this.relicTooltipClose.interactable = false;
-        this.relicTooltipCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        this.relicTooltipCanvas.CanvasFadeOut(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -102,15 +96,12 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// <param name="invenItem">인벤토리 아이템</param>
     public void PotionTooltipShow(InventoryItem invenItem)
     {
-        if (this.IsShow == true) return;
-
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
         SetTooltip(invenItem);
 
-        this.IsShow = true;
         this.potionTooltipClose.interactable = true;
-        this.potionTooltipCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.potionTooltipCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
@@ -118,12 +109,9 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// </summary>
     public void PotionTooltipHide()
     {
-        if (this.IsShow == false) return;
-
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
-        this.IsShow = false;
         this.potionTooltipClose.interactable = false;
-        this.potionTooltipCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        this.potionTooltipCanvas.CanvasFadeOut(DUR.CANVAS_FADE_TIME);
     }
 }

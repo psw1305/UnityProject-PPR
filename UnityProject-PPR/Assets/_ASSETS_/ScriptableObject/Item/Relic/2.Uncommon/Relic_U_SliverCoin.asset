@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 1f2f63a804fc42e4aa339b135e84594d, type: 3}
   itemType: 3
-  itemRareType: 1
+  itemGrade: 1
   itemName: "\uC740 \uB3D9\uC804"
   relicAbility: "\uD68D\uB4DD \uC2DC 150\uACE8\uB4DC\uB97C \uC5BB\uC2B5\uB2C8\uB2E4"
   relicDesc: 

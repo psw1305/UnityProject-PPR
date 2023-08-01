@@ -5,11 +5,11 @@ public class ItemBlueprint : ScriptableObject
 {
     [SerializeField] private Sprite image;
     [SerializeField] private ItemType itemType;
-    [SerializeField] private ItemGrade itemRareType;
+    [SerializeField] private ItemGrade itemGrade;
     [SerializeField] private string itemName;
 
     public Sprite ItemImage => this.image;
     public ItemType ItemType => this.itemType;
-    public ItemGrade ItemRareType => this.itemRareType;
+    public ItemGrade ItemGrade => this.itemGrade;
     public string ItemName => this.itemName;
 }

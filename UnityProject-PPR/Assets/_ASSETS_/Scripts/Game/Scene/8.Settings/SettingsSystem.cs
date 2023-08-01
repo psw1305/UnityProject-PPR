@@ -49,7 +49,7 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
 
         this.IsShow = true;
         this.closeButton.interactable = true;
-        this.settingCanvas.CanvasFadeIn(Fade.CANVAS_FADE_TIME);
+        this.settingCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     private void HideClick()
@@ -65,7 +65,7 @@ public class SettingsSystem : BehaviourSingleton<SettingsSystem>
     {
         this.IsShow = false;
         this.closeButton.interactable = false;
-        this.settingCanvas.CanvasFadeOut(Fade.CANVAS_FADE_TIME);
+        this.settingCanvas.CanvasFadeOut(DUR.CANVAS_FADE_TIME);
     }
 
     private void GameLobby()

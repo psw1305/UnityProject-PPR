@@ -1,3 +1,4 @@
+using PSW.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,16 +9,33 @@ public class ItemLootTable : MonoBehaviour
 
     private float totalWeight;
 
-    public ItemBlueprint GetRandomItemBlueprint()
+    /// <summary>
+    /// 아이템 등급별로 따로 랜덤 생성
+    /// </summary>
+    public ItemBlueprint GetRandomItemBlueprint(int id)
+    {
+        return id switch
+        {
+            1 => itemLists[0].GetItemBlueprint(),
+            2 => itemLists[2].GetItemBlueprint(),
+            3 => itemLists[2].GetItemBlueprint(),
+            _ => GetAllRandomItemBlueprint(),
+        };
+    }
+
+    /// <summary>
+    /// 모든 아이템 리스트 중에서 랜덤 생성
+    /// </summary>
+    public ItemBlueprint GetAllRandomItemBlueprint()
     {
         this.totalWeight = itemLists.Sum(itemList => itemList.weight);
 
         var random = Random.Range(0f, this.totalWeight);
 
-        foreach (var item in this.itemLists) 
+        foreach (var item in this.itemLists)
         {
             if (item.weight >= random)
-            {                
+            {
                 return item.GetItemBlueprint();
             }
 

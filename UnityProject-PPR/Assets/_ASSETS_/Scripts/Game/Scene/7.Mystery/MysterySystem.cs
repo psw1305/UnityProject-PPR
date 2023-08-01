@@ -12,7 +12,6 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
 
     [Header("Params")]
     [SerializeField] private MysteryConfig eventBlueprint;
-    [SerializeField] private float typingSpeed = 0.04f;
 
     [Header("Event UI")]
     [SerializeField] private Image eventPicture;
@@ -35,10 +34,10 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
 
     private void Start()
     {
-        this.eventPicture.sprite = this.eventBlueprint.eventPicture;
-        this.selections = this.eventBlueprint.selections;
+        this.eventPicture.sprite = this.eventBlueprint.EventPicture;
+        this.selections = this.eventBlueprint.Selections;
 
-        var stringTable = this.eventBlueprint.stringTable;
+        var stringTable = this.eventBlueprint.StringTable;
         SetTextContents(this.titleText, stringTable, "Title");
         SetTextContents(this.dialogueText, stringTable, "Before");
 
@@ -72,9 +71,9 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         {
             this.isFadeIn = true;
 
-            this.titleCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.0f);
-            this.contentsCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.4f);
-            this.pictureCanvas.CanvasFadeInDelay(Fade.SELECTION_FADE_TIME, 0.8f);
+            this.titleCanvas.CanvasFadeInDelay(DUR.SELECTION_FADE_TIME, 0.0f);
+            this.contentsCanvas.CanvasFadeInDelay(DUR.SELECTION_FADE_TIME, 0.4f);
+            this.pictureCanvas.CanvasFadeInDelay(DUR.SELECTION_FADE_TIME, 0.8f);
 
             yield return YieldCache.WaitForSeconds(1.2f);
 
@@ -90,7 +89,7 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         this.selectionStartList.gameObject.SetActive(false);
         this.selectionEndList.gameObject.SetActive(true);
 
-        var table = this.eventBlueprint.stringTable;
+        var table = this.eventBlueprint.StringTable;
         SetTextContents(this.dialogueText, table, "After");
 
         StartCoroutine(Display(this.dialogueText.text, this.endSelections));
@@ -150,7 +149,7 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
         foreach (var letter in line.ToCharArray())
         {
             this.dialogueText.text += letter;
-            yield return YieldCache.WaitForSeconds(this.typingSpeed);
+            yield return YieldCache.WaitForSeconds(DUR.TYPING_SPEED);
         }
 
         for (int i = 0; i < selections.Length; i++)

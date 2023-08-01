@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 31f11ddb167accf47ab3551b50a733f1, type: 3}
   itemType: 2
-  itemRareType: 2
+  itemGrade: 2
   itemName: "\uACFC\uC77C \uC8FC\uC2A4"
   ability:
     element: {fileID: 0}

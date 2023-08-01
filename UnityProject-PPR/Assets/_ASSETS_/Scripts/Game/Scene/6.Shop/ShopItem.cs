@@ -59,7 +59,7 @@ public class ShopItem : MonoBehaviour
         }
 
         // 레어도에 따른 가격 조정
-        ItemGrade rareType = this.itemData.ItemRareType; 
+        ItemGrade rareType = this.itemData.ItemGrade; 
 
         switch (rareType)
         {

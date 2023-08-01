@@ -1,23 +1,39 @@
+using System;
+using System.Collections.Generic;
+
 /// <summary>
 /// Player Inventory Partial Class
 /// </summary>
 public partial class Player : BehaviourSingleton<Player>
 {
-    public InventoryItemRelic[] relicAltar;
-    public InventoryItemPotion[] potionBelt;
+    public List<InventoryItemRelic> relicAltar;
+    public List<InventoryItemPotion> potionBelt;
+
 
     public void SetInventory()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            this.relicAltar[i] = GameManager.Instance.ItemLootRelic(this.playerUI.GetGridRelic());
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            this.potionBelt[i] = GameManager.Instance.ItemLootPotion(this.playerUI.GetGridPotion());
-        }
+        // Empty
     }
+
+    #region ADD ITEM
+    /// <summary>
+    /// 인벤토리에 유물 추가
+    /// </summary>
+    public void AddItemRelic(int id)
+    {
+        var relic = GameManager.Instance.ItemLootRelic(id, this.playerUI.GetGridRelic());
+        this.relicAltar.Add(relic);
+    }
+
+    /// <summary>
+    /// 인벤토리에 포션 추가
+    /// </summary>
+    public void AddItemPotion()
+    {
+        var potion = GameManager.Instance.ItemLootPotion(this.playerUI.GetGridPotion());
+        this.potionBelt.Add(potion);
+    }
+    #endregion
 
     public void PotionItemLoad(InventoryItemPotion invenItem, int num)
     {

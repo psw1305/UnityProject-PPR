@@ -33,7 +33,7 @@ public partial class Player : BehaviourSingleton<Player>
             GameManager.Instance.CameraChange(canvas);
         }
 
-        Setting(40, 20, 0);
+        Setting(80, 20, 0);
     }
 
     private void Start()

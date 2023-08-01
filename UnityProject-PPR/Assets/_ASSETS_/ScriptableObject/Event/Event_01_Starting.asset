@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selections:
   - {fileID: 4727978279097541897, guid: c78eb87ffa66b41408381a4f6373666f, type: 3}
-  - {fileID: 4727978279097541897, guid: dccb16377b2b631419ed596d3051250c, type: 3}
-  - {fileID: 4727978279097541897, guid: 5b8ea470f8c3e2b4ab5957f134da0b9d, type: 3}
+  - {fileID: 4727978279097541897, guid: e6ff86f6be4de094d8da261ffd78a141, type: 3}
+  - {fileID: 4727978279097541897, guid: ad5cdeacb061fc6408f1159abc71619e, type: 3}
   eventPicture: {fileID: 21300000, guid: 371abb01dd8863045baa7e5b4d5e571c, type: 3}
   stringTable: Event01
