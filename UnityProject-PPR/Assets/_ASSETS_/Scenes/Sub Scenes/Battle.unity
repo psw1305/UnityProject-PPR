@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 269721408}
   - component: {fileID: 269721407}
   m_Layer: 5
-  m_Name: Reward UI Canvas (30)
+  m_Name: UI Reward (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,7 +1711,7 @@ GameObject:
   - component: {fileID: 1695057752}
   - component: {fileID: 1695057751}
   m_Layer: 5
-  m_Name: Battle UI Canvas (10)
+  m_Name: UI Battle (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

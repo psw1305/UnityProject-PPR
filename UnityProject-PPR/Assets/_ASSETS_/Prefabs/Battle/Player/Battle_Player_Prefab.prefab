@@ -5595,18 +5595,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTable: {fileID: 7244614141528920075}
   statTable: {fileID: 7244614142111182240}
-  useableItemPrefab: {fileID: 8781630062115174229, guid: 19c226f4ec2364c49b4da7827ad83968,
-    type: 3}
-  useableSlots:
-  - {fileID: 7244614141833571731}
-  - {fileID: 7244614143207618983}
-  - {fileID: 7244614141697569754}
-  - {fileID: 7244614142744823743}
-  - {fileID: 7244614143174269744}
+  potionSlots: []
   weakWreckParticle: {fileID: 7244614142335107907}
   wreckParticle: {fileID: 7244614141410415815}
   battleSystem: {fileID: 0}
-  playerUI: {fileID: 7244614141528920119}
+  battlePlayerUI: {fileID: 7244614141528920119}
 --- !u!114 &7244614141528920119
 MonoBehaviour:
   m_ObjectHideFlags: 0

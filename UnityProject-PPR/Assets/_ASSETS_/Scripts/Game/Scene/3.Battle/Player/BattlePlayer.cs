@@ -10,7 +10,6 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     [SerializeField] private RectTransform statTable;
 
     [Header("Potion")]
-    [SerializeField] private GameObject potionPrefab;
     [SerializeField] private Transform[] potionSlots;
 
     [Header("Particle")]

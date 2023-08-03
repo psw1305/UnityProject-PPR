@@ -56,12 +56,16 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
             this.relicIcon.sprite = itemData.ItemImage;
             this.relicRare.ItemGradeColor(itemData.ItemGrade);
             this.relicName.text = itemData.ItemName;
+            this.relicAbility.text = itemData.ItemAbility;
+            this.relicDesc.text = itemData.ItemDesc;
         }
         else if (itemData.ItemType == ItemType.Potion)
         {
             this.potionIcon.sprite = itemData.ItemImage;
             this.potionRare.ItemGradeColor(itemData.ItemGrade);
             this.potionName.text = itemData.ItemName;
+            this.potionAbility.text = itemData.ItemAbility;
+            this.potionDesc.text = itemData.ItemDesc;
         }
     }
 

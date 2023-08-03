@@ -8645,7 +8645,7 @@ GameObject:
   - component: {fileID: 1151040031}
   - component: {fileID: 1151040032}
   m_Layer: 5
-  m_Name: Player Item Tooltip
+  m_Name: Item Tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
