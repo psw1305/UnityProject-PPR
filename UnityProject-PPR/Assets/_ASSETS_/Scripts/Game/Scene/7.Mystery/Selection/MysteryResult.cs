@@ -21,7 +21,7 @@ public class MysteryResult : MonoBehaviour
         if (Player.Instance == null) return;
 
         // 일반 등급 유물
-        Player.Instance.AddItemRelic(1);
+        Player.Instance.AddRelic(1);
     }
 
     public void Event01_ObtainPotions()
@@ -32,7 +32,7 @@ public class MysteryResult : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            Player.Instance.AddItemPotion();
+            Player.Instance.AddPotion();
         }
     }
 

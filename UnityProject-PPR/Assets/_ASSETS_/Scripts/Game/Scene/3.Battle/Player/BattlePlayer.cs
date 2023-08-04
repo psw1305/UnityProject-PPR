@@ -1,6 +1,8 @@
 using PSW.Core.Enums;
 using PSW.Core.Extensions;
 using System.Collections.Generic;
+using System.Net;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class BattlePlayer : BehaviourSingleton<BattlePlayer>
@@ -22,8 +24,11 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 
     public int HP { get; set; }
     public int ACT { get; set; }
+
     public int ATK { get; set; }
     public int DEF { get; set; }
+    public int startATK { get; set; }
+    public int startDEF { get; set; }
 
     public int CurrentHP { get; private set; } // 현 체력
     public int CurrentSP { get; private set; } // 현 방어력
@@ -31,31 +36,39 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public int EarnCash { get; private set; }
 
     public float GetPercentHP() => CurrentHP / (float)this.HP;
-
-    private Player player;
+    private static Player player;
 
     protected override void Awake()
     {
         base.Awake();
 
-        this.player = Player.Instance;
+        player = Player.Instance;
 
-        if (this.player != null)
+        if (player != null)
         {
-            this.HP = this.player.HP.Value;
-            this.ACT = this.player.ACT.Value;
-            this.CurrentHP = this.player.CurrentHP;
+            this.HP = player.HP.Value;
+            this.ACT = player.ACT.Value;
+            this.ATK = player.ATK.Value;
+            this.DEF = player.DEF.Value;
+
+            this.startATK = player.startATK.Value;
+            this.startDEF = player.startDEF.Value;
+
+            this.CurrentHP = player.CurrentHP;
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
         {
             this.HP = 999;
             this.ACT = 20;
+            this.ATK = 1;
+            this.DEF = 1;
+
+            this.startATK = 1;
+            this.startDEF = 12;
+
             this.CurrentHP = 999;
         }
-
-        this.ATK = 1;
-        this.DEF = 1;
 
         this.battlePlayerUI.SetHpText(this.CurrentHP, this.HP);
         this.battlePlayerUI.SetStatText(this.ACT, this.ATK, this.DEF);
@@ -72,13 +85,25 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     }
 
     /// <summary>
+    /// 전투 시작 전 세팅
+    /// </summary>
+    public void StartSetting()
+    {
+        if (this.startDEF >= 1)
+        {
+            this.CurrentSP = this.startDEF;
+            GameBoardEvents.OnPlayerShieldChanged.Invoke(0, this.CurrentSP);
+        }
+    }
+
+    /// <summary>
     /// 플레이어 공격
     /// </summary>
     /// <param name="elements"></param>
     /// <param name="enemy"></param>
     public void PlayerAttack(List<GameBoardElement> elements, BattleEnemy enemy)
     {
-        var attackPoint = this.GetElementPoint(elements, this.ATK);
+        var attackPoint = this.GetElementPoint(elements, this.startATK, this.ATK);
 
         if (attackPoint < 50) 
             BattleSFX.Instance.Play(BattleSFX.Instance.playerAttackNormal);
@@ -97,7 +122,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         BattleSFX.Instance.Play(BattleSFX.Instance.defense);
 
         var oldPoint = this.CurrentSP;
-        this.CurrentSP += this.GetElementPoint(elements, this.DEF);
+        this.CurrentSP += this.GetElementPoint(elements, this.startDEF, this.DEF);
         GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
     }
 
@@ -108,7 +133,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public void PlayerRecovery(List<GameBoardElement> elements)
     {
         var oldPoint = this.CurrentHP;
-        this.CurrentHP += this.GetElementPoint(elements);
+        this.CurrentHP += this.GetElementPoint(elements, 0, 1);
         if (this.CurrentHP > HP) this.CurrentHP = HP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, this.CurrentHP);
     }
@@ -120,7 +145,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public void PlayerEarn(List<GameBoardElement> elements)
     {
         var oldPoint = EarnCash;
-        EarnCash += this.GetElementPoint(elements);
+        EarnCash += this.GetElementPoint(elements, 0, 1);
         GameBoardEvents.OnPlayerCashChanged.Invoke(oldPoint, EarnCash);
     }
 
@@ -186,9 +211,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         CurrentHP = damagedHP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(CurrentHP, damagedHP);
 
-        if (this.player != null)
+        if (player != null)
         {
-            this.player.SetHP(CurrentHP);
+            player.SetHP(CurrentHP);
         }
     }
 

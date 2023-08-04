@@ -13330,6 +13330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countingText: {fileID: 7244614141196706550}
+  battleSystem: {fileID: 0}
+  battlePlayer: {fileID: 7244614141528920117}
 --- !u!1 &7244614143090370360
 GameObject:
   m_ObjectHideFlags: 0

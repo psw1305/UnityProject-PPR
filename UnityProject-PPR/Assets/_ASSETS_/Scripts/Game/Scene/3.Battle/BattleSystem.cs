@@ -13,17 +13,19 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     [SerializeField] private Camera battleCamera;
     [SerializeField] private Canvas battleCanvas;
     [SerializeField] private Canvas rewardCanvas;
-    [SerializeField] private GameBoard board;
-    [SerializeField] private BattlePlayer battlePlayer;
-    [SerializeField] private RewardsSystem battleRewards;
 
     [Header("Battle Enemy")]
     [SerializeField] private Transform enemyField;
     [SerializeField] private ToggleGroup enemyToggleGroup;
-    [SerializeField] private int enemyCount;
-    [SerializeField] private List<BattleEnemy> battleEnemys = new();
     [SerializeField] private EnemyBlueprint enemyBlueprint;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private int enemyCount;
+    [SerializeField] private List<BattleEnemy> battleEnemys = new();
+
+    [Header("Script")]
+    [SerializeField] private GameBoard gameBoard;
+    [SerializeField] private BattlePlayer battlePlayer;
+    [SerializeField] private RewardsSystem battleRewards;
 
     public List<BattleEnemy> BattleEnemys => this.battleEnemys;  
     public BattleEnemy SelectedEnemy { get; set; }
@@ -93,7 +95,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     private IEnumerator Start()
     {
         // 전투 세팅
-        this.board.SetBoard();
+        this.gameBoard.SetBoard();
 
         yield return YieldCache.WaitForSeconds(1.0f);
 
@@ -145,6 +147,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     {
         // 플레이어 초기화
         GameBoardEvents.OnPlayerTurnInit.Invoke();
+        this.battlePlayer.StartSetting();
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
@@ -159,13 +162,13 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         while (this.battlePlayer.CurrentACT > 1)
         {
             // 플레이어 element 선택
-            yield return this.board.WaitForSelection();
+            yield return this.gameBoard.WaitForSelection();
             // 최종 선택된 elements 소멸 
-            yield return this.board.DespawnSelection();
+            yield return this.gameBoard.DespawnSelection();
             // 빈 곳으로 elements 이동 
-            yield return this.board.WaitForMovement();
+            yield return this.gameBoard.WaitForMovement();
             // 소멸 된 elements 수 만큼 재생성
-            yield return this.board.RespawnElements();
+            yield return this.gameBoard.RespawnElements();
         }
     }
 
@@ -223,7 +226,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// </summary>
     private void OnElementsDespawned()
     {
-        var selectElements = this.board.GetSelectElements();
+        var selectElements = this.gameBoard.GetSelectElements();
 
         switch (PlayedElementType)
         {

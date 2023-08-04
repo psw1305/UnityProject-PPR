@@ -34,6 +34,14 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
+    /// 유물 타입
+    /// </summary>
+    public enum RelicType
+    {
+        Sword, Shield, Armor, Helm
+    }
+
+    /// <summary>
     /// 아이템 등급
     /// </summary>
     public enum ItemGrade

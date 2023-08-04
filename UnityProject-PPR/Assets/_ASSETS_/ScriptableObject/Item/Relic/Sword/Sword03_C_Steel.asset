@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
-  m_Name: Relic_C_NormalArmor
+  m_Name: Sword03_C_Steel
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 91fc7771f394d9644afd63e79760e871, type: 3}
+  image: {fileID: 21300000, guid: af67e57093838dd45ba65f08b4c074f9, type: 3}
   itemType: 3
   itemGrade: 0
-  itemName: "\uCCA0 \uAC11\uC637"
-  itemAbility: "\uC804\uD22C \uC2DC\uC791\uC2DC \uBC29\uC5B4\uB3C4\uB97C 8 \uC5BB\uC2B5\uB2C8\uB2E4"
-  itemDesc: "\uD754\uD788 \uBCF4\uC774\uB294 \uCCA0\uB85C \uB2E8\uC870 \uB41C \uAC11\uC637"
+  itemName: "\uCCA0 \uAC80"
+  itemAbility: "\uACF5\uACA9 \uC2DC\uC791 \uC2DC +5"
+  itemDesc: "\uD754\uD788 \uBCF4\uC774\uB294 \uCCA0\uB85C \uB2E8\uC870 \uB41C \uAC80"
+  relicID: 
+  relicType: 0

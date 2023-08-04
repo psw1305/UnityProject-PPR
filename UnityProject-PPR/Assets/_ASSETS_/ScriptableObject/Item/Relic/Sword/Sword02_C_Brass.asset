@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
-  m_Name: Relic_B_Crown
+  m_Name: Sword02_C_Brass
   m_EditorClassIdentifier: 
-  image: {fileID: 263930729, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  image: {fileID: 21300000, guid: af67e57093838dd45ba65f08b4c074f9, type: 3}
   itemType: 3
-  itemGrade: 4
-  itemName: "\uADF8\uB9B0\uB9C1"
-  relicAbility: 
-  relicDesc: 
+  itemGrade: 0
+  itemName: "\uB18B\uC1E0 \uAC80"
+  itemAbility: "\uACF5\uACA9 \uC2DC\uC791 \uC2DC +3"
+  itemDesc: "\uB18B\uC1E0\uB85C \uB2E8\uC870 \uB41C \uAC80"
+  relicID: 
+  relicType: 0

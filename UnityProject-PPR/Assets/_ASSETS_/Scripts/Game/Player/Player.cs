@@ -16,9 +16,15 @@ public partial class Player : BehaviourSingleton<Player>
     [SerializeField] private PlayerUI playerUI;
     [SerializeField] private PlayerItemTooltip tooltip;
 
-    [Header("Stat")]
+    [Header("Player Stat")]
     public Stat HP;
     public Stat ACT;
+    public Stat ATK;
+    public Stat DEF;
+
+    [Header("Player Battle Stat")]
+    public Stat startATK;
+    public Stat startDEF;
 
     public int Cash { get; set; }
     public int CurrentHP { get; set; }
@@ -33,12 +39,11 @@ public partial class Player : BehaviourSingleton<Player>
             GameManager.Instance.CameraChange(canvas);
         }
 
-        Setting(80, 20, 0);
+        Setting(80, 20, 99);
     }
 
     private void Start()
     {
-        SetInventory();
         SetDeck();
 
         this.playerUI.SetUI();
@@ -49,6 +54,9 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
+
+        this.ATK.BaseValue = 1;
+        this.DEF.BaseValue = 1;
 
         CurrentHP = hp;
         Cash = cash;

@@ -8,6 +8,10 @@ public class GameBoardCountingText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countingText;
 
+    [Header("Script")]
+    [SerializeField] private BattleSystem battleSystem;
+    [SerializeField] private BattlePlayer battlePlayer;
+
     public void Select()
     {
         this.countingText.DOFade(1.0f, 0.1f);
@@ -17,13 +21,13 @@ public class GameBoardCountingText : MonoBehaviour
     {
         int result = 0;
 
-        switch (BattleSystem.Instance.PlayedElementType)
+        switch (this.battleSystem.PlayedElementType)
         {
             case ElementType.Attack:
-                result = BattlePlayer.Instance.GetElementPoint(selectedElements, BattlePlayer.Instance.ATK);
+                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.startATK, this.battlePlayer.ATK);
                 break;
             case ElementType.Defense:
-                result = BattlePlayer.Instance.GetElementPoint(selectedElements, BattlePlayer.Instance.DEF);
+                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.startDEF, this.battlePlayer.DEF);
                 break;
             case ElementType.None:
                 result = 0;
