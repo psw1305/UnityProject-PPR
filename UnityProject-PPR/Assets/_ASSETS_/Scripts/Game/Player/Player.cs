@@ -23,8 +23,9 @@ public partial class Player : BehaviourSingleton<Player>
     public Stat DEF;
 
     [Header("Player Battle Stat")]
-    public Stat startATK;
-    public Stat startDEF;
+    public Stat StartDEF;
+    public Stat FirstDEF;
+    public Stat FirstATK;
 
     public int Cash { get; set; }
     public int CurrentHP { get; set; }

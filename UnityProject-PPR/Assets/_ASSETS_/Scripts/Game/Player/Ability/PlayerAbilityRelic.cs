@@ -44,9 +44,34 @@ public static class RelicEquipment
 
     public static void EquipSword(int value, Player player, InventoryItemRelic relic)
     {
-        player.startATK.AddModifier(new StatModifier(value, StatModType.Int, relic));
+        player.FirstATK.AddModifier(new StatModifier(value, StatModType.Int, relic));
+    }
+    #endregion
+
+    #region Shield
+    /// <summary>
+    /// 방패 => 처음 방어 시작 시 +N 
+    /// </summary> 
+    public static void Ability_Shield(Player player, InventoryItemRelic relic)
+    {
+        switch (relic.RelicID)
+        {
+            case "Shield01_C_Cheap":
+                EquipShield(1, player, relic);
+                break;
+            case "Shield02_C_Brass":
+                EquipShield(3, player, relic);
+                break;
+            case "Shield03_C_Steel":
+                EquipShield(5, player, relic);
+                break;
+        };
     }
 
+    public static void EquipShield(int value, Player player, InventoryItemRelic relic)
+    {
+        player.FirstDEF.AddModifier(new StatModifier(value, StatModType.Int, relic));
+    }
     #endregion
 
     #region Armor
@@ -71,8 +96,7 @@ public static class RelicEquipment
 
     public static void EquipArmor(int value, Player player, InventoryItemRelic relic)
     {
-        player.startDEF.AddModifier(new StatModifier(value, StatModType.Int, relic));
+        player.StartDEF.AddModifier(new StatModifier(value, StatModType.Int, relic));
     }
-
     #endregion
 }

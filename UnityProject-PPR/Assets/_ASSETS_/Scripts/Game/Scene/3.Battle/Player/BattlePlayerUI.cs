@@ -44,9 +44,9 @@ public class BattlePlayerUI : MonoBehaviour
         this.healthBar.fillAmount = value / (float)maxValue;
     }
 
-    public void SetStatText(int act, int atk, int def)
+    public void SetStatText(int atk, int def)
     {
-        this.actText.text = act.ToString();
+        this.actText.text = "0";
         this.atkText.text = atk.ToString();
         this.defText.text = def.ToString();
     }

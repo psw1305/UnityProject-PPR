@@ -7,11 +7,6 @@ public class StatPointChanged : UnityEvent<int, int> { }
 public static class GameBoardEvents
 {
     /// <summary>
-    /// 플레이어 Turn 일 경우
-    /// </summary>
-    public static InitializeEvent OnPlayerTurnInit { get; } = new InitializeEvent();
-
-    /// <summary>
     /// elements가 despawned 일 때
     /// </summary>
     public static InitializeEvent OnElementsDespawned { get; } = new InitializeEvent();

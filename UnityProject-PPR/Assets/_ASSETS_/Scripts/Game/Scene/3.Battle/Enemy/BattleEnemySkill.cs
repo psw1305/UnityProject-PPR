@@ -47,7 +47,7 @@ public class BattleEnemySkill : MonoBehaviour
         switch (this.skillType) 
         {
             case EnemySkill.Attack:
-                BattlePlayer.Instance.Damage(this.skillValue + battleEnemy.CurrentAP);
+                BattlePlayer.Instance.Damaged(this.skillValue + battleEnemy.CurrentAP);
                 break;
             case EnemySkill.Defense:
                 battleEnemy.ShieldPoint(this.skillValue);

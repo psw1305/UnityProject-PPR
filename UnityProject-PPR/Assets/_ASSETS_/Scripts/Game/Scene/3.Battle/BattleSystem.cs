@@ -145,9 +145,10 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// <returns></returns>
     private IEnumerator PlayerTurn()
     {
-        // 플레이어 초기화
-        GameBoardEvents.OnPlayerTurnInit.Invoke();
-        this.battlePlayer.StartSetting();
+        if (this.battlePlayer.OnStart)
+            this.battlePlayer.StartSetting();
+        else
+            this.battlePlayer.TurnInit();
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
@@ -234,7 +235,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
                 this.battlePlayer.PlayerAttack(selectElements, this.SelectedEnemy);
                 break;
             case ElementType.Defense:
-                this.battlePlayer.PlayerDefense(selectElements);
+                this.battlePlayer.PlayerShield(selectElements);
                 break;
         }
     }

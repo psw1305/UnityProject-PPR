@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
-  m_Name: Relic_U_GiftBox
+  m_Name: Idol01_UC_Anger
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 6c08687b70db771488b8d05fbc361184, type: 3}
+  image: {fileID: 21300000, guid: 3205b9b21b23d1d4b80e52b6c71c43a8, type: 3}
   itemType: 3
-  itemGrade: 1
-  itemName: "\uC120\uBB3C\uC0C1\uC790"
-  relicAbility: 
-  relicDesc: 
+  itemGrade: 0
+  itemName: "\uBD84\uB178\uC758 \uC6B0\uC0C1"
+  itemAbility: "\uACF5\uACA9 +1"
+  itemDesc: 
+  relicID: Idol01_UC_Anger
+  relicType: 4

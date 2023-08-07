@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
-  m_Name: Relic_R_Paw
+  m_Name: Idol03_R_Rage
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: f162c8f303b0288449ecd8259a6e116e, type: 3}
+  image: {fileID: 21300000, guid: ac837b6ae4ffbce4a99eec8e0b29a697, type: 3}
   itemType: 3
-  itemGrade: 2
-  itemName: "\uADF8\uB818\uB9B0\uC758 \uBC1C"
-  relicAbility: 
-  relicDesc: 
+  itemGrade: 0
+  itemName: "\uACA9\uB178\uC758 \uC6B0\uC0C1"
+  itemAbility: "\uACF5\uACA9 +2"
+  itemDesc: 
+  relicID: Idol03_R_Rage
+  relicType: 4

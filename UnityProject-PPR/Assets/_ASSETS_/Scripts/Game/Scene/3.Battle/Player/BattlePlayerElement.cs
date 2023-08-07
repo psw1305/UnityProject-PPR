@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public static class BattlePlayerElement
 {
-    public static int GetElementPoint(this BattlePlayer battleplayer, List<GameBoardElement> elements, int startPoint, int plusPoint)
+    public static int GetElementPoint(this BattlePlayer battleplayer, List<GameBoardElement> elements, int firstPoint, int plusPoint)
     {
-        int resultPoint = startPoint;
+        int resultPoint = firstPoint;
 
         foreach (GameBoardElement element in elements)
         {

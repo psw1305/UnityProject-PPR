@@ -24,10 +24,10 @@ public class GameBoardCountingText : MonoBehaviour
         switch (this.battleSystem.PlayedElementType)
         {
             case ElementType.Attack:
-                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.startATK, this.battlePlayer.ATK);
+                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.FirstATK, this.battlePlayer.ATK);
                 break;
             case ElementType.Defense:
-                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.startDEF, this.battlePlayer.DEF);
+                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.FirstDEF, this.battlePlayer.DEF);
                 break;
             case ElementType.None:
                 result = 0;

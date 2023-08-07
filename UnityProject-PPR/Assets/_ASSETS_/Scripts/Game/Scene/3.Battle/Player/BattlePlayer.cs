@@ -1,8 +1,6 @@
 using PSW.Core.Enums;
 using PSW.Core.Extensions;
 using System.Collections.Generic;
-using System.Net;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class BattlePlayer : BehaviourSingleton<BattlePlayer>
@@ -25,15 +23,20 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public int HP { get; set; }
     public int ACT { get; set; }
 
+    // 타일 하나당 주어지는 일반 포인트
     public int ATK { get; set; }
     public int DEF { get; set; }
-    public int startATK { get; set; }
-    public int startDEF { get; set; }
+
+    // 첫 공격 시 주어지는 시작 포인트
+    public int FirstATK { get; set; }
+    public int FirstDEF { get; set; }
+
+    public bool OnStart { get; private set; }
+    public bool OnFirst { get; private set; }
 
     public int CurrentHP { get; private set; } // 현 체력
     public int CurrentSP { get; private set; } // 현 방어력
     public int CurrentACT { get; private set; } // 현 행동력
-    public int EarnCash { get; private set; }
 
     public float GetPercentHP() => CurrentHP / (float)this.HP;
     private static Player player;
@@ -44,6 +47,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 
         player = Player.Instance;
 
+        this.OnStart = true;
+
         if (player != null)
         {
             this.HP = player.HP.Value;
@@ -51,8 +56,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ATK = player.ATK.Value;
             this.DEF = player.DEF.Value;
 
-            this.startATK = player.startATK.Value;
-            this.startDEF = player.startDEF.Value;
+            this.FirstATK = player.FirstATK.Value;
+            this.FirstDEF = player.FirstDEF.Value;
 
             this.CurrentHP = player.CurrentHP;
         }
@@ -64,91 +69,66 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ATK = 1;
             this.DEF = 1;
 
-            this.startATK = 1;
-            this.startDEF = 12;
+            this.FirstATK = 1;
+            this.FirstDEF = 1;
 
             this.CurrentHP = 999;
         }
 
         this.battlePlayerUI.SetHpText(this.CurrentHP, this.HP);
-        this.battlePlayerUI.SetStatText(this.ACT, this.ATK, this.DEF);
+        this.battlePlayerUI.SetStatText(this.ATK, this.DEF);
     }
 
-    private void OnEnable()
-    {
-        GameBoardEvents.OnPlayerTurnInit.AddListener(Init);
-    }
-
-    private void OnDisable()
-    {
-        GameBoardEvents.OnPlayerTurnInit.RemoveListener(Init);
-    }
-
+    #region Init
     /// <summary>
     /// 전투 시작 전 세팅
     /// </summary>
     public void StartSetting()
     {
-        if (this.startDEF >= 1)
+        this.OnStart = false;
+
+        if (player.StartDEF.Value >= 1)
         {
-            this.CurrentSP = this.startDEF;
+            this.CurrentSP = player.StartDEF.Value;
             GameBoardEvents.OnPlayerShieldChanged.Invoke(0, this.CurrentSP);
         }
+
+        InitAct();
     }
 
     /// <summary>
-    /// 플레이어 공격
+    /// 플레이어 턴 초기화
     /// </summary>
-    /// <param name="elements"></param>
-    /// <param name="enemy"></param>
-    public void PlayerAttack(List<GameBoardElement> elements, BattleEnemy enemy)
+    public void TurnInit()
     {
-        var attackPoint = this.GetElementPoint(elements, this.startATK, this.ATK);
-
-        if (attackPoint < 50) 
-            BattleSFX.Instance.Play(BattleSFX.Instance.playerAttackNormal);
-        else
-            BattleSFX.Instance.Play(BattleSFX.Instance.playerAttackHeavy);
-
-        enemy.Damage(attackPoint);
+        // 스탯 초기화
+        InitAct();
+        InitShield();
     }
 
     /// <summary>
-    /// 플레이어 쉴드 생성
+    /// 플레이어 행동 관련 초기화
     /// </summary>
-    /// <param name="elements"></param>
-    public void PlayerDefense(List<GameBoardElement> elements)
+    private void InitAct()
     {
-        BattleSFX.Instance.Play(BattleSFX.Instance.defense);
+        this.OnFirst = true;
 
+        this.battlePlayerUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
+        this.CurrentACT = this.ACT;
+    }
+
+    /// <summary>
+    /// 플레이어 방어력 초기화
+    /// </summary>
+    private void InitShield()
+    {
         var oldPoint = this.CurrentSP;
-        this.CurrentSP += this.GetElementPoint(elements, this.startDEF, this.DEF);
+        this.CurrentSP = 0;
         GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
     }
+    #endregion
 
-    /// <summary>
-    /// 플레이어 체력 회복
-    /// </summary>
-    /// <param name="elements"></param>
-    public void PlayerRecovery(List<GameBoardElement> elements)
-    {
-        var oldPoint = this.CurrentHP;
-        this.CurrentHP += this.GetElementPoint(elements, 0, 1);
-        if (this.CurrentHP > HP) this.CurrentHP = HP;
-        GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, this.CurrentHP);
-    }
-
-    /// <summary>
-    /// 플레이어 돈 벌기
-    /// </summary>
-    /// <param name="elements"></param>
-    public void PlayerEarn(List<GameBoardElement> elements)
-    {
-        var oldPoint = EarnCash;
-        EarnCash += this.GetElementPoint(elements, 0, 1);
-        GameBoardEvents.OnPlayerCashChanged.Invoke(oldPoint, EarnCash);
-    }
-
+    #region Player Action
     /// <summary>
     /// 플레이어 행동 횟수 계산
     /// </summary>
@@ -164,10 +144,76 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     }
 
     /// <summary>
-    /// 플레이어 피해
+    /// Player 공격
+    /// </summary>
+    /// <param name="elements"></param>
+    /// <param name="enemy"></param>
+    public void PlayerAttack(List<GameBoardElement> elements, BattleEnemy enemy)
+    {
+        int attackPoint;
+
+        if (this.OnFirst)
+        {
+            this.OnFirst = false;
+            attackPoint = this.GetElementPoint(elements, this.FirstATK, this.ATK);
+        }
+        else
+        {
+            attackPoint = this.GetElementPoint(elements, this.ATK, this.ATK);
+        }
+
+        if (attackPoint < 50) 
+            BattleSFX.Instance.Play(BattleSFX.Instance.playerAttackNormal);
+        else
+            BattleSFX.Instance.Play(BattleSFX.Instance.playerAttackHeavy);
+
+        enemy.Damage(attackPoint);
+    }
+
+    /// <summary>
+    /// Player 방어
+    /// </summary>
+    /// <param name="elements"></param>
+    public void PlayerShield(List<GameBoardElement> elements)
+    {
+        int shieldPoint;
+
+        if (this.OnFirst)
+        {
+            this.OnFirst = false;
+            shieldPoint = this.GetElementPoint(elements, this.FirstDEF, this.DEF);
+        }
+        else
+        {
+            shieldPoint = this.GetElementPoint(elements, this.DEF, this.DEF);
+        }
+
+        BattleSFX.Instance.Play(BattleSFX.Instance.defense);
+
+        var oldPoint = this.CurrentSP;
+        this.CurrentSP += shieldPoint;
+        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
+    }
+
+    /// <summary>
+    /// Player 체력 회복
+    /// </summary>
+    /// <param name="elements"></param>
+    public void PlayerRecovery(List<GameBoardElement> elements)
+    {
+        var oldPoint = this.CurrentHP;
+        this.CurrentHP += this.GetElementPoint(elements, 0, 1);
+        if (this.CurrentHP > HP) this.CurrentHP = HP;
+        GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, this.CurrentHP);
+    }
+    #endregion
+
+    #region Damaged
+    /// <summary>
+    /// Player 피해
     /// </summary>
     /// <param name="damage"></param>
-    public void Damage(int damage)
+    public void Damaged(int damage)
     {
         DamagedEffect(damage);
 
@@ -236,33 +282,5 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         this.CurrentSP = damagedSP;
         GameBoardEvents.OnPlayerShieldChanged.Invoke(this.CurrentSP, damagedSP);
     }
-
-    /// <summary>
-    /// 플레이어 초기화
-    /// </summary>
-    private void Init()
-    {
-        // 스탯 초기화
-        InitAct();
-        InitShield();
-    }
-
-    /// <summary>
-    /// 플레이어 공격력 초기화
-    /// </summary>
-    private void InitAct()
-    {
-        this.battlePlayerUI.UpdateAnimateUI(this.CurrentACT, this.ACT);
-        this.CurrentACT = this.ACT;
-    }
-
-    /// <summary>
-    /// 플레이어 방어력 초기화
-    /// </summary>
-    private void InitShield()
-    {
-        var oldPoint = this.CurrentSP;
-        this.CurrentSP = 0;
-        GameBoardEvents.OnPlayerShieldChanged.Invoke(oldPoint, this.CurrentSP);
-    }
+    #endregion
 }

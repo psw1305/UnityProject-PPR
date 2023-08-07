@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
-  m_Name: Relic_R_HolyGrail
+  m_Name: Shield02_C_Brass
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: ac49a76854ed12b40b250a9161291d14, type: 3}
+  image: {fileID: 21300000, guid: 0b1676c1429a8e846b7f8507c8f180c7, type: 3}
   itemType: 3
-  itemGrade: 2
-  itemName: "\uC131\uBC30"
-  relicAbility: 
-  relicDesc: 
+  itemGrade: 0
+  itemName: "\uB18B\uC1E0 \uBC29\uD328"
+  itemAbility: "\uBC29\uC5B4 \uC2DC\uC791 \uC2DC +3"
+  itemDesc: "\uB18B\uC1E0\uB85C \uB2E8\uC870 \uB41C \uBC29\uD328"
+  relicID: Shield02_C_Brass
+  relicType: 1

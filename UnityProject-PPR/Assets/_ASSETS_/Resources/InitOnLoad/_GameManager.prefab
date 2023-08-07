@@ -1172,22 +1172,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2d13bf36b6aed2c4eb075d8cf4ca12a3, type: 2}
     - {fileID: 11400000, guid: fa36e1a1648647e4494b2c487e68aca8, type: 2}
     - {fileID: 11400000, guid: eb460eaf190e2934d826d6472a47f3b0, type: 2}
+    - {fileID: 11400000, guid: 19cf17d6f154cd94999a531133399499, type: 2}
+    - {fileID: 11400000, guid: 850fe9ecaf0bde14e98a8266723944b5, type: 2}
+    - {fileID: 11400000, guid: 31d023a54feb10e4485fceaf94fc6ba3, type: 2}
     weight: 65
   - listName: Relic Uncommon
-    itemList:
-    - {fileID: 11400000, guid: adf2f604abff67f4dbadc9ad81cba4aa, type: 2}
-    - {fileID: 11400000, guid: 97be9f3bbf221df488f274928c66a4db, type: 2}
-    - {fileID: 11400000, guid: 25b29f8c68942ff48a09bdfaa1851871, type: 2}
-    - {fileID: 11400000, guid: eb5a8248d1fcfc14aa2d1ca562712557, type: 2}
-    - {fileID: 11400000, guid: 8986f60026571544db6c41b403b6351e, type: 2}
+    itemList: []
     weight: 25
   - listName: Relic Rare
-    itemList:
-    - {fileID: 11400000, guid: 952ebbd6e64ce9c46a89909cb89a81ed, type: 2}
-    - {fileID: 11400000, guid: 7c93dd063bd53cc47aeb9c17702b16f0, type: 2}
-    - {fileID: 11400000, guid: 97bb38391821c874aad5a224514f528d, type: 2}
-    - {fileID: 11400000, guid: 687a638249582164fb6d6968480c3d92, type: 2}
-    - {fileID: 11400000, guid: 3b37d5af70181654d80910d1ab6be459, type: 2}
+    itemList: []
     weight: 10
 --- !u!1 &2759126623571927682
 GameObject:
