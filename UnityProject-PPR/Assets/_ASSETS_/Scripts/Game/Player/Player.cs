@@ -12,24 +12,23 @@ public partial class Player : BehaviourSingleton<Player>
     [Header("Canvas")]
     [SerializeField] private Canvas[] canvases;
 
-    [Header("Player UI")]
+    [Header("UI")]
     [SerializeField] private PlayerUI playerUI;
     [SerializeField] private PlayerItemTooltip tooltip;
 
-    [Header("Player Stat")]
+    [Header("Base Stat")]
     public Stat HP;
     public Stat ACT;
     public Stat ATK;
     public Stat DEF;
 
-    [Header("Player Battle Stat")]
+    [Header("Battle Stat")]
     public Stat StartDEF;
     public Stat FirstDEF;
     public Stat FirstATK;
 
     public int Cash { get; set; }
     public int CurrentHP { get; set; }
-    public EnemyBlueprint BattleEnemy { get; set; }
 
     protected override void Awake()
     {
@@ -58,6 +57,11 @@ public partial class Player : BehaviourSingleton<Player>
 
         this.ATK.BaseValue = 1;
         this.DEF.BaseValue = 1;
+
+        this.StartDEF.BaseValue = 0;
+
+        this.FirstATK.BaseValue = 0;
+        this.FirstDEF.BaseValue = 0;
 
         CurrentHP = hp;
         Cash = cash;

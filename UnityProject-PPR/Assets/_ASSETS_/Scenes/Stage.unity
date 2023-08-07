@@ -17110,33 +17110,19 @@ MonoBehaviour:
     BaseValue: 0
   ACT:
     BaseValue: 0
+  ATK:
+    BaseValue: 0
+  DEF:
+    BaseValue: 0
+  StartDEF:
+    BaseValue: 0
+  FirstDEF:
+    BaseValue: 0
+  FirstATK:
+    BaseValue: 0
   cardDeck: []
-  relicAltar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  potionBelt:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  relicList: []
+  potionList: []
 --- !u!222 &6064037377554194965
 CanvasRenderer:
   m_ObjectHideFlags: 0

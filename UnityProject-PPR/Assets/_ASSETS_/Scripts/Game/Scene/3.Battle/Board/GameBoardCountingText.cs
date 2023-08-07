@@ -19,22 +19,38 @@ public class GameBoardCountingText : MonoBehaviour
 
     public void SetText(List<GameBoardElement> selectedElements)
     {
-        int result = 0;
+        int elementPoint = 0;
 
         switch (this.battleSystem.PlayedElementType)
         {
             case ElementType.Attack:
-                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.FirstATK, this.battlePlayer.ATK);
+                elementPoint = DetailSetText(selectedElements, this.battlePlayer.FirstATK, this.battlePlayer.ATK);
                 break;
             case ElementType.Defense:
-                result = this.battlePlayer.GetElementPoint(selectedElements, this.battlePlayer.FirstDEF, this.battlePlayer.DEF);
+                elementPoint = DetailSetText(selectedElements, this.battlePlayer.FirstDEF, this.battlePlayer.DEF);
                 break;
             case ElementType.None:
-                result = 0;
+                elementPoint = 0;
                 break;
         }
 ;
-        this.countingText.text = result.ToString();
+        this.countingText.text = elementPoint.ToString();
+    }
+
+    private int DetailSetText(List<GameBoardElement> selectedElements, int firstPoint, int point)
+    {
+        int resultPoint;
+
+        if (this.battlePlayer.OnFirst)
+        {
+            resultPoint = this.battlePlayer.GetElementPoint(selectedElements, firstPoint, point);
+        }
+        else
+        {
+            resultPoint = this.battlePlayer.GetElementPoint(selectedElements, 0, point);
+        }
+
+        return resultPoint;
     }
 
     /// <summary>

@@ -83,23 +83,25 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// <summary>
     /// 전투 시작 전 세팅
     /// </summary>
-    public void StartSetting()
+    public void PlayerOnStart()
     {
         this.OnStart = false;
+
+        InitAct();
+
+        if (player == null) return;
 
         if (player.StartDEF.Value >= 1)
         {
             this.CurrentSP = player.StartDEF.Value;
             GameBoardEvents.OnPlayerShieldChanged.Invoke(0, this.CurrentSP);
         }
-
-        InitAct();
     }
 
     /// <summary>
     /// 플레이어 턴 초기화
     /// </summary>
-    public void TurnInit()
+    public void PlayerOnInit()
     {
         // 스탯 초기화
         InitAct();
@@ -159,7 +161,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         }
         else
         {
-            attackPoint = this.GetElementPoint(elements, this.ATK, this.ATK);
+            attackPoint = this.GetElementPoint(elements, 0, this.ATK);
         }
 
         if (attackPoint < 50) 
@@ -185,7 +187,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         }
         else
         {
-            shieldPoint = this.GetElementPoint(elements, this.DEF, this.DEF);
+            shieldPoint = this.GetElementPoint(elements, 0, this.DEF);
         }
 
         BattleSFX.Instance.Play(BattleSFX.Instance.defense);

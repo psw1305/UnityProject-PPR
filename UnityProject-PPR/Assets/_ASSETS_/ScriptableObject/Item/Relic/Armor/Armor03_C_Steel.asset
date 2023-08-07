@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
   m_Name: Armor03_C_Steel
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 54e888cfdb2ab964b8e2c5d772de221a, type: 3}
+  image: {fileID: 21300000, guid: 81433c82fbd55694cbb33533b11b1f36, type: 3}
   itemType: 3
   itemGrade: 0
   itemName: "\uCCA0 \uAC11\uC637"
   itemAbility: "\uC804\uD22C \uC2DC\uC791\uC2DC \uBC29\uC5B4\uB3C4\uB97C 6 \uC5BB\uC2B5\uB2C8\uB2E4"
   itemDesc: "\uCCA0\uB85C \uC7AC\uB828\uB41C \uAC11\uC637"
   relicID: Armor03_C_Steel
-  relicType: 0
+  relicType: 2

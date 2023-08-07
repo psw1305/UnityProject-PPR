@@ -1177,10 +1177,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 31d023a54feb10e4485fceaf94fc6ba3, type: 2}
     weight: 65
   - listName: Relic Uncommon
-    itemList: []
+    itemList:
+    - {fileID: 11400000, guid: 846e03808c5aab14cb8f5a6c753858f6, type: 2}
+    - {fileID: 11400000, guid: f18b5b85649adc94683ea8aa5870b8e8, type: 2}
     weight: 25
   - listName: Relic Rare
-    itemList: []
+    itemList:
+    - {fileID: 11400000, guid: 6e07dee0a3bba554c8d04f72a89549d9, type: 2}
+    - {fileID: 11400000, guid: c9b0babaf78bacb4d90f4805086522c2, type: 2}
     weight: 10
 --- !u!1 &2759126623571927682
 GameObject:

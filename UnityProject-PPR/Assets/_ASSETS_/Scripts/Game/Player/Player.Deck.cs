@@ -1,11 +1,13 @@
 using PSW.Core.Enums;
 using PSW.Core.Stat;
+using UnityEngine;
 
 /// <summary>
 /// Player Card Deck Partial Class
 /// </summary>
 public partial class Player : BehaviourSingleton<Player>
 {
+    [Header("Inventory")]
     public InventoryItemCard[] cardDeck;
 
     public void SetDeck()

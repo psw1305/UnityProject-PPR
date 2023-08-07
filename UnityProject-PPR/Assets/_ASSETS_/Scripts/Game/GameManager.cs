@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameManager : BehaviourSingleton<GameManager>
 {
+    public EnemyBlueprint BattleEnemy { get; set; }
+
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
     public Camera MainCamera => this.mainCamera;

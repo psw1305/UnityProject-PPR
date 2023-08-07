@@ -54,7 +54,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             if (Player.Instance != null)
             {
                 // 적 정보 가져오기
-                this.enemyBlueprint = Player.Instance.BattleEnemy;
+                this.enemyBlueprint = GameManager.Instance.BattleEnemy;
             }
 
             battleEnemy.SetPosition(this.enemyCount, i);
@@ -146,9 +146,9 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     private IEnumerator PlayerTurn()
     {
         if (this.battlePlayer.OnStart)
-            this.battlePlayer.StartSetting();
+            this.battlePlayer.PlayerOnStart();
         else
-            this.battlePlayer.TurnInit();
+            this.battlePlayer.PlayerOnInit();
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
