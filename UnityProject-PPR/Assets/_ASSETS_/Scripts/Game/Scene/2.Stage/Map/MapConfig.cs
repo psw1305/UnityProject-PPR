@@ -19,9 +19,10 @@ namespace PSW.Core.Map
         [Header("Map Layer")]
         public MapLayer[] layers;
 
-        [Header("Enemys Setting")]
-        public List<EnemyBlueprint> minors;
-        public List<EnemyBlueprint> elites;
-        public List<EnemyBlueprint> bosses;
+        [Header("Enemys Spawn")]
+        public EnemyEncounter[] first;
+        public EnemyEncounter[] remain;
+        public EnemyEncounter[] elite;
+        public EnemyEncounter[] boss;
     }
 }

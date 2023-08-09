@@ -17,17 +17,15 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     [Header("Battle Enemy")]
     [SerializeField] private Transform enemyField;
     [SerializeField] private ToggleGroup enemyToggleGroup;
-    [SerializeField] private EnemyBlueprint enemyBlueprint;
+    [SerializeField] private EnemyEncounter enemyEncounter;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int enemyCount;
-    [SerializeField] private List<BattleEnemy> battleEnemys = new();
+    public List<BattleEnemy> BattleEnemys = new();
 
     [Header("Script")]
     [SerializeField] private GameBoard gameBoard;
     [SerializeField] private BattlePlayer battlePlayer;
     [SerializeField] private RewardsSystem battleRewards;
 
-    public List<BattleEnemy> BattleEnemys => this.battleEnemys;  
     public BattleEnemy SelectedEnemy { get; set; }
 
     protected override void Awake()
@@ -40,36 +38,38 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         GameManager.Instance.CameraChange(this.rewardCanvas);
 
         BattleEnemySetting();
-
-        this.battleRewards.SetBattleRewards(this.enemyBlueprint.EnemyType);
     }
 
     private void BattleEnemySetting()
     {
-        for (int i = 0; i < this.enemyCount; i++)
+        // Enemy 인카운터 정보
+        if (Player.Instance != null)
         {
-            var battleEnemy = Instantiate(this.enemyPrefab, this.enemyField).GetComponent<BattleEnemy>();
-            this.battleEnemys.Add(battleEnemy);
-
-            if (Player.Instance != null)
-            {
-                // 적 정보 가져오기
-                this.enemyBlueprint = GameManager.Instance.BattleEnemy;
-            }
-
-            battleEnemy.SetPosition(this.enemyCount, i);
-            battleEnemy.Set(this, this.enemyToggleGroup, this.enemyBlueprint);
+            this.enemyEncounter = GameManager.Instance.EnemyEncounter;
         }
 
-        if (this.enemyBlueprint.EnemyType == EnemyType.Elite)
+        // Enemy 생성
+        for (int i = 0; i < this.enemyEncounter.SpawnCount; i++)
+        {
+            var battleEnemy = Instantiate(this.enemyPrefab, this.enemyField).GetComponent<BattleEnemy>();
+            this.BattleEnemys.Add(battleEnemy);
+
+            battleEnemy.SetPosition(this.enemyEncounter.SpawnCount, i);
+            battleEnemy.Set(this, this.enemyToggleGroup, this.enemyEncounter.SpawnEnemys[i]);
+        }
+
+        // Enemy Type 에 따른 BGM 변경
+        if (this.enemyEncounter.EnemyType == EnemyType.Elite)
         {
             AudioBGM.Instance.BGMChange(AudioBGM.Instance.elite);
         }
-        else if (this.enemyBlueprint.EnemyType == EnemyType.Boss)
+        else if (this.enemyEncounter.EnemyType == EnemyType.Boss)
         {
             AudioBGM.Instance.BGMChange(AudioBGM.Instance.boss);
         }
 
+        // Enemy Type 에 따른 보상 구분
+        this.battleRewards.SetBattleRewards(this.enemyEncounter.EnemyType);
     }
 
     /// <summary>
@@ -153,7 +153,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
         // 적 스킬 생성
-        foreach (var battleEnemy in this.battleEnemys)
+        foreach (var battleEnemy in this.BattleEnemys)
         {
             battleEnemy.EnemySkillInstance();
         }
@@ -180,7 +180,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     public IEnumerator EnemyTurn()
     {
         // 적 초기화
-        foreach (var battleEnemy in this.battleEnemys)
+        foreach (var battleEnemy in this.BattleEnemys)
         {
             battleEnemy.Init();
         }
@@ -188,7 +188,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Enemy Turn"));
 
         // 적 스킬 사용
-        foreach (var battleEnemy in this.battleEnemys)
+        foreach (var battleEnemy in this.BattleEnemys)
         {
             yield return StartCoroutine(battleEnemy.EnemyUseSkill());
         }

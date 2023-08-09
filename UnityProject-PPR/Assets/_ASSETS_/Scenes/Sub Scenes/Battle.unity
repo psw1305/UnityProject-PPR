@@ -1614,11 +1614,10 @@ MonoBehaviour:
   rewardCanvas: {fileID: 269721409}
   enemyField: {fileID: 703475669}
   enemyToggleGroup: {fileID: 703475672}
-  enemyBlueprint: {fileID: 11400000, guid: f9eccec496d97ea4e9323348acd1faef, type: 2}
+  enemyEncounter: {fileID: 11400000, guid: 4c49702bd2da26148bc4e609c2d8ac66, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,
     type: 3}
-  enemyCount: 2
-  battleEnemys: []
+  BattleEnemys: []
   gameBoard: {fileID: 1734629820}
   battlePlayer: {fileID: 1344956577}
   battleRewards: {fileID: 1089702777}

@@ -64,22 +64,28 @@ namespace PSW.Core.Map
             //SaveMap();
         }
 
-        public EnemyBlueprint GetMinorEnemy()
+        public EnemyEncounter FirstEncounter()
         {
-            var num = Random.Range(0, this.config.minors.Count);
-            return this.config.minors[num];
+            var num = Random.Range(0, this.config.first.Length);
+            return this.config.first[num];
         }
 
-        public EnemyBlueprint GetEliteEnemy()
+        public EnemyEncounter RemainEncounter()
         {
-            var num = Random.Range(0, this.config.elites.Count);
-            return this.config.elites[num];
+            var num = Random.Range(0, this.config.remain.Length);
+            return this.config.remain[num];
         }
 
-        public EnemyBlueprint GetBossEnemy()
+        public EnemyEncounter EliteEncounter()
         {
-            var num = Random.Range(0, this.config.bosses.Count);
-            return this.config.bosses[num];
+            var num = Random.Range(0, this.config.elite.Length);
+            return this.config.elite[num];
+        }
+
+        public EnemyEncounter BossEncounter()
+        {
+            var num = Random.Range(0, this.config.boss.Length);
+            return this.config.boss[num];
         }
     }
 }

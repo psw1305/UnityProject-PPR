@@ -62,28 +62,35 @@ namespace PSW.Core.Map
                 case MapNodeType.Starting:
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
+
                 case MapNodeType.MinorEnemy:
-                    GameManager.Instance.BattleEnemy = MapManager.Instance.GetMinorEnemy();
+                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetMinorEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
+
                 case MapNodeType.EliteEnemy:
-                    GameManager.Instance.BattleEnemy = MapManager.Instance.GetEliteEnemy();
+                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetEliteEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
+
                 case MapNodeType.RestSite:
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.RestSite);
                     break;
+
                 case MapNodeType.Treasure:
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Treasure);
                     break;
+
                 case MapNodeType.Shop:
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Shop);
                     break;
+
                 case MapNodeType.Mystery:
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
+
                 case MapNodeType.Boss:
-                    GameManager.Instance.BattleEnemy = MapManager.Instance.GetBossEnemy();
+                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetBossEnemy();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
             }

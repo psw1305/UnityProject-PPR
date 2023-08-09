@@ -69,8 +69,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ATK = 1;
             this.DEF = 1;
 
-            this.FirstATK = 1;
-            this.FirstDEF = 1;
+            this.FirstATK = 0;
+            this.FirstDEF = 0;
 
             this.CurrentHP = 999;
         }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c582ec59b6c6bf49acb1d6669f5b5c1, type: 3}
+  m_Name: Map_RestSite
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -1543491049, guid: f5562ac44afabb04c8c1af7a7c4ff6e4, type: 3}
+  visitedSprite: {fileID: 916902726, guid: f89e0598089404d438f188a834e5e73e, type: 3}
+  nodeType: 3
