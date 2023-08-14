@@ -7,8 +7,8 @@ public class GameBoardSelectionLine : MonoBehaviour
 {
     private LineRenderer lineRenderer = null;
     
-    private ElementType elementType = ElementType.None;
-    public ElementType ElementType 
+    private CardType elementType = CardType.None;
+    public CardType ElementType 
     {
         get { return this.elementType; }
         set { this.elementType = value; }
@@ -23,7 +23,7 @@ public class GameBoardSelectionLine : MonoBehaviour
     /// 선택된 elements 수 끼리 Line 위치 설정
     /// </summary>
     /// <param name="selectedElements"></param>
-    public void SetPosition(List<GameBoardElement> selectedElements)
+    public void SetPosition(List<GameBoardCard> selectedElements)
     {
         this.lineRenderer.positionCount = selectedElements.Count;
 
@@ -35,7 +35,7 @@ public class GameBoardSelectionLine : MonoBehaviour
 
     public void Clear()
     {
-        this.ElementType = ElementType.None;
+        this.ElementType = CardType.None;
         this.lineRenderer.positionCount = 0;
     }
 }

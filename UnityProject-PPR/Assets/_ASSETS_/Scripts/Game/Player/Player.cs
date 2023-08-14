@@ -44,9 +44,9 @@ public partial class Player : BehaviourSingleton<Player>
 
     private void Start()
     {
-        SetDeck();
-
         this.playerUI.SetUI();
+
+        Test_SetDeck();
     }
 
 
@@ -99,7 +99,7 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.GameState = GameState.Victory;
 
-        this.playerUI.EndCanvasShow();
+        this.playerUI.GameResultShow();
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.GameState = GameState.Defeat;
 
-        this.playerUI.EndCanvasShow();
+        this.playerUI.GameResultShow();
     }
     #endregion
 }

@@ -150,7 +150,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// </summary>
     /// <param name="elements"></param>
     /// <param name="enemy"></param>
-    public void PlayerAttack(List<GameBoardElement> elements, BattleEnemy enemy)
+    public void PlayerAttack(List<GameBoardCard> elements, BattleEnemy enemy)
     {
         int attackPoint;
 
@@ -176,7 +176,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// Player 방어
     /// </summary>
     /// <param name="elements"></param>
-    public void PlayerShield(List<GameBoardElement> elements)
+    public void PlayerShield(List<GameBoardCard> elements)
     {
         int shieldPoint;
 
@@ -201,7 +201,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// Player 체력 회복
     /// </summary>
     /// <param name="elements"></param>
-    public void PlayerRecovery(List<GameBoardElement> elements)
+    public void PlayerRecovery(List<GameBoardCard> elements)
     {
         var oldPoint = this.CurrentHP;
         this.CurrentHP += this.GetElementPoint(elements, 0, 1);

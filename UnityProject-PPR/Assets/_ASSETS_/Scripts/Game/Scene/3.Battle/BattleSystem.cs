@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
     public BattlePlay BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
-    public ElementType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
+    public CardType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
 
     [Header("Settings")]
     [SerializeField] private Camera battleCamera;
@@ -32,7 +32,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     {
         base.Awake();
 
-        this.PlayedElementType = ElementType.None;
+        this.PlayedElementType = CardType.None;
 
         GameManager.Instance.CameraChange(this.battleCamera, this.battleCanvas);
         GameManager.Instance.CameraChange(this.rewardCanvas);
@@ -169,7 +169,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
             // 빈 곳으로 elements 이동 
             yield return this.gameBoard.WaitForMovement();
             // 소멸 된 elements 수 만큼 재생성
-            yield return this.gameBoard.RespawnElements();
+            yield return this.gameBoard.RespawnCards();
         }
     }
 
@@ -227,14 +227,14 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     /// </summary>
     private void OnElementsDespawned()
     {
-        var selectElements = this.gameBoard.GetSelectElements();
+        var selectElements = this.gameBoard.GetSelectCards();
 
         switch (PlayedElementType)
         {
-            case ElementType.Attack:
+            case CardType.Attack:
                 this.battlePlayer.PlayerAttack(selectElements, this.SelectedEnemy);
                 break;
-            case ElementType.Defense:
+            case CardType.Defense:
                 this.battlePlayer.PlayerShield(selectElements);
                 break;
         }

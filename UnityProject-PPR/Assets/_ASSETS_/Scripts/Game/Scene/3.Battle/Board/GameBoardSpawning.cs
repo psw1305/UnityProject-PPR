@@ -18,19 +18,19 @@ public class GameBoardSpawning
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
-        foreach (GameBoardElement element in this.board.Elements)
+        foreach (GameBoardCard element in this.board.Cards)
         {
             if (element.IsSpawned == false)
             {
-                element.SetData(this.board.ElementList.Get());
+                element.SetData(this.board.CardList.Get());
                 element.Spawn();
 
                 if (this.currentStack >= this.skillStack)
                 {
-                    if (this.board.IsSkillElementsEmpty() == false)
+                    if (this.board.IsSkillCardEmpty() == false)
                     {
                         this.currentStack = 1;
-                        yield return Change(this.board.RandomElement());
+                        yield return Change(this.board.RandomCard());
                     }
                 }
                 else
@@ -43,11 +43,11 @@ public class GameBoardSpawning
         yield return YieldCache.WaitForSeconds(0.4f);
     }
 
-    public IEnumerator Despawn(List<GameBoardElement> elements)
+    public IEnumerator Despawn(List<GameBoardCard> elements)
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
-        foreach (GameBoardElement boardElement in elements)
+        foreach (GameBoardCard boardElement in elements)
         {
             boardElement.Despawn();
         }
@@ -58,7 +58,7 @@ public class GameBoardSpawning
         GameBoardEvents.OnElementsDespawned.Invoke();
     }
 
-    public IEnumerator Change(GameBoardElement element)
+    public IEnumerator Change(GameBoardCard element)
     {
         element.Despawn();
 
@@ -66,7 +66,7 @@ public class GameBoardSpawning
 
         BattleSFX.Instance.Play(BattleSFX.Instance.skillAppear);
 
-        element.SetData(this.board.RandomSkillElement());
+        element.SetData(this.board.RandomSkillCard());
         element.Spawn();
     }
 }

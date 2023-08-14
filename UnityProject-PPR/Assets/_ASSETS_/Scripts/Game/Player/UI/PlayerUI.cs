@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
     [Header("Front UI - Stat")]
     [SerializeField] private TextMeshProUGUI hpText;
@@ -19,13 +19,14 @@ public class PlayerUI : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventoryCanvas;
     [SerializeField] private Button inventoryClose;
-    [SerializeField] private Transform gridRelic;
-    [SerializeField] private Transform gridPotion;
+    [SerializeField] private Transform relicSlotList;
+    [SerializeField] private Transform potionSlotList;
 
     [Header("Card Deck")]
     [SerializeField] private CanvasGroup cardDeckCanvas;
     [SerializeField] private Button cardDeckClose;
-    [SerializeField] private Transform cardInvenList;
+    [SerializeField] private Transform cardSlotList;
+    [SerializeField] private Transform cardDragParent;
     [SerializeField] private InventorySlotCard[] cards;
 
     [Header("Game Result")]
@@ -34,8 +35,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject gameOverTitle;
     [SerializeField] private Button gameEndButton;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         this.inventoryCanvas.CanvasInit();
         this.inventory.onClick.AddListener(InventoryShow);
         this.inventoryClose.onClick.AddListener(InventoryHide);
@@ -50,14 +53,24 @@ public class PlayerUI : MonoBehaviour
         this.gameEndButton.onClick.AddListener(GameEnd);
     }
 
-    public Transform GetGridRelic()
+    public Transform GetRelicSlotList()
     {
-        return this.gridRelic;
+        return this.relicSlotList;
     }
 
-    public Transform GetGridPotion()
+    public Transform GetPotionSlotList()
     {
-        return this.gridPotion;
+        return this.potionSlotList;
+    }
+
+    public Transform GetCardSlotList()
+    {
+        return this.cardSlotList;
+    }
+
+    public Transform GetCardDragParent()
+    {
+        return this.cardDragParent;
     }
 
     #region Canvas Show, Hide
@@ -103,7 +116,7 @@ public class PlayerUI : MonoBehaviour
     /// <summary>
     /// 게임 오버시 => 결과 창 열기
     /// </summary>
-    public void EndCanvasShow()
+    public void GameResultShow()
     {
         if (Player.Instance.GameState == GameState.Victory)
         {
@@ -158,7 +171,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 장비 장착 => [0.투구][1.갑옷][2.무기][3.액세서리]
+    /// 장비 장착
     /// </summary>
     /// <param name="num">슬롯 번호</param>
     /// <param name="invenItem">장착할 아이템</param>

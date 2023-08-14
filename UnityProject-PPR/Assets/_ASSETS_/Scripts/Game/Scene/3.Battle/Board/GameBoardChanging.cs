@@ -9,21 +9,21 @@ public class GameItemSkill
     /// Board 위에 있는 모든 elements type 교체
     /// </summary>
     /// <returns></returns>
-    public IEnumerator AllElementsChanged(GameBoard board, ElementBlueprint changeElement)
+    public IEnumerator AllElementsChanged(GameBoard board, ItemBlueprintCard changeCard)
     {
         // 효과음 부여
         //GameUISFX.Instance.Play(GameUISFX.Instance.clickClip);
 
-        foreach (GameBoardElement element in board.Elements)
+        foreach (var element in board.Cards)
         {
             element.Despawn();
         }
 
         yield return YieldCache.WaitForSeconds(0.25f);
 
-        foreach (GameBoardElement element in board.Elements)
+        foreach (var element in board.Cards)
         {
-            element.SetData(board.ElementList.Get());
+            element.SetData(board.CardList.Get());
             element.Spawn();
         }
 

@@ -456,6 +456,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5593438486885769364}
   - {fileID: 3132394648702473163}
   - {fileID: 1044455323340561974}
   m_Father: {fileID: 3971533429750222688}
@@ -1149,7 +1150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3065613823626335223}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3814591337692405334
 MonoBehaviour:
@@ -2374,11 +2375,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 6140414155709630025}
-  relicPrefab: {fileID: 918591208868060341, guid: b41ec52032bab59408233f674f2f1b21,
+  cardPrefab: {fileID: 2590970707455025614, guid: dca2972a1a5d859428f0382c16159c9e,
     type: 3}
-  potionPrefab: {fileID: 1500066845021130568, guid: bfdbf251d9467aa42a5e4d9b4658df48,
+  cardLootTable: {fileID: 2123968394431919284}
+  relicPrefab: {fileID: 2590970707455025614, guid: b41ec52032bab59408233f674f2f1b21,
     type: 3}
   relicLootTable: {fileID: 3814591337692405334}
+  potionPrefab: {fileID: 2590970707455025614, guid: bfdbf251d9467aa42a5e4d9b4658df48,
+    type: 3}
   potionLootTable: {fileID: 1221357448481987541}
 --- !u!1 &4095437680970354375
 GameObject:
@@ -2532,6 +2536,66 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4377580769940755703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5593438486885769364}
+  - component: {fileID: 2123968394431919284}
+  m_Layer: 0
+  m_Name: Card Table
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5593438486885769364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377580769940755703}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3065613823626335223}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2123968394431919284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377580769940755703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf34e3112b51864a85e28dc9d16e9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemLists:
+  - listName: Card Common
+    itemList:
+    - {fileID: 11400000, guid: e839ec956a9de82429788a7d1735e060, type: 2}
+    - {fileID: 11400000, guid: d8da9abec38384347b69c663aa5b827c, type: 2}
+    - {fileID: 11400000, guid: fd14c621661f707499c71b7547c6ca96, type: 2}
+    - {fileID: 11400000, guid: 78c7dfd8675ffc044a7fcc638d315cb6, type: 2}
+    - {fileID: 11400000, guid: f969ca359edec7c4a8554eb38a6dcf63, type: 2}
+    - {fileID: 11400000, guid: 437878a129c6cac4cbed492465050b81, type: 2}
+    weight: 100
+  - listName: 
+    itemList: []
+    weight: 0
+  - listName: 
+    itemList: []
+    weight: 0
 --- !u!1 &4398859046641316091
 GameObject:
   m_ObjectHideFlags: 0
@@ -4522,7 +4586,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3065613823626335223}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1221357448481987541
 MonoBehaviour:

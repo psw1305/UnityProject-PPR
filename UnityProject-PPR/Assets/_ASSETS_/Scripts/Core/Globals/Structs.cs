@@ -22,7 +22,7 @@ namespace PSW.Core.Structs
     [Serializable]
     public struct AbilityData
     {
-        public ElementBlueprint element;
+        public ItemBlueprintCard card;
     }
 }
 

@@ -1,5 +1,5 @@
 using PSW.Core.Enums;
-using PSW.Core.Stat;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,18 +8,27 @@ using UnityEngine;
 public partial class Player : BehaviourSingleton<Player>
 {
     [Header("Inventory")]
-    public InventoryItemCard[] cardDeck;
+    public List<InventoryItemCard> cardDeck;
 
-    public void SetDeck()
+    public void Test_SetDeck()
     {
-        this.cardDeck = new InventoryItemCard[16];
+        for (int i = 0; i < 6; i++) 
+        {
+            AddCard();
+        }
+    }
+
+    public void AddCard()
+    {
+        var card = GameManager.Instance.ItemLootCard(this.playerUI.GetCardSlotList());
+        this.cardDeck.Add(card);
     }
 
     /// <summary>
     /// 스킬 카드 장착
     /// </summary>
     /// <param name="skillCard"></param>
-    public void EquipmentLoad(InventoryItemCard skillCard)
+    public void EquipSkillCard(InventoryItemCard skillCard)
     {
         var cardData = skillCard.GetCardData();
         var cardType = cardData.CardType;
@@ -27,27 +36,24 @@ public partial class Player : BehaviourSingleton<Player>
         switch (cardType)
         {
             case CardType.Attack:
-                Equipping(0, skillCard);
+                Equip(0, skillCard);
                 break;
             case CardType.Defense:
-                Equipping(1, skillCard);
+                Equip(1, skillCard);
                 break;
-            case CardType.Special:
-                Equipping(2, skillCard);
+            case CardType.Synergy:
+                Equip(2, skillCard);
                 break;
-            case CardType.Joker:
-                Equipping(3, skillCard);
+            case CardType.Obstacle:
+                Equip(3, skillCard);
                 break;
         }
-
-        // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        PlayerAddStatModify(skillCard);
     }
 
-    private void Equipping(int num, InventoryItemCard invenItem)
+    private void Equip(int num, InventoryItemCard invenItem)
     {
         // 장비칸 아이템 존재시 => 교체
-        if (this.cardDeck[num] != null) EquipmentUnload(this.cardDeck[num]);
+        if (this.cardDeck[num] != null) UnequipSkillCard(this.cardDeck[num]);
 
         // 해당 장비창 채움
         this.cardDeck[num] = invenItem;
@@ -57,37 +63,11 @@ public partial class Player : BehaviourSingleton<Player>
         this.playerUI.LoadCardDeck(num, invenItem);
     }
 
-    private void PlayerAddStatModify(InventoryItemCard invenItem)
-    {
-        var cardData = invenItem.GetCardData();
-
-        // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        for (int i = 0; i < cardData.StatCount; i++)
-        {
-            StatType statType = cardData.ItemStatType(i);
-            int statValue = cardData.ItemStatValue(i);
-
-            switch (statType)
-            {
-                case StatType.HP:
-                    this.HP.AddModifier(new StatModifier(statValue, StatModType.Int, invenItem));
-                    CurrentHP += statValue;
-                    break;
-                case StatType.ACT:
-                    this.ACT.AddModifier(new StatModifier(statValue, StatModType.Int, invenItem));
-                    break;
-            }
-        }
-
-        // 스탯 변화 UI 표시
-        this.playerUI.SetHPText();
-    }
-
     /// <summary>
     /// 장비(Equipment) 해체
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void EquipmentUnload(InventoryItemCard invenItem)
+    public void UnequipSkillCard(InventoryItemCard invenItem)
     {
         var cardData = invenItem.GetCardData();
         var cardType = cardData.CardType;
@@ -95,50 +75,21 @@ public partial class Player : BehaviourSingleton<Player>
         switch (cardType)
         {
             case CardType.Attack:
-                Unequipping(0, invenItem);
+                Unequip(0, invenItem);
                 break;
             case CardType.Defense:
-                Unequipping(1, invenItem);
+                Unequip(1, invenItem);
                 break;
-            case CardType.Special:
-                Unequipping(2, invenItem);
+            case CardType.Synergy:
+                Unequip(2, invenItem);
                 break;
-            case CardType.Joker:
-                Unequipping(3, invenItem);
+            case CardType.Obstacle:
+                Unequip(3, invenItem);
                 break;
         }
-
-        // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        PlayerRemoveStatModify(invenItem);
     }
 
-    private void PlayerRemoveStatModify(InventoryItemCard invenItem)
-    {
-        var cardData = invenItem.GetCardData();
-
-        // 장비 세팅 => 부여된 statCount만큼 스탯 조정
-        for (int i = 0; i < cardData.StatCount; i++)
-        {
-            var statType = cardData.ItemStatType(i);
-
-            switch (statType)
-            {
-                case StatType.HP:
-                    this.HP.RemoveAllModifiersFromSource(invenItem);
-                    // 장비 해체 시 현 체력이 최대체력보다 높을 경우 조정
-                    if (CurrentHP >= this.HP.Value) CurrentHP = this.HP.Value;
-                    break;
-                case StatType.ACT:
-                    this.ACT.RemoveAllModifiersFromSource(invenItem);
-                    break;
-            }
-        }
-
-        // 스탯 변화 UI 표시
-        this.playerUI.SetHPText();
-    }
-
-    private void Unequipping(int num, InventoryItemCard invenItem)
+    private void Unequip(int num, InventoryItemCard invenItem)
     {
         // 해당 장비창 비움
         this.cardDeck[num] = null;

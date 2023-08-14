@@ -14,7 +14,7 @@ public partial class Player : BehaviourSingleton<Player>
     /// </summary>
     public void AddRelic(int id)
     {
-        var relic = GameManager.Instance.ItemLootRelic(id, this.playerUI.GetGridRelic());
+        var relic = GameManager.Instance.ItemLootRelic(id, this.playerUI.GetRelicSlotList());
         this.SetRelic(this.relicList, relic);
     }
 
@@ -26,7 +26,7 @@ public partial class Player : BehaviourSingleton<Player>
     /// </summary>
     public void AddPotion()
     {
-        var potion = GameManager.Instance.ItemLootPotion(this.playerUI.GetGridPotion());
+        var potion = GameManager.Instance.ItemLootPotion(this.playerUI.GetPotionSlotList());
         this.potionList.Add(potion);
     }
 

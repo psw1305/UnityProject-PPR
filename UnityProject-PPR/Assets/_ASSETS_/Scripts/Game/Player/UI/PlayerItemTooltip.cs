@@ -6,6 +6,13 @@ using TMPro;
 
 public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
 {
+    [Header("Card")]
+    [SerializeField] private CanvasGroup cardTooltipCanvas;
+    [SerializeField] private Button cardTooltipClose;
+    [SerializeField] private Image cardIcon;
+    [SerializeField] private TextMeshProUGUI cardName;
+    [SerializeField] private TextMeshProUGUI cardDesc;
+
     [Header("Relic")]
     [SerializeField] private CanvasGroup relicTooltipCanvas;
     [SerializeField] private Button relicTooltipClose;
@@ -23,13 +30,6 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     [SerializeField] private TextMeshProUGUI potionRare;
     [SerializeField] private TextMeshProUGUI potionAbility;
     [SerializeField] private TextMeshProUGUI potionDesc;
-
-    [Header("Card")]
-    [SerializeField] private CanvasGroup cardTooltipCanvas;
-    [SerializeField] private Button cardTooltipClose;
-    [SerializeField] private Image cardIcon;
-    [SerializeField] private TextMeshProUGUI cardName;
-    [SerializeField] private TextMeshProUGUI cardDesc;
 
     protected override void Awake()
     {

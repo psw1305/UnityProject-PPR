@@ -11,23 +11,23 @@ public partial class GameBoard : MonoBehaviour
     [SerializeField] private int skillStack = 5;
     [SerializeField] private float rescaling = 0.25f;
 
-    [Header("Element Settings")]
-    [SerializeField] private List<ElementBlueprint> elementDatas = new();
-    [SerializeField] private List<ElementBlueprint> elementSkillDatas = new();
-    [SerializeField] private List<ElementBlueprint> elementSkillUsedDatas = new();
-    [SerializeField] private GameBoardElementList<ElementBlueprint> elementList = new();
+    [Header("Card Settings")]
+    [SerializeField] private List<ItemBlueprintCard> cardDatas = new();
+    [SerializeField] private List<ItemBlueprintCard> cardSkillDatas = new();
+    [SerializeField] private List<ItemBlueprintCard> cardSkillUsedDatas = new();
+    [SerializeField] private GameBoardCardList<ItemBlueprintCard> cardList = new();
 
     [Header("Additional")]
     [SerializeField] private GameBoardCountingText countingText;
     [SerializeField] private GameBoardSelectionLine selectionLine;
-    [SerializeField] private GameBoardElement boardElementPrefab;
+    [SerializeField] private GameObject battleCardPrefab;
 
     private GameBoardInput boardInput;
     private GameBoardMovement boardMovement;
     private GameBoardSpawning boardSpawning;
 
-    public List<GameBoardElement> Elements { get; } = new List<GameBoardElement>();
-    public GameBoardElementList<ElementBlueprint> ElementList => this.elementList;
+    public List<GameBoardCard> Cards { get; } = new List<GameBoardCard>();
+    public GameBoardCardList<ItemBlueprintCard> CardList => this.cardList;
     public Vector2 StartCellPosition => this.BoardCenter - this.Rescaling * new Vector2(this.ColumnCount - 1, this.RowCount - 1) / 2.0f;
     public int RowCount => this.rowCount;
     public int ColumnCount => this.columnCount;
@@ -46,22 +46,22 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// 선택된 elements list
+    /// 선택된 카드 리스트
     /// </summary>
     /// <returns></returns>
-    public List<GameBoardElement> GetSelectElements()
+    public List<GameBoardCard> GetSelectCards()
     {
-        return this.boardInput.SelectedElements;
+        return this.boardInput.SelectedCards;
     }
 
     /// <summary>
-    /// 주어진 element 가중치 값 list 생성 
+    /// 주어진 카드 가중치 값 list 생성 
     /// </summary>
     private void ProbabilityList()
     {
-        foreach (ElementBlueprint element in this.elementDatas)
+        foreach (var card in this.cardDatas)
         {
-            this.elementList.Add(element, element.RandomWeighted);
+            this.cardList.Add(card, card.CardWeighted);
         }
     }
 
@@ -71,15 +71,15 @@ public partial class GameBoard : MonoBehaviour
     private void TestProbability()
     {
         float count = 10000;
-        int[] list = new int[this.elementDatas.Count];
+        int[] list = new int[this.cardDatas.Count];
 
         for (int i = 0; i < count; i++)
         {
-            ElementBlueprint testElement = this.ElementList.Get();
+            var test = this.CardList.Get();
 
-            for (int k = 0; k < this.elementDatas.Count; k++)
+            for (int k = 0; k < this.cardDatas.Count; k++)
             {
-                if (testElement == this.elementDatas[k])
+                if (test == this.cardDatas[k])
                 {
                     list[k]++;
                 }
@@ -88,12 +88,12 @@ public partial class GameBoard : MonoBehaviour
 
         for (int i = 0; i < list.Length; i++)
         {
-            Debug.Log(string.Format("{0} : {1}%\n", this.elementDatas[i].name, list[i] / count * 100));
+            Debug.Log(string.Format("{0} : {1}%\n", this.cardDatas[i].name, list[i] / count * 100));
         }
     }
 
     /// <summary>
-    /// board elements 생성
+    /// GameBoard 카드 생성
     /// </summary>
     public void SetBoard()
     {
@@ -101,13 +101,13 @@ public partial class GameBoard : MonoBehaviour
         {
             for (int x = 0; x < this.RowCount; x++)
             {
-                GameBoardElement element = Instantiate(this.boardElementPrefab);
-                element.transform.localScale = Vector2.one;
-                element.transform.position = this.BoardToWorldPosition(x, y);
-                element.transform.SetParent(this.BoardContainer, true);
-                element.Set(this, this.ElementList.Get());
+                var card = Instantiate(this.battleCardPrefab).GetComponent<GameBoardCard>();
+                card.transform.localScale = Vector2.one;
+                card.transform.position = this.BoardToWorldPosition(x, y);
+                card.transform.SetParent(this.BoardContainer, true);
+                card.Set(this, this.CardList.Get());
 
-                this.Elements.Add(element);
+                this.Cards.Add(card);
             }
         }
 
@@ -119,81 +119,77 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// 변환되는 elements 중에 랜덤 픽업
+    /// 변환되는 카드 중에 랜덤 픽업
     /// </summary>
     /// <returns></returns>
-    public GameBoardElement RandomElement()
+    public GameBoardCard RandomCard()
     {
         while (true)
         {
-            var random = Random.Range(0, this.Elements.Count);
-            var randomElement = this.Elements[random];
-            if (randomElement.ElementDetailType == ElementDetailType.Normal) return randomElement;
+            var random = Random.Range(0, this.Cards.Count);
+            var randomCard = this.Cards[random];
+            if (randomCard.CardDetail == CardDetail.Normal) return randomCard;
         }
     }
 
-    public bool IsSkillElementsEmpty()
+    public bool IsSkillCardEmpty()
     {
-        if (this.elementSkillDatas.Count == 0) return true;
+        if (this.cardSkillDatas.Count == 0) return true;
 
         return false;
     }
 
     /// <summary>
-    /// 변환되는 elements 중에 랜덤 픽업
+    /// 변환되는 카드 중에 랜덤 픽업
     /// </summary>
     /// <returns></returns>
-    public ElementBlueprint RandomSkillElement()
+    public ItemBlueprintCard RandomSkillCard()
     {
-        var random = Random.Range(0, this.elementSkillDatas.Count);
-        var randomSkillElement = this.elementSkillDatas[random];
+        var random = Random.Range(0, this.cardSkillDatas.Count);
+        var randomSkillCard = this.cardSkillDatas[random];
         
         // 스킬 카드 사용 후 List 변환
-        this.elementSkillDatas.Remove(randomSkillElement);
-        this.elementSkillUsedDatas.Add(randomSkillElement);
+        this.cardSkillDatas.Remove(randomSkillCard);
+        this.cardSkillUsedDatas.Add(randomSkillCard);
 
-        return randomSkillElement;
+        return randomSkillCard;
     }
 
-    public void SkillElementReset(ElementBlueprint data)
+    public void SkillCardReset(ItemBlueprintCard data)
     {
-        this.elementSkillUsedDatas.Remove(data);
-        this.elementSkillDatas.Add(data);
+        this.cardSkillUsedDatas.Remove(data);
+        this.cardSkillDatas.Add(data);
     }
 
     /// <summary>
-    /// Coroutine => board 안에 있는 elements 들이 움직일때 까지 대기
+    /// Coroutine => GameBoard 안에 있는 카드들이 움직일때 까지 대기
     /// </summary>
-    /// <returns></returns>
     public Coroutine WaitForMovement()
     {
         return StartCoroutine(this.boardMovement.WaitForMovement());
     }
 
     /// <summary>
-    /// Coroutine => elements 끼리 selection 라인이 이어지기 까지 대기
+    /// Coroutine => 카드 끼리 selection 라인이 이어지기 까지 대기
     /// </summary>
-    /// <returns></returns>
     public Coroutine WaitForSelection()
     {
         return StartCoroutine(this.boardInput.WaitForSelection());
     }
 
     /// <summary>
-    /// Coroutine => 선택된 elements 들이 소멸될 때 까지 대기
+    /// Coroutine => 선택된 카드들이 소멸될 때 까지 대기
     /// </summary>
-    /// <returns></returns>
-    public Coroutine RespawnElements()
+    public Coroutine RespawnCards()
     {
         return StartCoroutine(this.boardSpawning.Respawn());
     }
 
     /// <summary>
-    /// Coroutine => elements 들이 다 선택될 때 까지 대기
+    /// Coroutine => 카드들이 다 선택될 때 까지 대기
     /// </summary>
-    /// <returns></returns>
     public Coroutine DespawnSelection()
     {
-        return StartCoroutine(this.boardSpawning.Despawn(GetSelectElements()));
+        return StartCoroutine(this.boardSpawning.Despawn(GetSelectCards()));
     }
 }

@@ -6,13 +6,7 @@ using UnityEngine.UI;
 public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Image plate;
-    private int slotNumber = 0;
     private Transform parentAfterDrag;
-
-    public void SetSlotNumber(int slotNumber)
-    {
-        this.slotNumber = slotNumber;
-    }
 
     public void SetParentAfterDrag(Transform dropTransform)
     {
@@ -31,61 +25,51 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     }
 
     /// <summary>
-    /// 플레이어 장비창에 아이템 등록 [기본값 = 0]
+    /// 카드 덱에 등록
     /// </summary>
-    /// /// <param name="slotNumber">장비창 슬롯 자리 숫자</param>
-    public void CardLoad(int slotNumber = 0)
+    public void CardLoad()
     {
         if (this.IsEquip == true) return;
 
-        if (GetItemType() == ItemType.Relic)
+        if (GetItemType() == ItemType.Card)
         {
-            Player.Instance.EquipmentLoad(this);
-        }
-        else if (GetItemType() == ItemType.Potion)
-        {
-            this.slotNumber = slotNumber;
-            //Player.Instance.PotionItemLoad(this, this.slotNumber);
+            Player.Instance.EquipSkillCard(this);
         }
     }
 
     /// <summary>
     /// 플레이어 장비창에 아이템 해제 [기본값 = 0]
     /// </summary>
-    public void ItemUnload()
+    public void CardUnload()
     {
         if (this.IsEquip == false) return;
 
-        if (GetItemType() == ItemType.Relic)
+        if (GetItemType() == ItemType.Card)
         {
-            Player.Instance.EquipmentUnload(this);
-        }
-        else if (GetItemType() == ItemType.Potion)
-        {
-            //Player.Instance.PotionItemUnload(this, this.slotNumber);
+            Player.Instance.UnequipSkillCard(this);
         }
     }
 
     /// <summary>
-    /// 장비창에서 소모품 이동
+    /// 덱에서 카드 이동
     /// </summary>
     /// <param name="changSlotNumber">바꿀 슬롯 자리 숫자</param>
-    public void ItemMove(int changSlotNumber)
+    public void CardMove(int changSlotNumber)
     {
         //Player.Instance.PotionItemMove(this, this.slotNumber, changSlotNumber);
     }
 
     /// <summary>
-    /// 장비창에서 소모품 교환
+    /// 덱에서 카드 교체
     /// </summary>
     /// <param name="changSlotNumber">바꿀 슬롯 자리 숫자</param>
-    public void ItemChange(int changSlotNumber)
+    public void CardChange(int changSlotNumber)
     {
         //Player.Instance.PotionItemChange(this.slotNumber, changSlotNumber);
     }
 
     /// <summary>
-    /// 드래그 시작시
+    /// 아이템 드래그 시작시
     /// </summary>
     /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
@@ -93,15 +77,15 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
         UISFX.Instance.Play(UISFX.Instance.itemDrag);
 
         this.parentAfterDrag = this.transform.parent;
-        this.transform.SetParent(InventorySystem.Instance.transform);
+        this.transform.SetParent(PlayerUI.Instance.GetCardDragParent());
         this.transform.SetAsLastSibling();
         this.plate.raycastTarget = false;
 
-        //PlayerUI.Instance.ItemOnBeginDrag(this);
+        PlayerUI.Instance.ItemOnBeginDrag(this);
     }
 
     /// <summary>
-    /// 드래그 중
+    /// 아이템 드래그 중
     /// </summary>
     /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
@@ -111,7 +95,7 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     }
 
     /// <summary>
-    /// 드래그 끝날시
+    /// 아이템 드래그 끝날시
     /// </summary>
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
@@ -121,6 +105,6 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
         this.transform.SetParent(this.parentAfterDrag);
         this.plate.raycastTarget = true;
 
-        //PlayerUI.Instance.ItemOnEndDrag(this);
+        PlayerUI.Instance.ItemOnEndDrag(this);
     }
 }

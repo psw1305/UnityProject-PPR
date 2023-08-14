@@ -2,9 +2,8 @@ using PSW.Core.Structs;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-public class BattlePlayerUseableItem : MonoBehaviour
+public class BattlePlayerPotion : MonoBehaviour
 {
     public bool IsUsed { get; set; }
 
@@ -15,7 +14,7 @@ public class BattlePlayerUseableItem : MonoBehaviour
     private ItemBlueprintPotion useableData;
     private AbilityData ability;
 
-    private ElementBlueprint element;
+    private ItemBlueprintCard card;
 
     public void Set(ItemBlueprintPotion data)
     {
@@ -24,7 +23,7 @@ public class BattlePlayerUseableItem : MonoBehaviour
         this.ability = data.Ability;
         this.image.sprite = data.ItemImage;
 
-        this.element = data.ChangeElement;
+        this.card = data.ChangeCard;
 
         this.button = GetComponent<Button>();
         this.button.onClick.AddListener(Selected);
@@ -64,16 +63,16 @@ public class BattlePlayerUseableItem : MonoBehaviour
         // 효과음 부여
         //GameUISFX.Instance.Play(GameUISFX.Instance.clickClip);
 
-        foreach (GameBoardElement element in this.board.Elements)
+        foreach (GameBoardCard element in this.board.Cards)
         {
             element.Despawn();
         }
 
         yield return YieldCache.WaitForSeconds(0.25f);
 
-        foreach (GameBoardElement element in this.board.Elements)
+        foreach (GameBoardCard element in this.board.Cards)
         {
-            element.SetData(this.element);
+            element.SetData(this.card);
             element.Spawn();
         }
 

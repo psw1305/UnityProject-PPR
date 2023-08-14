@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class GameBoardExtensions
 {
-    public static GameBoardElement GetElement(this GameBoard board, int column, int row)
+    public static GameBoardCard GetElement(this GameBoard board, int column, int row)
     {
-        return board.Elements[row * board.ColumnCount + column];
+        return board.Cards[row * board.ColumnCount + column];
     }
 
     public static Vector2 BoardToWorldPosition(this GameBoard board, int column, int row)

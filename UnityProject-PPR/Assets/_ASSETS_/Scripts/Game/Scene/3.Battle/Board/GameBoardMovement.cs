@@ -24,7 +24,7 @@ public class GameBoardMovement
 
     private bool IsMovementDone()
     {
-        foreach (GameBoardElement element in this.board.Elements)
+        foreach (GameBoardCard element in this.board.Cards)
         {
             if (element.IsSpawned && element.IsMoving)
             {
@@ -71,8 +71,8 @@ public class GameBoardMovement
         var element1 = this.board.GetElement(oldPos.x, oldPos.y);
         var element2 = this.board.GetElement(newPos.x, newPos.y);
 
-        this.board.Elements[this.board.BoardPositionToIndex(oldPos)] = element2;
-        this.board.Elements[this.board.BoardPositionToIndex(newPos)] = element1;
+        this.board.Cards[this.board.BoardPositionToIndex(oldPos)] = element2;
+        this.board.Cards[this.board.BoardPositionToIndex(newPos)] = element1;
 
         element2.transform.position = this.board.BoardToWorldPosition(oldPos);
         element1.Move(this.board.BoardToWorldPosition(newPos), 0.3f);

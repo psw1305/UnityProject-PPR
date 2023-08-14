@@ -4867,7 +4867,7 @@ GameObject:
   - component: {fileID: 7862524456853583431}
   - component: {fileID: 1974717187632502000}
   m_Layer: 0
-  m_Name: Case
+  m_Name: Card Case
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4983,7 +4983,7 @@ GameObject:
   - component: {fileID: 1006674200000423939}
   - component: {fileID: 4055685251731332811}
   m_Layer: 0
-  m_Name: Element Image
+  m_Name: Card Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5152,7 +5152,7 @@ GameObject:
   - component: {fileID: 2968379946379881870}
   - component: {fileID: 7121532763530009987}
   m_Layer: 0
-  m_Name: Battle_Element_Prefab
+  m_Name: Battle_Card_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5215,7 +5215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec896199b804c349ae436422f3056a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardSprite: {fileID: 4055685251731332811}
   caseSprite: {fileID: 1974717187632502000}
   coverSprite: {fileID: 1515171869298435149}
-  elementSprite: {fileID: 4055685251731332811}
   particleCase: {fileID: 2628565382872258904}

@@ -17,4 +17,5 @@ MonoBehaviour:
   enemyName: "\uB354\uBBF8"
   hp: 9
   skills:
-  - {fileID: 8819207446245105067, guid: 6693126edea9cfd4eb36db54a455795b, type: 3}
+  - {fileID: 8819207446245105067, guid: ad85f87ffaa0b0048b8e740a835dc659, type: 3}
+  - {fileID: 8819207446245105067, guid: 6b3e9d03e9b684b429cb9662e831ea21, type: 3}

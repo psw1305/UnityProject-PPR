@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace PSW.Core.Probability
 {
-    public class GameBoardElementList<T>
+    public class GameBoardCardList<T>
     {
-        private List<ElementList> elementList = new();
+        private List<CardList> elementList = new();
 
         public bool IsEmpty { get { return elementList.Count <= 0; } }
 
         /// <summary>
         /// 랜덤 가중치 요소 class
         /// </summary>
-        public class ElementList
+        public class CardList
         {
             public T target;
             public float probability;
 
-            public ElementList(T target, float probability)
+            public CardList(T target, float probability)
             {
                 this.target = target;
                 this.probability = probability;
@@ -31,7 +31,7 @@ namespace PSW.Core.Probability
         /// <param name="probability"></param>
         public void Add(T target, float probability)
         {
-            this.elementList.Add(new ElementList(target, probability));
+            this.elementList.Add(new CardList(target, probability));
         }
 
         public T Get()

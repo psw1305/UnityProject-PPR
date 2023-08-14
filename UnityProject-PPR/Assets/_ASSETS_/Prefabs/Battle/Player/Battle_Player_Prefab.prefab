@@ -6473,18 +6473,14 @@ MonoBehaviour:
   columnCount: 6
   skillStack: 5
   rescaling: 0.4
-  elementDatas:
-  - {fileID: 11400000, guid: dff0fe72ac50e7046b2bc43c26faedae, type: 2}
-  - {fileID: 11400000, guid: a5fc25f5cc709054782dadd828a1c3f1, type: 2}
-  elementSkillDatas:
-  - {fileID: 11400000, guid: 421a89f0164b7de4499ed6777f46e0b8, type: 2}
-  - {fileID: 11400000, guid: 86704ce10b2b88d49b5bce842b898773, type: 2}
-  - {fileID: 11400000, guid: 908949609d579df44b4f631d0e79f8ab, type: 2}
-  - {fileID: 11400000, guid: d2238cba71d57af409eb2b61ed318cac, type: 2}
-  elementSkillUsedDatas: []
+  cardDatas:
+  - {fileID: 11400000, guid: 9a2796cafcda2674ea1d9b7620a3b812, type: 2}
+  - {fileID: 11400000, guid: b5b1eb5453359334492f9f079c867777, type: 2}
+  cardSkillDatas: []
+  cardSkillUsedDatas: []
   countingText: {fileID: 7244614143082538083}
   selectionLine: {fileID: 7244614142302246996}
-  boardElementPrefab: {fileID: 7121532763530009987, guid: f927d430e9838e84bafea2d694778fe1,
+  battleCardPrefab: {fileID: 7121532763530009990, guid: f927d430e9838e84bafea2d694778fe1,
     type: 3}
 --- !u!1 &7244614142011785698
 GameObject:
@@ -12643,7 +12639,7 @@ GameObject:
   - component: {fileID: 7244614142831877690}
   - component: {fileID: 7244614142831877689}
   m_Layer: 5
-  m_Name: Elements Field
+  m_Name: Play Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

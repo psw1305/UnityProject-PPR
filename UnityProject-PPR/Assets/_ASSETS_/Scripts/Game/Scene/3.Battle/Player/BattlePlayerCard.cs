@@ -1,23 +1,23 @@
 using PSW.Core.Enums;
 using System.Collections.Generic;
 
-public static class BattlePlayerElement
+public static class BattlePlayerCard
 {
-    public static int GetElementPoint(this BattlePlayer battleplayer, List<GameBoardElement> elements, int firstPoint, int plusPoint)
+    public static int GetElementPoint(this BattlePlayer battleplayer, List<GameBoardCard> cards, int firstPoint, int plusPoint)
     {
         int resultPoint = firstPoint;
 
-        foreach (GameBoardElement element in elements)
+        foreach (var card in cards)
         {
-            if (element.ElementDetailType == ElementDetailType.Skill)
+            if (card.CardDetail == CardDetail.Instant)
             {
-                if (element.ElementType == ElementType.Attack)
+                if (card.CardType == CardType.Attack)
                 {
-                    resultPoint = AttackSkill(element.GetSkillName(), resultPoint);
+                    resultPoint = AttackSkill(card.GetCardName(), resultPoint);
                 }
-                else if (element.ElementType == ElementType.Defense)
+                else if (card.CardType == CardType.Defense)
                 {
-                    resultPoint = DefenseSkill(element.GetSkillName(), resultPoint);
+                    resultPoint = DefenseSkill(card.GetCardName(), resultPoint);
                 }
             }
             else

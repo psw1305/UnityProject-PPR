@@ -3,53 +3,45 @@ using PSW.Core.Extensions;
 using UnityEngine;
 using DG.Tweening;
 
-public class GameBoardElement : MonoBehaviour
+public class GameBoardCard : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer cardSprite;
     [SerializeField] private SpriteRenderer caseSprite;
     [SerializeField] private SpriteRenderer coverSprite;
-    [SerializeField] private SpriteRenderer elementSprite;
     [SerializeField] private Transform particleCase;
     
-    private ElementType elementType;
-    private ElementDetailType elementDetailType;
     private GameBoard board;
-    private ElementBlueprint data;
+    private ItemBlueprintCard data;
 
-    public ElementType ElementType => this.elementType;
-    public ElementDetailType ElementDetailType => this.elementDetailType;
+    public CardType CardType { get; private set; }
+    public CardDetail CardDetail { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsSpawned => this.gameObject.activeSelf;
 
-    public string GetSkillName()
+    public string GetCardName()
     {
-        ElementSkillBlueprint skillData = (ElementSkillBlueprint)this.data;
-        return skillData.SkillName;
+        return this.data.CardName;
     }
 
-    public ElementSkillType GetSkillType()
-    {
-        ElementSkillBlueprint skillData = (ElementSkillBlueprint)this.data;
-        return skillData.SkillType;
-    }
-
-    public void Set(GameBoard board, ElementBlueprint data)
+    public void Set(GameBoard board, ItemBlueprintCard data)
     {
         this.board = board;
         SetData(data);
     }
 
     /// <summary>
-    /// ElementBaseData(Scriptable Object) 데이터 가져오기
+    /// 카드 데이터 가져오기
     /// </summary>
     /// <param name="data"></param>
-    public void SetData(ElementBlueprint data)
+    public void SetData(ItemBlueprintCard data)
     {
         this.data = data;
-        this.caseSprite.sprite = data.ElementCaseImage;
-        this.elementSprite.sprite = data.ElementImage;
-        this.elementSprite.color = data.ElementColor;
-        this.elementType = data.ElementType;
-        this.elementDetailType = data.ElementDetailType;
+        this.cardSprite.sprite = data.ItemImage;
+        this.cardSprite.color = data.CardColor;
+        this.caseSprite.sprite = data.CardCase;
+
+        this.CardType = data.CardType;
+        this.CardDetail = data.CardDetail;
     }
 
     public void Selected()
@@ -63,7 +55,7 @@ public class GameBoardElement : MonoBehaviour
     }
 
     /// <summary>
-    /// element 오브젝트 이동 
+    /// 카드 오브젝트 이동 
     /// </summary>
     /// <param name="targetPos"></param>
     /// <param name="time"></param>
@@ -74,11 +66,11 @@ public class GameBoardElement : MonoBehaviour
     }
 
     /// <summary>
-    /// element 오브젝트 활성화 및 spawn 애니메이션
+    /// 카드 오브젝트 활성화 및 spawn 애니메이션
     /// </summary>
     public void Spawn()
     {
-        // select된 element cover sprite 투명도 초기화
+        // select된 카드 cover sprite 투명도 초기화
         Color coverAlpha = this.coverSprite.color;
         coverAlpha.a = 0.0f;
         this.coverSprite.color = coverAlpha;
@@ -92,7 +84,7 @@ public class GameBoardElement : MonoBehaviour
     }
 
     /// <summary>
-    /// element despawn 애니메이션 및 오브젝트 비활성화
+    /// 카드 despawn 애니메이션 및 오브젝트 비활성화
     /// </summary>
     public void Despawn()
     {
@@ -104,9 +96,9 @@ public class GameBoardElement : MonoBehaviour
 
     private void Init()
     {
-        if (this.elementDetailType == ElementDetailType.Skill)
+        if (this.CardDetail != CardDetail.Normal)
         {
-            this.board.SkillElementReset(this.data);
+            this.board.SkillCardReset(this.data);
         }
 
         this.gameObject.SetActive(false);

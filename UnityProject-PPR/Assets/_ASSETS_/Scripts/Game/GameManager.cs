@@ -8,10 +8,16 @@ public class GameManager : BehaviourSingleton<GameManager>
     [SerializeField] private Camera mainCamera;
     public Camera MainCamera => this.mainCamera;
 
-    [Header("Item Loot Tables")]
-    [SerializeField] private InventoryItemRelic relicPrefab;
-    [SerializeField] private InventoryItemPotion potionPrefab;
+    [Header("Item - Card")]
+    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private ItemLootTable cardLootTable;
+
+    [Header("Item - Relic")]
+    [SerializeField] private GameObject relicPrefab;
     [SerializeField] private ItemLootTable relicLootTable;
+
+    [Header("Item - Potion")]
+    [SerializeField] private GameObject potionPrefab;
     [SerializeField] private ItemLootTable potionLootTable;
 
     protected override void Awake()
@@ -36,10 +42,19 @@ public class GameManager : BehaviourSingleton<GameManager>
     #endregion
 
     #region Item Loot
+    public InventoryItemCard ItemLootCard(Transform parent)
+    {
+        var blueprint = this.cardLootTable.GetRandomItemBlueprint(0);
+        var card = Instantiate(this.cardPrefab, parent).GetComponent<InventoryItemCard>();
+        card.Set(blueprint);
+
+        return card;
+    }
+
     public InventoryItemRelic ItemLootRelic(int id, Transform parent)
     {
         var blueprint = this.relicLootTable.GetRandomItemBlueprint(id);
-        var relic = Instantiate(this.relicPrefab, parent);
+        var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
 
         return relic;
@@ -48,7 +63,7 @@ public class GameManager : BehaviourSingleton<GameManager>
     public InventoryItemPotion ItemLootPotion(Transform parent)
     {
         var blueprint = this.potionLootTable.GetRandomItemBlueprint(0);
-        var potion = Instantiate(this.potionPrefab, parent);
+        var potion = Instantiate(this.potionPrefab, parent).GetComponent<InventoryItemPotion>();
         potion.Set(blueprint);
 
         return potion;

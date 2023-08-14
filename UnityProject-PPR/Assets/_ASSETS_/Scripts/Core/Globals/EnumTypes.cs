@@ -50,17 +50,9 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 카드 아이템 타입
+    /// Card 타입
     /// </summary>
     public enum CardType
-    {
-        Attack, Defense, Special, Joker
-    }
-
-    /// <summary>
-    /// Element 타입
-    /// </summary>
-    public enum ElementType
     {
         Attack, Defense, Synergy, Obstacle, None
     }
@@ -68,18 +60,9 @@ namespace PSW.Core.Enums
     /// <summary>
     /// Element Detail 구분
     /// </summary>
-    public enum ElementDetailType
+    public enum CardDetail
     {
-        Normal, Skill,
-    }
-
-    /// <summary>
-    /// Element Skill 구분
-    /// </summary>
-    public enum ElementSkillType
-    {
-        Normal, 
-        Start, Finish, Instant,
+        Normal, Instant, Start, Finish,
     }
 
     /// <summary>
