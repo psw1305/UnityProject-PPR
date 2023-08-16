@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword02_C_Brass
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: d2855b789a619b5428ed775f62b4b74c, type: 3}
-  itemType: 3
+  itemType: 1
   itemGrade: 0
   itemName: "\uB18B\uC1E0 \uAC80"
   itemAbility: "\uACF5\uACA9 \uC2DC\uC791 \uC2DC +3"

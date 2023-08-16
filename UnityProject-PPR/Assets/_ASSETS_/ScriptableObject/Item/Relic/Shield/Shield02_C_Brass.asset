@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield02_C_Brass
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 0b1676c1429a8e846b7f8507c8f180c7, type: 3}
-  itemType: 3
+  itemType: 1
   itemGrade: 0
   itemName: "\uB18B\uC1E0 \uBC29\uD328"
   itemAbility: "\uBC29\uC5B4 \uC2DC\uC791 \uC2DC +3"

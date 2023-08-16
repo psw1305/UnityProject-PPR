@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card_DEF_02
   m_EditorClassIdentifier: 
   image: {fileID: -977785714, guid: c20f0cc97d6930b42a5053e6e1f8e4ae, type: 3}
-  itemType: 1
+  itemType: 0
   itemGrade: 0
   itemName: "\uCC38\uD638"
   itemAbility: 

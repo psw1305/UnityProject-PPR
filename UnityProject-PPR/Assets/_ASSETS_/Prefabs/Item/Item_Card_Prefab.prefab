@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b451520b02cdd4dab37a99e22ac609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 1
+  itemType: 0
   button: {fileID: 4439047085656293425}
   image: {fileID: 2590970708823376258}
   plate: {fileID: 2590970708445856742}

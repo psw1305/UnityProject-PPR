@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Idol03_R_Rage
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: ac837b6ae4ffbce4a99eec8e0b29a697, type: 3}
-  itemType: 3
+  itemType: 1
   itemGrade: 0
   itemName: "\uACA9\uB178\uC758 \uC6B0\uC0C1"
   itemAbility: "\uACF5\uACA9 +2"

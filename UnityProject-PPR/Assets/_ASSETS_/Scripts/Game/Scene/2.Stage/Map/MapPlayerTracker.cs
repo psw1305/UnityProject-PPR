@@ -64,12 +64,12 @@ namespace PSW.Core.Map
                     break;
 
                 case MapNodeType.MinorEnemy:
-                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetMinorEnemy();
+                    GameManager.Instance.EnemyEncounter = MapManager.Instance.FirstEncounter();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
 
                 case MapNodeType.EliteEnemy:
-                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetEliteEnemy();
+                    GameManager.Instance.EnemyEncounter = MapManager.Instance.EliteEncounter();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
 
@@ -90,7 +90,7 @@ namespace PSW.Core.Map
                     break;
 
                 case MapNodeType.Boss:
-                    //GameManager.Instance.BattleEnemy = MapManager.Instance.GetBossEnemy();
+                    GameManager.Instance.EnemyEncounter = MapManager.Instance.BossEncounter();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Battle);
                     break;
             }

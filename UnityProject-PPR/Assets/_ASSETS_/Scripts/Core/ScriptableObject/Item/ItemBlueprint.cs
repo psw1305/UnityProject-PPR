@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ItemBlueprint : ScriptableObject
 {
+    [Header("Item Setting")]
     [SerializeField] private Sprite image;
     [SerializeField] private ItemType itemType;
     [SerializeField] private ItemGrade itemGrade;

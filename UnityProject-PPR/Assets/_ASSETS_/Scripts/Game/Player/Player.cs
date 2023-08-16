@@ -99,7 +99,7 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.GameState = GameState.Victory;
 
-        this.playerUI.GameResultShow();
+        this.playerUI.GameResult();
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.GameState = GameState.Defeat;
 
-        this.playerUI.GameResultShow();
+        this.playerUI.GameResult();
     }
     #endregion
 }

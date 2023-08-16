@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Idol04_R_Safety
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: ac837b6ae4ffbce4a99eec8e0b29a697, type: 3}
-  itemType: 3
+  itemType: 1
   itemGrade: 0
   itemName: "\uC548\uC804\uC758 \uC6B0\uC0C1"
   itemAbility: "\uBC29\uC5B4 +2"

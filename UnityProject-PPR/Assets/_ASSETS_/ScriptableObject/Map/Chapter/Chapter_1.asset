@@ -77,12 +77,10 @@ MonoBehaviour:
     distanceFromPreviousLayer: 128
     nodesApartDistance: 0
     randomizeNodes: 0
-  minors:
-  - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
-  - {fileID: 11400000, guid: 9e17b185cf5be4e4398c481e92b6d553, type: 2}
-  - {fileID: 11400000, guid: 88371db42a265074282003dd854bfb71, type: 2}
-  elites:
-  - {fileID: 11400000, guid: 67985fdf7c9749c4b809a289e814e979, type: 2}
-  - {fileID: 11400000, guid: 8c3183929811e444e93e85b9f737a1d2, type: 2}
-  bosses:
-  - {fileID: 11400000, guid: 4c01928b7bb719344805ecf01e1eb8cf, type: 2}
+  first:
+  - {fileID: 11400000, guid: e8246dd4727713c488e03cebb0a0b971, type: 2}
+  - {fileID: 11400000, guid: bf908c09f1a81464292f60279a89b790, type: 2}
+  - {fileID: 11400000, guid: c6d1015a0001996408beafe9f2fce65a, type: 2}
+  remain: []
+  elite: []
+  boss: []

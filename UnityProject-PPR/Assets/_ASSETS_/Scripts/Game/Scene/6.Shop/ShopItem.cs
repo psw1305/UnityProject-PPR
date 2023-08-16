@@ -135,8 +135,8 @@ public class ShopItem : MonoBehaviour
         IsSell = true;
         this.buyButton.interactable = false;
 
-        if(InventorySystem.Instance != null) 
-            InventorySystem.Instance.AddItem(this.itemData);
+        //if(InventorySystem.Instance != null) 
+        //    InventorySystem.Instance.AddItem(this.itemData);
 
         this.sellPlate.SetActive(false);
         this.soldPlate.SetActive(true);

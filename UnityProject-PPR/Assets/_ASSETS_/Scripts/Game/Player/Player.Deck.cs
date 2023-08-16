@@ -1,4 +1,3 @@
-using PSW.Core.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,13 @@ using UnityEngine;
 public partial class Player : BehaviourSingleton<Player>
 {
     [Header("Inventory")]
-    public List<InventoryItemCard> cardDeck;
+    public List<InventoryItemCard> cardSlots = new();
+    public List<InventoryItemCard> cardDeck = new();
+
+    public List<InventoryItemCard> GetCardDeck()
+    {
+        return this.cardDeck;
+    }
 
     public void Test_SetDeck()
     {
@@ -21,112 +26,55 @@ public partial class Player : BehaviourSingleton<Player>
     public void AddCard()
     {
         var card = GameManager.Instance.ItemLootCard(this.playerUI.GetCardSlotList());
+        this.cardSlots.Add(card);
+    }
+
+    /// <summary>
+    /// 덱에 카드 장착
+    /// </summary>
+    public void EquipCardToDeck(InventoryItemCard card)
+    {
+        card.IsEquip = true;
         this.cardDeck.Add(card);
     }
 
     /// <summary>
-    /// 스킬 카드 장착
+    /// 덱에서 카드 제거
     /// </summary>
-    /// <param name="skillCard"></param>
-    public void EquipSkillCard(InventoryItemCard skillCard)
+    public void RemoveCardFromDeck(InventoryItemCard card)
     {
-        var cardData = skillCard.GetCardData();
-        var cardType = cardData.CardType;
-
-        switch (cardType)
-        {
-            case CardType.Attack:
-                Equip(0, skillCard);
-                break;
-            case CardType.Defense:
-                Equip(1, skillCard);
-                break;
-            case CardType.Synergy:
-                Equip(2, skillCard);
-                break;
-            case CardType.Obstacle:
-                Equip(3, skillCard);
-                break;
-        }
+        card.IsEquip = false;
+        this.cardDeck.Remove(card);
     }
 
-    private void Equip(int num, InventoryItemCard invenItem)
-    {
-        // 장비칸 아이템 존재시 => 교체
-        if (this.cardDeck[num] != null) UnequipSkillCard(this.cardDeck[num]);
+    //public void PotionItemLoad(InventoryItemPotion invenItem, int num)
+    //{
+    //    // 소모품칸 아이템 존재시 => 교체
+    //    if (this.potionList[num] != null) PotionItemUnload(this.potionList[num], num);
 
-        // 해당 장비창 채움
-        this.cardDeck[num] = invenItem;
-        // 장착 true 체크
-        invenItem.IsEquip = true;
-        // 아이템 이동: 인벤토리 => 장비창
-        this.playerUI.LoadCardDeck(num, invenItem);
-    }
+    //    this.potionList[num] = invenItem;
+    //    invenItem.IsEquip = true;
+    //    //this.playerUI.LoadPotionBelt(num, invenItem);
+    //}
 
-    /// <summary>
-    /// 장비(Equipment) 해체
-    /// </summary>
-    /// <param name="invenItem">인벤토리 아이템</param>
-    public void UnequipSkillCard(InventoryItemCard invenItem)
-    {
-        var cardData = invenItem.GetCardData();
-        var cardType = cardData.CardType;
+    //public void PotionItemUnload(InventoryItemPotion invenItem, int num)
+    //{
+    //    this.potionList[num] = null;
+    //    invenItem.IsEquip = false;
+    //    //this.playerUI.CardUnload(invenItem);
+    //}
 
-        switch (cardType)
-        {
-            case CardType.Attack:
-                Unequip(0, invenItem);
-                break;
-            case CardType.Defense:
-                Unequip(1, invenItem);
-                break;
-            case CardType.Synergy:
-                Unequip(2, invenItem);
-                break;
-            case CardType.Obstacle:
-                Unequip(3, invenItem);
-                break;
-        }
-    }
+    //public void PotionItemMove(InventoryItemPotion invenItem, int prefer, int current)
+    //{
+    //    PotionItemUnload(this.potionList[prefer], prefer);
+    //    PotionItemLoad(invenItem, current);
+    //}
 
-    private void Unequip(int num, InventoryItemCard invenItem)
-    {
-        // 해당 장비창 비움
-        this.cardDeck[num] = null;
-        // 장착 false 체크
-        invenItem.IsEquip = false;
-        // 아이템 이동: 장비창 => 인벤토리
-        //this.playerUI.CardUnload(invenItem);
-    }
-
-    public void PotionItemLoad(InventoryItemPotion invenItem, int num)
-    {
-        // 소모품칸 아이템 존재시 => 교체
-        if (this.potionList[num] != null) PotionItemUnload(this.potionList[num], num);
-
-        this.potionList[num] = invenItem;
-        invenItem.IsEquip = true;
-        //this.playerUI.LoadPotionBelt(num, invenItem);
-    }
-
-    public void PotionItemUnload(InventoryItemPotion invenItem, int num)
-    {
-        this.potionList[num] = null;
-        invenItem.IsEquip = false;
-        //this.playerUI.CardUnload(invenItem);
-    }
-
-    public void PotionItemMove(InventoryItemPotion invenItem, int prefer, int current)
-    {
-        PotionItemUnload(this.potionList[prefer], prefer);
-        PotionItemLoad(invenItem, current);
-    }
-
-    public void PotionItemChange(int origin, int change)
-    {
-        // 포션 교체
-        (this.potionList[origin], this.potionList[change]) = (this.potionList[change], this.potionList[origin]);
-        //this.playerUI.LoadPotionBelt(origin, this.potionBelt[origin]);
-        //this.playerUI.LoadPotionBelt(change, this.potionBelt[change]);
-    }
+    //public void CardChange(int origin, int change)
+    //{
+    //    // 포션 교체
+    //    (this.potionList[origin], this.potionList[change]) = (this.potionList[change], this.potionList[origin]);
+    //    //this.playerUI.LoadPotionBelt(origin, this.potionBelt[origin]);
+    //    //this.playerUI.LoadPotionBelt(change, this.potionBelt[change]);
+    //}
 }

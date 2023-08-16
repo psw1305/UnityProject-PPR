@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield03_C_Steel
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 99f60fe558954784bbf4b0594fa2527e, type: 3}
-  itemType: 3
+  itemType: 1
   itemGrade: 0
   itemName: "\uCCA0 \uBC29\uD328"
   itemAbility: "\uBC29\uC5B4 \uC2DC\uC791 \uC2DC +5"

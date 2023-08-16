@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class InventorySystem : BehaviourSingleton<InventorySystem>, IDropHandler
+public class InventorySystem : BehaviourSingleton<InventorySystem>
 {
     public List<InventoryItem> Inventory { get; private set; }
     private Dictionary<GameObject, InventoryItem> itemDictionary;
@@ -53,17 +52,5 @@ public class InventorySystem : BehaviourSingleton<InventorySystem>, IDropHandler
         {
             this.itemDictionary.Remove(itemObject);
         }
-    }
-
-    /// <summary>
-    /// 장비 아이템 다시 인벤토리로
-    /// </summary>
-    /// <param name="eventData"></param>
-    public void OnDrop(PointerEventData eventData)
-    {
-        GameObject dropped = eventData.pointerDrag;
-        InventoryItemCard invenItem = dropped.GetComponent<InventoryItemCard>();
-        invenItem.SetParentAfterDrag(this.inventoryTransform);
-        invenItem.CardUnload();
     }
 }

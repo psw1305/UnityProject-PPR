@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card_ATK_01
   m_EditorClassIdentifier: 
   image: {fileID: -476139851, guid: c20f0cc97d6930b42a5053e6e1f8e4ae, type: 3}
-  itemType: 1
+  itemType: 0
   itemGrade: 0
   itemName: "\uD0C0\uACA9"
   itemAbility: 

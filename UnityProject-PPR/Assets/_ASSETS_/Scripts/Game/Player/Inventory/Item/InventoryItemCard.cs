@@ -31,10 +31,7 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     {
         if (this.IsEquip == true) return;
 
-        if (GetItemType() == ItemType.Card)
-        {
-            Player.Instance.EquipSkillCard(this);
-        }
+        Player.Instance.EquipCardToDeck(this);
     }
 
     /// <summary>
@@ -44,17 +41,14 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     {
         if (this.IsEquip == false) return;
 
-        if (GetItemType() == ItemType.Card)
-        {
-            Player.Instance.UnequipSkillCard(this);
-        }
+        Player.Instance.RemoveCardFromDeck(this);
     }
 
     /// <summary>
     /// µ¦¿¡¼­ Ä«µå ÀÌµ¿
     /// </summary>
     /// <param name="changSlotNumber">¹Ù²Ü ½½·Ô ÀÚ¸® ¼ýÀÚ</param>
-    public void CardMove(int changSlotNumber)
+    public void ChangeFromCardSlot(int changSlotNumber)
     {
         //Player.Instance.PotionItemMove(this, this.slotNumber, changSlotNumber);
     }
@@ -63,7 +57,7 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     /// µ¦¿¡¼­ Ä«µå ±³Ã¼
     /// </summary>
     /// <param name="changSlotNumber">¹Ù²Ü ½½·Ô ÀÚ¸® ¼ýÀÚ</param>
-    public void CardChange(int changSlotNumber)
+    public void ChangeFromCardDeck(int changSlotNumber)
     {
         //Player.Instance.PotionItemChange(this.slotNumber, changSlotNumber);
     }
@@ -81,7 +75,7 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
         this.transform.SetAsLastSibling();
         this.plate.raycastTarget = false;
 
-        PlayerUI.Instance.ItemOnBeginDrag(this);
+        PlayerUI.Instance.OnBeginDragAnimation();
     }
 
     /// <summary>
@@ -105,6 +99,13 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
         this.transform.SetParent(this.parentAfterDrag);
         this.plate.raycastTarget = true;
 
-        PlayerUI.Instance.ItemOnEndDrag(this);
+        PlayerUI.Instance.OnEndDragAnimation();
+    }
+
+    protected override void ItemTooltipShow()
+    {
+        base.ItemTooltipShow();
+
+        PlayerItemTooltip.Instance.CardTooltipShow(this);
     }
 }

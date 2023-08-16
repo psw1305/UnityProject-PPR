@@ -3,8 +3,9 @@ using PSW.Core.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class PlayerUI : BehaviourSingleton<PlayerUI>
+public class PlayerUI : BehaviourSingleton<PlayerUI>, IDropHandler
 {
     [Header("Front UI - Stat")]
     [SerializeField] private TextMeshProUGUI hpText;
@@ -25,9 +26,9 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     [Header("Card Deck")]
     [SerializeField] private CanvasGroup cardDeckCanvas;
     [SerializeField] private Button cardDeckClose;
-    [SerializeField] private Transform cardSlotList;
     [SerializeField] private Transform cardDragParent;
-    [SerializeField] private InventorySlotCard[] cards;
+    [SerializeField] private Transform cardSlotList;
+    [SerializeField] private InventorySlotCard[] cardSlots;
 
     [Header("Game Result")]
     [SerializeField] private CanvasGroup resultCanvas;
@@ -53,6 +54,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         this.gameEndButton.onClick.AddListener(GameEnd);
     }
 
+    #region Get
     public Transform GetRelicSlotList()
     {
         return this.relicSlotList;
@@ -72,6 +74,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     {
         return this.cardDragParent;
     }
+    #endregion
 
     #region Canvas Show, Hide
     /// <summary>
@@ -116,7 +119,7 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
     /// <summary>
     /// 게임 오버시 => 결과 창 열기
     /// </summary>
-    public void GameResultShow()
+    public void GameResult()
     {
         if (Player.Instance.GameState == GameState.Victory)
         {
@@ -170,65 +173,35 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         this.cashText.text = Player.Instance.Cash.ToString();
     }
 
-    /// <summary>
-    /// 장비 장착
-    /// </summary>
-    /// <param name="num">슬롯 번호</param>
-    /// <param name="invenItem">장착할 아이템</param>
-    public void LoadCardDeck(int num, InventoryItem invenItem)
+    public void OnDrop(PointerEventData eventData)
     {
-        invenItem.transform.SetParent(this.cards[num].transform);
+        var dropCard = eventData.pointerDrag.GetComponent<InventoryItemCard>();
+
+        dropCard.SetParentAfterDrag(this.cardSlotList);
+        dropCard.CardUnload();
     }
 
-    ///// <summary>
-    ///// 소모품 장착
-    ///// </summary>
-    ///// <param name="num">슬롯 번호</param>
-    ///// <param name="invenItem">장착할 아이템</param>
-    //public void LoadPotionBelt(int num, InventoryItem invenItem)
-    //{
-    //    invenItem.SetSlotNumber(num);
-    //    invenItem.SetParentAfterDrag(this.potionBelt[num].GetDropSlot());
-    //    invenItem.transform.SetParent(this.potionBelt[num].GetDropSlot());
-    //}
-
-    ///// <summary>
-    ///// 장착 아이템 해제 => 다시 인벤토리 창으로
-    ///// </summary>
-    ///// <param name="invenItem">해제할 아이템</param>
-    //public void CardUnload(InventoryItem invenItem)
-    //{
-    //    invenItem.SetSlotNumber(0);
-    //    invenItem.transform.SetParent(this.cardInvenList);
-    //}
-
+    #region Card Slot Animation
     /// <summary>
-    /// 인벤토리 아이템 드래그 시작시 => 해당 슬롯 애니메이션
+    /// 카드 드래그 시작시 => 해당 슬롯 애니메이션
     /// </summary>
-    /// <param name="invenItem">드래그 아이템</param>
-    public void ItemOnBeginDrag(InventoryItem invenItem)
+    public void OnBeginDragAnimation()
     {
-        if (invenItem.GetItemType() == ItemType.Card)
+        foreach (InventorySlotCard cardSlot in this.cardSlots)
         {
-            foreach (InventorySlotCard invenSlot in cards)
-            {
-                invenSlot.AnimatePlateImage(1.1f);
-            }
+            cardSlot.AnimatePlate(1.1f);
         }
     }
 
     /// <summary>
-    /// 인벤토리 아이템 드래그 시작시 => 해당 슬롯 애니메이션
+    /// 카드 드래그 시작시 => 해당 슬롯 애니메이션
     /// </summary>
-    /// <param name="invenItem">드래그 아이템</param>
-    public void ItemOnEndDrag(InventoryItem invenItem)
+    public void OnEndDragAnimation()
     {
-        if (invenItem.GetItemType() == ItemType.Card)
+        foreach (InventorySlotCard cardSlot in this.cardSlots)
         {
-            foreach (InventorySlotCard invenSlot in cards)
-            {
-                invenSlot.AnimatePlateImage(1f);
-            }
+            cardSlot.AnimatePlate(1f);
         }
     }
+    #endregion
 }

@@ -97,6 +97,14 @@ public partial class GameBoard : MonoBehaviour
     /// </summary>
     public void SetBoard()
     {
+        if (Player.Instance != null)
+        {
+            foreach (var card in Player.Instance.GetCardDeck())
+            {
+                this.cardSkillDatas.Add(card.GetCardData());
+            }
+        }
+
         for (int y = 0; y < this.ColumnCount; y++)
         {
             for (int x = 0; x < this.RowCount; x++)
