@@ -3,44 +3,70 @@ using System.Collections.Generic;
 
 public static class BattlePlayerCard
 {
-    public static int GetElementPoint(this BattlePlayer battleplayer, List<GameBoardCard> cards, int firstPoint, int plusPoint)
+    public static int GetPoint(this BattlePlayer battleplayer, List<GameBoardCard> cards, int firstPoint, int plusPoint)
     {
-        int resultPoint = firstPoint;
+        var point = firstPoint;
+        var last = cards.Count - 1;
 
-        foreach (var card in cards)
+        for (int i = 0; i < cards.Count; i++)
         {
-            if (card.CardDetail == CardDetail.Instant)
+            // 첫 카드 능력이 Ready이면 발동
+            if (i == 0 && cards[i].CardDetail == CardDetail.Ready)
             {
-                if (card.CardType == CardType.Attack)
-                {
-                    resultPoint = AttackSkill(card.GetCardName(), resultPoint);
-                }
-                else if (card.CardType == CardType.Defense)
-                {
-                    resultPoint = DefenseSkill(card.GetCardName(), resultPoint);
-                }
+                point = Card_Ready(cards[i].GetCardName(), point);
+            }
+            else if (cards[i].CardDetail == CardDetail.Instant)
+            {
+                point = Card_Instant(cards[i].GetCardName(), point);
+            }
+            // 마지막 카드 능력이 Finish이면 발동
+            else if (i == last && cards[i].CardDetail == CardDetail.Finish)
+            {
+                point = Card_Finish(cards[i].GetCardName(), point);
             }
             else
             {
-                resultPoint += plusPoint;
+                point += plusPoint;
             }
         }
 
-        return resultPoint;
+        return point;
     }
 
+    #region Card - Ready
     /// <summary>
-    /// 공격 Element Skill
+    /// Ready 카드 능력
     /// </summary>
-    /// <param name="skillName"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public static int AttackSkill(string skillName, int value)
+    public static int Card_Ready(string skillName, int value)
+    {
+        return skillName switch
+        {
+            "Flex" => Flex(value),
+            _ => 1,
+        };
+    }
+
+
+    public static int Flex(int value)
+    {
+        return value += 3;
+    }
+    #endregion
+
+    #region Card - Instant
+    /// <summary>
+    /// Instant 카드 능력
+    /// </summary>
+    public static int Card_Instant(string skillName, int value)
     {
         return skillName switch
         {
             "Strike" => Strike(value),
-            "Anger" => Anger(value),
+            "Strike-Powerful" => PowerfulStrike(value),
+
+            "Defend" => Defend(value),
+            "Defend-Perfected" => PerfectedDefend(value),
+
             _ => value,
         };
     }
@@ -50,25 +76,9 @@ public static class BattlePlayerCard
         return value += 4;
     }
 
-    public static int Anger(int value)
+    public static int PowerfulStrike(int value)
     {
-        return value *= 2;
-    }
-
-    /// <summary>
-    /// 방어 Element Skill
-    /// </summary>
-    /// <param name="skillName"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public static int DefenseSkill(string skillName, int value)
-    {
-        return skillName switch
-        {
-            "Defend" => Defend(value),
-            "Entrench" => Entrench(value),
-            _ => value,
-        };
+        return value += 8;
     }
 
     public static int Defend(int value)
@@ -76,8 +86,43 @@ public static class BattlePlayerCard
         return value += 4;
     }
 
+    public static int PerfectedDefend(int value)
+    {
+        return value += 8;
+    }
+    #endregion
+
+    #region Card - Finish
+    /// <summary>
+    /// Finish 카드 능력
+    /// </summary>
+    public static int Card_Finish(string skillName, int value)
+    {
+        return skillName switch
+        {
+            "Anger" => Anger(value),
+
+            "Entrench" => Entrench(value),
+            "ShieldBash" => ShieldBash(value),
+
+            _ => value,
+        };
+    }
+
+
+    public static int Anger(int value)
+    {
+        return value *= 2;
+    }
+
     public static int Entrench(int value)
     {
         return value *= 2;
     }
+
+    public static int ShieldBash(int value)
+    {
+        return value *= 2;
+    }
+    #endregion
 }

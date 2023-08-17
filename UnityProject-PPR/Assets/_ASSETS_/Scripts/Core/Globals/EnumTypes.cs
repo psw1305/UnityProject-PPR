@@ -62,7 +62,7 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum CardDetail
     {
-        Normal, Instant, Start, Finish,
+        Normal, Instant, Ready, Finish,
     }
 
     /// <summary>

@@ -17,6 +17,5 @@ MonoBehaviour:
   enemyName: "\uB531-\uB531"
   hp: 84
   skills:
-  - {fileID: 8819207446245105067, guid: 44130f05a8d749047899ebb716a7db93, type: 3}
-  - {fileID: 8819207446245105067, guid: 2f25fdca24b4556459d13b2e460e9605, type: 3}
-  - {fileID: 8819207446245105067, guid: ca0805c6405fcc34399fcb135b4ba175, type: 3}
+  - {fileID: 8819207446245105067, guid: cc51c1f68409e8346b3f032d10c14e2d, type: 3}
+  - {fileID: 8819207446245105067, guid: a98f72ae63749064e9a24c321d44e397, type: 3}

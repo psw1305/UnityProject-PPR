@@ -157,11 +157,11 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         if (this.OnFirst)
         {
             this.OnFirst = false;
-            attackPoint = this.GetElementPoint(elements, this.FirstATK, this.ATK);
+            attackPoint = this.GetPoint(elements, this.FirstATK, this.ATK);
         }
         else
         {
-            attackPoint = this.GetElementPoint(elements, 0, this.ATK);
+            attackPoint = this.GetPoint(elements, 0, this.ATK);
         }
 
         if (attackPoint < 50) 
@@ -183,11 +183,11 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         if (this.OnFirst)
         {
             this.OnFirst = false;
-            shieldPoint = this.GetElementPoint(elements, this.FirstDEF, this.DEF);
+            shieldPoint = this.GetPoint(elements, this.FirstDEF, this.DEF);
         }
         else
         {
-            shieldPoint = this.GetElementPoint(elements, 0, this.DEF);
+            shieldPoint = this.GetPoint(elements, 0, this.DEF);
         }
 
         BattleSFX.Instance.Play(BattleSFX.Instance.defense);
@@ -204,7 +204,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public void PlayerRecovery(List<GameBoardCard> elements)
     {
         var oldPoint = this.CurrentHP;
-        this.CurrentHP += this.GetElementPoint(elements, 0, 1);
+        this.CurrentHP += this.GetPoint(elements, 0, 1);
         if (this.CurrentHP > HP) this.CurrentHP = HP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(oldPoint, this.CurrentHP);
     }

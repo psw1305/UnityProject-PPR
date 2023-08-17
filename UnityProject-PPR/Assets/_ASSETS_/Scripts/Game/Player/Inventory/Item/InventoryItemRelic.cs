@@ -1,4 +1,3 @@
-
 using PSW.Core.Enums;
 
 public class InventoryItemRelic : InventoryItem

@@ -43,11 +43,11 @@ public class GameBoardCountingText : MonoBehaviour
 
         if (this.battlePlayer.OnFirst)
         {
-            resultPoint = this.battlePlayer.GetElementPoint(selectedElements, firstPoint, point);
+            resultPoint = this.battlePlayer.GetPoint(selectedElements, firstPoint, point);
         }
         else
         {
-            resultPoint = this.battlePlayer.GetElementPoint(selectedElements, 0, point);
+            resultPoint = this.battlePlayer.GetPoint(selectedElements, 0, point);
         }
 
         return resultPoint;

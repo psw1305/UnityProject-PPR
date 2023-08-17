@@ -2584,9 +2584,11 @@ MonoBehaviour:
   - listName: Card Common
     itemList:
     - {fileID: 11400000, guid: e839ec956a9de82429788a7d1735e060, type: 2}
+    - {fileID: 11400000, guid: ec79b104e0d847c48a443573018a0798, type: 2}
     - {fileID: 11400000, guid: d8da9abec38384347b69c663aa5b827c, type: 2}
     - {fileID: 11400000, guid: fd14c621661f707499c71b7547c6ca96, type: 2}
     - {fileID: 11400000, guid: 78c7dfd8675ffc044a7fcc638d315cb6, type: 2}
+    - {fileID: 11400000, guid: e87846bc30cc0a6489d3e984f36ffcc2, type: 2}
     - {fileID: 11400000, guid: f969ca359edec7c4a8554eb38a6dcf63, type: 2}
     - {fileID: 11400000, guid: 437878a129c6cac4cbed492465050b81, type: 2}
     weight: 100

@@ -82,5 +82,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf908c09f1a81464292f60279a89b790, type: 2}
   - {fileID: 11400000, guid: c6d1015a0001996408beafe9f2fce65a, type: 2}
   remain: []
-  elite: []
-  boss: []
+  elite:
+  - {fileID: 11400000, guid: 0eb30531d91bcd747a198cb19947bace, type: 2}
+  - {fileID: 11400000, guid: 3cea5b67859179b4cb1289a047a08df1, type: 2}
+  boss:
+  - {fileID: 11400000, guid: 1156ec26e2b4a684eb5c9dcf0ae5206f, type: 2}
