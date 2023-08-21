@@ -24,5 +24,9 @@ namespace PSW.Core.Map
         public EnemyEncounter[] remain;
         public EnemyEncounter[] elite;
         public EnemyEncounter[] boss;
+
+        [Header("Mystery Event")]
+        public MysteryConfig startEvent;
+        public MysteryConfig[] randomEvents;
     }
 }

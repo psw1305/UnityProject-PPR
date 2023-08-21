@@ -63,31 +63,31 @@ public partial class Player : BehaviourSingleton<Player>
         this.FirstATK.BaseValue = 0;
         this.FirstDEF.BaseValue = 0;
 
-        CurrentHP = hp;
-        Cash = cash;
+        this.CurrentHP = hp;
+        this.Cash = cash;
     }
 
     #region Set, Get
     public void SetHP(int currentHp)
     {
-        CurrentHP = currentHp;
+        this.CurrentHP = currentHp;
         this.playerUI.SetHPText();
     }
 
-    public void SetCash(int cash)
+    public void ObtainCash(int cash)
     {
-        Cash += cash;
+        this.Cash += cash;
         this.playerUI.SetCashText();
     }
 
     public string GetHPText()
     {
-        return CurrentHP.ToString();
+        return this.CurrentHP.ToString();
     }
 
     public string GetACTText()
     {
-        return ACT.Value.ToString();
+        return this.ACT.Value.ToString();
     }
     #endregion
 

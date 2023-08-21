@@ -51,11 +51,11 @@ public class ShopItem : MonoBehaviour
         ItemType itemType = this.itemData.ItemType;
         if (itemType == ItemType.Relic)
         {
-            itemOriginPrice = SetPriceToArtifact();
+            itemOriginPrice = SetPriceToRelic();
         }
         else if (itemType == ItemType.Potion)
         {
-            itemOriginPrice = SetPriceToUseable();
+            itemOriginPrice = SetPriceToPotion();
         }
 
         // 레어도에 따른 가격 조정
@@ -88,35 +88,14 @@ public class ShopItem : MonoBehaviour
         }
     }
 
-    private int SetPriceToArtifact()
+    private int SetPriceToRelic()
     {
-        int priceMin = 0, priceMax = 1;
-        var relicData = (ItemBlueprintRelic)this.itemData;
-
-        //switch (eqipmentData.EquipmentType)
-        //{
-        //    case CardType.Attack:
-        //        priceMin = ItemPrice.PRICE_MIN_HELMET;
-        //        priceMax = ItemPrice.PRICE_MAX_HELMET;
-        //        break;
-        //    case CardType.Defense:
-        //        priceMin = ItemPrice.PRICE_MIN_ARMOR;
-        //        priceMax = ItemPrice.PRICE_MAX_ARMOR;
-        //        break;
-        //    case CardType.Special:
-        //        priceMin = ItemPrice.PRICE_MIN_WEAPON;
-        //        priceMax = ItemPrice.PRICE_MAX_WEAPON;
-        //        break;
-        //    case CardType.Joker:
-        //        priceMin = ItemPrice.PRICE_MIN_TRINKET;
-        //        priceMax = ItemPrice.PRICE_MAX_TRINKET;
-        //        break;
-        //}
-
+        var priceMin = ItemPrice.PRICE_MIN_POTION;
+        var priceMax = ItemPrice.PRICE_MAX_POTION;
         return Random.Range(priceMin, priceMax);
     }
 
-    private int SetPriceToUseable()
+    private int SetPriceToPotion()
     {
         var priceMin = ItemPrice.PRICE_MIN_POTION;
         var priceMax = ItemPrice.PRICE_MAX_POTION;

@@ -64,6 +64,7 @@ namespace PSW.Core.Map
             //SaveMap();
         }
 
+        #region Enemy Encounters
         public EnemyEncounter FirstEncounter()
         {
             var num = Random.Range(0, this.config.first.Length);
@@ -86,6 +87,18 @@ namespace PSW.Core.Map
         {
             var num = Random.Range(0, this.config.boss.Length);
             return this.config.boss[num];
+        }
+        #endregion
+
+        public MysteryConfig StartEvent()
+        {
+            return this.config.startEvent;
+        }
+
+        public MysteryConfig RandomEvent()
+        {
+            var num = Random.Range(0, this.config.randomEvents.Length);
+            return this.config.randomEvents[num];
         }
     }
 }

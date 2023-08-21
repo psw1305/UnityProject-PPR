@@ -60,18 +60,6 @@ public static class DUR
 /// </summary>
 public static class ItemPrice
 {
-    public static readonly int PRICE_MIN_HELMET = 35;
-    public static readonly int PRICE_MAX_HELMET = 46;
-
-    public static readonly int PRICE_MIN_ARMOR = 44;
-    public static readonly int PRICE_MAX_ARMOR = 57;
-
-    public static readonly int PRICE_MIN_WEAPON = 53;
-    public static readonly int PRICE_MAX_WEAPON = 68;
-
-    public static readonly int PRICE_MIN_TRINKET = 60;
-    public static readonly int PRICE_MAX_TRINKET = 81;
-
     public static readonly int PRICE_MIN_POTION = 21;
     public static readonly int PRICE_MAX_POTION = 31;
 

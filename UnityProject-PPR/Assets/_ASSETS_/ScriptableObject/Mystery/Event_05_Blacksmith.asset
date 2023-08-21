@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10d74715e76dc641bf2dc72f8a11573, type: 3}
+  m_Name: Event_05_Blacksmith
+  m_EditorClassIdentifier: 
+  selections:
+  - {fileID: 4727978279097541897, guid: f6b2214b7ae9c074786647f1bae996a8, type: 3}
+  eventPicture: {fileID: 21300000, guid: 1f353a0507759474ba2b326cd6917bc4, type: 3}
+  stringTable: Event05

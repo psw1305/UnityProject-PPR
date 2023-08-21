@@ -60,6 +60,7 @@ namespace PSW.Core.Map
             switch (mapNode.Node.nodeType)
             {
                 case MapNodeType.Starting:
+                    GameManager.Instance.MysteryConfig = MapManager.Instance.StartEvent();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
 
@@ -86,6 +87,7 @@ namespace PSW.Core.Map
                     break;
 
                 case MapNodeType.Mystery:
+                    GameManager.Instance.MysteryConfig = MapManager.Instance.RandomEvent();
                     SceneLoader.Instance.LoadAdditiveScene(SceneNames.Mystery);
                     break;
 

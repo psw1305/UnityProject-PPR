@@ -10,8 +10,8 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     [SerializeField] private Canvas mysteryCanvas;
     [SerializeField] private Camera mysteryCamera;
 
-    [Header("Params")]
-    [SerializeField] private MysteryConfig eventBlueprint;
+    [Header("Event Config")]
+    [SerializeField] private MysteryConfig mysteryConfig;
 
     [Header("Event UI")]
     [SerializeField] private Image eventPicture;
@@ -34,10 +34,15 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
 
     private void Start()
     {
-        this.eventPicture.sprite = this.eventBlueprint.EventPicture;
-        this.selections = this.eventBlueprint.Selections;
+        if (Player.Instance != null)
+        {
+            this.mysteryConfig = GameManager.Instance.MysteryConfig;
+        }
 
-        var stringTable = this.eventBlueprint.StringTable;
+        this.eventPicture.sprite = this.mysteryConfig.EventPicture;
+        this.selections = this.mysteryConfig.Selections;
+
+        var stringTable = this.mysteryConfig.StringTable;
         SetTextContents(this.titleText, stringTable, "Title");
         SetTextContents(this.dialogueText, stringTable, "Before");
 
@@ -84,13 +89,13 @@ public class MysterySystem : BehaviourSingleton<MysterySystem>
     /// <summary>
     /// 선택지 선택 후 => 이벤트 마무리 및 나가기 선택지 생성
     /// </summary>
-    public void EventEnd()
+    public void EventEnd(string after)
     {
         this.selectionStartList.gameObject.SetActive(false);
         this.selectionEndList.gameObject.SetActive(true);
 
-        var table = this.eventBlueprint.StringTable;
-        SetTextContents(this.dialogueText, table, "After");
+        var table = this.mysteryConfig.StringTable;
+        SetTextContents(this.dialogueText, table, after);
 
         StartCoroutine(Display(this.dialogueText.text, this.endSelections));
     }

@@ -50,7 +50,6 @@ public class MysterySelection : MonoBehaviour
         // 이벤트 시작 선택지
         if (!this.isExit)
         {
-            MysterySystem.Instance.EventEnd();
             SelectionResult();
         }
         // 이벤트 탈출

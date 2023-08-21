@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RewardsSystem : MonoBehaviour
 {
     private CanvasGroup rewardCanvas;
+    private EnemyType enemyType;
 
     [SerializeField] private Transform rewardList;
     [SerializeField] private Button exitButton;
@@ -29,7 +30,9 @@ public class RewardsSystem : MonoBehaviour
     /// <param name="enemyType"></param>
     public void SetBattleRewards(EnemyType enemyType)
     {
-        switch (enemyType)
+        this.enemyType = enemyType;
+
+        switch (this.enemyType)
         {
             case EnemyType.Minor:
                 BattleRewardsMinor();
@@ -76,7 +79,7 @@ public class RewardsSystem : MonoBehaviour
     private void CreateReward(RewardsItem rewardItem)
     {
         RewardsItem clone = Instantiate(rewardItem, this.rewardList);
-        clone.Set();
+        clone.Set(this.enemyType);
     }
 
     /// <summary>

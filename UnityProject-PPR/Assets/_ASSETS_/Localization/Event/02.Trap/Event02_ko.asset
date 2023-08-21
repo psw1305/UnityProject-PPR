@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Event02_ko
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ko
+  m_SharedData: {fileID: 11400000, guid: 3259c216652db26478d1b37141e7cd1f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 168365465600
+    m_Localized: "\uD568\uC815"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385550721024
+    m_Localized: "\uC774\uB7F0! \uD568\uC815\uC744 \uBC1E\uC73C\uC168\uAD70\uC694.\n\uB4A4\uC5D0\uC11C
+      \uB9E4\uC12D\uAC8C \uB3CC\uC774 \uAD74\uB7EC\uC624\uB294 \uC18C\uB9AC\uAC00
+      \uB4E4\uB9BD\uB2C8\uB2E4. \n\uBE60\uB974\uAC8C \uD53C\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434628272128
+    m_Localized: "\uB2F9\uC2E0\uC740 \uAC00\uAE4C\uC2A4\uB85C \uD568\uC815\uC744
+      \uD53C\uD588\uC2B5\uB2C8\uB2E4.\n\uBAB8\uC774\uB77C\uB3C4 \uC548 \uB2E4\uCE5C\uAC8C
+      \uC5B4\uB514\uC785\uB2C8\uAE4C?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3577248292864
+    m_Localized: "<color=\"red\">\uC67C\uCABD\uC73C\uB85C \uD53C\uD558\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3757389455360
+    m_Localized: "<color=\"red\">\uC624\uB978\uCABD\uC73C\uB85C \uD53C\uD558\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3890529247232
+    m_Localized: "<color=\"red\">\uAC00\uB9CC\uD788 \uC11C \uC788\uAE30"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3359584886784
+    m_Localized: "\uB3CC\uC774 \uBBF8\uCE5C \uB4EF\uC774 \uAD74\uB7EC\uC640 \uB2F9\uC2E0\uC744
+      \uD5A5\uD574 \uB2E4\uAC00\uC635\uB2C8\uB2E4. \n\uC2DC\uB3C4\uD560 \uD2C8\uB3C4
+      \uC5C6\uC774 \uB3CC\uC5D0 \uB9DE\uC544 \uB2F9\uC2E0\uC740 \uB118\uC5B4\uC9C0\uAC8C
+      \uB429\uB2C8\uB2E4.\n\uB3CC\uC758 \uAC15\uD55C \uCDA9\uB3CC\uB85C \uC778\uD574
+      \uD760\uC9D1\uACFC \uBA4D\uC774 \uC0DD\uAE30\uBA70, \uB2F9\uC2E0\uC740 \uD798\uB4E4\uAC8C
+      \uC77C\uC5B4\uC11C\uAC8C \uB429\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

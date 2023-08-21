@@ -692,7 +692,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 210, y: 120}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349721562
 MonoBehaviour:
@@ -742,19 +742,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 6
+  m_fontSizeMax: 10
   m_fontStyle: 0
   m_HorizontalAlignment: 32
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 36
+  m_lineSpacing: 24
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1193,8 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mysteryCanvas: {fileID: 2110865596}
   mysteryCamera: {fileID: 328816205797120463}
-  eventBlueprint: {fileID: 11400000, guid: 6d30677790b514943be92894e450d6d7, type: 2}
-  typingSpeed: 0.03
+  mysteryConfig: {fileID: 11400000, guid: 6d30677790b514943be92894e450d6d7, type: 2}
   eventPicture: {fileID: 960793675}
   titleText: {fileID: 944977371}
   dialogueText: {fileID: 1349721562}
@@ -1308,6 +1307,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "\uC774\uBCA4\uD2B8 \uC81C\uBAA9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3722541131173134060, guid: 532702af4d332d14cbfe6eb2d167f654,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3722541131173134060, guid: 532702af4d332d14cbfe6eb2d167f654,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3722541132178590332, guid: 532702af4d332d14cbfe6eb2d167f654,
         type: 3}

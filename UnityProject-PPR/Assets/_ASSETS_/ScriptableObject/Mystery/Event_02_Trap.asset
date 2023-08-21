@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10d74715e76dc641bf2dc72f8a11573, type: 3}
+  m_Name: Event_02_Trap
+  m_EditorClassIdentifier: 
+  selections:
+  - {fileID: 4727978279097541897, guid: 4783569d24f43404ca2f285d19a7641c, type: 3}
+  - {fileID: 4727978279097541897, guid: fab45ecb34452bd48a2d5eb699388a86, type: 3}
+  - {fileID: 4727978279097541897, guid: 66226ca356fbfde469ccaf5a3a892c70, type: 3}
+  eventPicture: {fileID: 21300000, guid: 0dc232287cd196647bdf2bae6c45ddc9, type: 3}
+  stringTable: Event02

@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : BehaviourSingleton<GameManager>
 {
     public EnemyEncounter EnemyEncounter { get; set; }
+    public MysteryConfig MysteryConfig { get; set; }
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;

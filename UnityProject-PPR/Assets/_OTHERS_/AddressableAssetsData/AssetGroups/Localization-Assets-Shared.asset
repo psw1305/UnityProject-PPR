@@ -29,6 +29,23 @@ MonoBehaviour:
     m_Address: Assets/_ASSETS_/Localization/Event Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 3259c216652db26478d1b37141e7cd1f
+    m_Address: Assets/_ASSETS_/Localization/Event/01_Starting/Event02 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7403a9b90d3781f41ba111d5ec83fe6f
+    m_Address: Assets/_ASSETS_/Localization/Event/03_WarriorTombs/Event03 Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 4d971d3b5d78a364b892c7872c43e889
+    m_Address: Assets/_ASSETS_/Localization/Event/04_MaskMan/Event04 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 997f4de36d7c6df4c9a7d53f9b8c6f56
+    m_Address: Assets/_ASSETS_/Localization/Event/05_Blacksmith/Event05 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 458c4c4e127ac394294b7d802dc97305, type: 2}
   m_SchemaSet:

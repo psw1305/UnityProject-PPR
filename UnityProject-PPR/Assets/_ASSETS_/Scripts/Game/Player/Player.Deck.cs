@@ -25,7 +25,7 @@ public partial class Player : BehaviourSingleton<Player>
 
     public void AddCard()
     {
-        var card = GameManager.Instance.ItemLootCard(this.playerUI.GetCardSlotList());
+        var card = GameManager.Instance.ItemLootCard(this.playerUI.GetCardSlotList());        
         this.cardSlots.Add(card);
     }
 
