@@ -200,4 +200,9 @@ public partial class GameBoard : MonoBehaviour
     {
         return StartCoroutine(this.boardSpawning.Despawn(GetSelectCards()));
     }
+
+    public Coroutine SkillCardSpawn()
+    {
+        return StartCoroutine(this.boardSpawning.SkillCardSpawn());
+    }
 }

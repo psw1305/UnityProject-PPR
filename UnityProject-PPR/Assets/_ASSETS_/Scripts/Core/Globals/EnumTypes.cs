@@ -38,7 +38,8 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum RelicType
     {
-        Sword, Shield, Armor, Helm, Idol
+        Sword, Shield, Armor, Helm, 
+        Idol, Instrument,
     }
 
     /// <summary>

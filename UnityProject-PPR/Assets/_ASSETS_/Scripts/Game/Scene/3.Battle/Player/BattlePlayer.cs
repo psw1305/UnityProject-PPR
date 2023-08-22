@@ -1,5 +1,6 @@
 using PSW.Core.Enums;
 using PSW.Core.Extensions;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     [Header("Scripts")]
     [SerializeField] private BattleSystem battleSystem;
     [SerializeField] private BattlePlayerUI battlePlayerUI;
+    [SerializeField] private GameBoard gameBoard;
 
     public int HP { get; set; }
     public int ACT { get; set; }
@@ -27,39 +29,45 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     public int ATK { get; set; }
     public int DEF { get; set; }
 
+    // 전투 시작 시 주어지는 포인트
+    public int StartDEF { get; set; }
+    public int StartCard { get; set; }
+
     // 첫 공격 시 주어지는 시작 포인트
     public int FirstATK { get; set; }
     public int FirstDEF { get; set; }
 
+    // 시작과 끝 Bool 체크
     public bool OnStart { get; private set; }
     public bool OnFirst { get; private set; }
 
-    public int CurrentHP { get; private set; } // 현 체력
-    public int CurrentSP { get; private set; } // 현 방어력
-    public int CurrentACT { get; private set; } // 현 행동력
+    // 현 Stat
+    public int CurrentHP { get; private set; }
+    public int CurrentSP { get; private set; }
+    public int CurrentACT { get; private set; }
 
     public float GetPercentHP() => CurrentHP / (float)this.HP;
-    private static Player player;
 
     protected override void Awake()
     {
         base.Awake();
 
-        player = Player.Instance;
-
         this.OnStart = true;
 
-        if (player != null)
+        if (Player.Instance != null)
         {
-            this.HP = player.HP.Value;
-            this.ACT = player.ACT.Value;
-            this.ATK = player.ATK.Value;
-            this.DEF = player.DEF.Value;
+            this.HP = Player.Instance.HP.Value;
+            this.ACT = Player.Instance.ACT.Value;
+            this.ATK = Player.Instance.ATK.Value;
+            this.DEF = Player.Instance.DEF.Value;
 
-            this.FirstATK = player.FirstATK.Value;
-            this.FirstDEF = player.FirstDEF.Value;
+            this.StartDEF = Player.Instance.StartDEF.Value;
+            this.StartCard = Player.Instance.StartCard.Value;
 
-            this.CurrentHP = player.CurrentHP;
+            this.FirstATK = Player.Instance.FirstATK.Value;
+            this.FirstDEF = Player.Instance.FirstDEF.Value;
+
+            this.CurrentHP = Player.Instance.CurrentHP;
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
@@ -69,6 +77,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.ATK = 1;
             this.DEF = 1;
 
+            this.StartDEF = 0;
+            this.StartCard = 0;
+
             this.FirstATK = 0;
             this.FirstDEF = 0;
 
@@ -76,25 +87,33 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         }
 
         this.battlePlayerUI.SetHpText(this.CurrentHP, this.HP);
-        this.battlePlayerUI.SetStatText(this.ATK, this.DEF);
+        this.battlePlayerUI.SetStatText();
     }
 
     #region Init
     /// <summary>
     /// 전투 시작 전 세팅
     /// </summary>
-    public void PlayerOnStart()
+    public IEnumerator PlayerOnStart()
     {
         this.OnStart = false;
 
         InitAct();
 
-        if (player == null) return;
-
-        if (player.StartDEF.Value >= 1)
+        // 전투 시작 시 방어도 부여
+        if (this.StartDEF > 0)
         {
-            this.CurrentSP = player.StartDEF.Value;
+            this.CurrentSP = this.StartDEF;
             GameBoardEvents.OnPlayerShieldChanged.Invoke(0, this.CurrentSP);
+        }
+
+        // 전투 시작 시 스킬 카드 배치
+        if (this.StartCard > 0)
+        {
+            for (int i = 0; i < this.StartCard; i++)
+            {
+                yield return this.gameBoard.SkillCardSpawn();
+            }
         }
     }
 
@@ -259,9 +278,9 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
         CurrentHP = damagedHP;
         GameBoardEvents.OnPlayerHealthChanged.Invoke(CurrentHP, damagedHP);
 
-        if (player != null)
+        if (Player.Instance != null)
         {
-            player.SetHP(CurrentHP);
+            Player.Instance.SetHP(CurrentHP);
         }
     }
 

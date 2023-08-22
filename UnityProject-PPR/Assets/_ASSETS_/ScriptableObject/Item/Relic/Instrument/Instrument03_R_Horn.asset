@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
+  m_Name: Instrument03_R_Horn
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 634a2a1f652d2a64d99a3464c3297c49, type: 3}
+  itemType: 1
+  itemGrade: 2
+  itemName: "\uBFD4\uD53C\uB9AC"
+  itemAbility: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uC2A4\uD0AC\uCE74\uB4DC \uBC30\uCE58
+    4"
+  itemDesc: "\uC804\uD22C\uC5D0 \uB098\uC124 \uB54C \uB450\uB4DC\uB9AC\uBA74 \uACE0\uC591\uAC10\uC774
+    \uB9CE\uC774 \uCC28\uC624\uB985\uB2C8\uB2E4"
+  relicID: Instrument03_R_Horn
+  relicType: 5

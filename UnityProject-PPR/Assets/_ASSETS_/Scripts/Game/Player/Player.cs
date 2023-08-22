@@ -22,8 +22,11 @@ public partial class Player : BehaviourSingleton<Player>
     public Stat ATK;
     public Stat DEF;
 
-    [Header("Battle Stat")]
+    [Header("Battle Start Stat")]
     public Stat StartDEF;
+    public Stat StartCard;
+
+    [Header("Battle First Stat")]
     public Stat FirstDEF;
     public Stat FirstATK;
 
@@ -59,6 +62,7 @@ public partial class Player : BehaviourSingleton<Player>
         this.DEF.BaseValue = 1;
 
         this.StartDEF.BaseValue = 0;
+        this.StartCard.BaseValue = 0;
 
         this.FirstATK.BaseValue = 0;
         this.FirstDEF.BaseValue = 0;

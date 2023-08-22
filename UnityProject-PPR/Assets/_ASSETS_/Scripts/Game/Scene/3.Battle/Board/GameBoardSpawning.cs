@@ -24,13 +24,10 @@ public class GameBoardSpawning
                 element.SetData(this.board.CardList.Get());
                 element.Spawn();
 
+                // 스택에 따른 스킬 카드 생성
                 if (this.currentStack >= this.skillStack)
                 {
-                    if (this.board.IsSkillCardEmpty() == false)
-                    {
-                        this.currentStack = 1;
-                        yield return Change(this.board.RandomCard());
-                    }
+                    yield return SkillCardSpawn();
                 }
                 else
                 {
@@ -40,6 +37,20 @@ public class GameBoardSpawning
         }
 
         yield return YieldCache.WaitForSeconds(0.4f);
+    }
+
+    /// <summary>
+    /// 스킬 카드 생성
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator SkillCardSpawn()
+    {
+        if (this.board.IsSkillCardEmpty() == false)
+        {
+            this.currentStack = 1;
+
+            yield return Change(this.board.RandomCard());
+        }
     }
 
     public IEnumerator Despawn(List<GameBoardCard> elements)

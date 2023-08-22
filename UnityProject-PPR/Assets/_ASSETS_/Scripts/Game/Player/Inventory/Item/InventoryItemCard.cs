@@ -68,8 +68,6 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        UISFX.Instance.Play(UISFX.Instance.itemDrag);
-
         this.parentAfterDrag = this.transform.parent;
         this.transform.SetParent(PlayerUI.Instance.GetCardDragParent());
         this.transform.SetAsLastSibling();
@@ -94,8 +92,6 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        UISFX.Instance.ItemDropSFX(this);
-
         this.transform.SetParent(this.parentAfterDrag);
         this.plate.raycastTarget = true;
 

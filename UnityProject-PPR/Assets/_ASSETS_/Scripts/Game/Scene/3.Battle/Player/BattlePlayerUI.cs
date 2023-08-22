@@ -16,8 +16,7 @@ public class BattlePlayerUI : MonoBehaviour
 
     [Header("Stat")]
     [SerializeField] private TextMeshProUGUI actText;
-    [SerializeField] private TextMeshProUGUI atkText;
-    [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI deckText;
 
     private BattlePlayer battlePlayer;
 
@@ -44,11 +43,10 @@ public class BattlePlayerUI : MonoBehaviour
         this.healthBar.fillAmount = value / (float)maxValue;
     }
 
-    public void SetStatText(int atk, int def)
+    public void SetStatText()
     {
         this.actText.text = "0";
-        this.atkText.text = atk.ToString();
-        this.defText.text = def.ToString();
+        this.deckText.text = "0";
     }
 
     public void SetActText(int act)

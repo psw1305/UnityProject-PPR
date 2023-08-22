@@ -82,7 +82,7 @@ public class RewardsItem : MonoBehaviour
     /// </summary>
     private void GetRewards()
     {
-        UISFX.Instance.Play(UISFX.Instance.buttonClick);
+        UISFX.Instance.ItemDropSFX(this.itemType);
 
         if (Player.Instance != null)
         {

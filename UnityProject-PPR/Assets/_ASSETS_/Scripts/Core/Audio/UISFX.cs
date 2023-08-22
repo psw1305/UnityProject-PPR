@@ -1,3 +1,4 @@
+using PSW.Core.Enums;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -14,10 +15,11 @@ public class UISFX : BehaviourSingleton<UISFX>
     public AudioClip cardDeckClose;
     public AudioClip[] itemOpens;
 
-    [Header("Item")]
-    public AudioClip itemDrag;
-    public AudioClip equipNormalDrop;
-    public AudioClip useableDrop;
+    [Header("Item Drop")]
+    public AudioClip dropCard;
+    public AudioClip dropRelic;
+    public AudioClip dropPotion;
+    public AudioClip dropCash;
 
     [Header("Mystery")]
     public AudioClip healthUp;
@@ -51,11 +53,25 @@ public class UISFX : BehaviourSingleton<UISFX>
     }
 
     /// <summary>
-    /// 인벤토리에서 아이템 드랍시 타입별로 소리 구분
+    /// 아이템 타입별로 사운드 구분
     /// </summary>
-    /// <param name="item"></param>
-    public void ItemDropSFX(InventoryItem item)
+    /// <param name="itemType">아이템 타입</param>
+    public void ItemDropSFX(ItemType itemType)
     {
-        Play(this.equipNormalDrop);
+        switch (itemType)
+        {
+            case ItemType.Card:
+                Play(this.dropCard);
+                break;
+            case ItemType.Relic:
+                Play(this.dropRelic);
+                break;
+            case ItemType.Potion:
+                Play(this.dropPotion);
+                break;
+            case ItemType.Cash:
+                Play(this.dropCash);
+                break;
+        }
     }
 }

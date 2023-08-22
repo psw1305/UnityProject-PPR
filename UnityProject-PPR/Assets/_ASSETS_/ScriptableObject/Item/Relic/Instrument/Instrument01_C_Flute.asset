@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
+  m_Name: Instrument01_C_Flute
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: b5c97cb953eff7d42b602af7733516c0, type: 3}
+  itemType: 1
+  itemGrade: 0
+  itemName: "\uD50C\uB8E8\uD2B8"
+  itemAbility: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uC2A4\uD0AC\uCE74\uB4DC \uBC30\uCE58
+    1"
+  itemDesc: "\uC804\uD22C\uC5D0 \uB098\uC124 \uB54C \uBD80\uB974\uBA74 \uACE0\uC591\uAC10\uC774
+    \uC0B4\uC9DD \uC624\uB985\uB2C8\uB2E4"
+  relicID: Instrument01_C_Flute
+  relicType: 5

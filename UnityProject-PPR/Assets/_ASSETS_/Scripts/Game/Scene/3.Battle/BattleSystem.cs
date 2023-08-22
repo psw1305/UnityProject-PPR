@@ -146,9 +146,13 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     private IEnumerator PlayerTurn()
     {
         if (this.battlePlayer.OnStart)
-            this.battlePlayer.PlayerOnStart();
+        {
+            yield return StartCoroutine(this.battlePlayer.PlayerOnStart());
+        }
         else
+        {
             this.battlePlayer.PlayerOnInit();
+        }
 
         yield return StartCoroutine(BattleNotice.Instance.UpdateNotice("Player Turn"));
 
