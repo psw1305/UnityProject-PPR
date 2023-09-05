@@ -8,6 +8,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
     public BattlePlay BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
     public CardType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
+    public BattleEnemy SelectedEnemy { get; set; }
 
     [Header("Settings")]
     [SerializeField] private Camera battleCamera;
@@ -26,7 +27,8 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
     [SerializeField] private BattlePlayer battlePlayer;
     [SerializeField] private RewardsSystem battleRewards;
 
-    public BattleEnemy SelectedEnemy { get; set; }
+    [Header("Debug")]
+    [SerializeField] private BattleDebug battleDebug;
 
     protected override void Awake()
     {

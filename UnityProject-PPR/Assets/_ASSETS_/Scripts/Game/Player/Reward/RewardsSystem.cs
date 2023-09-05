@@ -89,7 +89,7 @@ public class RewardsSystem : MonoBehaviour
     {
         BattleSFX.Instance.Play(BattleSFX.Instance.victory);
 
-        this.rewardCanvas.CanvasFadeIn(0.25f);
+        this.rewardCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
     }
 
     /// <summary>
