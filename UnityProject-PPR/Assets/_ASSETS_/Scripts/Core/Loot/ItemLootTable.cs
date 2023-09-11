@@ -10,17 +10,16 @@ public class ItemLootTable : MonoBehaviour
 
     /// <summary>
     /// 아이템 등급별로 따로 랜덤 생성
-    /// [ID] 1. Common / 2. Uncommon / 3. Rare / 4. Shop / 5. Boss
+    /// [ID] 1. Common / 2. Uncommon / 3. Rare / 4. Boss
     /// </summary>
-    public ItemBlueprint GetRandomItemBlueprint(int id)
+    public ItemBlueprint GetRandomItemBlueprint(int rareTypeID)
     {
-        return id switch
+        return rareTypeID switch
         {
             1 => itemLists[0].GetItemBlueprint(),
             2 => itemLists[1].GetItemBlueprint(),
             3 => itemLists[2].GetItemBlueprint(),
             4 => itemLists[3].GetItemBlueprint(),
-            5 => itemLists[4].GetItemBlueprint(),
             _ => GetAllRandomItemBlueprint(),
         };
     }

@@ -1,3 +1,4 @@
+using PSW.Core.Enums;
 using UnityEngine;
 
 public class GameManager : BehaviourSingleton<GameManager>
@@ -52,9 +53,9 @@ public class GameManager : BehaviourSingleton<GameManager>
         return card;
     }
 
-    public InventoryItemRelic ItemLootRelic(int id, Transform parent)
+    public InventoryItemRelic ItemLootRelic(int rareTypeID, Transform parent)
     {
-        var blueprint = this.relicLootTable.GetRandomItemBlueprint(id);
+        var blueprint = this.relicLootTable.GetRandomItemBlueprint(rareTypeID);
         var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
 
@@ -69,5 +70,32 @@ public class GameManager : BehaviourSingleton<GameManager>
 
         return potion;
     }
+    #endregion
+
+    #region RandomBlueprint
+
+    public ItemBlueprint[] GetRandomItemBlueprints(ItemType itemType)
+    {
+        ItemBlueprint[] randomItemBlueprints = new ItemBlueprint[3];
+
+        switch (itemType)
+        {
+            case ItemType.Relic:
+                for (int i = 0; i < 3; i++)
+                    randomItemBlueprints[i] = this.relicLootTable.GetRandomItemBlueprint(0);
+                break;
+            case ItemType.Potion:
+                for (int i = 0; i < 3; i++)
+                    randomItemBlueprints[i] = this.potionLootTable.GetRandomItemBlueprint(0);
+                break;
+            case ItemType.Card:
+                for (int i = 0; i < 3; i++)
+                    randomItemBlueprints[i] = this.cardLootTable.GetRandomItemBlueprint(0);
+                break;
+        }
+
+        return randomItemBlueprints;
+    }
+
     #endregion
 }

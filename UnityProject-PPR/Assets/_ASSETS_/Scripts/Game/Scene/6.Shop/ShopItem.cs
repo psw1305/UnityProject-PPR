@@ -2,6 +2,7 @@ using PSW.Core.Enums;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ShopItem : MonoBehaviour
 {
@@ -45,61 +46,81 @@ public class ShopItem : MonoBehaviour
 
     private void SetPrice()
     {
-        float itemOriginPrice = 0;
+        var itemOriginPrice = 0;
 
-        // 아이템 타입에 따른 가격 조정
-        ItemType itemType = this.itemData.ItemType;
-        if (itemType == ItemType.Relic)
+        // 아이템 타입과 등급에 따른 가격 조정
+        switch (this.itemData.ItemType)
         {
-            itemOriginPrice = SetPriceToRelic();
-        }
-        else if (itemType == ItemType.Potion)
-        {
-            itemOriginPrice = SetPriceToPotion();
-        }
-
-        // 레어도에 따른 가격 조정
-        ItemGrade rareType = this.itemData.ItemGrade; 
-
-        switch (rareType)
-        {
-            case ItemGrade.Uncommon:
-                itemOriginPrice *= ItemPrice.PRICE_WEIGHT_UNCOMMON;
+            case ItemType.Relic:
+                itemOriginPrice = SetPriceToRelic(this.itemData.ItemGrade);
                 break;
-            case ItemGrade.Rare:
-                itemOriginPrice *= ItemPrice.PRICE_WEIGHT_RARE;
+            case ItemType.Potion:
+                itemOriginPrice = SetPriceToPotion(this.itemData.ItemGrade);
+                break;
+            case ItemType.Card:
+                itemOriginPrice = SetPriceToCard(this.itemData.ItemGrade);
                 break;
         }
 
-        // 소수점 정리
-        Mathf.RoundToInt(itemOriginPrice);
-
-        // 할인 품목일 경우, Rich Text 적용
+        // 할인 상품 가격 조정
         if (this.IsSale == true)
         {
             this.productPrice = Mathf.FloorToInt(itemOriginPrice * ItemPrice.PRICE_SALE_BIG);
             this.productPriceText.text = this.productPrice.ToString();
         }
-        // 할인 품목이 아닐 경우
         else
         {
-            this.productPrice = Mathf.FloorToInt(itemOriginPrice);
+            this.productPrice = Mathf.RoundToInt(itemOriginPrice);
             this.productPriceText.text = this.productPrice.ToString();
         }
     }
 
-    private int SetPriceToRelic()
+    private int SetPriceToRelic(ItemGrade itemGrade)
     {
-        var priceMin = ItemPrice.PRICE_MIN_POTION;
-        var priceMax = ItemPrice.PRICE_MAX_POTION;
-        return Random.Range(priceMin, priceMax);
+        switch (itemGrade)
+        {
+            case ItemGrade.Common:
+                return Random.Range(ItemPrice.PRICE_MIN_RELIC_COMMON, ItemPrice.PRICE_MAX_RELIC_COMMON);
+            case ItemGrade.Uncommon:
+                return Random.Range(ItemPrice.PRICE_MIN_RELIC_UNCOMMON, ItemPrice.PRICE_MAX_RELIC_UNCOMMON);
+            case ItemGrade.Rare:
+                return Random.Range(ItemPrice.PRICE_MIN_RELIC_RARE, ItemPrice.PRICE_MAX_RELIC_RARE);
+            default:
+                Debug.Log("해당 등급에 가격이 없음");
+                return 0;
+        }
     }
 
-    private int SetPriceToPotion()
+    private int SetPriceToPotion(ItemGrade itemGrade)
     {
-        var priceMin = ItemPrice.PRICE_MIN_POTION;
-        var priceMax = ItemPrice.PRICE_MAX_POTION;
-        return Random.Range(priceMin, priceMax);
+        switch (itemGrade)
+        {
+            case ItemGrade.Common:
+                return Random.Range(ItemPrice.PRICE_MIN_POTION_COMMON, ItemPrice.PRICE_MAX_POTION_COMMON);
+            case ItemGrade.Uncommon:
+                return Random.Range(ItemPrice.PRICE_MIN_POTION_UNCOMMON, ItemPrice.PRICE_MAX_POTION_UNCOMMON);
+            case ItemGrade.Rare:
+                return Random.Range(ItemPrice.PRICE_MIN_POTION_RARE, ItemPrice.PRICE_MAX_POTION_RARE);
+            default:
+                Debug.Log("해당 등급에 가격이 없음");
+                return 0;
+        }
+    }
+
+    private int SetPriceToCard(ItemGrade itemGrade)
+    {
+        switch (itemGrade)
+        {
+            case ItemGrade.Common:
+                return Random.Range(ItemPrice.PRICE_MIN_CARD_COMMON, ItemPrice.PRICE_MAX_CARD_COMMON);
+            case ItemGrade.Uncommon:
+                return Random.Range(ItemPrice.PRICE_MIN_CARD_UNCOMMON, ItemPrice.PRICE_MAX_CARD_UNCOMMON);
+            case ItemGrade.Rare:
+                return Random.Range(ItemPrice.PRICE_MIN_CARD_RARE, ItemPrice.PRICE_MAX_CARD_RARE);
+            default:
+                Debug.Log("해당 등급에 가격이 없음");
+                return 0;
+        }
     }
 
     /// <summary>
@@ -113,9 +134,6 @@ public class ShopItem : MonoBehaviour
 
         IsSell = true;
         this.buyButton.interactable = false;
-
-        //if(InventorySystem.Instance != null) 
-        //    InventorySystem.Instance.AddItem(this.itemData);
 
         this.sellPlate.SetActive(false);
         this.soldPlate.SetActive(true);

@@ -60,13 +60,27 @@ public static class DUR
 /// </summary>
 public static class ItemPrice
 {
-    public static readonly int PRICE_MIN_POTION = 21;
-    public static readonly int PRICE_MAX_POTION = 31;
+    public static readonly int PRICE_MIN_RELIC_COMMON = 143;
+    public static readonly int PRICE_MAX_RELIC_COMMON = 157;
+    public static readonly int PRICE_MIN_RELIC_UNCOMMON = 238;
+    public static readonly int PRICE_MAX_RELIC_UNCOMMON = 262;
+    public static readonly int PRICE_MIN_RELIC_RARE = 285;
+    public static readonly int PRICE_MAX_RELIC_RARE = 315;
 
-    public static readonly float PRICE_WEIGHT_UNCOMMON = 1.5f;
-    public static readonly float PRICE_WEIGHT_RARE = 2.0f;
+    public static readonly int PRICE_MIN_POTION_COMMON = 48;
+    public static readonly int PRICE_MAX_POTION_COMMON = 52;
+    public static readonly int PRICE_MIN_POTION_UNCOMMON = 72;
+    public static readonly int PRICE_MAX_POTION_UNCOMMON = 78;
+    public static readonly int PRICE_MIN_POTION_RARE = 95;
+    public static readonly int PRICE_MAX_POTION_RARE = 105;
 
-    public static readonly float PRICE_SALE_SMALL = 0.75f;
+    public static readonly int PRICE_MIN_CARD_COMMON = 45;
+    public static readonly int PRICE_MAX_CARD_COMMON = 55;
+    public static readonly int PRICE_MIN_CARD_UNCOMMON = 68;
+    public static readonly int PRICE_MAX_CARD_UNCOMMON = 82;
+    public static readonly int PRICE_MIN_CARD_RARE = 135;
+    public static readonly int PRICE_MAX_CARD_RARE = 165;
+
     public static readonly float PRICE_SALE_BIG = 0.5f;
 }
 

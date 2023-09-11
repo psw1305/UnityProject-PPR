@@ -438,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3065613823626335223}
   m_Layer: 0
-  m_Name: Item Loot Table
+  m_Name: Item Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
