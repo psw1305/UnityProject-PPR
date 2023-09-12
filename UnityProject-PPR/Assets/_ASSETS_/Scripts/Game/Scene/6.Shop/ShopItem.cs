@@ -11,6 +11,7 @@ public class ShopItem : MonoBehaviour
 
     [Header("Product")]
     [SerializeField] private Image productImage;
+    [SerializeField] private TextMeshProUGUI productNameText;
     [SerializeField] private TextMeshProUGUI productPriceText;
     [SerializeField] private Button buyButton;
     [SerializeField] private GameObject saleRibbon;
@@ -34,16 +35,18 @@ public class ShopItem : MonoBehaviour
 
         this.itemData = data;
         this.productImage.sprite = data.ItemImage;
+        this.productNameText.text = data.ItemName;
+
+        // 상품 가격 설정
         SetPrice();
 
         // 프리팹 네임 => 데이터 네임으로 변경
         this.name = "Shop_" + data.name;
-
-        if (this.IsSale == true) saleRibbon.SetActive(true);
-
-        this.buyButton.onClick.AddListener(Buy);
     }
 
+    /// <summary>
+    /// 상품 타입과 등급에 따른 가격 설정
+    /// </summary>
     private void SetPrice()
     {
         var itemOriginPrice = 0;
@@ -65,6 +68,7 @@ public class ShopItem : MonoBehaviour
         // 할인 상품 가격 조정
         if (this.IsSale == true)
         {
+            this.saleRibbon.SetActive(true);
             this.productPrice = Mathf.FloorToInt(itemOriginPrice * ItemPrice.PRICE_SALE_BIG);
             this.productPriceText.text = this.productPrice.ToString();
         }
@@ -73,6 +77,9 @@ public class ShopItem : MonoBehaviour
             this.productPrice = Mathf.RoundToInt(itemOriginPrice);
             this.productPriceText.text = this.productPrice.ToString();
         }
+
+        // 구매 버튼 리스너 추가
+        this.buyButton.onClick.AddListener(Buy);
     }
 
     private int SetPriceToRelic(ItemGrade itemGrade)
@@ -124,7 +131,7 @@ public class ShopItem : MonoBehaviour
     }
 
     /// <summary>
-    /// 아이템 구매
+    /// 상품 구매
     /// </summary>
     private void Buy()
     {

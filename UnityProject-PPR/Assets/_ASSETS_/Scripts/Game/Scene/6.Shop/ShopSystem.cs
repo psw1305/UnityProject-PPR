@@ -1,4 +1,5 @@
 using PSW.Core.Enums;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopSystem : BehaviourSingleton<ShopSystem>
@@ -19,9 +20,9 @@ public class ShopSystem : BehaviourSingleton<ShopSystem>
     {
         base.Awake();
 
-        this.productRelic = GameManager.Instance.GetRandomItemBlueprints(ItemType.Relic);
-        this.productPotion = GameManager.Instance.GetRandomItemBlueprints(ItemType.Potion);
-        this.productCard = GameManager.Instance.GetRandomItemBlueprints(ItemType.Card);
+        this.productRelic = GameManager.Instance.GetRandomProducts(ItemType.Relic, 3);
+        this.productPotion = GameManager.Instance.GetRandomProducts(ItemType.Potion, 3);
+        this.productCard = GameManager.Instance.GetRandomProducts(ItemType.Card, 3);
 
         DisplayProduct(this.productRelic);
         DisplayProduct(this.productPotion);

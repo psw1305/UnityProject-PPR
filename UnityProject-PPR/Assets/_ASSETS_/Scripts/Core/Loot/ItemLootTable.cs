@@ -5,21 +5,18 @@ using UnityEngine;
 public class ItemLootTable : MonoBehaviour
 {
     [SerializeField] private List<ItemList> itemLists = new();
-
-    private float totalWeight;
-
     /// <summary>
     /// 아이템 등급별로 따로 랜덤 생성
-    /// [ID] 1. Common / 2. Uncommon / 3. Rare / 4. Boss
+    /// [ID] 0. All Random / 1. Common / 2. Uncommon / 3. Rare / 4. Boss
     /// </summary>
     public ItemBlueprint GetRandomItemBlueprint(int rareTypeID)
     {
         return rareTypeID switch
         {
-            1 => itemLists[0].GetItemBlueprint(),
-            2 => itemLists[1].GetItemBlueprint(),
-            3 => itemLists[2].GetItemBlueprint(),
-            4 => itemLists[3].GetItemBlueprint(),
+            1 => itemLists[0].GetRandomItemBlueprint(),
+            2 => itemLists[1].GetRandomItemBlueprint(),
+            3 => itemLists[2].GetRandomItemBlueprint(),
+            4 => itemLists[3].GetRandomItemBlueprint(),
             _ => GetAllRandomItemBlueprint(),
         };
     }
@@ -29,18 +26,80 @@ public class ItemLootTable : MonoBehaviour
     /// </summary>
     public ItemBlueprint GetAllRandomItemBlueprint()
     {
-        this.totalWeight = itemLists.Sum(itemList => itemList.weight);
+        var totalWeight = this.itemLists.Sum(itemList => itemList.weight);
+        var randomWeight = Random.Range(0f, totalWeight);
 
-        var random = Random.Range(0f, this.totalWeight);
-
-        foreach (var item in this.itemLists)
+        foreach (var itemList in this.itemLists)
         {
-            if (item.weight >= random)
+            if (itemList.weight >= randomWeight)
             {
-                return item.GetItemBlueprint();
+                return itemList.GetRandomItemBlueprint();
             }
 
-            random -= item.weight;
+            randomWeight -= itemList.weight;
+        }
+
+        throw new System.Exception("Item Generate Failed");
+    }
+
+    public ItemBlueprint GetRandomItemBlueprintAndRemove(int rareTypeID)
+    {
+        return rareTypeID switch
+        {
+            1 => itemLists[0].GetRandomItemBlueprintAndRemove(),
+            2 => itemLists[1].GetRandomItemBlueprintAndRemove(),
+            3 => itemLists[2].GetRandomItemBlueprintAndRemove(),
+            4 => itemLists[3].GetRandomItemBlueprintAndRemove(),
+            _ => GetAllRandomItemBlueprintAndRemove(),
+        };
+    }
+
+    /// <summary>
+    /// 모든 아이템 리스트 중에서 랜덤으로 아이템 생성 후 해당 아이템 삭제
+    /// </summary>
+    public ItemBlueprint GetAllRandomItemBlueprintAndRemove()
+    {
+        var totalWeight = this.itemLists.Sum(itemList => itemList.weight);
+
+        return GetItemBlueprintNoDuplicate(this.itemLists, totalWeight);
+    }
+
+    /// <summary>
+    /// 모든 아이템 리스트 중에서 갯수 만큼 중복없이 생성
+    /// </summary>
+    public ItemBlueprint[] GetRandomItemTableNoDuplicate(int amount)
+    {
+        var randomItemBlueprints = new ItemBlueprint[amount];
+        var tempLists = this.itemLists;
+        var totalWeight = tempLists.Sum(tempList => tempList.weight);
+
+        for (int i = 0; i < amount; i++)
+        {
+            randomItemBlueprints[i] = GetItemBlueprintNoDuplicate(tempLists, totalWeight);
+        }
+
+        return randomItemBlueprints;
+
+        throw new System.Exception("Item Generate Failed");
+    }
+
+    /// <summary>
+    /// 아이템 리스트에서 랜덤으로 아이템 생성 후 해당 아이템 삭제
+    /// </summary>
+    /// <param name="tempLists"></param>
+    /// <param name="totalWeight"></param>
+    public ItemBlueprint GetItemBlueprintNoDuplicate(List<ItemList> tempLists, float totalWeight)
+    {
+        var randomWeight = Random.Range(0f, totalWeight);
+
+        foreach (var tempList in tempLists)
+        {
+            if (tempList.weight >= randomWeight)
+            {
+                return tempList.GetRandomItemBlueprintAndRemove();
+            }
+
+            randomWeight -= tempList.weight;
         }
 
         throw new System.Exception("Item Generate Failed");
@@ -55,19 +114,27 @@ public class ItemList
     public List<ItemBlueprint> itemList = new();
     public float weight;
 
-    public ItemBlueprint GetItemBlueprint()
+    /// <summary>
+    /// 리스트에서 랜덤으로 아이템 데이터 가져오기
+    /// </summary>
+    /// <returns></returns>
+    public ItemBlueprint GetRandomItemBlueprint()
     {
         var random = Random.Range(0, this.itemList.Count);
         var randomItem = this.itemList[random];
-        this.itemList.Remove(randomItem);
 
         return randomItem;
     }
 
-    public ItemBlueprint GetItemBlueprintDuplicate()
+    /// <summary>
+    /// 리스트에서 랜덤으로 데이터 가져온 후 해당 데이터 삭제
+    /// </summary>
+    /// <returns></returns>
+    public ItemBlueprint GetRandomItemBlueprintAndRemove()
     {
         var random = Random.Range(0, this.itemList.Count);
         var randomItem = this.itemList[random];
+        this.itemList.Remove(randomItem);
 
         return randomItem;
     }

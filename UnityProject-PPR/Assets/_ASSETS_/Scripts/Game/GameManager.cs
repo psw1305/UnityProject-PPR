@@ -1,4 +1,5 @@
 using PSW.Core.Enums;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : BehaviourSingleton<GameManager>
@@ -53,9 +54,15 @@ public class GameManager : BehaviourSingleton<GameManager>
         return card;
     }
 
+    /// <summary>
+    /// 유물 아이템 루팅 [중첩 불가]
+    /// </summary>
+    /// <param name="rareTypeID"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
     public InventoryItemRelic ItemLootRelic(int rareTypeID, Transform parent)
     {
-        var blueprint = this.relicLootTable.GetRandomItemBlueprint(rareTypeID);
+        var blueprint = this.relicLootTable.GetRandomItemBlueprintAndRemove(rareTypeID);
         var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
 
@@ -73,29 +80,19 @@ public class GameManager : BehaviourSingleton<GameManager>
     #endregion
 
     #region RandomBlueprint
-
-    public ItemBlueprint[] GetRandomItemBlueprints(ItemType itemType)
+    public ItemBlueprint[] GetRandomProducts(ItemType itemType, int amount)
     {
-        ItemBlueprint[] randomItemBlueprints = new ItemBlueprint[3];
-
         switch (itemType)
         {
             case ItemType.Relic:
-                for (int i = 0; i < 3; i++)
-                    randomItemBlueprints[i] = this.relicLootTable.GetRandomItemBlueprint(0);
-                break;
+                return this.relicLootTable.GetRandomItemTableNoDuplicate(amount);
             case ItemType.Potion:
-                for (int i = 0; i < 3; i++)
-                    randomItemBlueprints[i] = this.potionLootTable.GetRandomItemBlueprint(0);
-                break;
+                return this.potionLootTable.GetRandomItemTableNoDuplicate(amount);
             case ItemType.Card:
-                for (int i = 0; i < 3; i++)
-                    randomItemBlueprints[i] = this.cardLootTable.GetRandomItemBlueprint(0);
-                break;
+                return this.cardLootTable.GetRandomItemTableNoDuplicate(amount);
         }
 
-        return randomItemBlueprints;
+        throw new System.Exception("Products Table Generate Failed");
     }
-
     #endregion
 }

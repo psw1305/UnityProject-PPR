@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ee0fdde8d208749b07e186e010e02f, type: 3}
   m_Name: Instrument03_R_Horn
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 634a2a1f652d2a64d99a3464c3297c49, type: 3}
+  image: {fileID: 21300000, guid: a878b0702ed8e40479b3b5fb2634e085, type: 3}
   itemType: 1
   itemGrade: 2
   itemName: "\uBFD4\uD53C\uB9AC"
