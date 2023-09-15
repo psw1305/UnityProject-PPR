@@ -92,10 +92,9 @@ public class ShopItem : MonoBehaviour
                 return Random.Range(ItemPrice.PRICE_MIN_RELIC_UNCOMMON, ItemPrice.PRICE_MAX_RELIC_UNCOMMON);
             case ItemGrade.Rare:
                 return Random.Range(ItemPrice.PRICE_MIN_RELIC_RARE, ItemPrice.PRICE_MAX_RELIC_RARE);
-            default:
-                Debug.Log("해당 등급에 가격이 없음");
-                return 0;
         }
+
+        throw new System.Exception("There is no item price for this grade");
     }
 
     private int SetPriceToPotion(ItemGrade itemGrade)
@@ -108,10 +107,9 @@ public class ShopItem : MonoBehaviour
                 return Random.Range(ItemPrice.PRICE_MIN_POTION_UNCOMMON, ItemPrice.PRICE_MAX_POTION_UNCOMMON);
             case ItemGrade.Rare:
                 return Random.Range(ItemPrice.PRICE_MIN_POTION_RARE, ItemPrice.PRICE_MAX_POTION_RARE);
-            default:
-                Debug.Log("해당 등급에 가격이 없음");
-                return 0;
         }
+
+        throw new System.Exception("There is no item price for this grade");
     }
 
     private int SetPriceToCard(ItemGrade itemGrade)
@@ -124,10 +122,9 @@ public class ShopItem : MonoBehaviour
                 return Random.Range(ItemPrice.PRICE_MIN_CARD_UNCOMMON, ItemPrice.PRICE_MAX_CARD_UNCOMMON);
             case ItemGrade.Rare:
                 return Random.Range(ItemPrice.PRICE_MIN_CARD_RARE, ItemPrice.PRICE_MAX_CARD_RARE);
-            default:
-                Debug.Log("해당 등급에 가격이 없음");
-                return 0;
         }
+
+        throw new System.Exception("There is no item price for this grade");
     }
 
     /// <summary>

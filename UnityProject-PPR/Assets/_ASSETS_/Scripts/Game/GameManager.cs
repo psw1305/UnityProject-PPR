@@ -47,7 +47,7 @@ public class GameManager : BehaviourSingleton<GameManager>
     #region Item Loot
     public InventoryItemCard ItemLootCard(Transform parent)
     {
-        var blueprint = this.cardLootTable.GetRandomItemBlueprint(0);
+        var blueprint = this.cardLootTable.GetItemAdd_Duplicate(0);
         var card = Instantiate(this.cardPrefab, parent).GetComponent<InventoryItemCard>();
         card.Set(blueprint);
 
@@ -62,7 +62,7 @@ public class GameManager : BehaviourSingleton<GameManager>
     /// <returns></returns>
     public InventoryItemRelic ItemLootRelic(int rareTypeID, Transform parent)
     {
-        var blueprint = this.relicLootTable.GetRandomItemBlueprintAndRemove(rareTypeID);
+        var blueprint = this.relicLootTable.GetItemAdd(rareTypeID);
         var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
 
@@ -71,7 +71,7 @@ public class GameManager : BehaviourSingleton<GameManager>
 
     public InventoryItemPotion ItemLootPotion(Transform parent)
     {
-        var blueprint = this.potionLootTable.GetRandomItemBlueprint(0);
+        var blueprint = this.potionLootTable.GetItemAdd_Duplicate(0);
         var potion = Instantiate(this.potionPrefab, parent).GetComponent<InventoryItemPotion>();
         potion.Set(blueprint);
 
@@ -79,20 +79,20 @@ public class GameManager : BehaviourSingleton<GameManager>
     }
     #endregion
 
-    #region RandomBlueprint
-    public ItemBlueprint[] GetRandomProducts(ItemType itemType, int amount)
+    #region Item Table
+    public ItemBlueprint[] GetRandomItemTable(ItemType itemType, int amount)
     {
         switch (itemType)
         {
             case ItemType.Relic:
-                return this.relicLootTable.GetRandomItemTableNoDuplicate(amount);
+                return this.relicLootTable.GetItemTable(amount);
             case ItemType.Potion:
-                return this.potionLootTable.GetRandomItemTableNoDuplicate(amount);
+                return this.potionLootTable.GetItemTable(amount);
             case ItemType.Card:
-                return this.cardLootTable.GetRandomItemTableNoDuplicate(amount);
+                return this.cardLootTable.GetItemTable(amount);
         }
 
-        throw new System.Exception("Products Table Generate Failed");
+        throw new System.Exception("Item Table Generate Failed");
     }
     #endregion
 }
