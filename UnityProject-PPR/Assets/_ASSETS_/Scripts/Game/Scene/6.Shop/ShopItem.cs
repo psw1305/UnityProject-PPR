@@ -10,6 +10,7 @@ public class ShopItem : MonoBehaviour
     private bool IsSale { get; set; }
 
     [Header("Product")]
+    [SerializeField] private Button productButton;
     [SerializeField] private Image productImage;
     [SerializeField] private TextMeshProUGUI productNameText;
     [SerializeField] private TextMeshProUGUI productPriceText;
@@ -36,6 +37,7 @@ public class ShopItem : MonoBehaviour
         this.itemData = data;
         this.productImage.sprite = data.ItemImage;
         this.productNameText.text = data.ItemName;
+        this.productButton.onClick.AddListener(Detail);
 
         // 상품 가격 설정
         SetPrice();
@@ -128,7 +130,28 @@ public class ShopItem : MonoBehaviour
     }
 
     /// <summary>
-    /// 상품 구매
+    /// 버튼 클릭 시 상품 상세 설명
+    /// </summary>
+    private void Detail()
+    {
+        if (PlayerItemTooltip.Instance == null) return;
+
+        switch (this.itemData.ItemType)
+        {
+            case ItemType.Card:
+                PlayerItemTooltip.Instance.CardTooltipShow(this.itemData);
+                break;
+            case ItemType.Relic:
+                PlayerItemTooltip.Instance.RelicTooltipShow(this.itemData);
+                break;
+            case ItemType.Potion:
+                PlayerItemTooltip.Instance.PotionTooltipShow(this.itemData);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 버튼 클릭 시 상품 구매
     /// </summary>
     private void Buy()
     {

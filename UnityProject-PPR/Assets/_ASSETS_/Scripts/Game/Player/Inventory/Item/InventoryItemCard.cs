@@ -102,6 +102,6 @@ public class InventoryItemCard : InventoryItem, IBeginDragHandler, IDragHandler,
     {
         base.ItemTooltipShow();
 
-        PlayerItemTooltip.Instance.CardTooltipShow(this);
+        PlayerItemTooltip.Instance.CardTooltipShow(this.GetItemData());
     }
 }

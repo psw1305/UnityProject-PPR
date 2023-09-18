@@ -14,10 +14,10 @@ public class ItemLootTable : MonoBehaviour
     {
         return rareTypeID switch
         {
-            1 => itemLists[0].GetRandomItem(),
-            2 => itemLists[1].GetRandomItem(),
-            3 => itemLists[2].GetRandomItem(),
-            4 => itemLists[3].GetRandomItem(),
+            1 => this.itemLists[0].GetRandomItem(),
+            2 => this.itemLists[1].GetRandomItem(),
+            3 => this.itemLists[2].GetRandomItem(),
+            4 => this.itemLists[3].GetRandomItem(),
             _ => GetRandomItemToAllList(),
         };
     }
@@ -29,10 +29,10 @@ public class ItemLootTable : MonoBehaviour
     {
         return rareTypeID switch
         {
-            1 => itemLists[0].GetRandomItem_Duplicate(),
-            2 => itemLists[1].GetRandomItem_Duplicate(),
-            3 => itemLists[2].GetRandomItem_Duplicate(),
-            4 => itemLists[3].GetRandomItem_Duplicate(),
+            1 => this.itemLists[0].GetRandomItem_Duplicate(),
+            2 => this.itemLists[1].GetRandomItem_Duplicate(),
+            3 => this.itemLists[2].GetRandomItem_Duplicate(),
+            4 => this.itemLists[3].GetRandomItem_Duplicate(),
             _ => GetRandomItemToAllList_Duplicate(),
         };
     }
@@ -42,14 +42,14 @@ public class ItemLootTable : MonoBehaviour
     /// </summary>
     public ItemBlueprint[] GetItemTable(int amount)
     {
-        var tempLists = this.itemLists.ToList();
-        var totalWeight = tempLists.Sum(tempList => tempList.weight);
+        var cloneLists = this.itemLists.ConvertAll(list => list.Clone()).ToList();
+        var totalWeight = cloneLists.Sum(cloneList => cloneList.weight);
 
         var randomItemBlueprints = new ItemBlueprint[amount];
 
         for (int i = 0; i < amount; i++)
         {
-            randomItemBlueprints[i] = GetWeightedItem(tempLists, totalWeight);
+            randomItemBlueprints[i] = GetWeightedItem(cloneLists, totalWeight);
         }
 
         return randomItemBlueprints;
@@ -94,7 +94,7 @@ public class ItemLootTable : MonoBehaviour
             randomWeight -= itemList.weight;
         }
 
-        throw new System.Exception("Item Generate Failed");
+        throw new System.Exception("Weighted Item Generate Failed");
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ public class ItemLootTable : MonoBehaviour
             randomWeight -= itemList.weight;
         }
 
-        throw new System.Exception("Item_Duplicate Generate Failed");
+        throw new System.Exception("Weighted Item_Duplicate Generate Failed");
     }
 }
 
@@ -127,6 +127,16 @@ public class ItemList
     public string listName;
     public List<ItemBlueprint> itemList;
     public float weight;
+
+    public ItemList Clone()
+    {
+        return new ItemList 
+        { 
+            listName = this.listName, 
+            itemList = this.itemList.ToList(), // 값 복사
+            weight = this.weight 
+        };
+    }
 
     /// <summary>
     /// 리스트에서 랜덤으로 데이터 가져온 후 해당 데이터 삭제

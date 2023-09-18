@@ -12,9 +12,9 @@ public partial class Player : BehaviourSingleton<Player>
     /// <summary>
     /// 인벤토리에 유물 추가 및 효과 부여
     /// </summary>
-    public void AddRelic(int rareTypeID)
+    public void AddRelic(int itemGradeID)
     {
-        var relic = GameManager.Instance.ItemLootRelic(rareTypeID, this.playerUI.GetRelicSlotList());
+        var relic = GameManager.Instance.ItemLootRelic(itemGradeID, this.playerUI.GetRelicSlotList());
         this.SetRelic(this.relicList, relic);
     }
 

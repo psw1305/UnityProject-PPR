@@ -10,6 +10,6 @@ public class InventoryItemPotion : InventoryItem
     {
         base.ItemTooltipShow();
 
-        PlayerItemTooltip.Instance.PotionTooltipShow(this);
+        PlayerItemTooltip.Instance.PotionTooltipShow(this.GetItemData());
     }
 }

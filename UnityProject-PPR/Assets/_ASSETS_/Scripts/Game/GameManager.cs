@@ -57,12 +57,12 @@ public class GameManager : BehaviourSingleton<GameManager>
     /// <summary>
     /// 유물 아이템 루팅 [중첩 불가]
     /// </summary>
-    /// <param name="rareTypeID"></param>
+    /// <param name="itemGradeID">아이템 등급 ID</param>
     /// <param name="parent"></param>
     /// <returns></returns>
-    public InventoryItemRelic ItemLootRelic(int rareTypeID, Transform parent)
+    public InventoryItemRelic ItemLootRelic(int itemGradeID, Transform parent)
     {
-        var blueprint = this.relicLootTable.GetItemAdd(rareTypeID);
+        var blueprint = this.relicLootTable.GetItemAdd(itemGradeID);
         var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
 

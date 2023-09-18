@@ -49,35 +49,33 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// <summary>
     /// 해당 아이템 데이터에 맞게 UI 부여
     /// </summary>
-    /// <param name="invenItem">유물 아이템</param>
-    private void SetTooltip(InventoryItem invenItem)
+    /// <param name="itemData">아이템 데이터</param>
+    private void SetTooltip(ItemBlueprint itemData)
     {
-        var itemData = invenItem.GetItemData();
-
         // 아이템 타입에 따른 정보 구분
-        if (itemData.ItemType == ItemType.Card)
+        switch (itemData.ItemType)
         {
-            this.cardImage.sprite = itemData.ItemImage;
-            this.cardRare.ItemGradeColor(itemData.ItemGrade);
-            this.cardName.text = itemData.ItemName;
-            this.cardAbility.text = itemData.ItemAbility;
-            this.cardDesc.text = itemData.ItemDesc;
-        }
-        else if (itemData.ItemType == ItemType.Relic)
-        {
-            this.relicImage.sprite = itemData.ItemImage;
-            this.relicRare.ItemGradeColor(itemData.ItemGrade);
-            this.relicName.text = itemData.ItemName;
-            this.relicAbility.text = itemData.ItemAbility;
-            this.relicDesc.text = itemData.ItemDesc;
-        }
-        else if (itemData.ItemType == ItemType.Potion)
-        {
-            this.potionImage.sprite = itemData.ItemImage;
-            this.potionRare.ItemGradeColor(itemData.ItemGrade);
-            this.potionName.text = itemData.ItemName;
-            this.potionAbility.text = itemData.ItemAbility;
-            this.potionDesc.text = itemData.ItemDesc;
+            case ItemType.Card:
+                this.cardImage.sprite = itemData.ItemImage;
+                this.cardRare.ItemGradeColor(itemData.ItemGrade);
+                this.cardName.text = itemData.ItemName;
+                this.cardAbility.text = itemData.ItemAbility;
+                this.cardDesc.text = itemData.ItemDesc;
+                break;
+            case ItemType.Relic:
+                this.relicImage.sprite = itemData.ItemImage;
+                this.relicRare.ItemGradeColor(itemData.ItemGrade);
+                this.relicName.text = itemData.ItemName;
+                this.relicAbility.text = itemData.ItemAbility;
+                this.relicDesc.text = itemData.ItemDesc;
+                break;
+            case ItemType.Potion:
+                this.potionImage.sprite = itemData.ItemImage;
+                this.potionRare.ItemGradeColor(itemData.ItemGrade);
+                this.potionName.text = itemData.ItemName;
+                this.potionAbility.text = itemData.ItemAbility;
+                this.potionDesc.text = itemData.ItemDesc;
+                break;
         }
     }
 
@@ -85,11 +83,11 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// 카드 툴팁 표시
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void CardTooltipShow(InventoryItem invenItem)
+    public void CardTooltipShow(ItemBlueprint itemBlueprint)
     {
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
-        SetTooltip(invenItem);
+        SetTooltip(itemBlueprint);
 
         this.cardTooltipClose.interactable = true;
         this.cardTooltipCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
@@ -110,11 +108,11 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// 유물 툴팁 표시
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void RelicTooltipShow(InventoryItem invenItem)
+    public void RelicTooltipShow(ItemBlueprint itemBlueprint)
     {
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
-        SetTooltip(invenItem);
+        SetTooltip(itemBlueprint);
 
         this.relicTooltipClose.interactable = true;
         this.relicTooltipCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);
@@ -135,11 +133,11 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
     /// 포션 툴팁 표시
     /// </summary>
     /// <param name="invenItem">인벤토리 아이템</param>
-    public void PotionTooltipShow(InventoryItem invenItem)
+    public void PotionTooltipShow(ItemBlueprint itemBlueprint)
     {
         UISFX.Instance.Play(UISFX.Instance.itemOpens);
 
-        SetTooltip(invenItem);
+        SetTooltip(itemBlueprint);
 
         this.potionTooltipClose.interactable = true;
         this.potionTooltipCanvas.CanvasFadeIn(DUR.CANVAS_FADE_TIME);

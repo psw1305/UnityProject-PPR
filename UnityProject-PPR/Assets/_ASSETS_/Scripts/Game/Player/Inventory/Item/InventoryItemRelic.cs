@@ -18,6 +18,6 @@ public class InventoryItemRelic : InventoryItem
     {
         base.ItemTooltipShow();
 
-        PlayerItemTooltip.Instance.RelicTooltipShow(this);
+        PlayerItemTooltip.Instance.RelicTooltipShow(this.GetItemData());
     }
 }

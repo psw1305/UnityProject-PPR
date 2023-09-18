@@ -17,7 +17,7 @@ public partial class Player : BehaviourSingleton<Player>
 
     public void Test_SetDeck()
     {
-        for (int i = 0; i < 8; i++) 
+        for (int i = 0; i < 3; i++) 
         {
             AddCard();
         }
