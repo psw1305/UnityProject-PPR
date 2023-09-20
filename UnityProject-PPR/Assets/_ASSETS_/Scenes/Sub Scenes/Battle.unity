@@ -1129,13 +1129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardList: {fileID: 1809280249}
   exitButton: {fileID: 326561227}
-  cashPrefab: {fileID: 1770419061566374, guid: 78857c201cb27844a829d7ae287d6fe6, type: 3}
-  cardPrefab: {fileID: 1786777753366812139, guid: 6713d79cb08c0ad40bff9823c5b6232b,
+  cardPrefab: {fileID: 1786777753366812133, guid: 6713d79cb08c0ad40bff9823c5b6232b,
     type: 3}
-  potionPrefab: {fileID: 5259324502272348559, guid: f833eada9a9b84342bce812877d75d5b,
+  relicPrefab: {fileID: 6755464579898902598, guid: 4db43e80e930a0148b53f6b2f79dc210,
     type: 3}
-  artifactPrefab: {fileID: 6755464579898902603, guid: 4db43e80e930a0148b53f6b2f79dc210,
+  potionPrefab: {fileID: 5259324502272348557, guid: f833eada9a9b84342bce812877d75d5b,
     type: 3}
+  cashPrefab: {fileID: 1770419061566379, guid: 78857c201cb27844a829d7ae287d6fe6, type: 3}
 --- !u!225 &1089702778
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1172,7 +1172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190932960
 RectTransform:
   m_ObjectHideFlags: 0

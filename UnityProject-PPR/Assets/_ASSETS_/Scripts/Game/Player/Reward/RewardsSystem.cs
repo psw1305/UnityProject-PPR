@@ -12,10 +12,10 @@ public class RewardsSystem : MonoBehaviour
     [SerializeField] private Button exitButton;
 
     [Header("Prefab")]
-    [SerializeField] private RewardsItem cashPrefab;
-    [SerializeField] private RewardsItem cardPrefab;
-    [SerializeField] private RewardsItem potionPrefab;
-    [SerializeField] private RewardsItem artifactPrefab;
+    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private GameObject relicPrefab;
+    [SerializeField] private GameObject potionPrefab;
+    [SerializeField] private GameObject cashPrefab;
 
     private void Awake()
     {
@@ -57,29 +57,29 @@ public class RewardsSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// 엘리트 전투 보상 => 아티팩트, 골드, 카드, 포션(일정 확률)
+    /// 엘리트 전투 보상 => 유물, 골드, 카드, 포션(일정 확률)
     /// </summary>
     private void BattleRewardsElite()
     {
-        CreateReward(this.artifactPrefab);
+        CreateReward(this.relicPrefab);
         CreateReward(this.cashPrefab);
         CreateReward(this.potionPrefab);
         CreateReward(this.cardPrefab);
     }
 
     /// <summary>
-    /// 보스 전투 보상 => 아티팩트(보스), 골드
+    /// 보스 전투 보상 => 유물(Rare), 골드
     /// </summary>
     private void BattleRewardsBoss()
     {
-        CreateReward(this.artifactPrefab);
+        CreateReward(this.relicPrefab);
         CreateReward(this.cashPrefab);
     }
 
-    private void CreateReward(RewardsItem rewardItem)
+    private void CreateReward(GameObject rewardsPrefab)
     {
-        RewardsItem clone = Instantiate(rewardItem, this.rewardList);
-        clone.Set(this.enemyType);
+        var rewards = Instantiate(rewardsPrefab, this.rewardList).GetComponent<RewardsItem>();
+        rewards.Set(this.enemyType);
     }
 
     /// <summary>

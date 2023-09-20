@@ -5,13 +5,14 @@ using TMPro;
 
 public class RewardsItem : MonoBehaviour
 {
-    [SerializeField] private ItemType itemType;
     [SerializeField] private Button button;
-    [SerializeField] private Image icon;
+    [SerializeField] private ItemType itemType;
+    [SerializeField] private Image rewardsImage;
     [SerializeField] private TextMeshProUGUI rewardsText;
     
     private EnemyType enemyType;
     private int rewardsCash;
+    private ItemBlueprint rewardsItemBlueprint;
 
     /// <summary>
     /// 보상 설정
@@ -20,7 +21,7 @@ public class RewardsItem : MonoBehaviour
     {
         SetRewards(enemyType);
 
-        this.button.onClick.AddListener(GetRewards);
+        this.button.onClick.AddListener(Rewards);
     }
 
     /// <summary>
@@ -47,40 +48,54 @@ public class RewardsItem : MonoBehaviour
         }
     }
 
+    #region Set Rewards
     public void SetRewardsCard()
     {
+        this.rewardsItemBlueprint = GameManager.Instance.GetRandomCard(0);
+        this.rewardsImage.sprite = this.rewardsItemBlueprint.ItemImage;
+        this.rewardsText.text = this.rewardsItemBlueprint.ItemName;
     }
 
     public void SetRewardsRelic()
     {
+        this.rewardsItemBlueprint = GameManager.Instance.GetRandomRelic(0);
+        this.rewardsImage.sprite = this.rewardsItemBlueprint.ItemImage;
+        this.rewardsText.text = this.rewardsItemBlueprint.ItemName;
     }
 
     public void SetRewardsPotion()
     {
+        this.rewardsItemBlueprint = GameManager.Instance.GetRandomPotion(0);
+        this.rewardsImage.sprite = this.rewardsItemBlueprint.ItemImage;
+        this.rewardsText.text = this.rewardsItemBlueprint.ItemName;
     }
 
+    /// <summary>
+    /// 보상 금액 설정
+    /// </summary>
     public void SetRewardsCash()
     {
         switch (this.enemyType)
         {
             case EnemyType.Minor:
-                this.rewardsCash = Random.Range(10, 21);
+                this.rewardsCash = Random.Range(CASH.REWARD_MIN_MINOR, CASH.REWARD_MAX_MINOR);
                 break;
             case EnemyType.Elite:
-                this.rewardsCash = Random.Range(25, 36);
+                this.rewardsCash = Random.Range(CASH.REWARD_MIN_ELITE, CASH.REWARD_MAX_ELITE);
                 break;
             case EnemyType.Boss:
-                this.rewardsCash = Random.Range(50, 61);
+                this.rewardsCash = Random.Range(CASH.REWARD_MIN_BOSS, CASH.REWARD_MAX_BOSS);
                 break;
         }
 
         this.rewardsText.text = this.rewardsCash + " Gold";
     }
+    #endregion
 
     /// <summary>
-    /// 보상 선택시 적용
+    /// 보상 선택 시 적용
     /// </summary>
-    private void GetRewards()
+    private void Rewards()
     {
         UISFX.Instance.ItemDropSFX(this.itemType);
 
@@ -97,10 +112,13 @@ public class RewardsItem : MonoBehaviour
         switch (this.itemType) 
         {
             case ItemType.Card:
+                Player.Instance.AddItemCard(this.rewardsItemBlueprint);
                 break;
             case ItemType.Relic:
+                Player.Instance.AddItemRelic(this.rewardsItemBlueprint);
                 break;
             case ItemType.Potion:
+                Player.Instance.AddItemPotion(this.rewardsItemBlueprint);
                 break;
             case ItemType.Cash:
                 Player.Instance.ObtainCash(this.rewardsCash);

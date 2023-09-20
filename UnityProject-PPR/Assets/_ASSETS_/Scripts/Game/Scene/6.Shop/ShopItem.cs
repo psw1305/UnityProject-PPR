@@ -71,7 +71,7 @@ public class ShopItem : MonoBehaviour
         if (this.IsSale == true)
         {
             this.saleRibbon.SetActive(true);
-            this.productPrice = Mathf.FloorToInt(itemOriginPrice * ItemPrice.PRICE_SALE_BIG);
+            this.productPrice = Mathf.FloorToInt(itemOriginPrice * CASH.PRICE_SALE_BIG);
             this.productPriceText.text = this.productPrice.ToString();
         }
         else
@@ -89,11 +89,11 @@ public class ShopItem : MonoBehaviour
         switch (itemGrade)
         {
             case ItemGrade.Common:
-                return Random.Range(ItemPrice.PRICE_MIN_RELIC_COMMON, ItemPrice.PRICE_MAX_RELIC_COMMON);
+                return Random.Range(CASH.PRICE_MIN_RELIC_COMMON, CASH.PRICE_MAX_RELIC_COMMON);
             case ItemGrade.Uncommon:
-                return Random.Range(ItemPrice.PRICE_MIN_RELIC_UNCOMMON, ItemPrice.PRICE_MAX_RELIC_UNCOMMON);
+                return Random.Range(CASH.PRICE_MIN_RELIC_UNCOMMON, CASH.PRICE_MAX_RELIC_UNCOMMON);
             case ItemGrade.Rare:
-                return Random.Range(ItemPrice.PRICE_MIN_RELIC_RARE, ItemPrice.PRICE_MAX_RELIC_RARE);
+                return Random.Range(CASH.PRICE_MIN_RELIC_RARE, CASH.PRICE_MAX_RELIC_RARE);
         }
 
         throw new System.Exception("There is no item price for this grade");
@@ -104,11 +104,11 @@ public class ShopItem : MonoBehaviour
         switch (itemGrade)
         {
             case ItemGrade.Common:
-                return Random.Range(ItemPrice.PRICE_MIN_POTION_COMMON, ItemPrice.PRICE_MAX_POTION_COMMON);
+                return Random.Range(CASH.PRICE_MIN_POTION_COMMON, CASH.PRICE_MAX_POTION_COMMON);
             case ItemGrade.Uncommon:
-                return Random.Range(ItemPrice.PRICE_MIN_POTION_UNCOMMON, ItemPrice.PRICE_MAX_POTION_UNCOMMON);
+                return Random.Range(CASH.PRICE_MIN_POTION_UNCOMMON, CASH.PRICE_MAX_POTION_UNCOMMON);
             case ItemGrade.Rare:
-                return Random.Range(ItemPrice.PRICE_MIN_POTION_RARE, ItemPrice.PRICE_MAX_POTION_RARE);
+                return Random.Range(CASH.PRICE_MIN_POTION_RARE, CASH.PRICE_MAX_POTION_RARE);
         }
 
         throw new System.Exception("There is no item price for this grade");
@@ -119,11 +119,11 @@ public class ShopItem : MonoBehaviour
         switch (itemGrade)
         {
             case ItemGrade.Common:
-                return Random.Range(ItemPrice.PRICE_MIN_CARD_COMMON, ItemPrice.PRICE_MAX_CARD_COMMON);
+                return Random.Range(CASH.PRICE_MIN_CARD_COMMON, CASH.PRICE_MAX_CARD_COMMON);
             case ItemGrade.Uncommon:
-                return Random.Range(ItemPrice.PRICE_MIN_CARD_UNCOMMON, ItemPrice.PRICE_MAX_CARD_UNCOMMON);
+                return Random.Range(CASH.PRICE_MIN_CARD_UNCOMMON, CASH.PRICE_MAX_CARD_UNCOMMON);
             case ItemGrade.Rare:
-                return Random.Range(ItemPrice.PRICE_MIN_CARD_RARE, ItemPrice.PRICE_MAX_CARD_RARE);
+                return Random.Range(CASH.PRICE_MIN_CARD_RARE, CASH.PRICE_MAX_CARD_RARE);
         }
 
         throw new System.Exception("There is no item price for this grade");

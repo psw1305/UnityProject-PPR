@@ -54,12 +54,18 @@ public static class DUR
     public static readonly float SELECTION_FADE_TIME = 0.6f;
 }
 
-
 /// <summary>
-/// 아이템 가격 관련
+/// 가격 관련
 /// </summary>
-public static class ItemPrice
+public static class CASH
 {
+    public static readonly int REWARD_MIN_MINOR = 10;
+    public static readonly int REWARD_MAX_MINOR = 21;
+    public static readonly int REWARD_MIN_ELITE = 25;
+    public static readonly int REWARD_MAX_ELITE = 36;
+    public static readonly int REWARD_MIN_BOSS = 50;
+    public static readonly int REWARD_MAX_BOSS = 61;
+
     public static readonly int PRICE_MIN_RELIC_COMMON = 143;
     public static readonly int PRICE_MAX_RELIC_COMMON = 157;
     public static readonly int PRICE_MIN_RELIC_UNCOMMON = 238;

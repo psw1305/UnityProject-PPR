@@ -1,5 +1,6 @@
 using PSW.Core.Enums;
 using PSW.Core.Stat;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -48,10 +49,7 @@ public partial class Player : BehaviourSingleton<Player>
     private void Start()
     {
         this.playerUI.SetUI();
-
-        Test_SetDeck();
     }
-
 
     private void Setting(int hp, int act, int cash)
     {
@@ -102,7 +100,6 @@ public partial class Player : BehaviourSingleton<Player>
     public void GameClear()
     {
         this.GameState = GameState.Victory;
-
         this.playerUI.GameResult();
     }
 
@@ -112,7 +109,6 @@ public partial class Player : BehaviourSingleton<Player>
     public void GameOver()
     {
         this.GameState = GameState.Defeat;
-
         this.playerUI.GameResult();
     }
     #endregion

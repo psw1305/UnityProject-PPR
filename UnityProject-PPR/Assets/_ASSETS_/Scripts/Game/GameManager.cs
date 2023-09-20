@@ -11,16 +11,9 @@ public class GameManager : BehaviourSingleton<GameManager>
     [SerializeField] private Camera mainCamera;
     public Camera MainCamera => this.mainCamera;
 
-    [Header("Item - Card")]
-    [SerializeField] private GameObject cardPrefab;
+    [Header("Item Table")]
     [SerializeField] private ItemLootTable cardLootTable;
-
-    [Header("Item - Relic")]
-    [SerializeField] private GameObject relicPrefab;
     [SerializeField] private ItemLootTable relicLootTable;
-
-    [Header("Item - Potion")]
-    [SerializeField] private GameObject potionPrefab;
     [SerializeField] private ItemLootTable potionLootTable;
 
     protected override void Awake()
@@ -45,37 +38,19 @@ public class GameManager : BehaviourSingleton<GameManager>
     #endregion
 
     #region Item Loot
-    public InventoryItemCard ItemLootCard(Transform parent)
+    public ItemBlueprint GetRandomCard(int itemGradeID)
     {
-        var blueprint = this.cardLootTable.GetItemAdd_Duplicate(0);
-        var card = Instantiate(this.cardPrefab, parent).GetComponent<InventoryItemCard>();
-        card.Set(blueprint);
-
-        return card;
+        return this.cardLootTable.GetItemAdd(itemGradeID);
     }
 
-    /// <summary>
-    /// 유물 아이템 루팅 [중첩 불가]
-    /// </summary>
-    /// <param name="itemGradeID">아이템 등급 ID</param>
-    /// <param name="parent"></param>
-    /// <returns></returns>
-    public InventoryItemRelic ItemLootRelic(int itemGradeID, Transform parent)
+    public ItemBlueprint GetRandomRelic(int itemGradeID)
     {
-        var blueprint = this.relicLootTable.GetItemAdd(itemGradeID);
-        var relic = Instantiate(this.relicPrefab, parent).GetComponent<InventoryItemRelic>();
-        relic.Set(blueprint);
-
-        return relic;
+        return this.relicLootTable.GetItemAdd(itemGradeID);
     }
 
-    public InventoryItemPotion ItemLootPotion(Transform parent)
+    public ItemBlueprint GetRandomPotion(int itemGradeID)
     {
-        var blueprint = this.potionLootTable.GetItemAdd_Duplicate(0);
-        var potion = Instantiate(this.potionPrefab, parent).GetComponent<InventoryItemPotion>();
-        potion.Set(blueprint);
-
-        return potion;
+        return this.potionLootTable.GetItemAdd(itemGradeID);
     }
     #endregion
 

@@ -19505,7 +19505,7 @@ GameObject:
   - component: {fileID: 6064037377421304661}
   - component: {fileID: 6064037377421304662}
   m_Layer: 0
-  m_Name: ===Player===
+  m_Name: ------- [ Player ] -------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19561,8 +19561,14 @@ MonoBehaviour:
     BaseValue: 0
   FirstATK:
     BaseValue: 0
+  cardPrefab: {fileID: 2590970707455025614, guid: dca2972a1a5d859428f0382c16159c9e,
+    type: 3}
   cardSlots: []
   cardDeck: []
+  relicPrefab: {fileID: 2590970707455025614, guid: b41ec52032bab59408233f674f2f1b21,
+    type: 3}
+  potionPrefab: {fileID: 2590970707455025614, guid: bfdbf251d9467aa42a5e4d9b4658df48,
+    type: 3}
   relicList: []
   potionList: []
 --- !u!222 &6064037377554194965

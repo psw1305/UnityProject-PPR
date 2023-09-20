@@ -6,26 +6,24 @@ using UnityEngine;
 /// </summary>
 public partial class Player : BehaviourSingleton<Player>
 {
-    [Header("Inventory")]
-    public List<InventoryItemCard> cardSlots = new();
-    public List<InventoryItemCard> cardDeck = new();
+    [Header("Deck")]
+    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private List<InventoryItemCard> cardSlots;
+    [SerializeField] private List<InventoryItemCard> cardDeck;
 
     public List<InventoryItemCard> GetCardDeck()
     {
         return this.cardDeck;
     }
 
-    public void Test_SetDeck()
+    /// <summary>
+    /// 덱에 카드 추가
+    /// </summary>
+    /// <param name="blueprint">아이템 설계도</param>
+    public void AddItemCard(ItemBlueprint blueprint)
     {
-        for (int i = 0; i < 3; i++) 
-        {
-            AddCard();
-        }
-    }
-
-    public void AddCard()
-    {
-        var card = GameManager.Instance.ItemLootCard(this.playerUI.GetCardSlotList());        
+        var card = Instantiate(this.cardPrefab, this.playerUI.GetCardSlotList()).GetComponent<InventoryItemCard>();
+        card.Set(blueprint);
         this.cardSlots.Add(card);
     }
 
