@@ -60,19 +60,11 @@ namespace PSW.Core.Extensions
                     break;
                 case ItemGrade.Rare:
                     tmproText.text = "희귀";
-                    tmproText.color = Color.yellow;
-                    break;
-                case ItemGrade.Shop:
-                    tmproText.text = "상점";
-                    tmproText.color = Color.cyan;
-                    break;
-                case ItemGrade.Boss:
-                    tmproText.text = "보스";
-                    tmproText.color = Color.red;
-                    break;
-                case ItemGrade.Event:
-                    tmproText.text = "이벤트";
                     tmproText.color = Color.magenta;
+                    break;
+                case ItemGrade.Legend:
+                    tmproText.text = "전설";
+                    tmproText.color = Color.yellow;
                     break;
             }
         }

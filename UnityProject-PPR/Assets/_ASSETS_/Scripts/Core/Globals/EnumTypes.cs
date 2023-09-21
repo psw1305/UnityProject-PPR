@@ -34,20 +34,11 @@ namespace PSW.Core.Enums
     }
 
     /// <summary>
-    /// 유물 타입
-    /// </summary>
-    public enum RelicType
-    {
-        Sword, Shield, Armor, Helm, 
-        Idol, Instrument,
-    }
-
-    /// <summary>
     /// 아이템 등급
     /// </summary>
     public enum ItemGrade
     {
-        Common, Uncommon, Rare, Shop, Boss, Event
+        Common, Uncommon, Rare, Legend
     }
 
     /// <summary>
@@ -64,6 +55,15 @@ namespace PSW.Core.Enums
     public enum CardDetail
     {
         Normal, Instant, Ready, Finish,
+    }
+
+    /// <summary>
+    /// 유물 타입
+    /// </summary>
+    public enum RelicType
+    {
+        Sword, Shield, Armor, Helm,
+        Idol, Instrument,
     }
 
     /// <summary>

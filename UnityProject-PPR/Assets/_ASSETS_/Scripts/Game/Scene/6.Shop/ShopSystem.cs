@@ -1,5 +1,4 @@
 using PSW.Core.Enums;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopSystem : BehaviourSingleton<ShopSystem>
@@ -33,7 +32,7 @@ public class ShopSystem : BehaviourSingleton<ShopSystem>
     }
 
     /// <summary>
-    /// 상품 3개씩 전시
+    /// 상품 전시
     /// </summary>
     /// <param name="products"></param>
     private void DisplayProduct(ItemBlueprint[] products)

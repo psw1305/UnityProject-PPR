@@ -2,7 +2,6 @@ using PSW.Core.Enums;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class ShopItem : MonoBehaviour
 {
@@ -155,14 +154,37 @@ public class ShopItem : MonoBehaviour
     /// </summary>
     private void Buy()
     {
-        if (this.IsSell == true) return;
+        if (this.IsSell == true) return;    
+        if (Player.Instance == null) return;
 
-        UISFX.Instance.Play(UISFX.Instance.shopBuy);
+        // 거래 금액이 플레이어 재화보다 적은가?
+        if (Player.Instance.UseCash(this.productPrice))
+        {
+            UISFX.Instance.Play(UISFX.Instance.shopBuy);
 
-        IsSell = true;
-        this.buyButton.interactable = false;
+            switch (this.itemData.ItemType)
+            {
+                case ItemType.Card:
+                    Player.Instance.AddItemCard(this.itemData);
+                    break;
+                case ItemType.Relic:
+                    Player.Instance.AddItemRelic(this.itemData);
+                    break;
+                case ItemType.Potion:
+                    Player.Instance.AddItemPotion(this.itemData);
+                    break;
+            }
 
-        this.sellPlate.SetActive(false);
-        this.soldPlate.SetActive(true);
+            this.IsSell = true;
+            this.buyButton.interactable = false;
+
+            this.sellPlate.SetActive(false);
+            this.soldPlate.SetActive(true);
+        }
+        else
+        {
+            // 거래 실패 시 클릭 사운드만 출력
+            UISFX.Instance.Play(UISFX.Instance.buttonClick);
+        }
     }
 }

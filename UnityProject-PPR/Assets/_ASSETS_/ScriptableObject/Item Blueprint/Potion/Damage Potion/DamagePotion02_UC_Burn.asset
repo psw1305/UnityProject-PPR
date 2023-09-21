@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac89c8992b75d784d835b96ee73e3b7c, type: 3}
+  m_Name: DamagePotion02_UC_Burn
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 12979fb0955f70743bc473e3ba869859, type: 3}
+  itemType: 2
+  itemGrade: 1
+  itemName: "\uC791\uC5F4 \uD3EC\uC158"
+  itemAbility: "\uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C 20 \uC900\uB2E4"
+  itemDesc: 
+  ability:
+    card: {fileID: 0}

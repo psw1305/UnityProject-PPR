@@ -31,7 +31,7 @@ public partial class Player : BehaviourSingleton<Player>
     public Stat FirstDEF;
     public Stat FirstATK;
 
-    public int Cash { get; set; }
+    public float Cash { get; set; }
     public int CurrentHP { get; set; }
 
     protected override void Awake()
@@ -76,12 +76,6 @@ public partial class Player : BehaviourSingleton<Player>
         this.playerUI.SetHPText();
     }
 
-    public void ObtainCash(int cash)
-    {
-        this.Cash += cash;
-        this.playerUI.SetCashText();
-    }
-
     public string GetHPText()
     {
         return this.CurrentHP.ToString();
@@ -90,6 +84,39 @@ public partial class Player : BehaviourSingleton<Player>
     public string GetACTText()
     {
         return this.ACT.Value.ToString();
+    }
+    #endregion
+
+    #region Trade
+    /// <summary>
+    /// 플레이어 재화 획득
+    /// </summary>
+    /// <param name="cash"></param>
+    public void ObtainCash(int cash)
+    {
+        this.Cash += cash;
+        this.playerUI.SetCashText();
+    }
+
+    /// <summary>
+    /// 플레이어 재화 사용
+    /// </summary>
+    /// <param name="cash"></param>
+    public bool UseCash(float cash)
+    {
+        var playerCash = this.Cash;
+        playerCash -= cash;
+
+        if (playerCash >= 0)
+        {
+            this.Cash = playerCash;
+            this.playerUI.SetCashText();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     #endregion
 

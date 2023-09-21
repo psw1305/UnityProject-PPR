@@ -59,12 +59,12 @@ public static class DUR
 /// </summary>
 public static class CASH
 {
-    public static readonly int REWARD_MIN_MINOR = 10;
-    public static readonly int REWARD_MAX_MINOR = 21;
-    public static readonly int REWARD_MIN_ELITE = 25;
-    public static readonly int REWARD_MAX_ELITE = 36;
-    public static readonly int REWARD_MIN_BOSS = 50;
-    public static readonly int REWARD_MAX_BOSS = 61;
+    public static readonly int REWARD_MIN_MINOR = 30;
+    public static readonly int REWARD_MAX_MINOR = 42;
+    public static readonly int REWARD_MIN_ELITE = 60;
+    public static readonly int REWARD_MAX_ELITE = 72;
+    public static readonly int REWARD_MIN_BOSS = 100;
+    public static readonly int REWARD_MAX_BOSS = 122;
 
     public static readonly int PRICE_MIN_RELIC_COMMON = 143;
     public static readonly int PRICE_MAX_RELIC_COMMON = 157;

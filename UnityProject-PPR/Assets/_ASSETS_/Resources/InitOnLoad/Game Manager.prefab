@@ -2378,14 +2378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 6140414155709630025}
-  cardPrefab: {fileID: 2590970707455025614, guid: dca2972a1a5d859428f0382c16159c9e,
-    type: 3}
   cardLootTable: {fileID: 2123968394431919284}
-  relicPrefab: {fileID: 2590970707455025614, guid: b41ec52032bab59408233f674f2f1b21,
-    type: 3}
   relicLootTable: {fileID: 3814591337692405334}
-  potionPrefab: {fileID: 2590970707455025614, guid: bfdbf251d9467aa42a5e4d9b4658df48,
-    type: 3}
   potionLootTable: {fileID: 1221357448481987541}
 --- !u!1 &4095437680970354375
 GameObject:
@@ -4608,21 +4602,31 @@ MonoBehaviour:
   itemLists:
   - listName: Potion Common
     itemList:
-    - {fileID: 11400000, guid: c9f3aaa8b0d074f43aef79173a5ae969, type: 2}
     - {fileID: 11400000, guid: bdc65c25db1eea64ab504f7825b36784, type: 2}
+    - {fileID: 11400000, guid: 9cf9b4158f50b1841bf9fe9dcf6ef0c9, type: 2}
+    - {fileID: 11400000, guid: e14e5ff9820afdc43ac1afed8c591561, type: 2}
+    - {fileID: 11400000, guid: 0477548acf7f46e42b474f1a35ea614c, type: 2}
+    - {fileID: 11400000, guid: afd5ea797e276724ca23076e4768f4bd, type: 2}
     - {fileID: 11400000, guid: 958cfbed9c3039d47b913a17b9af8429, type: 2}
+    - {fileID: 11400000, guid: c9f3aaa8b0d074f43aef79173a5ae969, type: 2}
     weight: 65
   - listName: Potion  Uncommon
     itemList:
-    - {fileID: 11400000, guid: 0477548acf7f46e42b474f1a35ea614c, type: 2}
-    - {fileID: 11400000, guid: 060e94ef0bf53754fbe4457e90e7ec81, type: 2}
-    - {fileID: 11400000, guid: e14e5ff9820afdc43ac1afed8c591561, type: 2}
+    - {fileID: 11400000, guid: 979a6c24f7a48da45ab1879c144d5b9d, type: 2}
+    - {fileID: 11400000, guid: ee9beddb68c7f35498da355deb486ac8, type: 2}
+    - {fileID: 11400000, guid: a2def83e2fce7ea40bc363ef2a251c70, type: 2}
+    - {fileID: 11400000, guid: 979a6c24f7a48da45ab1879c144d5b9d, type: 2}
+    - {fileID: 11400000, guid: ee9beddb68c7f35498da355deb486ac8, type: 2}
+    - {fileID: 11400000, guid: a2def83e2fce7ea40bc363ef2a251c70, type: 2}
     weight: 25
   - listName: Potion  Rare
     itemList:
+    - {fileID: 11400000, guid: f26549ad5f16cb346b05ff8a467e06b0, type: 2}
     - {fileID: 11400000, guid: 654d8c524059edb4eb06a1256129ffe2, type: 2}
     - {fileID: 11400000, guid: 70270b24ff7f86547aecf190565fe42c, type: 2}
-    - {fileID: 11400000, guid: aa00367b0c716794b936146b1306c17f, type: 2}
+    - {fileID: 11400000, guid: 70270b24ff7f86547aecf190565fe42c, type: 2}
+    - {fileID: 11400000, guid: 70270b24ff7f86547aecf190565fe42c, type: 2}
+    - {fileID: 11400000, guid: 70270b24ff7f86547aecf190565fe42c, type: 2}
     weight: 10
 --- !u!1 &6919230011153486409
 GameObject:
