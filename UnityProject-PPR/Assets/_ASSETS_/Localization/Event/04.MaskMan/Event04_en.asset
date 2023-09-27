@@ -26,20 +26,20 @@ MonoBehaviour:
     m_Localized: The enigmatic Masked Stranger offers you a deal.
     m_Metadata:
       m_Items: []
-  - m_Id: 1027832881152
-    m_Localized: Deal
+  - m_Id: 13389062937853952
+    m_Localized: '[Buy] Green Card (100 Gold)'
     m_Metadata:
       m_Items: []
-  - m_Id: 1093129805824
+  - m_Id: 13389069573242880
     m_Localized: Ignore
     m_Metadata:
       m_Items: []
   - m_Id: 1217599971328
-    m_Localized: Deal
+    m_Localized: '[Buy] Red Card (100 Gold)'
     m_Metadata:
       m_Items: []
   - m_Id: 1317445378048
-    m_Localized: Ignore
+    m_Localized: '[Buy] Blue Card (100 Gold)'
     m_Metadata:
       m_Items: []
   references:

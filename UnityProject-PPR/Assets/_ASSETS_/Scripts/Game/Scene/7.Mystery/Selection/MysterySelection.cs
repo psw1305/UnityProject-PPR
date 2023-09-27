@@ -7,13 +7,12 @@ using DG.Tweening;
 public class MysterySelection : MonoBehaviour
 {
     [Header("Params")]
-    [SerializeField] private bool isExit = false;
     [SerializeField] private UnityEvent mysteryResult;
 
     [Header("UI")]
     [SerializeField] private CanvasGroup selectionCanvas;
-    [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI selectionText;
+    [SerializeField] protected Button button;
+    [SerializeField] protected TextMeshProUGUI selectionText;
 
 
     /// <summary>
@@ -34,7 +33,7 @@ public class MysterySelection : MonoBehaviour
         this.selectionCanvas.transform.localPosition = new Vector3(-20, 0);
     }
 
-    public void SetEventSelect()
+    public virtual void SetEventSelect()
     {
         ButtonSequence();
         
@@ -45,25 +44,16 @@ public class MysterySelection : MonoBehaviour
     {
         UISFX.Instance.Play(UISFX.Instance.buttonClick);
 
-        this.button.interactable = false;
-
-        // 이벤트 시작 선택지
-        if (!this.isExit)
-        {
-            SelectionResult();
-        }
-        // 이벤트 탈출
-        else
-        {
-            SceneLoader.Instance.PlayerCheckSceneLoad(SceneNames.Mystery);
-        }
+        SelectionResult();
     }
 
     /// <summary>
-    /// 선택시 나오는 보상
+    /// 선택 시 나오는 보상
     /// </summary>
-    private void SelectionResult()
+    protected virtual void SelectionResult()
     {
+        this.button.interactable = false;
+
         this.mysteryResult?.Invoke();
     }
 }

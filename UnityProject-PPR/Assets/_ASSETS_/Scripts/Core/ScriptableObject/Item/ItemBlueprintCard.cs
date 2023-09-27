@@ -13,13 +13,13 @@ public class ItemBlueprintCard : ItemBlueprint
     [SerializeField] private float cardWeighted;
 
     [Header("Card - UI")]
-    [SerializeField] private Sprite cardCase;
+    [SerializeField] private Sprite cardFrame;
     [SerializeField] private Color cardColor;
 
     public CardType CardType => this.cardType;
     public CardDetail CardDetail => this.cardDetail;
     
-    public Sprite CardCase => this.cardCase;
+    public Sprite CardFrame => this.cardFrame;
     public Color CardColor => this.cardColor;
 
     public string CardName => this.cardName;

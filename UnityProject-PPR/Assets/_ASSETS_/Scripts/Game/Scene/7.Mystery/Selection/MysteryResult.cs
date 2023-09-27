@@ -4,15 +4,14 @@ using UnityEngine;
 public class MysteryResult : MonoBehaviour
 {
     #region EVENT01 - Starting
-    public void Event01_PlusMaxHP()
+    public void Event01_ObtainCash()
     {
         MysterySystem.Instance.EventEnd("After");
-        UISFX.Instance.Play(UISFX.Instance.healthUp);
+        UISFX.Instance.Play(UISFX.Instance.cashGain);
 
         if (Player.Instance == null) return;
 
-        Player.Instance.HP.AddModifier(new StatModifier(8, StatModType.Int, this));
-        Player.Instance.SetHP(Player.Instance.CurrentHP + 8);
+        Player.Instance.ObtainCash(250);
     }
 
     public void Event01_ObtainRelic()
@@ -22,8 +21,9 @@ public class MysteryResult : MonoBehaviour
 
         if (Player.Instance == null) return;
 
-        // 일반 등급 유물
-        //Player.Instance.AddItemRelic(1);
+        // 일반 등급 유물 1개 획득
+        var relic = GameManager.Instance.GetRandomRelic(1);
+        Player.Instance.AddItemRelic(relic);
     }
 
     public void Event01_ObtainPotions()
@@ -33,10 +33,12 @@ public class MysteryResult : MonoBehaviour
 
         if (Player.Instance == null) return;
 
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    Player.Instance.AddItemPotion(1);
-        //}
+        // 일반 등급 포션 2개 획득
+        for (int i = 0; i < 2; i++)
+        {
+            var potion = GameManager.Instance.GetRandomPotion(1);
+            Player.Instance.AddItemPotion(potion);
+        }
     }
 
     public void Event01_ReceiveGold()
@@ -85,14 +87,36 @@ public class MysteryResult : MonoBehaviour
     #endregion
 
     #region EVENT04 - Mask Man
-    public void Event04_Deal()
+    public void Event04_Deal_Red()
     {
-        MysterySystem.Instance.EventEnd("After_1");
+        MysterySystem.Instance.EventEnd("After_Red");
+
+        if (Player.Instance == null) return;
+
+        Player.Instance.ATK.AddModifier(new StatModifier(1, StatModType.Int, this));
+    }
+
+    public void Event04_Deal_Blue()
+    {
+        MysterySystem.Instance.EventEnd("After_Blue");
+
+        if (Player.Instance == null) return;
+
+        Player.Instance.DEF.AddModifier(new StatModifier(1, StatModType.Int, this));
+    }
+
+    public void Event04_Deal_Green()
+    {
+        MysterySystem.Instance.EventEnd("After_Green");
+
+        if (Player.Instance == null) return;
+
+        Player.Instance.ACT.AddModifier(new StatModifier(3, StatModType.Int, this));
     }
 
     public void Event04_Ignore()
     {
-        MysterySystem.Instance.EventEnd("After_2");
+        MysterySystem.Instance.EventEnd("After_Ignored");
     }
     #endregion
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PlayerUI : BehaviourSingleton<PlayerUI>, IDropHandler
+public class PlayerUI : BehaviourSingleton<PlayerUI>
 {
     [Header("Front UI - Stat")]
     [SerializeField] private TextMeshProUGUI hpText;
@@ -20,15 +20,14 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>, IDropHandler
     [Header("Inventory")]
     [SerializeField] private CanvasGroup inventoryCanvas;
     [SerializeField] private Button inventoryClose;
-    [SerializeField] private Transform relicSlotList;
-    [SerializeField] private Transform potionSlotList;
+    [SerializeField] private Transform relicSlot;
+    [SerializeField] private Transform potionSlot;
 
-    [Header("Card Deck")]
+    [Header("Deck")]
     [SerializeField] private CanvasGroup cardDeckCanvas;
     [SerializeField] private Button cardDeckClose;
     [SerializeField] private Transform cardDragParent;
-    [SerializeField] private Transform cardSlotList;
-    [SerializeField] private InventorySlotCard[] cardSlots;
+    [SerializeField] private Transform deckSlot;
 
     [Header("Game Result")]
     [SerializeField] private CanvasGroup resultCanvas;
@@ -55,19 +54,19 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>, IDropHandler
     }
 
     #region Get
-    public Transform GetRelicSlotList()
+    public Transform GetRelicSlot()
     {
-        return this.relicSlotList;
+        return this.relicSlot;
     }
 
-    public Transform GetPotionSlotList()
+    public Transform GetPotionSlot()
     {
-        return this.potionSlotList;
+        return this.potionSlot;
     }
 
-    public Transform GetCardSlotList()
+    public Transform GetDeckSlot()
     {
-        return this.cardSlotList;
+        return this.deckSlot;
     }
 
     public Transform GetCardDragParent()
@@ -172,36 +171,4 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>, IDropHandler
     {
         this.cashText.text = Player.Instance.Cash.ToString();
     }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        var dropCard = eventData.pointerDrag.GetComponent<InventoryItemCard>();
-
-        dropCard.SetParentAfterDrag(this.cardSlotList);
-        dropCard.CardUnload();
-    }
-
-    #region Card Slot Animation
-    /// <summary>
-    /// 카드 드래그 시작시 => 해당 슬롯 애니메이션
-    /// </summary>
-    public void OnBeginDragAnimation()
-    {
-        foreach (InventorySlotCard cardSlot in this.cardSlots)
-        {
-            cardSlot.AnimatePlate(1.1f);
-        }
-    }
-
-    /// <summary>
-    /// 카드 드래그 시작시 => 해당 슬롯 애니메이션
-    /// </summary>
-    public void OnEndDragAnimation()
-    {
-        foreach (InventorySlotCard cardSlot in this.cardSlots)
-        {
-            cardSlot.AnimatePlate(1f);
-        }
-    }
-    #endregion
 }

@@ -108,7 +108,7 @@ MonoBehaviour:
   itemType: 0
   button: {fileID: 3746751848062393607}
   image: {fileID: 2590970708823376258}
-  plate: {fileID: 2590970708445856742}
+  cardFrame: {fileID: 2590970708445856742}
 --- !u!1 &2590970708445856736
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2590970708445856741}
   - component: {fileID: 2590970708445856742}
   m_Layer: 5
-  m_Name: Plate
+  m_Name: Card Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

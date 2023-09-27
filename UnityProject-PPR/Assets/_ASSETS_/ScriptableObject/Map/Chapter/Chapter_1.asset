@@ -89,7 +89,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1156ec26e2b4a684eb5c9dcf0ae5206f, type: 2}
   startEvent: {fileID: 11400000, guid: 6d30677790b514943be92894e450d6d7, type: 2}
   randomEvents:
-  - {fileID: 11400000, guid: ccb71b70422ee5443b5928998dc72bea, type: 2}
-  - {fileID: 11400000, guid: aed97f1a00d3ee0459cddb8b4fdc00f1, type: 2}
   - {fileID: 11400000, guid: 53d0e9bd398b8494687e6d36ccabfdd1, type: 2}
-  - {fileID: 11400000, guid: 72f2bf907ccb2cc4ab6665dd130fde1a, type: 2}

@@ -23,20 +23,36 @@ MonoBehaviour:
     m_Key: Before
     m_Metadata:
       m_Items: []
-  - m_Id: 1027832881152
-    m_Key: After_1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1093129805824
-    m_Key: After_2
-    m_Metadata:
-      m_Items: []
   - m_Id: 1217599971328
-    m_Key: Selection04_Deal
+    m_Key: Selection04_Deal_Red
     m_Metadata:
       m_Items: []
   - m_Id: 1317445378048
-    m_Key: Selection04_Ignore
+    m_Key: Selection04_Deal_Blue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13389062937853952
+    m_Key: Selection04_Deal_Green
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13389069573242880
+    m_Key: Selection04_Ignored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390263599316992
+    m_Key: After_Red
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390286370193408
+    m_Key: After_Blue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390327872831488
+    m_Key: After_Green
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390349393805312
+    m_Key: After_Ignored
     m_Metadata:
       m_Items: []
   m_Metadata:

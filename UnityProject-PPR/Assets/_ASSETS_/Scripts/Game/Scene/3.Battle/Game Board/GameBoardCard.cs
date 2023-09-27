@@ -38,7 +38,7 @@ public class GameBoardCard : MonoBehaviour
         this.data = data;
         this.cardSprite.sprite = data.ItemImage;
         this.cardSprite.color = data.CardColor;
-        this.caseSprite.sprite = data.CardCase;
+        this.caseSprite.sprite = data.CardFrame;
 
         this.CardType = data.CardType;
         this.CardDetail = data.CardDetail;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GameBoardSpawning
 {
-    private GameBoard board;
+    private readonly GameBoard board;
     private readonly int skillStack;
     private int currentStack = 1;
 

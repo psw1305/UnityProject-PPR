@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public bool IsEquip { get; set; }
-
+    [Header("Item")]
     [SerializeField] private ItemType itemType;
     [SerializeField] private Button button;
     [SerializeField] private Image image;
@@ -17,7 +16,6 @@ public class InventoryItem : MonoBehaviour
     /// <param name="blueprint">아이템 데이터</param>
     public virtual void Set(ItemBlueprint blueprint)
     {
-        this.IsEquip = false;
         this.blueprint = blueprint;
         this.name = blueprint.name;
         this.image.sprite = blueprint.ItemImage;

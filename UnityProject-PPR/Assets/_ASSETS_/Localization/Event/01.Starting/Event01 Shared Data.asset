@@ -28,7 +28,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10244321963851776
-    m_Key: Select01_MaxHP
+    m_Key: Select01_ObtainCash
     m_Metadata:
       m_Items: []
   - m_Id: 10244981220360192
@@ -37,10 +37,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10245518737195008
     m_Key: Select03_ObtainPotion
-    m_Metadata:
-      m_Items: []
-  - m_Id: 27516093828419584
-    m_Key: Select04_ReceiveGold
     m_Metadata:
       m_Items: []
   m_Metadata:

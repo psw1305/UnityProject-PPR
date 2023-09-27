@@ -1,6 +1,5 @@
 using PSW.Core.Enums;
 using PSW.Core.Stat;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -43,15 +42,17 @@ public partial class Player : BehaviourSingleton<Player>
             GameManager.Instance.CameraChange(canvas);
         }
 
-        Setting(80, 20, 99);
+        Set(80, 15, 100);
     }
 
     private void Start()
     {
         this.playerUI.SetUI();
+
+        StarterCardPack();
     }
 
-    private void Setting(int hp, int act, int cash)
+    private void Set(int hp, int act, int cash)
     {
         this.HP.BaseValue = hp;
         this.ACT.BaseValue = act;
@@ -120,7 +121,7 @@ public partial class Player : BehaviourSingleton<Player>
     }
     #endregion
 
-    #region 게임 결과 관련
+    #region Game Result
     /// <summary>
     /// 플레이어 게임 클리어 이벤트
     /// </summary>

@@ -35,19 +35,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10244321963851776
-    m_Localized: <color="green">Max HP +8
+    m_Localized: <color="green">Obtain 250 gold
     m_Metadata:
       m_Items: []
   - m_Id: 10244981220360192
-    m_Localized: <color="green">Obtain a random common relic
+    m_Localized: <color="green">Obtain a common relic
     m_Metadata:
       m_Items: []
   - m_Id: 10245518737195008
-    m_Localized: <color="green">Obtain 3 random potions
-    m_Metadata:
-      m_Items: []
-  - m_Id: 27516093828419584
-    m_Localized: <color="green">Receive 100 gold
+    m_Localized: <color="green">Obtain 2 common potions
     m_Metadata:
       m_Items: []
   references:

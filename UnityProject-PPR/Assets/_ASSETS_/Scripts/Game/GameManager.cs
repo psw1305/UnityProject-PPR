@@ -1,5 +1,4 @@
 using PSW.Core.Enums;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : BehaviourSingleton<GameManager>

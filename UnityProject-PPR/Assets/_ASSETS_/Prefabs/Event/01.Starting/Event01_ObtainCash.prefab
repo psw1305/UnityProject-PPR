@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 24}
+  m_SizeDelta: {x: 180, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4727978277973226930
 CanvasRenderer:
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC70\uB798\uD55C\uB2E4"
+  m_text: "<color=\"green\">250 \uACE8\uB4DC \uD68D\uB4DD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea350ab5d5e8249439bba6bd2da5317b, type: 2}
   m_sharedMaterial: {fileID: 4029777637623508966, guid: ea350ab5d5e8249439bba6bd2da5317b,
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -227,9 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:4d971d3b5d78a364b892c7872c43e889
+      m_TableCollectionName: GUID:1c74f140a064631439c76c4144d257c0
     m_TableEntryReference:
-      m_KeyId: 1217599971328
+      m_KeyId: 10244321963851776
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 4727978279097541910}
   - component: {fileID: 4255767839137044885}
   m_Layer: 5
-  m_Name: Event04_Deal
+  m_Name: Event01_ObtainCash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4255767839137044885}
         m_TargetAssemblyTypeName: MysteryResult, Assembly-CSharp
-        m_MethodName: Event04_Deal
+        m_MethodName: Event01_ObtainCash
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

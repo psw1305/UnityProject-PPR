@@ -19,11 +19,10 @@ public partial class Player : BehaviourSingleton<Player>
     /// </summary>
     public void AddItemRelic(ItemBlueprint blueprint)
     {
-        var relic = Instantiate(this.relicPrefab, this.playerUI.GetRelicSlotList()).GetComponent<InventoryItemRelic>();
+        var relic = Instantiate(this.relicPrefab, this.playerUI.GetRelicSlot()).GetComponent<InventoryItemRelic>();
         relic.Set(blueprint);
         this.SetRelic(this.relicList, relic);
     }
-
     #endregion
 
     #region Potion
@@ -32,7 +31,7 @@ public partial class Player : BehaviourSingleton<Player>
     /// </summary>
     public void AddItemPotion(ItemBlueprint blueprint)
     {
-        var potion = Instantiate(this.potionPrefab, this.playerUI.GetPotionSlotList()).GetComponent<InventoryItemPotion>();
+        var potion = Instantiate(this.potionPrefab, this.playerUI.GetPotionSlot()).GetComponent<InventoryItemPotion>();
         potion.Set(blueprint);
         this.potionList.Add(potion);
     }
@@ -45,6 +44,5 @@ public partial class Player : BehaviourSingleton<Player>
     {
         this.potionList.Remove(potion);
     }
-
     #endregion
 }
