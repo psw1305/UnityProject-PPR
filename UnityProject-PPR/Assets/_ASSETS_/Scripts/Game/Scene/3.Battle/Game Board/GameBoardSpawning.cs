@@ -49,8 +49,17 @@ public class GameBoardSpawning
         {
             this.currentStack = 1;
 
-            yield return Change(this.board.RandomCard());
+            yield return Change(this.board.RandomCardFromNormal(), this.board.SkillCardRandomPickUp());
         }
+    }
+
+    /// <summary>
+    /// 장애물 카드 생성
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ObstacleCardSpawn(ItemBlueprintCard obstacleCard)
+    {
+        yield return Change(this.board.RandomCardFromNormal(), obstacleCard);
     }
 
     public IEnumerator Despawn(List<GameBoardCard> elements)
@@ -68,15 +77,17 @@ public class GameBoardSpawning
         GameBoardEvents.OnElementsDespawned.Invoke();
     }
 
-    public IEnumerator Change(GameBoardCard element)
+    public IEnumerator Change(GameBoardCard element, ItemBlueprintCard card)
     {
+        if (element == null) yield break;
+
         element.Despawn();
 
         yield return YieldCache.WaitForSeconds(0.2f);
 
         BattleSFX.Instance.Play(BattleSFX.Instance.skillAppear);
 
-        element.SetData(this.board.RandomSkillCard());
+        element.SetData(card);
         element.Spawn();
     }
 }

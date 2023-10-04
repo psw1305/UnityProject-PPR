@@ -46,23 +46,23 @@ namespace PSW.Core.Extensions
         /// </summary>
         /// <param name="tmproText"></param>
         /// <param name="itemGrade"></param>
-        public static void ItemGradeColor(this TextMeshProUGUI tmproText, ItemGrade itemGrade)
+        public static void ItemGradeColor(this TextMeshProUGUI tmproText, ItemGradeType itemGrade)
         {
             switch (itemGrade)
             {
-                case ItemGrade.Common:
+                case ItemGradeType.Common:
                     tmproText.text = "ÀÏ¹Ý";
                     tmproText.color = Color.white;
                     break;
-                case ItemGrade.Uncommon:
+                case ItemGradeType.Uncommon:
                     tmproText.text = "°í±Þ";
                     tmproText.color = Color.green;
                     break;
-                case ItemGrade.Rare:
+                case ItemGradeType.Rare:
                     tmproText.text = "Èñ±Í";
                     tmproText.color = Color.magenta;
                     break;
-                case ItemGrade.Legend:
+                case ItemGradeType.Legend:
                     tmproText.text = "Àü¼³";
                     tmproText.color = Color.yellow;
                     break;

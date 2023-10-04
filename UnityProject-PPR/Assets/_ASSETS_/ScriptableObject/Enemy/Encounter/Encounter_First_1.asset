@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4759604b389974aa1b780e0ef9f330, type: 3}
   m_Name: Encounter_First_1
   m_EditorClassIdentifier: 
+  enemyType: 0
   spawnEnemys:
+  - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
+  - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
   - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}

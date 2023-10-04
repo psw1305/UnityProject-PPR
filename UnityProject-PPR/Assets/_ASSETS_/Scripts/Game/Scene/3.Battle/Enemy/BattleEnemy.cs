@@ -178,14 +178,8 @@ public class BattleEnemy : MonoBehaviour
     public IEnumerator EnemyUseSkill()
     {
         if (this.currentEnemySkill == null) yield return null;
-
-        // 스킬 사용
-        this.currentEnemySkill.Use(this);
-        yield return YieldCache.WaitForSeconds(0.3f);
-
-        // 스킬 사용 후 파괴
-        this.currentEnemySkill.Disable();
-        yield return YieldCache.WaitForSeconds(0.3f);
+    
+        yield return StartCoroutine(this.currentEnemySkill.Use(this));
     }
 
     public void EnemyDead()

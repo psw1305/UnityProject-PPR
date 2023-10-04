@@ -11,16 +11,16 @@ public static class BattlePlayerCard
         for (int i = 0; i < cards.Count; i++)
         {
             // 첫 카드 능력이 Ready이면 발동
-            if (i == 0 && cards[i].CardDetail == CardDetail.Ready)
+            if (i == 0 && cards[i].CardDetail == CardDetailType.Ready)
             {
                 point = Card_Ready(cards[i].GetCardName(), point);
             }
-            else if (cards[i].CardDetail == CardDetail.Instant)
+            else if (cards[i].CardDetail == CardDetailType.Instant)
             {
                 point = Card_Instant(cards[i].GetCardName(), point);
             }
             // 마지막 카드 능력이 Finish이면 발동
-            else if (i == last && cards[i].CardDetail == CardDetail.Finish)
+            else if (i == last && cards[i].CardDetail == CardDetailType.Finish)
             {
                 point = Card_Finish(cards[i].GetCardName(), point);
             }

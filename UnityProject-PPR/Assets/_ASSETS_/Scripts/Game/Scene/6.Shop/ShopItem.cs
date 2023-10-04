@@ -83,45 +83,45 @@ public class ShopItem : MonoBehaviour
         this.buyButton.onClick.AddListener(Buy);
     }
 
-    private int SetPriceToRelic(ItemGrade itemGrade)
+    private int SetPriceToRelic(ItemGradeType itemGrade)
     {
         switch (itemGrade)
         {
-            case ItemGrade.Common:
+            case ItemGradeType.Common:
                 return Random.Range(CASH.PRICE_MIN_RELIC_COMMON, CASH.PRICE_MAX_RELIC_COMMON);
-            case ItemGrade.Uncommon:
+            case ItemGradeType.Uncommon:
                 return Random.Range(CASH.PRICE_MIN_RELIC_UNCOMMON, CASH.PRICE_MAX_RELIC_UNCOMMON);
-            case ItemGrade.Rare:
+            case ItemGradeType.Rare:
                 return Random.Range(CASH.PRICE_MIN_RELIC_RARE, CASH.PRICE_MAX_RELIC_RARE);
         }
 
         throw new System.Exception("There is no item price for this grade");
     }
 
-    private int SetPriceToPotion(ItemGrade itemGrade)
+    private int SetPriceToPotion(ItemGradeType itemGrade)
     {
         switch (itemGrade)
         {
-            case ItemGrade.Common:
+            case ItemGradeType.Common:
                 return Random.Range(CASH.PRICE_MIN_POTION_COMMON, CASH.PRICE_MAX_POTION_COMMON);
-            case ItemGrade.Uncommon:
+            case ItemGradeType.Uncommon:
                 return Random.Range(CASH.PRICE_MIN_POTION_UNCOMMON, CASH.PRICE_MAX_POTION_UNCOMMON);
-            case ItemGrade.Rare:
+            case ItemGradeType.Rare:
                 return Random.Range(CASH.PRICE_MIN_POTION_RARE, CASH.PRICE_MAX_POTION_RARE);
         }
 
         throw new System.Exception("There is no item price for this grade");
     }
 
-    private int SetPriceToCard(ItemGrade itemGrade)
+    private int SetPriceToCard(ItemGradeType itemGrade)
     {
         switch (itemGrade)
         {
-            case ItemGrade.Common:
+            case ItemGradeType.Common:
                 return Random.Range(CASH.PRICE_MIN_CARD_COMMON, CASH.PRICE_MAX_CARD_COMMON);
-            case ItemGrade.Uncommon:
+            case ItemGradeType.Uncommon:
                 return Random.Range(CASH.PRICE_MIN_CARD_UNCOMMON, CASH.PRICE_MAX_CARD_UNCOMMON);
-            case ItemGrade.Rare:
+            case ItemGradeType.Rare:
                 return Random.Range(CASH.PRICE_MIN_CARD_RARE, CASH.PRICE_MAX_CARD_RARE);
         }
 

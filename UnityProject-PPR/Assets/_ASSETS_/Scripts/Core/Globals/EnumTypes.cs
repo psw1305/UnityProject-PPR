@@ -36,7 +36,7 @@ namespace PSW.Core.Enums
     /// <summary>
     /// 아이템 등급
     /// </summary>
-    public enum ItemGrade
+    public enum ItemGradeType
     {
         Common, Uncommon, Rare, Legend
     }
@@ -52,9 +52,9 @@ namespace PSW.Core.Enums
     /// <summary>
     /// Element Detail 구분
     /// </summary>
-    public enum CardDetail
+    public enum CardDetailType
     {
-        Normal, Instant, Ready, Finish,
+        Normal, Instant, Ready, Finish, Obstacle
     }
 
     /// <summary>
@@ -77,14 +77,21 @@ namespace PSW.Core.Enums
     /// <summary>
     /// 적 스킬 타입
     /// </summary>
-    public enum EnemySkill
+    public enum EnemySkillType
     {
-        Attack, 
-        Defense, 
-        Reinforce, 
-        Recovery, 
+        Attack,
+        Defense,
         Buff,
-        Debuff
+    }
+
+    /// <summary>
+    /// 적 스킬 세부 타입
+    /// </summary>
+    public enum EnemySkillCard
+    {
+        Attack,
+        Defense,
+        Buff,
     }
 
     public enum MysteryType

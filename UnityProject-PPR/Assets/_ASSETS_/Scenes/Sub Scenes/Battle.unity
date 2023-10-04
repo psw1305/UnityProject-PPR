@@ -1925,7 +1925,7 @@ MonoBehaviour:
   rewardCanvas: {fileID: 269721409}
   enemyField: {fileID: 703475669}
   enemyToggleGroup: {fileID: 703475672}
-  enemyEncounter: {fileID: 11400000, guid: 4c49702bd2da26148bc4e609c2d8ac66, type: 2}
+  enemyEncounter: {fileID: 11400000, guid: e8246dd4727713c488e03cebb0a0b971, type: 2}
   enemyPrefab: {fileID: 1007390354875989743, guid: 2ea4a7533876daf4d906c016e742ce68,
     type: 3}
   BattleEnemys: []

@@ -3,7 +3,7 @@ using PSW.Core.Probability;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class GameBoard : MonoBehaviour
+public partial class GameBoard : BehaviourSingleton<GameBoard>
 {
     [Header("Board Settings")]
     [SerializeField] private int rowCount = 6;
@@ -35,8 +35,10 @@ public partial class GameBoard : MonoBehaviour
     public Vector2 BoardCenter => this.transform.position;
     public Transform BoardContainer => this.transform;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         this.boardInput = new GameBoardInput(this, this.countingText, this.selectionLine);
         this.boardMovement = new GameBoardMovement(this);
         this.boardSpawning = new GameBoardSpawning(this, this.skillStack);
@@ -127,19 +129,32 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// 변환되는 카드 중에 랜덤 픽업
+    /// 일반 카드 중에 랜덤으로 하나 픽업
     /// </summary>
     /// <returns></returns>
-    public GameBoardCard RandomCard()
+    public GameBoardCard RandomCardFromNormal()
     {
+        if (AllCardsIsNotNormal()) return null;
+
         while (true)
         {
             var random = Random.Range(0, this.Cards.Count);
             var randomCard = this.Cards[random];
-            if (randomCard.CardDetail == CardDetail.Normal) return randomCard;
+            
+            if (randomCard.CardDetail == CardDetailType.Normal)
+            {
+                return randomCard;
+            }
+
+            // 무한 루프 검사
+            InfiniteLoopDetector.Run();
         }
     }
 
+    /// <summary>
+    /// 스킬 카드가 비어있을 경우
+    /// </summary>
+    /// <returns></returns>
     public bool IsSkillCardEmpty()
     {
         if (this.cardSkillDatas.Count == 0) return true;
@@ -148,10 +163,27 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
+    /// 게임 보드상에 일반 카드 하나라도 없을 경우
+    /// </summary>
+    /// <returns></returns>
+    private bool AllCardsIsNotNormal()
+    {
+        foreach (var card in this.Cards)
+        {
+            if (card.CardDetail == CardDetailType.Normal)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// 변환되는 카드 중에 랜덤 픽업
     /// </summary>
     /// <returns></returns>
-    public ItemBlueprintCard RandomSkillCard()
+    public ItemBlueprintCard SkillCardRandomPickUp()
     {
         var random = Random.Range(0, this.cardSkillDatas.Count);
         var randomSkillCard = this.cardSkillDatas[random];
@@ -163,6 +195,10 @@ public partial class GameBoard : MonoBehaviour
         return randomSkillCard;
     }
 
+    /// <summary>
+    /// 사용된 스킬 카드 초기화
+    /// </summary>
+    /// <param name="data"></param>
     public void SkillCardReset(ItemBlueprintCard data)
     {
         this.cardSkillUsedDatas.Remove(data);
@@ -170,7 +206,7 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine => GameBoard 안에 있는 카드들이 움직일때 까지 대기
+    /// GameBoard 안에 있는 카드들이 움직일때 까지 대기
     /// </summary>
     public Coroutine WaitForMovement()
     {
@@ -178,7 +214,7 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine => 카드 끼리 selection 라인이 이어지기 까지 대기
+    /// 카드 끼리 selection 라인이 이어지기 까지 대기
     /// </summary>
     public Coroutine WaitForSelection()
     {
@@ -186,7 +222,7 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine => 선택된 카드들이 소멸될 때 까지 대기
+    /// 선택된 카드들이 소멸될 때 까지 대기
     /// </summary>
     public Coroutine RespawnCards()
     {
@@ -194,15 +230,26 @@ public partial class GameBoard : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine => 카드들이 다 선택될 때 까지 대기
+    /// 카드들이 다 선택될 때 까지 대기
     /// </summary>
     public Coroutine DespawnSelection()
     {
         return StartCoroutine(this.boardSpawning.Despawn(GetSelectCards()));
     }
 
+    /// <summary>
+    /// 스킬 카드 생성
+    /// </summary>
     public Coroutine SkillCardSpawn()
     {
         return StartCoroutine(this.boardSpawning.SkillCardSpawn());
+    }
+
+    /// <summary>
+    /// 장애물 카드 생성
+    /// </summary>
+    public Coroutine ObstacleCardSpawn(ItemBlueprintCard obstacleCard)
+    {
+        return StartCoroutine(this.boardSpawning.ObstacleCardSpawn(obstacleCard));
     }
 }

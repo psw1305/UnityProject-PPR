@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Collections;
 
 public class BattleEnemySkill : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private EnemySkill skillType;
+    [SerializeField] private EnemySkillType skillType;
     [SerializeField] private Image skillIcon;
     [SerializeField] private TextMeshProUGUI skillValueText;
     [SerializeField] private CanvasGroup canvasGroup;
@@ -21,18 +22,18 @@ public class BattleEnemySkill : MonoBehaviour
         this.canvasGroup.alpha = 0.0f;
     }
 
-    public void Enable(BattleEnemy battleEnemy)
+    public virtual void Enable(BattleEnemy battleEnemy)
     {
         switch (this.skillType)
         {
-            case EnemySkill.Attack:
+            case EnemySkillType.Attack:
                 int attackValue = this.skillValue + battleEnemy.CurrentAP;
                 this.skillValueText.text = attackValue.ToString();
                 break;
-            case EnemySkill.Defense:
+            case EnemySkillType.Defense:
                 this.skillValueText.text = this.skillValue.ToString();
                 break;
-            case EnemySkill.Reinforce:
+            case EnemySkillType.Buff:
                 this.skillValueText.text = "";
                 break;
         }
@@ -40,19 +41,28 @@ public class BattleEnemySkill : MonoBehaviour
         this.canvasGroup.DOFade(1, 0.3f);
     }
 
-    public void Use(BattleEnemy battleEnemy)
+    public virtual IEnumerator Use(BattleEnemy battleEnemy)
+    {
+        SkillType(battleEnemy);
+
+        yield return YieldCache.WaitForSeconds(0.3f);
+
+        Disable();
+    }
+
+    protected void SkillType(BattleEnemy battleEnemy)
     {
         if (this.skillSFX != null) BattleSFX.Instance.Play(this.skillSFX);
 
-        switch (this.skillType) 
+        switch (this.skillType)
         {
-            case EnemySkill.Attack:
+            case EnemySkillType.Attack:
                 BattlePlayer.Instance.Damaged(this.skillValue + battleEnemy.CurrentAP);
                 break;
-            case EnemySkill.Defense:
+            case EnemySkillType.Defense:
                 battleEnemy.ShieldPoint(this.skillValue);
                 break;
-            case EnemySkill.Reinforce:
+            case EnemySkillType.Buff:
                 battleEnemy.CurrentAP += this.skillValue;
                 break;
         }

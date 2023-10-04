@@ -6,7 +6,7 @@ public class ItemBlueprintCard : ItemBlueprint
 {
     [Header("Card - Type")]
     [SerializeField] private CardType cardType;
-    [SerializeField] private CardDetail cardDetail;
+    [SerializeField] private CardDetailType cardDetail;
 
     [Header("Card - Param")]
     [SerializeField] private string cardName;
@@ -17,7 +17,7 @@ public class ItemBlueprintCard : ItemBlueprint
     [SerializeField] private Color cardColor;
 
     public CardType CardType => this.cardType;
-    public CardDetail CardDetail => this.cardDetail;
+    public CardDetailType CardDetail => this.cardDetail;
     
     public Sprite CardFrame => this.cardFrame;
     public Color CardColor => this.cardColor;

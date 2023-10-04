@@ -14,7 +14,7 @@ public class GameBoardCard : MonoBehaviour
     private ItemBlueprintCard data;
 
     public CardType CardType { get; private set; }
-    public CardDetail CardDetail { get; private set; }
+    public CardDetailType CardDetail { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsSpawned => this.gameObject.activeSelf;
 
@@ -96,7 +96,7 @@ public class GameBoardCard : MonoBehaviour
 
     private void Init()
     {
-        if (this.CardDetail != CardDetail.Normal)
+        if (this.CardDetail != CardDetailType.Normal && this.CardDetail != CardDetailType.Obstacle)
         {
             this.board.SkillCardReset(this.data);
         }
