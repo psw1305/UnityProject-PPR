@@ -1,5 +1,4 @@
 using PSW.Core.Enums;
-using PSW.Core.Extensions;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,15 +10,10 @@ public class BattleEnemy : MonoBehaviour
     [SerializeField] private Toggle toggle;
     [SerializeField] private Image enemyImage;
     [SerializeField] private TextMeshProUGUI enemyName;
-    [SerializeField] private RectTransform enemyTable;
     
     [Header("Skill")]
     [SerializeField] private GameObject[] skills;
     [SerializeField] private Transform skillslot;
-
-    [Header("Particle")]
-    [SerializeField] private ParticleSystem weakWreckParticle;
-    [SerializeField] private ParticleSystem wreckParticle;
 
     [Header("Scripts")]
     [SerializeField] private BattleEnemyUI enemyUI;
@@ -90,24 +84,12 @@ public class BattleEnemy : MonoBehaviour
     /// <param name="damage"></param>
     public void Damage(int damage)
     {
-        DamagedEffect(damage);
+        this.enemyUI.TakeDamageEffect(damage);
 
         // 현 방어력이 0 초과 인가?
         if (this.CurrentSP > 0) ShieldDamaged(damage);
         // 현 방어력이 0 이하 이면 health damaged
         else HealthDamaged(damage);
-    }
-
-    /// <summary>
-    /// 데미지 받을 시 => RectTransform 흔들림 효과
-    /// </summary>
-    /// <param name="damage"></param>
-    private void DamagedEffect(int damage)
-    {
-        if (damage < 50)
-            StartCoroutine(this.enemyTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
-        else
-            StartCoroutine(this.enemyTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
 
     /// <summary>

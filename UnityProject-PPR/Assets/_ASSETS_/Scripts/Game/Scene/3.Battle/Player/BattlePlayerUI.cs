@@ -6,6 +6,10 @@ using DG.Tweening;
 
 public class BattlePlayerUI : MonoBehaviour
 {
+    [Header("Table")]
+    [SerializeField] private RectTransform statTable;
+    [SerializeField] private RectTransform playerTable;
+
     [Header("Health")]
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -18,11 +22,22 @@ public class BattlePlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI actText;
     [SerializeField] private TextMeshProUGUI deckText;
 
+    [Header("Damage Text")]
+    [SerializeField] private PoolableObject damageTextPrefab;
+    [SerializeField] private Transform damageTextParent;
+    private ObjectPool damageTextPool;
+
+    [Header("Particle")]
+    [SerializeField] private ParticleSystem weakWreckParticle;
+    [SerializeField] private ParticleSystem wreckParticle;
+
+
     private BattlePlayer battlePlayer;
 
     private void Awake()
     {
         this.battlePlayer = GetComponent<BattlePlayer>();
+        this.damageTextPool = ObjectPool.CreateInstance(this.damageTextPrefab, this.damageTextParent, 50);
     }
 
     private void OnEnable()
@@ -39,7 +54,7 @@ public class BattlePlayerUI : MonoBehaviour
 
     public void SetHpText(int value, int maxValue)
     {
-        this.healthText.text = value + " / " + maxValue;
+        this.healthText.text = value + "/" + maxValue;
         this.healthBar.fillAmount = value / (float)maxValue;
     }
 
@@ -54,6 +69,31 @@ public class BattlePlayerUI : MonoBehaviour
         this.actText.text = act.ToString();
     }
 
+    private void FloatingDamageText(int damage)
+    {
+        var poolableObject = this.damageTextPool.GetObject();
+
+        if (poolableObject != null) 
+        {
+            var damageText = poolableObject.GetComponent<TextMeshProUGUI>();
+            damageText.FloatingDamageText(damage.ToString());
+        }
+    }
+
+    /// <summary>
+    /// 데미지 받을 시 => RectTransform 흔들림 효과
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeDamageEffect(int damage)
+    {
+        FloatingDamageText(damage);
+
+        if (damage < 50)
+            StartCoroutine(this.statTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
+        else
+            StartCoroutine(this.playerTable.ShakeCoroutine(5, 15, this.wreckParticle));
+    }
+
     public void UpdateAnimateUI(int oldPoint, int newPoint)
     {
         StartCoroutine(this.actText.UpdateTextCoroutine(oldPoint, newPoint, 1.0f));
@@ -62,7 +102,7 @@ public class BattlePlayerUI : MonoBehaviour
     private void OnHealthPointChanged(int oldPoint, int newPoint)
     {
         // health text 카운팅 효과
-        string addHealthText = " / " + this.battlePlayer.HP;
+        string addHealthText = "/" + this.battlePlayer.HP;
         StartCoroutine(this.healthText.UpdateTextCoroutine(oldPoint, newPoint, 1.0f, addHealthText));
 
         // health bar 이미지 fillAmount 체력 비례 조정

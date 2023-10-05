@@ -1,13 +1,15 @@
+using PSW.Core.Extensions;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-using System.Collections;
 
 public class BattleEnemyUI : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private CanvasGroup enemyCanvas;
+    [SerializeField] private RectTransform enemyTable;
 
     [Header("Health")]
     [SerializeField] private Image healthBar;
@@ -17,11 +19,21 @@ public class BattleEnemyUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shieldText;
     [SerializeField] private CanvasGroup shieldCanvas;
 
+    [Header("Damage Text")]
+    [SerializeField] private PoolableObject damageTextPrefab;
+    [SerializeField] private Transform damageTextParent;
+    private ObjectPool damageTextPool;
+
+    [Header("Particle")]
+    [SerializeField] private ParticleSystem weakWreckParticle;
+    [SerializeField] private ParticleSystem wreckParticle;
+
     private BattleEnemy battleEnemy;
 
     private void Awake()
     {
         this.battleEnemy = GetComponent<BattleEnemy>();
+        this.damageTextPool = ObjectPool.CreateInstance(this.damageTextPrefab, this.damageTextParent, 10);
     }
 
     public void SetHPText()
@@ -33,6 +45,31 @@ public class BattleEnemyUI : MonoBehaviour
     public void SetSPText()
     {
         this.shieldText.text = this.battleEnemy.CurrentSP.ToString();
+    }
+
+    private void FloatingDamageText(int damage)
+    {
+        var poolableObject = this.damageTextPool.GetObject();
+
+        if (poolableObject != null)
+        {
+            var damageText = poolableObject.GetComponent<TextMeshProUGUI>();
+            damageText.FloatingDamageText(damage.ToString());
+        }
+    }
+
+    /// <summary>
+    /// 데미지 받을 시 => RectTransform 흔들림 효과
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeDamageEffect(int damage)
+    {
+        FloatingDamageText(damage);
+
+        if (damage < 50)
+            StartCoroutine(this.enemyTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
+        else
+            StartCoroutine(this.enemyTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
 
     /// <summary>

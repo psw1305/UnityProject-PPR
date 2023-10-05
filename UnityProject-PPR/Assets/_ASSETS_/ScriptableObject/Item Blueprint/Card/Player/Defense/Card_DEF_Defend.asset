@@ -19,7 +19,7 @@ MonoBehaviour:
   itemAbility: "\uBC29\uC5B4\uB825 +4"
   itemDesc: 
   cardType: 1
-  cardDetail: 1
+  cardDetailType: 1
   cardName: Defend
   cardWeighted: 10
   cardFrame: {fileID: 21300000, guid: 833e4c81ca3372a409e733a51d0610c2, type: 3}

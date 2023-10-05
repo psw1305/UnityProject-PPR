@@ -19,7 +19,7 @@ MonoBehaviour:
   itemAbility: "\uBC29\uC5B4\uB825\uC744 \uACF5\uACA9\uB825\uC73C\uB85C \uC804\uD658\uD569\uB2C8\uB2E4"
   itemDesc: "\uB9C8\uBB34\uB9AC"
   cardType: 1
-  cardDetail: 3
+  cardDetailType: 3
   cardName: ShieldBash
   cardWeighted: 10
   cardFrame: {fileID: 21300000, guid: 833e4c81ca3372a409e733a51d0610c2, type: 3}

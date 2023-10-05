@@ -1,21 +1,12 @@
 using PSW.Core.Enums;
-using PSW.Core.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 {
-    [Header("Settings")]
-    [SerializeField] private RectTransform playerTable;
-    [SerializeField] private RectTransform statTable;
-
     [Header("Potion")]
     [SerializeField] private Transform[] potionSlots;
-
-    [Header("Particle")]
-    [SerializeField] private ParticleSystem weakWreckParticle;
-    [SerializeField] private ParticleSystem wreckParticle;
 
     [Header("Scripts")]
     [SerializeField] private BattleSystem battleSystem;
@@ -236,24 +227,12 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
     /// <param name="damage"></param>
     public void Damaged(int damage)
     {
-        DamagedEffect(damage);
+        this.battlePlayerUI.TakeDamageEffect(damage);
 
         // 현 방어력이 0 초과 인가?
         if (CurrentSP > 0) ShieldDamaged(damage);
         // 현 방어력이 0 이하 이면 HealthDamaged
         else HealthDamaged(damage);
-    }
-
-    /// <summary>
-    /// 데미지 받을 시 => RectTransform 흔들림 효과
-    /// </summary>
-    /// <param name="damage"></param>
-    private void DamagedEffect(int damage)
-    {
-        if (damage < 50)
-            StartCoroutine(this.statTable.ShakeCoroutine(2, 8, this.weakWreckParticle));
-        else
-            StartCoroutine(this.playerTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
 
     /// <summary>

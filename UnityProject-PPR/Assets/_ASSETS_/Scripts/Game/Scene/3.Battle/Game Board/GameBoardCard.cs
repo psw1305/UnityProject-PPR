@@ -14,7 +14,7 @@ public class GameBoardCard : MonoBehaviour
     private ItemBlueprintCard data;
 
     public CardType CardType { get; private set; }
-    public CardDetailType CardDetail { get; private set; }
+    public CardDetailType CardDetailType { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsSpawned => this.gameObject.activeSelf;
 
@@ -41,7 +41,7 @@ public class GameBoardCard : MonoBehaviour
         this.caseSprite.sprite = data.CardFrame;
 
         this.CardType = data.CardType;
-        this.CardDetail = data.CardDetail;
+        this.CardDetailType = data.CardDetailType;
     }
 
     public void Selected()
@@ -96,11 +96,11 @@ public class GameBoardCard : MonoBehaviour
 
     private void Init()
     {
-        if (this.CardDetail != CardDetailType.Normal && this.CardDetail != CardDetailType.Obstacle)
-        {
-            this.board.SkillCardReset(this.data);
-        }
-
         this.gameObject.SetActive(false);
+
+        if (this.CardType == CardType.Obstacle) return;
+        if (this.CardDetailType == CardDetailType.Normal) return;
+
+        this.board.SkillCardReset(this.data);
     }
 }

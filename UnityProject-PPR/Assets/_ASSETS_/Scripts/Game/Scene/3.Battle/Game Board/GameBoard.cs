@@ -141,7 +141,7 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
             var random = Random.Range(0, this.Cards.Count);
             var randomCard = this.Cards[random];
             
-            if (randomCard.CardDetail == CardDetailType.Normal)
+            if (randomCard.CardDetailType == CardDetailType.Normal)
             {
                 return randomCard;
             }
@@ -170,7 +170,7 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     {
         foreach (var card in this.Cards)
         {
-            if (card.CardDetail == CardDetailType.Normal)
+            if (card.CardDetailType == CardDetailType.Normal)
             {
                 return false;
             }

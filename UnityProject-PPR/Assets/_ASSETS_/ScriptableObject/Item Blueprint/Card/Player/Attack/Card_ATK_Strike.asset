@@ -19,7 +19,7 @@ MonoBehaviour:
   itemAbility: "\uACF5\uACA9\uB825 +4"
   itemDesc: 
   cardType: 0
-  cardDetail: 1
+  cardDetailType: 1
   cardName: Strike
   cardWeighted: 10
   cardFrame: {fileID: 21300000, guid: 6fe2c2edbd39bae4ebf78f47a4ae5f6c, type: 3}

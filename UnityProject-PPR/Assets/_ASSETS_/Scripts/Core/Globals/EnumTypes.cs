@@ -54,7 +54,8 @@ namespace PSW.Core.Enums
     /// </summary>
     public enum CardDetailType
     {
-        Normal, Instant, Ready, Finish, Obstacle
+        Normal, Instant, Ready, Finish,
+        Skull, Bleed, Burn,
     }
 
     /// <summary>
