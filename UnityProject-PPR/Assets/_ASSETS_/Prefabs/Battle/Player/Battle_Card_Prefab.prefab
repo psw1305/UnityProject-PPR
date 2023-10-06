@@ -4867,7 +4867,7 @@ GameObject:
   - component: {fileID: 7862524456853583431}
   - component: {fileID: 1974717187632502000}
   m_Layer: 0
-  m_Name: Card Case
+  m_Name: Card Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5215,7 +5215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec896199b804c349ae436422f3056a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 4055685251731332811}
-  caseSprite: {fileID: 1974717187632502000}
-  coverSprite: {fileID: 1515171869298435149}
+  cardImage: {fileID: 4055685251731332811}
+  frameImage: {fileID: 1974717187632502000}
+  cover: {fileID: 1515171869298435149}
   particleCase: {fileID: 2628565382872258904}

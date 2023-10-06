@@ -2570,6 +2570,17 @@ PrefabInstance:
       propertyPath: battleSystem
       value: 
       objectReference: {fileID: 1671214664}
+    - target: {fileID: 7244614141918601518, guid: 4ba99188257807e4eb92f33d88b20813,
+        type: 3}
+      propertyPath: cards.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244614141918601518, guid: 4ba99188257807e4eb92f33d88b20813,
+        type: 3}
+      propertyPath: cards.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 58852cade6debc048af0ff116d1fd088,
+        type: 2}
     - target: {fileID: 7244614143082538083, guid: 4ba99188257807e4eb92f33d88b20813,
         type: 3}
       propertyPath: battleSystem

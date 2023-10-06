@@ -22,13 +22,13 @@ public class BattleEnemyUI : MonoBehaviour
     [Header("Damage Text")]
     [SerializeField] private PoolableObject damageTextPrefab;
     [SerializeField] private Transform damageTextParent;
-    private ObjectPool damageTextPool;
 
     [Header("Particle")]
     [SerializeField] private ParticleSystem weakWreckParticle;
     [SerializeField] private ParticleSystem wreckParticle;
 
     private BattleEnemy battleEnemy;
+    private ObjectPool damageTextPool;
 
     private void Awake()
     {
@@ -47,6 +47,7 @@ public class BattleEnemyUI : MonoBehaviour
         this.shieldText.text = this.battleEnemy.CurrentSP.ToString();
     }
 
+    #region Take Damage
     private void FloatingDamageText(int damage)
     {
         var poolableObject = this.damageTextPool.GetObject();
@@ -71,6 +72,7 @@ public class BattleEnemyUI : MonoBehaviour
         else
             StartCoroutine(this.enemyTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
+    #endregion
 
     /// <summary>
     /// 쉴드 생성 시 UI 애니메이션 및 shield text 세팅

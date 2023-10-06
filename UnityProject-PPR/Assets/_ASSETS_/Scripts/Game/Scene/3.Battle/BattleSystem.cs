@@ -8,7 +8,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
 {
     public BattlePlay BattlePlay { get; set; } // 현재 게임이 진행되고 있는 PlayType
     public CardType PlayedElementType { get; set; } // 게임 플레이 시 선택되고 있는 ElementType
-    public BattleEnemy SelectedEnemy { get; set; }
+    public BattleEnemy TargetEnemy { get; set; } // 타겟으로 지정된 적
 
     [Header("Settings")]
     [SerializeField] private Camera battleCamera;
@@ -238,7 +238,7 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         switch (PlayedElementType)
         {
             case CardType.Attack:
-                this.battlePlayer.PlayerAttack(selectElements, this.SelectedEnemy);
+                this.battlePlayer.PlayerAttack(selectElements, this.TargetEnemy);
                 break;
             case CardType.Defense:
                 this.battlePlayer.PlayerShield(selectElements);

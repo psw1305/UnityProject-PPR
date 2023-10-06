@@ -29,7 +29,7 @@ public class BattleEnemy : MonoBehaviour
     public float GetPercentHP() => this.CurrentHP / (float)this.MaxHP;
 
     /// <summary>
-    /// 생성자 => EnemyBlueprint에 기반으로 세팅
+    /// Enemy Blueprint 기반으로 세팅
     /// </summary>
     /// <param name="enemyBlueprint"></param>
     public void Set(BattleSystem battleSystem, ToggleGroup toggleGroup, EnemyBlueprint enemyBlueprint)
@@ -60,13 +60,9 @@ public class BattleEnemy : MonoBehaviour
     private void Targeting(bool isOn)
     {
         if (isOn)
-        {
-            this.battleSystem.SelectedEnemy = this;
-        }
+            this.battleSystem.TargetEnemy = this;
         else
-        {
-            this.battleSystem.SelectedEnemy = null;
-        }
+            this.battleSystem.TargetEnemy = null;
     }
 
     /// <summary>

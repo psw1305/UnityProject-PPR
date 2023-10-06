@@ -21,7 +21,7 @@ public class GameBoardSpawning
         {
             if (element.IsSpawned == false)
             {
-                element.SetData(this.board.CardList.Get());
+                element.SetData(this.board.GameBoardCards.Get());
                 element.Spawn();
 
                 // 스택에 따른 스킬 카드 생성
@@ -59,6 +59,8 @@ public class GameBoardSpawning
     /// <returns></returns>
     public IEnumerator ObstacleCardSpawn(ItemBlueprintCard obstacleCard)
     {
+        
+
         yield return Change(this.board.RandomCardFromNormal(), obstacleCard);
     }
 

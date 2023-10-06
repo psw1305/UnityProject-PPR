@@ -9,7 +9,7 @@ public class BattleEnemySkillCard : BattleEnemySkill
 
     public override IEnumerator Use(BattleEnemy battleEnemy)
     {
-        SkillType(battleEnemy);
+        UseBySkillType(battleEnemy);
 
         yield return StartCoroutine(CardCreate());
 

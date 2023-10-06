@@ -12,10 +12,10 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     [SerializeField] private float rescaling = 0.25f;
 
     [Header("Card Settings")]
-    [SerializeField] private List<ItemBlueprintCard> cardDatas = new();
-    [SerializeField] private List<ItemBlueprintCard> cardSkillDatas = new();
-    [SerializeField] private List<ItemBlueprintCard> cardSkillUsedDatas = new();
-    [SerializeField] private GameBoardCardList<ItemBlueprintCard> cardList = new();
+    [SerializeField] private List<ItemBlueprintCard> cards = new();
+    [SerializeField] private List<ItemBlueprintCard> skillCards = new();
+    [SerializeField] private List<ItemBlueprintCard> usedSkillCards = new();
+    [SerializeField] private GameBoardCardList<ItemBlueprintCard> gameBoardCards = new();
 
     [Header("Additional")]
     [SerializeField] private GameBoardCountingText countingText;
@@ -27,7 +27,7 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     private GameBoardSpawning boardSpawning;
 
     public List<GameBoardCard> Cards { get; } = new List<GameBoardCard>();
-    public GameBoardCardList<ItemBlueprintCard> CardList => this.cardList;
+    public GameBoardCardList<ItemBlueprintCard> GameBoardCards => this.gameBoardCards;
     public Vector2 StartCellPosition => this.BoardCenter - this.Rescaling * new Vector2(this.ColumnCount - 1, this.RowCount - 1) / 2.0f;
     public int RowCount => this.rowCount;
     public int ColumnCount => this.columnCount;
@@ -57,40 +57,13 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     }
 
     /// <summary>
-    /// 주어진 카드 가중치 값 list 생성 
+    /// 주어진 카드 가중치 값으로 카드 리스트 생성 
     /// </summary>
     private void ProbabilityList()
     {
-        foreach (var card in this.cardDatas)
+        foreach (var card in this.cards)
         {
-            this.cardList.Add(card, card.CardWeighted);
-        }
-    }
-
-    /// <summary>
-    /// 랜덤 가중치 테스트
-    /// </summary>
-    private void TestProbability()
-    {
-        float count = 10000;
-        int[] list = new int[this.cardDatas.Count];
-
-        for (int i = 0; i < count; i++)
-        {
-            var test = this.CardList.Get();
-
-            for (int k = 0; k < this.cardDatas.Count; k++)
-            {
-                if (test == this.cardDatas[k])
-                {
-                    list[k]++;
-                }
-            }
-        }
-
-        for (int i = 0; i < list.Length; i++)
-        {
-            Debug.Log(string.Format("{0} : {1}%\n", this.cardDatas[i].name, list[i] / count * 100));
+            this.gameBoardCards.Add(card, card.CardWeighted);
         }
     }
 
@@ -103,7 +76,7 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
         {
             foreach (var card in Player.Instance.GetCardDeck())
             {
-                this.cardSkillDatas.Add(card.GetCardData());
+                this.skillCards.Add(card.GetCardData());
             }
         }
 
@@ -115,7 +88,7 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
                 card.transform.localScale = Vector2.one;
                 card.transform.position = this.BoardToWorldPosition(x, y);
                 card.transform.SetParent(this.BoardContainer, true);
-                card.Set(this, this.CardList.Get());
+                card.Set(this, this.GameBoardCards.Get());
 
                 this.Cards.Add(card);
             }
@@ -123,9 +96,6 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
 
         // 플레이어가 장착한 소모품 생성
         //BattlePlayer.Instance.SetPotions();
-
-        // 가중치 테스트 용
-        //TestProbability();
     }
 
     /// <summary>
@@ -152,45 +122,17 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     }
 
     /// <summary>
-    /// 스킬 카드가 비어있을 경우
-    /// </summary>
-    /// <returns></returns>
-    public bool IsSkillCardEmpty()
-    {
-        if (this.cardSkillDatas.Count == 0) return true;
-
-        return false;
-    }
-
-    /// <summary>
-    /// 게임 보드상에 일반 카드 하나라도 없을 경우
-    /// </summary>
-    /// <returns></returns>
-    private bool AllCardsIsNotNormal()
-    {
-        foreach (var card in this.Cards)
-        {
-            if (card.CardDetailType == CardDetailType.Normal)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /// <summary>
     /// 변환되는 카드 중에 랜덤 픽업
     /// </summary>
     /// <returns></returns>
     public ItemBlueprintCard SkillCardRandomPickUp()
     {
-        var random = Random.Range(0, this.cardSkillDatas.Count);
-        var randomSkillCard = this.cardSkillDatas[random];
+        var random = Random.Range(0, this.skillCards.Count);
+        var randomSkillCard = this.skillCards[random];
         
         // 스킬 카드 사용 후 List 변환
-        this.cardSkillDatas.Remove(randomSkillCard);
-        this.cardSkillUsedDatas.Add(randomSkillCard);
+        this.skillCards.Remove(randomSkillCard);
+        this.usedSkillCards.Add(randomSkillCard);
 
         return randomSkillCard;
     }
@@ -201,10 +143,30 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     /// <param name="data"></param>
     public void SkillCardReset(ItemBlueprintCard data)
     {
-        this.cardSkillUsedDatas.Remove(data);
-        this.cardSkillDatas.Add(data);
+        this.usedSkillCards.Remove(data);
+        this.skillCards.Add(data);
     }
 
+    /// <summary>
+    /// 특정 장애물 카드 갯수 홧인
+    /// </summary>
+    /// <returns></returns>
+    public int ObstacleCardsCount()
+    {
+        int count = 0;
+
+        foreach (var card in this.Cards)
+        {
+            if (card.CardDetailType == CardDetailType.Skull)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    #region Game Board Play Coroutine
     /// <summary>
     /// GameBoard 안에 있는 카드들이 움직일때 까지 대기
     /// </summary>
@@ -252,4 +214,35 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     {
         return StartCoroutine(this.boardSpawning.ObstacleCardSpawn(obstacleCard));
     }
+    #endregion
+
+    #region Game Board Check Function
+    /// <summary>
+    /// 스킬 카드가 비어있을 경우
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSkillCardEmpty()
+    {
+        if (this.skillCards.Count == 0) return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// 게임 보드상에 일반 카드 하나라도 없을 경우
+    /// </summary>
+    /// <returns></returns>
+    private bool AllCardsIsNotNormal()
+    {
+        foreach (var card in this.Cards)
+        {
+            if (card.CardDetailType == CardDetailType.Normal)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    #endregion
 }

@@ -22,7 +22,7 @@ public class BattleEnemySkill : MonoBehaviour
         this.canvasGroup.alpha = 0.0f;
     }
 
-    public virtual void Enable(BattleEnemy battleEnemy)
+    public void SetSkillValue(BattleEnemy battleEnemy)
     {
         switch (this.skillType)
         {
@@ -37,20 +37,9 @@ public class BattleEnemySkill : MonoBehaviour
                 this.skillValueText.text = "";
                 break;
         }
-        
-        this.canvasGroup.DOFade(1, 0.3f);
     }
 
-    public virtual IEnumerator Use(BattleEnemy battleEnemy)
-    {
-        SkillType(battleEnemy);
-
-        yield return YieldCache.WaitForSeconds(0.3f);
-
-        Disable();
-    }
-
-    protected void SkillType(BattleEnemy battleEnemy)
+    protected void UseBySkillType(BattleEnemy battleEnemy)
     {
         if (this.skillSFX != null) BattleSFX.Instance.Play(this.skillSFX);
 
@@ -68,6 +57,34 @@ public class BattleEnemySkill : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 스킬 활성화
+    /// </summary>
+    /// <param name="battleEnemy"></param>
+    public void Enable(BattleEnemy battleEnemy)
+    {
+        SetSkillValue(battleEnemy);
+
+        this.canvasGroup.DOFade(1, 0.3f);
+    }
+
+    /// <summary>
+    /// 적 스킬 사용
+    /// </summary>
+    /// <param name="battleEnemy"></param>
+    /// <returns></returns>
+    public virtual IEnumerator Use(BattleEnemy battleEnemy)
+    {
+        UseBySkillType(battleEnemy);
+
+        yield return YieldCache.WaitForSeconds(0.3f);
+
+        Disable();
+    }
+
+    /// <summary>
+    /// 스킬 비활성화
+    /// </summary>
     public void Disable()
     {
         this.canvasGroup

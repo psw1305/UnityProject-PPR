@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class GameBoardCard : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer cardSprite;
-    [SerializeField] private SpriteRenderer caseSprite;
-    [SerializeField] private SpriteRenderer coverSprite;
+    [SerializeField] private SpriteRenderer cardImage;
+    [SerializeField] private SpriteRenderer frameImage;
+    [SerializeField] private SpriteRenderer cover;
     [SerializeField] private Transform particleCase;
     
     private GameBoard board;
@@ -36,9 +36,9 @@ public class GameBoardCard : MonoBehaviour
     public void SetData(ItemBlueprintCard data)
     {
         this.data = data;
-        this.cardSprite.sprite = data.ItemImage;
-        this.cardSprite.color = data.CardColor;
-        this.caseSprite.sprite = data.CardFrame;
+        this.cardImage.sprite = data.ItemImage;
+        this.cardImage.color = data.CardColor;
+        this.frameImage.sprite = data.CardFrame;
 
         this.CardType = data.CardType;
         this.CardDetailType = data.CardDetailType;
@@ -46,12 +46,12 @@ public class GameBoardCard : MonoBehaviour
 
     public void Selected()
     {
-        this.coverSprite.DOFade(0.5f, 0.1f);
+        this.cover.DOFade(0.5f, 0.1f);
     }
 
     public void Deselected()
     {
-        this.coverSprite.DOFade(0.0f, 0.1f);
+        this.cover.DOFade(0.0f, 0.1f);
     }
 
     /// <summary>
@@ -71,9 +71,9 @@ public class GameBoardCard : MonoBehaviour
     public void Spawn()
     {
         // select된 카드 cover sprite 투명도 초기화
-        Color coverAlpha = this.coverSprite.color;
+        Color coverAlpha = this.cover.color;
         coverAlpha.a = 0.0f;
-        this.coverSprite.color = coverAlpha;
+        this.cover.color = coverAlpha;
 
         this.gameObject.SetActive(true);
 

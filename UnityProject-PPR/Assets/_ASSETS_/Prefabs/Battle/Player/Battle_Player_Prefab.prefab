@@ -6444,11 +6444,11 @@ MonoBehaviour:
   columnCount: 6
   skillStack: 5
   rescaling: 0.4
-  cardDatas:
+  cards:
   - {fileID: 11400000, guid: 9a2796cafcda2674ea1d9b7620a3b812, type: 2}
   - {fileID: 11400000, guid: b5b1eb5453359334492f9f079c867777, type: 2}
-  cardSkillDatas: []
-  cardSkillUsedDatas: []
+  skillCards: []
+  usedSkillCards: []
   countingText: {fileID: 7244614143082538083}
   selectionLine: {fileID: 7244614142302246996}
   battleCardPrefab: {fileID: 7121532763530009990, guid: f927d430e9838e84bafea2d694778fe1,

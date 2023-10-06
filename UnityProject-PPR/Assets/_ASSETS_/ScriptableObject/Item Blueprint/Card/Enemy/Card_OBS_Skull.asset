@@ -21,6 +21,6 @@ MonoBehaviour:
   cardType: 3
   cardDetailType: 4
   cardName: Skull
-  cardWeighted: 0
+  cardWeighted: 250
   cardFrame: {fileID: 21300000, guid: 11702c94ee09f3d4bbefcc1f35edce08, type: 3}
   cardColor: {r: 1, g: 1, b: 1, a: 1}

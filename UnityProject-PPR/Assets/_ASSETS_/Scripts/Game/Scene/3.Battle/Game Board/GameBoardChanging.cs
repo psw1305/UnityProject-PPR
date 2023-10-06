@@ -23,7 +23,7 @@ public class GameItemSkill
 
         foreach (var element in board.Cards)
         {
-            element.SetData(board.CardList.Get());
+            element.SetData(board.GameBoardCards.Get());
             element.Spawn();
         }
 

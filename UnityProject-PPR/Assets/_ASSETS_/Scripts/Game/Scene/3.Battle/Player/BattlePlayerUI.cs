@@ -25,14 +25,14 @@ public class BattlePlayerUI : MonoBehaviour
     [Header("Damage Text")]
     [SerializeField] private PoolableObject damageTextPrefab;
     [SerializeField] private Transform damageTextParent;
-    private ObjectPool damageTextPool;
 
     [Header("Particle")]
     [SerializeField] private ParticleSystem weakWreckParticle;
     [SerializeField] private ParticleSystem wreckParticle;
 
-
     private BattlePlayer battlePlayer;
+    private ObjectPool damageTextPool;
+
 
     private void Awake()
     {
@@ -69,6 +69,7 @@ public class BattlePlayerUI : MonoBehaviour
         this.actText.text = act.ToString();
     }
 
+    #region Take Damage
     private void FloatingDamageText(int damage)
     {
         var poolableObject = this.damageTextPool.GetObject();
@@ -93,6 +94,7 @@ public class BattlePlayerUI : MonoBehaviour
         else
             StartCoroutine(this.playerTable.ShakeCoroutine(5, 15, this.wreckParticle));
     }
+    #endregion
 
     public void UpdateAnimateUI(int oldPoint, int newPoint)
     {
