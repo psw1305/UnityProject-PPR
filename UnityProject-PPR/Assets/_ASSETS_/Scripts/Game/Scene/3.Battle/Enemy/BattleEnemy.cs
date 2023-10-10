@@ -139,14 +139,14 @@ public class BattleEnemy : MonoBehaviour
     /// <summary>
     /// 利 胶懦 UI 积己
     /// </summary>
-    public void EnemySkillInstance()
+    public void EnemySkillInstance(GameBoard gameBoard)
     {
         if (this.skills.Length == 0) return;
 
         var random = Random.Range(0, this.skills.Length);
         var clone = Instantiate(this.skills[random], this.skillslot);
         this.currentEnemySkill = clone.GetComponent<BattleEnemySkill>();
-        this.currentEnemySkill.Enable(this);
+        this.currentEnemySkill.Set(this, gameBoard);
     }
 
     /// <summary>
@@ -157,7 +157,18 @@ public class BattleEnemy : MonoBehaviour
     {
         if (this.currentEnemySkill == null) yield return null;
     
-        yield return StartCoroutine(this.currentEnemySkill.Use(this));
+        yield return StartCoroutine(this.currentEnemySkill.UseSkill());
+    }
+
+    /// <summary>
+    /// 利 惑怕 眉农
+    /// </summary>
+    /// <returns></returns>
+    public void EnemyCheckState()
+    {
+        if (this.currentEnemySkill == null) return;
+
+        this.currentEnemySkill.CheckSkill();
     }
 
     public void EnemyDead()

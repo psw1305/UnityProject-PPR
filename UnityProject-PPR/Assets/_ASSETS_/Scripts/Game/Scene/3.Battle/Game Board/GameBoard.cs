@@ -151,13 +151,13 @@ public partial class GameBoard : BehaviourSingleton<GameBoard>
     /// 특정 장애물 카드 갯수 홧인
     /// </summary>
     /// <returns></returns>
-    public int ObstacleCardsCount()
+    public int ObstacleCardsCount(CardDetailType cardDetailType)
     {
         int count = 0;
 
         foreach (var card in this.Cards)
         {
-            if (card.CardDetailType == CardDetailType.Skull)
+            if (card.CardDetailType == cardDetailType)
             {
                 count++;
             }

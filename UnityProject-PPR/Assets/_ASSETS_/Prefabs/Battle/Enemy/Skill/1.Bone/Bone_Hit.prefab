@@ -293,4 +293,4 @@ MonoBehaviour:
   skillSFX:
   - {fileID: 8300000, guid: 21de3afa729a41d4eb878a7c54c44372, type: 3}
   card: {fileID: 11400000, guid: 58852cade6debc048af0ff116d1fd088, type: 2}
-  capacity: 2
+  capacity: 1

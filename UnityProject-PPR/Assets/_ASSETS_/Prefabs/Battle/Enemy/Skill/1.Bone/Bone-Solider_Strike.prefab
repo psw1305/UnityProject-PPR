@@ -292,4 +292,5 @@ MonoBehaviour:
   skillValue: 11
   skillSFX:
   - {fileID: 8300000, guid: 21de3afa729a41d4eb878a7c54c44372, type: 3}
-  skillCard: {fileID: 11400000, guid: 58852cade6debc048af0ff116d1fd088, type: 2}
+  card: {fileID: 0}
+  capacity: 2

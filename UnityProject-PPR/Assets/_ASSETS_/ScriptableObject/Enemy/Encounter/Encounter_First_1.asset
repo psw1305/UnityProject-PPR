@@ -16,4 +16,3 @@ MonoBehaviour:
   spawnEnemys:
   - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
   - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}
-  - {fileID: 11400000, guid: 3eb4b07b4b0866e48921f90397ca990d, type: 2}

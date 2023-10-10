@@ -161,21 +161,23 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         // 적 스킬 생성
         foreach (var battleEnemy in this.BattleEnemys)
         {
-            battleEnemy.EnemySkillInstance();
+            battleEnemy.EnemySkillInstance(this.gameBoard);
         }
 
         // 플레이어 행동 반복
         // 최소한 2의 행동을 소모해야 작동 => 행동력이 1 이하일 경우 턴 종료
         while (this.battlePlayer.CurrentACT > 1)
         {
-            // 플레이어 element 선택
+            // 플레이어 card 선택
             yield return this.gameBoard.WaitForSelection();
-            // 최종 선택된 elements 소멸 
+            // 최종 선택된 cards 소멸 
             yield return this.gameBoard.DespawnSelection();
-            // 빈 곳으로 elements 이동 
+            // 빈 곳으로 cards 이동 
             yield return this.gameBoard.WaitForMovement();
-            // 소멸 된 elements 수 만큼 재생성
+            // 소멸 된 cards 수 만큼 재생성
             yield return this.gameBoard.RespawnCards();
+            // 행동 끝난 후 적 상태 체크
+            EnemyStateCheck();
         }
     }
 
@@ -197,6 +199,18 @@ public class BattleSystem : BehaviourSingleton<BattleSystem>
         foreach (var battleEnemy in this.BattleEnemys)
         {
             yield return StartCoroutine(battleEnemy.EnemyUseSkill());
+        }
+    }
+
+    /// <summary>
+    /// 적 상태 체크
+    /// </summary>
+    /// <returns></returns>
+    private void EnemyStateCheck()
+    {
+        foreach (var battleEnemy in this.BattleEnemys)
+        {
+            battleEnemy.EnemyCheckState();
         }
     }
 

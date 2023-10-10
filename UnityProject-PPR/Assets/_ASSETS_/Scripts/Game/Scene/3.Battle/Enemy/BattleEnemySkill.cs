@@ -8,78 +8,71 @@ using System.Collections;
 public class BattleEnemySkill : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private EnemySkillType skillType;
-    [SerializeField] private Image skillIcon;
-    [SerializeField] private TextMeshProUGUI skillValueText;
-    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] protected EnemySkillType skillType;
+    [SerializeField] protected Image skillIcon;
+    [SerializeField] protected TextMeshProUGUI skillValueText;
+    [SerializeField] protected CanvasGroup canvasGroup;
 
-    [Header("Value")]
-    [SerializeField] private int skillValue;
-    [SerializeField] private AudioClip[] skillSFX;
+    [Header("Param")]
+    [SerializeField] protected int skillValue;
+    [SerializeField] protected AudioClip[] skillSFX;
+
+    protected BattleEnemy battleEnemy;
+    protected GameBoard gameBoard;
+    protected int resultSkillValue;
 
     private void Awake()
     {
         this.canvasGroup.alpha = 0.0f;
     }
 
-    public void SetSkillValue(BattleEnemy battleEnemy)
+    public void Set(BattleEnemy battleEnemy, GameBoard gameBoard)
     {
-        switch (this.skillType)
-        {
-            case EnemySkillType.Attack:
-                int attackValue = this.skillValue + battleEnemy.CurrentAP;
-                this.skillValueText.text = attackValue.ToString();
-                break;
-            case EnemySkillType.Defense:
-                this.skillValueText.text = this.skillValue.ToString();
-                break;
-            case EnemySkillType.Buff:
-                this.skillValueText.text = "";
-                break;
-        }
+        this.battleEnemy = battleEnemy;
+        this.gameBoard = gameBoard;
+        this.resultSkillValue = this.skillValue;
+
+        CheckSkill();
+
+        this.canvasGroup.DOFade(1, 0.3f);
     }
 
-    protected void UseBySkillType(BattleEnemy battleEnemy)
+    protected void UseSkillByType()
     {
         if (this.skillSFX != null) BattleSFX.Instance.Play(this.skillSFX);
 
         switch (this.skillType)
         {
             case EnemySkillType.Attack:
-                BattlePlayer.Instance.Damaged(this.skillValue + battleEnemy.CurrentAP);
+                BattlePlayer.Instance.Damaged(this.resultSkillValue);
                 break;
             case EnemySkillType.Defense:
-                battleEnemy.ShieldPoint(this.skillValue);
+                this.battleEnemy.ShieldPoint(this.resultSkillValue);
                 break;
             case EnemySkillType.Buff:
-                battleEnemy.CurrentAP += this.skillValue;
+                this.battleEnemy.CurrentAP += this.resultSkillValue;
                 break;
         }
     }
 
     /// <summary>
-    /// 스킬 활성화
-    /// </summary>
-    /// <param name="battleEnemy"></param>
-    public void Enable(BattleEnemy battleEnemy)
-    {
-        SetSkillValue(battleEnemy);
-
-        this.canvasGroup.DOFade(1, 0.3f);
-    }
-
-    /// <summary>
     /// 적 스킬 사용
     /// </summary>
-    /// <param name="battleEnemy"></param>
-    /// <returns></returns>
-    public virtual IEnumerator Use(BattleEnemy battleEnemy)
+    public virtual IEnumerator UseSkill()
     {
-        UseBySkillType(battleEnemy);
+        UseSkillByType();
 
         yield return YieldCache.WaitForSeconds(0.3f);
 
         Disable();
+    }
+
+    /// <summary>
+    /// 적 상태 체크
+    /// </summary>
+    public virtual void CheckSkill() 
+    {
+        this.skillValueText.text = this.resultSkillValue.ToString();
     }
 
     /// <summary>

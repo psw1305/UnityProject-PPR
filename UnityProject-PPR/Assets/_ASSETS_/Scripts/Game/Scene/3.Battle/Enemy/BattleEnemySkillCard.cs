@@ -1,3 +1,4 @@
+using PSW.Core.Enums;
 using System.Collections;
 using UnityEngine;
 
@@ -7,15 +8,26 @@ public class BattleEnemySkillCard : BattleEnemySkill
     [SerializeField] private ItemBlueprintCard card;
     [SerializeField] private int capacity = 1;
 
-    public override IEnumerator Use(BattleEnemy battleEnemy)
+    public override IEnumerator UseSkill()
     {
-        UseBySkillType(battleEnemy);
+        UseSkillByType();
 
         yield return StartCoroutine(CardCreate());
 
         yield return YieldCache.WaitForSeconds(0.3f);
 
         Disable();
+    }
+
+    public override void CheckSkill()
+    {
+        if (this.card.CardDetailType == CardDetailType.Skull)
+        {
+            int skullCount = this.gameBoard.ObstacleCardsCount(this.card.CardDetailType);
+            this.resultSkillValue = this.skillValue + skullCount;
+        }
+
+        base.CheckSkill();
     }
 
     private IEnumerator CardCreate()
