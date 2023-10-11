@@ -16,6 +16,6 @@ public class InventoryItemRelic : InventoryItem
 
     protected override void ItemTooltipShow()
     {
-        PlayerItemTooltip.Instance.RelicTooltipShow(this.GetItemData());
+        PlayerItemTooltip.Instance.RelicTooltipShow(this.GetBlueprint());
     }
 }

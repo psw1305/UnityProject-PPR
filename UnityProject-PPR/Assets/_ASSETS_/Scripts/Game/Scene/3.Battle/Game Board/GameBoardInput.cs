@@ -38,16 +38,6 @@ public class GameBoardInput
         {
             yield return null;
 
-            // 화면을 클릭, 터치했는가? => 1회
-            if (Input.GetMouseButtonDown(0))
-            {
-                // 클릭한 위치에 element가 존재하는가?
-                if (InputRaycast(out BattlePlayerPotion item))
-                {
-                    ProcessBoardItem(item);
-                }
-            }
-
             // 화면을 클릭, 터치했는가? => 지속
             if (Input.GetMouseButton(0))
             {
@@ -107,28 +97,6 @@ public class GameBoardInput
         return false;
     }
 
-    private bool InputRaycast(out BattlePlayerPotion item)
-    {
-        item = null;
-        // get 마우스 위치
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // z-level로 raycast 
-        RaycastHit2D hitInfo = Physics2D.Raycast(mousePos, Vector2.zero);
-
-        if (hitInfo)
-        {
-            item = hitInfo.transform.GetComponent<BattlePlayerPotion>();
-
-            // 해당 마우스, 터치 위치에 GameBoardElement 존재 => true
-            if (item != null)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     /// <summary>
     /// 선택된 element 조작 프로세스
     /// </summary>
@@ -159,15 +127,6 @@ public class GameBoardInput
                 AddElementToSelection(element);
             }
         }
-    }
-
-    /// <summary>
-    /// 선택된 element 조작 프로세스
-    /// </summary>
-    /// <param name="item"></param>
-    private void ProcessBoardItem(BattlePlayerPotion item)
-    {
-        item.Used(this.board);
     }
 
     private bool IsSecondLast(GameBoardCard element)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BattlePlayer : BehaviourSingleton<BattlePlayer>
 {
     [Header("Potion")]
-    [SerializeField] private Transform[] potionSlots;
+    [SerializeField] private BattlePlayerPotion[] playerPotions;
 
     [Header("Scripts")]
     [SerializeField] private BattleSystem battleSystem;
@@ -59,6 +59,8 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             this.FirstDEF = Player.Instance.FirstDEF.Value;
 
             this.CurrentHP = Player.Instance.CurrentHP;
+
+            Player.Instance.SetPlayerPotions(this.playerPotions);
         }
         // 플레이어 스탯 데이터 없을 시 더미 데이터
         else
@@ -200,7 +202,7 @@ public class BattlePlayer : BehaviourSingleton<BattlePlayer>
             shieldPoint = this.GetPoint(elements, 0, this.DEF);
         }
 
-        BattleSFX.Instance.Play(BattleSFX.Instance.defense);
+        BattleSFX.Instance.Play(BattleSFX.Instance.gainDefense);
 
         var oldPoint = this.CurrentSP;
         this.CurrentSP += shieldPoint;

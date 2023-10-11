@@ -1,4 +1,3 @@
-using PSW.Core.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +42,14 @@ public partial class Player : BehaviourSingleton<Player>
     public void RemovePotion(InventoryItemPotion potion)
     {
         this.potionList.Remove(potion);
+    }
+
+    public void SetPlayerPotions(BattlePlayerPotion[] playerPotions)
+    {
+        for (int i = 0; i < this.potionList.Count; i++)
+        {
+            playerPotions[i].Set(this.potionList[i]);
+        }
     }
     #endregion
 }

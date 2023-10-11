@@ -7,15 +7,15 @@ public class BattleSFX : BehaviourSingleton<BattleSFX>
     public AudioClip victory;
 
     [Header("Battle")]
-    public AudioClip[] defense;
+    public AudioClip playerAttackNormal;
+    public AudioClip playerAttackHeavy;
+    public AudioClip[] playerUsePotion;
+    public AudioClip[] emptyPotion;
+    public AudioClip[] gainDefense;
 
     [Header("Element")]
     public AudioClip elementClick;
     public AudioClip skillAppear;
-
-    [Header("Player")]
-    public AudioClip playerAttackNormal;
-    public AudioClip playerAttackHeavy;
 
     private AudioSource audioSource;
 

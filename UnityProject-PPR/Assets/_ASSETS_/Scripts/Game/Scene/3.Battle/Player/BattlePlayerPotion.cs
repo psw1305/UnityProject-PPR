@@ -1,91 +1,54 @@
-using PSW.Core.Structs;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattlePlayerPotion : MonoBehaviour
 {
-    public bool IsUsed { get; set; }
+    public bool IsAvailable { get; set; }
 
-    [SerializeField] private Image image;
+    [SerializeField] private GameObject emptyPotion;
+    [SerializeField] private GameObject availablePotion;
+    [SerializeField] private Image potionImage;
+    [SerializeField] private Button useButton;
 
-    private GameBoard board;
-    private Button button;
-    private ItemBlueprintPotion useableData;
-    private AbilityData ability;
+    private InventoryItemPotion potion;
 
-    private ItemBlueprintCard card;
-
-    public void Set(ItemBlueprintPotion data)
+    private void Awake()
     {
-        this.IsUsed = false;
-        this.useableData = data;
-        this.ability = data.Ability;
-        this.image.sprite = data.ItemImage;
-
-        this.card = data.ChangeCard;
-
-        this.button = GetComponent<Button>();
-        this.button.onClick.AddListener(Selected);
-
-        // 프리팹 네임 => 데이터 네임으로 변경
-        this.name = data.name;
+        this.IsAvailable = false;
+        this.useButton.onClick.AddListener(UsePotion);
     }
 
-    public void Selected()
+    public void Set(InventoryItemPotion potion)
     {
-        if (IsUsed)
-        {
-        }
-        else
-        {
-        }
+        this.potion = potion;
+        this.potionImage.sprite = potion.GetBlueprint().ItemImage;
+        this.name = potion.GetBlueprint().name;
 
-        IsUsed = !IsUsed;
+        this.IsAvailable = true;
+        this.emptyPotion.SetActive(false);
+        this.availablePotion.SetActive(true);
     }
 
     /// <summary>
-    /// 아이템 선택 후 사용
+    /// 활성화 시 포션 사용
     /// </summary>
-    /// <param name="board"></param>
-    public void Used(GameBoard board)
+    public void UsePotion()
     {
-        if (this.IsUsed) return;
-        
-        this.board = board;
-        StartCoroutine(AllElementsChanged());
-
-        this.IsUsed = !this.IsUsed;
-    }
-
-    public IEnumerator AllElementsChanged()
-    {
-        // 효과음 부여
-        //GameUISFX.Instance.Play(GameUISFX.Instance.clickClip);
-
-        foreach (GameBoardCard element in this.board.Cards)
+        // 빈 포션일 경우
+        if (this.IsAvailable == false)
         {
-            element.Despawn();
+            BattleSFX.Instance.Play(BattleSFX.Instance.emptyPotion);
+            return;
         }
 
-        yield return YieldCache.WaitForSeconds(0.25f);
+        BattleSFX.Instance.Play(BattleSFX.Instance.playerUsePotion);
 
-        foreach (GameBoardCard element in this.board.Cards)
-        {
-            element.SetData(this.card);
-            element.Spawn();
-        }
+        this.IsAvailable = false;
+        this.emptyPotion.SetActive(true);
+        this.availablePotion.SetActive(false);
 
-        yield return YieldCache.WaitForSeconds(0.25f);
-    }
+        if (Player.Instance == null) return;
 
-    /// <summary>
-    /// 아이템 초기화
-    /// </summary>
-    public void Init()
-    {
-        if (!this.IsUsed) return;
-
-        this.IsUsed = false;
+        Player.Instance.RemovePotion(this.potion);
     }
 }

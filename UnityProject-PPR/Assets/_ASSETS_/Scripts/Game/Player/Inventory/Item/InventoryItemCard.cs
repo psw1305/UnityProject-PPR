@@ -21,6 +21,6 @@ public class InventoryItemCard : InventoryItem
 
     protected override void ItemTooltipShow()
     {
-        PlayerItemTooltip.Instance.CardTooltipShow(this.GetItemData());
+        PlayerItemTooltip.Instance.CardTooltipShow(this.GetBlueprint());
     }
 }

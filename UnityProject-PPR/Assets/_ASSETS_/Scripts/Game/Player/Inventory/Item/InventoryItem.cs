@@ -23,14 +23,9 @@ public class InventoryItem : MonoBehaviour
         this.button.onClick.AddListener(ItemTooltipShow);
     }
 
-    public ItemBlueprint GetItemData()
+    public ItemBlueprint GetBlueprint()
     {
         return this.blueprint;
-    }
-
-    public ItemType GetItemType()
-    {
-        return this.blueprint.ItemType;
     }
 
     /// <summary>
