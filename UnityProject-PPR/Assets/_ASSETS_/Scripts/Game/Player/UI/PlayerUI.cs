@@ -156,18 +156,20 @@ public class PlayerUI : BehaviourSingleton<PlayerUI>
         SetCashText();
     }
 
+    #region Stat Text
     public void SetHPText()
     {
-        this.hpText.text = Player.Instance.GetHPText();
+        this.hpText.text = Player.Instance.CurrentHP.ToString();
     }
 
     public void SetACTText()
     {
-        this.actText.text = Player.Instance.GetACTText();
+        this.actText.text = Player.Instance.ACT.Value.ToString();
     }
 
     public void SetCashText()
     {
         this.cashText.text = Player.Instance.Cash.ToString();
     }
+    #endregion
 }

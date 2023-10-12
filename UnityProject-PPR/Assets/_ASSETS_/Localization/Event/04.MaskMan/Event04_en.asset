@@ -42,6 +42,22 @@ MonoBehaviour:
     m_Localized: '[Buy] Blue Card (100 Gold)'
     m_Metadata:
       m_Items: []
+  - m_Id: 13390263599316992
+    m_Localized: Select Red Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390286370193408
+    m_Localized: Select Blue Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390327872831488
+    m_Localized: Select Green Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13390349393805312
+    m_Localized: Ignore Deal
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

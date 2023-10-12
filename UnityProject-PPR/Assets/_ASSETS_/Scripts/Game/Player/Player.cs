@@ -70,21 +70,35 @@ public partial class Player : BehaviourSingleton<Player>
         this.Cash = cash;
     }
 
-    #region Set, Get
+    #region Player HP
     public void SetHP(int currentHp)
     {
         this.CurrentHP = currentHp;
         this.playerUI.SetHPText();
     }
 
-    public string GetHPText()
+    /// <summary>
+    /// 플레이어의 최대 체력
+    /// </summary>
+    public int GetMaxHP()
     {
-        return this.CurrentHP.ToString();
+        return this.HP.Value;
     }
 
-    public string GetACTText()
+    /// <summary>
+    /// 플레이어 체력 회복
+    /// </summary>
+    /// <param name="recoveryValue"></param>
+    public void Recovery(int recoveryValue)
     {
-        return this.ACT.Value.ToString();
+        var recoveryHP = this.CurrentHP + recoveryValue;
+
+        if (this.HP.Value <= recoveryHP)
+        {
+            recoveryHP = this.HP.Value;
+        }
+
+        SetHP(recoveryHP);
     }
     #endregion
 

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -249632564, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
+  m_Sprite: {fileID: -820651553, guid: 500dfd2ad35c53d4e8a35c8af9faafb3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 1002553279000610782}
   - component: {fileID: 6045837137481265341}
   - component: {fileID: 5806269155076515204}
-  - component: {fileID: 5096261636497386928}
+  - component: {fileID: 4116844849710273071}
   m_Layer: 5
-  m_Name: Bone-Hard_Skill
+  m_Name: Bone-Solider_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5096261636497386928
+--- !u!114 &4116844849710273071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,15 +282,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8819207446245105067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 607358529a73fd54c88ff7eafc75c310, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b62abd3523a024db4856b9614e8202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillType: 4
+  skillType: 1
   skillIcon: {fileID: 7372926458232057266}
   skillValueText: {fileID: 3372947818325416944}
   canvasGroup: {fileID: 5806269155076515204}
-  skillValue: 2
+  skillValue: 10
   skillSFX:
-  - {fileID: 8300000, guid: 03373f925f9ca8c47b9daef692ed09a7, type: 3}
-  - {fileID: 8300000, guid: 616f2c47a80e6f5478e594b10ccfb642, type: 3}
-  - {fileID: 8300000, guid: f67bee4eb30b1c847baa47e6a0a0a0c7, type: 3}
+  - {fileID: 8300000, guid: 02e92b0845feb254bb183c13ff0561b4, type: 3}
+  - {fileID: 8300000, guid: d3984a01a81d7b44796e0016a7547d8e, type: 3}
+  - {fileID: 8300000, guid: 16f57b9a7fa4bd54898de321c1877eb4, type: 3}
+  card: {fileID: 0}
+  capacity: 0

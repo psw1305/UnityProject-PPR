@@ -11,7 +11,6 @@ public class BattleEnemySkill : MonoBehaviour
     [SerializeField] protected EnemySkillType skillType;
     [SerializeField] protected Image skillIcon;
     [SerializeField] protected TextMeshProUGUI skillValueText;
-    [SerializeField] protected CanvasGroup canvasGroup;
 
     [Header("Param")]
     [SerializeField] protected int skillValue;
@@ -19,10 +18,12 @@ public class BattleEnemySkill : MonoBehaviour
 
     protected BattleEnemy battleEnemy;
     protected GameBoard gameBoard;
+    protected CanvasGroup canvasGroup;
     protected int resultSkillValue;
 
     private void Awake()
     {
+        this.canvasGroup = GetComponent<CanvasGroup>();
         this.canvasGroup.alpha = 0.0f;
     }
 

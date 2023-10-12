@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30a32470f3d0ff94887ec6a422311c5c, type: 3}
-  m_Name: B_Necromancer
+  m_Name: M_Bone-Solider
   m_EditorClassIdentifier: 
-  enemyType: 1
-  image: {fileID: 21300000, guid: e4c5dfff34e304bf89a99c8cda7c8692, type: 3}
-  enemyName: "\uAC15\uB839\uC220\uC0AC"
-  hp: 168
+  enemyType: 0
+  image: {fileID: 21300000, guid: 642035d1ad6054d4c81d469682e27df3, type: 3}
+  enemyName: "\uD574\uACE8 \uBCD1\uC0AC"
+  hp: 35
   skills:
-  - {fileID: 8819207446245105067, guid: bd0b4a0871f585f40942a922ac4c3c31, type: 3}
+  - {fileID: 8819207446245105067, guid: ddc23df9f7819fd46a1dbd05e62a39e5, type: 3}
+  - {fileID: 8819207446245105067, guid: 6716c3f13fcd60b46b20ed7c74119a29, type: 3}

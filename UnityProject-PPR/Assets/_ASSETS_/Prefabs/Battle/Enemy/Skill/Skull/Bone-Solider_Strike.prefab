@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 1002553279000610782}
   - component: {fileID: 6045837137481265341}
   - component: {fileID: 5806269155076515204}
-  - component: {fileID: 5096261636497386928}
+  - component: {fileID: 6974430301238822812}
   m_Layer: 5
-  m_Name: Bone-Hard_Smash
+  m_Name: Bone-Solider_Strike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5096261636497386928
+--- !u!114 &6974430301238822812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,13 +282,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8819207446245105067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 607358529a73fd54c88ff7eafc75c310, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b62abd3523a024db4856b9614e8202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillType: 1
+  skillType: 0
   skillIcon: {fileID: 7372926458232057266}
   skillValueText: {fileID: 3372947818325416944}
-  canvasGroup: {fileID: 5806269155076515204}
-  skillValue: 16
+  skillValue: 8
   skillSFX:
   - {fileID: 8300000, guid: 21de3afa729a41d4eb878a7c54c44372, type: 3}
+  card: {fileID: 11400000, guid: 58852cade6debc048af0ff116d1fd088, type: 2}
+  capacity: 2

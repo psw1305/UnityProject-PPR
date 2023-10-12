@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30a32470f3d0ff94887ec6a422311c5c, type: 3}
-  m_Name: T_Dummy
+  m_Name: E_Bone-Hard
   m_EditorClassIdentifier: 
-  enemyType: 0
-  image: {fileID: 21300000, guid: 75b73ed42062340c1a13fdf450695eb1, type: 3}
-  enemyName: "\uB354\uBBF8"
-  hp: 9
+  enemyType: 1
+  image: {fileID: 21300000, guid: 0aa09f06c69024e5a9c50f1f11a807c7, type: 3}
+  enemyName: "\uB531-\uB531"
+  hp: 60
   skills:
-  - {fileID: 8819207446245105067, guid: ad85f87ffaa0b0048b8e740a835dc659, type: 3}
-  - {fileID: 8819207446245105067, guid: 6b3e9d03e9b684b429cb9662e831ea21, type: 3}
+  - {fileID: 8819207446245105067, guid: cc51c1f68409e8346b3f032d10c14e2d, type: 3}
+  - {fileID: 8819207446245105067, guid: a98f72ae63749064e9a24c321d44e397, type: 3}

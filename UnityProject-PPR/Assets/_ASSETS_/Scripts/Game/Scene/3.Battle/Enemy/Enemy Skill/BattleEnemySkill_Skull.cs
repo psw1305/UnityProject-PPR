@@ -2,7 +2,10 @@ using PSW.Core.Enums;
 using System.Collections;
 using UnityEngine;
 
-public class BattleEnemySkillCard : BattleEnemySkill
+/// <summary>
+/// 해골 몬스터 스킬 카드
+/// </summary>
+public class BattleEnemySkill_Skull : BattleEnemySkill
 {
     [Header("Card")]
     [SerializeField] private ItemBlueprintCard card;
@@ -12,7 +15,7 @@ public class BattleEnemySkillCard : BattleEnemySkill
     {
         UseSkillByType();
 
-        yield return StartCoroutine(CardCreate());
+        yield return StartCoroutine(CreateSkull());
 
         yield return YieldCache.WaitForSeconds(0.3f);
 
@@ -21,16 +24,17 @@ public class BattleEnemySkillCard : BattleEnemySkill
 
     public override void CheckSkill()
     {
-        if (this.card.CardDetailType == CardDetailType.Skull)
-        {
-            int skullCount = this.gameBoard.ObstacleCardsCount(this.card.CardDetailType);
-            this.resultSkillValue = this.skillValue + skullCount;
-        }
+        int skullCount = this.gameBoard.ObstacleCardsCount(CardDetailType.Skull);
+        this.resultSkillValue = this.skillValue + skullCount;
 
         base.CheckSkill();
     }
 
-    private IEnumerator CardCreate()
+    /// <summary>
+    /// 장애물 카드(해골) 생성
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CreateSkull()
     {
         if (this.card == null) yield return null;
 

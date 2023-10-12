@@ -101,9 +101,10 @@ MonoBehaviour:
   dropRelic: {fileID: 8300000, guid: e7bbb91d28c6eb24f9392f340375ec88, type: 3}
   dropPotion: {fileID: 8300000, guid: a1f832f1fe54c3444b74b5fe475465c9, type: 3}
   dropCash: {fileID: 8300000, guid: 4b51840732f126c4ab7e151f325dc15c, type: 3}
-  healthUp: {fileID: 8300000, guid: ca4cef7e64128fe439de00886a296743, type: 3}
   itemGain: {fileID: 8300000, guid: 67739ec0597743644bc15dd2b8cc6ffc, type: 3}
   cashGain: {fileID: 8300000, guid: c6566cee37d4fc0418d3130481001f06, type: 3}
+  playerRest: {fileID: 8300000, guid: ca4cef7e64128fe439de00886a296743, type: 3}
+  cardRemove: {fileID: 8300000, guid: 6ec05f9523fa3e34c89073c24e72ad1f, type: 3}
   mapClicks:
   - {fileID: 8300000, guid: 21412d0096c61e34caea7118f124e253, type: 3}
   - {fileID: 8300000, guid: db7b4cbab33a601449a0cc5a0af37331, type: 3}

@@ -41,26 +41,10 @@ MonoBehaviour:
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
     randomizeNodes: 1
-  - nodeType: 2
-    distanceFromPreviousLayer: 80
-    nodesApartDistance: 64
-    randomizeNodes: 0
   - nodeType: 5
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
     randomizeNodes: 0
-  - nodeType: 1
-    distanceFromPreviousLayer: 80
-    nodesApartDistance: 64
-    randomizeNodes: 1
-  - nodeType: 4
-    distanceFromPreviousLayer: 80
-    nodesApartDistance: 64
-    randomizeNodes: 0
-  - nodeType: 1
-    distanceFromPreviousLayer: 80
-    nodesApartDistance: 64
-    randomizeNodes: 1
   - nodeType: 2
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
@@ -79,12 +63,11 @@ MonoBehaviour:
     randomizeNodes: 0
   first:
   - {fileID: 11400000, guid: e8246dd4727713c488e03cebb0a0b971, type: 2}
-  - {fileID: 11400000, guid: bf908c09f1a81464292f60279a89b790, type: 2}
-  - {fileID: 11400000, guid: c6d1015a0001996408beafe9f2fce65a, type: 2}
-  remain: []
+  remain:
+  - {fileID: 11400000, guid: 5f11a308d4a093042a7f789d71b46320, type: 2}
+  - {fileID: 11400000, guid: da8630934682e6f498ef9d1a41146a98, type: 2}
   elite:
   - {fileID: 11400000, guid: 0eb30531d91bcd747a198cb19947bace, type: 2}
-  - {fileID: 11400000, guid: 3cea5b67859179b4cb1289a047a08df1, type: 2}
   boss:
   - {fileID: 11400000, guid: 1156ec26e2b4a684eb5c9dcf0ae5206f, type: 2}
   startEvent: {fileID: 11400000, guid: 6d30677790b514943be92894e450d6d7, type: 2}

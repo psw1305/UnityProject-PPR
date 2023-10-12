@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 1002553279000610782}
   - component: {fileID: 6045837137481265341}
   - component: {fileID: 5806269155076515204}
-  - component: {fileID: 6974430301238822812}
+  - component: {fileID: 2732860423684665447}
   m_Layer: 5
-  m_Name: Bone-Solider_Strike
+  m_Name: Bone_Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6974430301238822812
+--- !u!114 &2732860423684665447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,8 +289,8 @@ MonoBehaviour:
   skillIcon: {fileID: 7372926458232057266}
   skillValueText: {fileID: 3372947818325416944}
   canvasGroup: {fileID: 5806269155076515204}
-  skillValue: 11
+  skillValue: 5
   skillSFX:
   - {fileID: 8300000, guid: 21de3afa729a41d4eb878a7c54c44372, type: 3}
-  card: {fileID: 0}
-  capacity: 2
+  card: {fileID: 11400000, guid: 58852cade6debc048af0ff116d1fd088, type: 2}
+  capacity: 1

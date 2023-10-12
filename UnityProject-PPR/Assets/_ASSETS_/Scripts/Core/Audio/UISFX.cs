@@ -21,10 +21,13 @@ public class UISFX : BehaviourSingleton<UISFX>
     public AudioClip dropPotion;
     public AudioClip dropCash;
 
-    [Header("Mystery")]
-    public AudioClip healthUp;
+    [Header("Event")]
     public AudioClip itemGain;
     public AudioClip cashGain;
+
+    [Header("Rest")]
+    public AudioClip playerRest;
+    public AudioClip cardRemove;
 
     [Header("Map")]
     public AudioClip[] mapClicks;

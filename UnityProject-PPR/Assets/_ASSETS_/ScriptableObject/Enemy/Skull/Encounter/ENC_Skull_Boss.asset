@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d4759604b389974aa1b780e0ef9f330, type: 3}
-  m_Name: Encounter_Elite_1
+  m_Name: ENC_Skull_Boss
   m_EditorClassIdentifier: 
-  enemyType: 1
+  enemyType: 2
   spawnEnemys:
-  - {fileID: 11400000, guid: 67985fdf7c9749c4b809a289e814e979, type: 2}
+  - {fileID: 11400000, guid: 3c8e1c384e521a142b723bb4bdf3daaa, type: 2}
