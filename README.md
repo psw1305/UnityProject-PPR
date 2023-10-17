@@ -14,4 +14,6 @@
 ## 개요
 [플레이 영상](https://www.youtube.com/watch?v=SW4AwwsP-a8)
 
+[기술설명서](https://docs.google.com/document/d/1N3lImrTnghEW11pdnEbehVWwhnnaYxNs1eNXutQLy4k/edit)
+
 [APK 파일](https://drive.google.com/drive/folders/199aqAqvT2XcT2XICYeFV3IEV2PCJSOMV?usp=drive_link)
