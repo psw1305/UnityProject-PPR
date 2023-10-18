@@ -46,7 +46,7 @@ namespace PSW.Core.Extensions
         /// </summary>
         /// <param name="tmproText"></param>
         /// <param name="itemGrade"></param>
-        public static void ItemGradeTextColor(this TextMeshProUGUI tmproText, ItemGradeType itemGrade)
+        public static void TextColorFromItemGrade(this TextMeshProUGUI tmproText, ItemGradeType itemGrade)
         {
             switch (itemGrade)
             {

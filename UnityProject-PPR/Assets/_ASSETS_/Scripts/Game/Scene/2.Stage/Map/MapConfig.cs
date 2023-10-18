@@ -19,13 +19,13 @@ namespace PSW.Core.Map
         [Header("Map Layer")]
         public MapLayer[] layers;
 
-        [Header("Enemys Spawn")]
+        [Header("Map - Battle")]
         public EnemyEncounter[] first;
         public EnemyEncounter[] remain;
         public EnemyEncounter[] elite;
         public EnemyEncounter[] boss;
 
-        [Header("Mystery Event")]
+        [Header("Map - Event")]
         public MysteryConfig startEvent;
         public MysteryConfig[] randomEvents;
     }

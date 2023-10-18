@@ -57,21 +57,21 @@ public class PlayerItemTooltip : BehaviourSingleton<PlayerItemTooltip>
         {
             case ItemType.Card:
                 this.cardImage.sprite = itemData.ItemImage;
-                this.cardRare.ItemGradeTextColor(itemData.ItemGrade);
+                this.cardRare.TextColorFromItemGrade(itemData.ItemGrade);
                 this.cardName.text = itemData.ItemName;
                 this.cardAbility.text = itemData.ItemAbility;
                 this.cardDesc.text = itemData.ItemDesc;
                 break;
             case ItemType.Relic:
                 this.relicImage.sprite = itemData.ItemImage;
-                this.relicRare.ItemGradeTextColor(itemData.ItemGrade);
+                this.relicRare.TextColorFromItemGrade(itemData.ItemGrade);
                 this.relicName.text = itemData.ItemName;
                 this.relicAbility.text = itemData.ItemAbility;
                 this.relicDesc.text = itemData.ItemDesc;
                 break;
             case ItemType.Potion:
                 this.potionImage.sprite = itemData.ItemImage;
-                this.potionRare.ItemGradeTextColor(itemData.ItemGrade);
+                this.potionRare.TextColorFromItemGrade(itemData.ItemGrade);
                 this.potionName.text = itemData.ItemName;
                 this.potionAbility.text = itemData.ItemAbility;
                 this.potionDesc.text = itemData.ItemDesc;

@@ -36,19 +36,19 @@ MonoBehaviour:
   - nodeType: 1
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
-    randomizeNodes: 1
+    randomizeNodes: 0.5
   - nodeType: 1
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
-    randomizeNodes: 1
+    randomizeNodes: 0.5
   - nodeType: 5
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
-    randomizeNodes: 0
+    randomizeNodes: 1
   - nodeType: 2
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64
-    randomizeNodes: 0
+    randomizeNodes: 1
   - nodeType: 1
     distanceFromPreviousLayer: 80
     nodesApartDistance: 64

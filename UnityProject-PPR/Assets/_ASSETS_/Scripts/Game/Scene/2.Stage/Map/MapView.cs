@@ -50,6 +50,11 @@ namespace PSW.Core.Map
             return config.nodeBlueprints.FirstOrDefault(n => n.name == blueprintName);
         }
 
+        public GameObject GetMapParent()
+        { 
+            return this.mapParent; 
+        }
+
         public void ShowMap(Map m)
         {
             if (m == null) return;

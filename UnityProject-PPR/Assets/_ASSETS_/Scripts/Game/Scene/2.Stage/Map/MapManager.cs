@@ -6,7 +6,8 @@ namespace PSW.Core.Map
 {   
     public class MapManager : BehaviourSingleton<MapManager>
     {
-        public MapConfig config;
+        [SerializeField] private MapConfig config;
+        [SerializeField] private MapView mapView;
 
         public Map CurrentMap { get; private set; }
 
@@ -43,7 +44,16 @@ namespace PSW.Core.Map
             var map = MapGenerator.GetMap(this.config);
             this.CurrentMap = map;
             //Debug.Log(map.ToJson());
-            MapView.Instance.ShowMap(map);
+            this.mapView.ShowMap(map);
+        }
+
+        /// <summary>
+        /// 스테이지 맵 리셋
+        /// </summary>
+        public void ResetMap()
+        {
+            Destroy(this.mapView.GetMapParent());
+            GenerateNewMap();
         }
 
         /// <summary>
